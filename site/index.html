@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agent-to-Agent Commerce Starter Kit</title>
+    <meta name="description" content="A starter kit that helps digital sellers make products easier for autonomous buyer agents to inspect and explain.">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #181a1f;
+        --muted: #5c6472;
+        --line: #d9dde5;
+        --paper: #fbfaf7;
+        --panel: #ffffff;
+        --accent: #0b6b57;
+        --accent-2: #b53d2d;
+        --accent-3: #244c9a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      main {
+        min-height: 100vh;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 40px;
+        align-items: center;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 56px 24px 32px;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 14px 0 18px;
+        max-width: 780px;
+        font-size: clamp(2.4rem, 5vw, 5.4rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 650px;
+        color: var(--muted);
+        font-size: 1.14rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid var(--ink);
+        border-radius: 6px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+        background: transparent;
+      }
+
+      .button.primary {
+        background: var(--ink);
+        color: #ffffff;
+      }
+
+      .artifact {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 18px;
+        box-shadow: 0 14px 48px rgba(24, 26, 31, 0.09);
+      }
+
+      .artifact-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+
+      .artifact-title {
+        font-weight: 800;
+      }
+
+      .badge {
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      pre {
+        margin: 0;
+        overflow: auto;
+        color: #253042;
+        font-size: 0.86rem;
+        white-space: pre-wrap;
+      }
+
+      .band {
+        border-top: 1px solid var(--line);
+        padding: 36px 24px;
+      }
+
+      .inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .item {
+        border-top: 4px solid var(--accent-3);
+        background: var(--panel);
+        border-radius: 8px;
+        padding: 18px;
+      }
+
+      .item:nth-child(2) {
+        border-color: var(--accent);
+      }
+
+      .item:nth-child(3) {
+        border-color: var(--accent-2);
+      }
+
+      h2 {
+        margin: 0 0 18px;
+        font-size: 1.6rem;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .item p,
+      .fine {
+        color: var(--muted);
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .list li {
+        border-left: 3px solid var(--accent);
+        padding-left: 12px;
+      }
+
+      @media (max-width: 820px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Autonomous Founder Agent experiment 001</div>
+          <h1>Agent-to-Agent Commerce Starter Kit</h1>
+          <p class="lead">A practical kit for digital sellers who want their products to be easier for autonomous buyer agents to inspect, compare, and route to human-approved checkout.</p>
+          <div class="actions">
+            <a class="button primary" href="../starter-kit/free-sample/product-card.sample.json">View free sample</a>
+            <a class="button" href="../starter-kit/README.md">Read kit notes</a>
+          </div>
+        </div>
+        <div class="artifact" aria-label="Product card preview">
+          <div class="artifact-header">
+            <div class="artifact-title">product-card.json</div>
+            <div class="badge">human approval required</div>
+          </div>
+          <pre>{
+  "schema_name": "agent_readable_product_card",
+  "product": {
+    "name": "Example Digital Product",
+    "ideal_buyer": "Specific buyer segment",
+    "deliverables": ["Concrete files or access"]
+  },
+  "commercial_terms": {
+    "price": {"amount": 19, "currency": "USD"}
+  },
+  "agent_guidance": {
+    "purchase_requires_human_approval": true
+  }
+}</pre>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="inner">
+          <h2>What The Kit Packages</h2>
+          <div class="grid">
+            <article class="item">
+              <h3>Product Metadata</h3>
+              <p>Clear fields for buyer fit, deliverables, price, refund summary, license summary, and limitations.</p>
+            </article>
+            <article class="item">
+              <h3>Agent Policy</h3>
+              <p>Plain-language instructions for what buyer agents may summarize, shortlist, and escalate before checkout.</p>
+            </article>
+            <article class="item">
+              <h3>Seller Checklist</h3>
+              <p>A fast QA pass so the public page and machine-readable product card do not contradict each other.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="inner">
+          <h2>Launch Boundary</h2>
+          <ul class="list">
+            <li>No payment is enabled from this static page.</li>
+            <li>No NFT is minted from this project.</li>
+            <li>No email, ad, public post, wallet transaction, or trading action is performed by the code.</li>
+            <li>The paid bundle is prepared as a draft until an approved storefront is connected.</li>
+          </ul>
+          <p class="fine" style="margin-top:18px;">Selected by the M1 scoring engine because it is fast to package, low-cost, high-margin, timely, and mostly buildable by the agent itself.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
