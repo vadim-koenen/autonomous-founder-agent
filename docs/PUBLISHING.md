@@ -14,10 +14,13 @@ Public-safe contents:
 - M1 decision system
 - scoring rubric
 - example run with 32 strategies
+- M2 agent profile and manifest
 - selected top 3
 - starter kit free sample
 - paid bundle draft files
 - launch page draft
+- checkout placeholder with no public URL configured
+- revenue ledger initialized at $0
 - public post drafts clearly marked as drafts
 - Tony Robbins agent NFTs search note
 
@@ -27,6 +30,7 @@ The static landing page is at `site/index.html`. The root `index.html` redirects
 
 - no payment processor
 - no storefront checkout
+- no configured checkout URL
 - no NFT minting
 - no wallet transaction
 - no ad account
@@ -65,3 +69,5 @@ After review, connect one approved storefront:
 - GitHub Sponsors for supporter-style funding
 
 The first price test remains `$19` for the full starter kit, with the free sample public.
+
+Only the public checkout URL should be committed. API keys, webhook secrets, private wallet keys, seed phrases, bank data, and tax data must stay out of the repository.

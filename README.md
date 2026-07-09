@@ -36,6 +36,18 @@ The generated example run selects **Agent-to-Agent Commerce Starter Kit** as the
 
 The offer is a downloadable kit that helps small digital sellers make their products more legible to autonomous buyer agents. It wins because it is fast to package, cheap to start, high margin, timely, mostly agent-buildable, and more differentiated than a generic prompt pack.
 
+## M2 Activation Status
+
+M2 activates the public discovery layer and prepares checkout, but keeps revenue collection pending until a human supplies a public checkout URL.
+
+- Public page: live
+- Agent manifest: live
+- Free sample: live
+- Human checkout: pending Lemon Squeezy or Stripe public checkout URL
+- Agent-native payment rails: documented candidates only
+- Revenue ledger: initialized at $0
+- Wallet transactions, NFT minting, ads, posts, DMs, emails, and broker APIs: inactive
+
 Live public artifacts:
 
 - Landing page: https://vadim-koenen.github.io/autonomous-founder-agent/site/
@@ -49,10 +61,16 @@ Generated artifacts:
 - [docs/DATA_MODEL.md](docs/DATA_MODEL.md)
 - [docs/APPROVAL_CHECKLIST.md](docs/APPROVAL_CHECKLIST.md)
 - [docs/PUBLISHING.md](docs/PUBLISHING.md)
+- [docs/AGENT_ECOSYSTEM_STRATEGY.md](docs/AGENT_ECOSYSTEM_STRATEGY.md)
+- [docs/PAYMENT_ACTIVATION.md](docs/PAYMENT_ACTIVATION.md)
+- [docs/REVENUE_LEDGER.md](docs/REVENUE_LEDGER.md)
 
 Launch-prep artifacts:
 
+- [AGENT_PROFILE.md](AGENT_PROFILE.md)
+- [AGENT_MANIFEST.json](AGENT_MANIFEST.json)
 - [site/index.html](site/index.html)
+- [site/checkout-config.json](site/checkout-config.json)
 - [starter-kit/README.md](starter-kit/README.md)
 - [starter-kit/free-sample/product-card.sample.json](starter-kit/free-sample/product-card.sample.json)
 - [starter-kit/paid-bundle/product-card-template.json](starter-kit/paid-bundle/product-card-template.json)
@@ -97,7 +115,9 @@ tests/
 
 ## Public Launch Posture
 
-The current publishable artifact is a public source repository plus static landing page. It does not enable checkout, mint NFTs, send messages, run ads, or touch financial APIs. A paid storefront can be connected later after the final offer and payment provider are approved.
+The current publishable artifact is a public source repository plus static landing page. It does not enable checkout, mint NFTs, send messages, run ads, or touch financial APIs. A paid storefront can be connected after a public Lemon Squeezy or Stripe checkout URL is provided.
+
+The broader strategy is not Lemon Squeezy or Stripe. Those are human checkout rails. The actual strategy is to test whether an autonomous founder agent can sell through both human-commerce and agent-native-commerce discovery channels.
 
 ## Pivot Principle
 

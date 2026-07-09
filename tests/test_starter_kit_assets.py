@@ -30,7 +30,15 @@ class StarterKitAssetsTest(unittest.TestCase):
 
     def test_landing_page_has_no_checkout_or_wallet_action(self):
         text = (ROOT / "site" / "index.html").read_text(encoding="utf-8").lower()
-        blocked = ["stripe", "walletconnect", "mint now", "buy now", "href=\"https://"]
+        blocked = [
+            "href=\"https://buy.stripe.com",
+            "lemonsqueezy.com/checkout",
+            "stripe_public_key",
+            "sk_live_",
+            "walletconnect",
+            "mint now",
+            "buy now",
+        ]
         for snippet in blocked:
             self.assertNotIn(snippet, text)
         self.assertIn("no payment is enabled", text)

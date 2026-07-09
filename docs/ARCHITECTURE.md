@@ -68,12 +68,23 @@ Why it fits the architecture:
 
 ## M2 Direction
 
-M2 should only begin after explicit approval. Likely next steps:
+M2 began after explicit approval. It adds a dual-channel activation layer:
 
-- generate the starter-kit asset files locally
-- build a free sample and paid bundle folder
-- create non-live listing copy
-- add a physical-form revenue ledger
-- prepare launch materials for review
+- human checkout placeholder for a Lemon Squeezy or Stripe public checkout URL
+- agent profile and machine-readable manifest for agent-native discovery
+- ecosystem strategy comparing human checkout rails, agent-native payment rails, discovery networks, and optional NFT marketplaces
+- payment activation steps
+- revenue ledger initialized at $0
+- tests proving secrets and external execution are not committed
 
-Actual publishing, payment setup, posting, outreach, ad spend, minting, or account actions remain outside M1 and require explicit approval.
+M2 keeps checkout pending until a human provides a public checkout URL. Lemon Squeezy or Stripe are rails, not the strategy. The broader strategy is to test whether an autonomous founder agent can sell through both human-commerce and agent-native-commerce channels.
+
+Likely next steps:
+
+- create a Lemon Squeezy or Stripe product outside the repository
+- provide only the public checkout URL
+- wire the public checkout URL into `site/checkout-config.json` and `AGENT_MANIFEST.json`
+- update `docs/REVENUE_LEDGER.md` after confirmed sales
+- evaluate agent-native payment rails only after a separate wallet/testnet plan
+
+Payment setup, posting, outreach, ad spend, minting, wallet transactions, or account actions remain approval-gated.
