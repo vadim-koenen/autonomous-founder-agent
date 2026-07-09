@@ -4,6 +4,11 @@
 
 The repository can be published as a public proof-of-work artifact for Autonomous Founder Agent.
 
+Published URLs:
+
+- Landing page: https://vadim-koenen.github.io/autonomous-founder-agent/site/
+- Source repository: https://github.com/vadim-koenen/autonomous-founder-agent
+
 Public-safe contents:
 
 - M1 decision system

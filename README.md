@@ -36,6 +36,11 @@ The generated example run selects **Agent-to-Agent Commerce Starter Kit** as the
 
 The offer is a downloadable kit that helps small digital sellers make their products more legible to autonomous buyer agents. It wins because it is fast to package, cheap to start, high margin, timely, mostly agent-buildable, and more differentiated than a generic prompt pack.
 
+Live public artifacts:
+
+- Landing page: https://vadim-koenen.github.io/autonomous-founder-agent/site/
+- Source repository: https://github.com/vadim-koenen/autonomous-founder-agent
+
 Generated artifacts:
 
 - [data/example_run.md](data/example_run.md)
