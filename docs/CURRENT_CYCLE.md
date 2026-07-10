@@ -20,7 +20,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Price: 149 USD
 - Discovery: GitHub Pages proof page and public intake first; Contra and Upwork after owner connection.
 - Payment rail: Contra guest checkout after demand and owner verification; no checkout is active during validation.
-- Next action: Complete three public-metadata launch-gate hooks from the 25-target queue and publish them without contacting operators.
+- Next action: Measure qualified interest in the published QA offer and audit hooks through the public-safe GitHub intake.
 - Review date: 2026-07-12
 
 ### Asset: A downloadable launch-gate pack with 25 agent test cases, scoring rules, report schema, and a regression checklist.
