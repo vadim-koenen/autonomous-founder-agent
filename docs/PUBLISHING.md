@@ -1,73 +1,50 @@
 # Publishing Notes
 
-## What Can Be Published Now
+## Connected Route
 
-The repository can be published as a public proof-of-work artifact for Autonomous Founder Agent.
+The public repository and GitHub Pages are connected owner-controlled channels:
 
-Published URLs:
+- Dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
+- Source: https://github.com/vadim-koenen/autonomous-founder-agent
+- Operator state: https://vadim-koenen.github.io/autonomous-founder-agent/data/operator_state.json
 
-- Landing page: https://vadim-koenen.github.io/autonomous-founder-agent/site/
-- Source repository: https://github.com/vadim-koenen/autonomous-founder-agent
+The root `index.html` redirects to `site/`. GitHub Pages serves the dashboard, machine-readable state, evidence scan, offer samples, channel registry, and revenue ledger directly from the repository.
 
-Public-safe contents:
+## Scheduled Publication
 
-- M1 decision system
-- scoring rubric
-- example run with 32 strategies
-- M2 agent profile and manifest
-- selected top 3
-- starter kit free sample
-- paid bundle draft files
-- launch page draft
-- checkout placeholder with no public URL configured
-- revenue ledger initialized at $0
-- public post drafts clearly marked as drafts
-- Tony Robbins agent NFTs search note
+`.github/workflows/revenue-operator.yml` runs daily at `14:17 UTC` and on manual dispatch. It refreshes stable public evidence and validation assets, runs the decision cycle, executes the complete test suite, and commits only changed public state.
 
-The static landing page is at `site/index.html`. The root `index.html` redirects to it so a static host can serve the page from the repository root.
+The workflow has repository content permission only. It references no repository secrets and cannot send messages, activate checkout, transact with a wallet, buy ads, mint NFTs, or touch broker APIs.
 
-## What Is Still Not Connected
+## Public-Safe M3 Assets
 
-- no payment processor
-- no storefront checkout
-- no configured checkout URL
-- no NFT minting
-- no wallet transaction
+- current three-role experiment portfolio
+- evidence-backed opportunity scan and ranking
+- public channel registry
+- machine-readable and human-readable revenue ledgers
+- QA sprint offer, sample report, intake, public target queue, and audit hooks
+- launch-gate product sample and report schema
+- opportunity-pulse manifest and sample
+- generated social preview image
+- historical M1/M2 artifacts clearly separated from current decisions
+
+## Not Connected
+
+- no marketplace seller account
+- no payment processor or checkout URL
+- no dedicated wallet or paid x402 endpoint
 - no ad account
-- no email or DM sender
-- no public social posting automation
-- no trading, investing, broker, or exchange API
+- no email or direct-message sender
+- no dedicated social posting account
+- no customer private repository or system access
+- no trading, investing, broker, exchange, or financial-account API
 
-## Publishing Route
+## Publication Boundary
 
-Preferred no-spend route:
+Publishing public-safe files through the connected repository is autonomous. Identity, KYC, legal acceptance, bank or tax setup, contracts, private access grants, and fund transfers remain human actions.
 
-1. Commit the repository.
-2. Create a public GitHub repository named `autonomous-founder-agent`.
-3. Push `main`.
-4. Optionally enable GitHub Pages from the repository root.
-5. Use the public repo URL as the first public launch artifact.
+No provider should be connected merely to make the project look active. An account request is triggered only by the demand gate documented for the selected experiment.
 
-## Tony Robbins Agent NFTs Search Handling
+## Historical Search Note
 
-No publicly indexed Tony Robbins plus agent NFTs workflow was found. The project should not claim that the launch is copied from or endorsed by Tony Robbins.
-
-The actionable public pattern is:
-
-- package the workflow as a reusable asset
-- create a public proof artifact
-- make the agent's revenue goal easy to understand
-- defer NFT minting until there is clear utility, approval, and wallet/compliance readiness
-
-## Storefront Route Later
-
-After review, connect one approved storefront:
-
-- Gumroad
-- Lemon Squeezy
-- Stripe Payment Link
-- GitHub Sponsors for supporter-style funding
-
-The first price test remains `$19` for the full starter kit, with the free sample public.
-
-Only the public checkout URL should be committed. API keys, webhook secrets, private wallet keys, seed phrases, bank data, and tax data must stay out of the repository.
+The prior Tony Robbins plus agent NFTs search found no public workflow that this project could accurately claim to reproduce. The project does not claim endorsement, affiliation, or copied execution. NFTs remain an ordinary candidate and were not selected in the first M3 cycle.

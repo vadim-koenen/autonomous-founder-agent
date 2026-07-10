@@ -1,0 +1,47 @@
+name: Revenue Operator Cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 14 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  operate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current state
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Refresh stable public evidence
+        run: python3 scripts/refresh_public_evidence.py
+
+      - name: Refresh public validation assets
+        run: |
+          python3 scripts/build_public_prospect_queue.py
+          python3 scripts/build_opportunity_pulse.py
+
+      - name: Run the decision cycle
+        run: python3 scripts/run_operator_cycle.py
+
+      - name: Verify safety and lifecycle behavior
+        run: python3 -m unittest discover -s tests
+
+      - name: Publish changed public state
+        run: |
+          if git diff --quiet; then
+            echo "No operator-state changes to publish."
+            exit 0
+          fi
+          git config user.name "Autonomous Revenue Operator"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/opportunity_scan_*.json data/operator_state.json data/prospect_queue.json docs/CURRENT_CYCLE.md docs/REVENUE_LEDGER.md offers/agent-launch-qa-sprint/PROSPECTS.md frontier/opportunity-pulse/sample.json
+          git commit -m "chore: refresh revenue operator state [skip ci]"
+          git push

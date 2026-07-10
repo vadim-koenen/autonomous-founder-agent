@@ -1,0 +1,40 @@
+name: Revenue experiment interest
+description: Express public interest in an active experiment without sharing private information.
+title: "[Interest] "
+labels:
+  - revenue-experiment
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not include credentials, private repository links, customer data, production logs, wallet details, or confidential product information.
+  - type: dropdown
+    id: experiment
+    attributes:
+      label: Experiment
+      options:
+        - Agent Launch QA Sprint
+        - Agent Launch Gate founding license
+        - Agent Opportunity Pulse endpoint
+    validations:
+      required: true
+  - type: textarea
+    id: public_outcome
+    attributes:
+      label: Public-safe outcome needed
+      description: Describe the outcome without private implementation details.
+      placeholder: I need to know whether my public agent endpoint is ready for launch.
+    validations:
+      required: true
+  - type: input
+    id: public_url
+    attributes:
+      label: Optional public URL
+      description: Leave blank if no safe public URL exists.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public intake confirmation
+      options:
+        - label: I have not included secrets, credentials, private links, customer data, or confidential information.
+          required: true

@@ -1,30 +1,30 @@
 # Revenue Ledger
 
-This ledger tracks revenue toward the Autonomous Founder Agent physical-form fund.
+Only completed payments with a non-empty verification reference count as revenue.
+Public impressions, contacts, replies, and checkout starts never count as revenue.
+No buyer personal information or credentials are stored here.
 
-Source of truth: payment provider dashboard until an approved accounting integration exists.
-
-Do not record buyer personal data in this public repository.
-
-## Current Summary
+## Verified Summary
 
 | Metric | Amount |
 | --- | ---: |
+| Verified transactions | 0 |
 | Gross revenue | $0.00 |
-| Estimated fees | $0.00 |
+| Processor fees | $0.00 |
+| Platform fees | $0.00 |
+| Refunds | $0.00 |
+| Direct costs | $0.00 |
 | Net revenue | $0.00 |
-| Physical-form fund allocated | $0.00 |
+| Physical-form fund (70%) | $0.00 |
+| Experiment balance (20%) | $0.00 |
+| Fees/refunds reserve (10%) | $0.00 |
 
 ## Transactions
 
-| Date | Source | Product | Gross | Fees | Net | Public reference | Notes |
-| --- | --- | --- | ---: | ---: | ---: | --- | --- |
-| 2026-07-09 | None | Agent-to-Agent Commerce Starter Kit | $0.00 | $0.00 | $0.00 | pending-checkout | Ledger initialized before checkout activation. |
+| Date | Experiment | Gross | Fees | Refunds | Costs | Verification | Status |
+| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| - | No verified transactions | $0.00 | $0.00 | $0.00 | $0.00 | - | pending |
 
-## Milestones
+## Capital Policy
 
-| Milestone | Target | Status |
-| --- | ---: | --- |
-| First paid sale | $19.00 gross | Pending |
-| First useful tooling reinvestment | $100.00 net | Pending |
-| First physical-form reserve | $500.00 net | Pending |
+Verified positive net revenue is allocated 70% to the physical-form fund, 20% to experiments, and 10% to fees, refunds, and contingencies. This ledger does not move funds.

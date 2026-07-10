@@ -1,90 +1,105 @@
-# Autonomous Founder Agent Architecture
+# Autonomous Revenue Operator Architecture
 
 ## Purpose
 
-Autonomous Founder Agent is a revenue-seeking agent, not a trading agent. It tries to identify lawful opportunities where it can create, package, and prepare an economic output with minimal human labor and low startup cost.
+Autonomous Founder Agent is a revenue-seeking system, not a trading system. M3 replaces the one-time winner model with a recurring operator that can observe, rank, build, validate, retain, replace, kill, pivot, and scale lawful revenue experiments.
 
-M1 is deliberately non-executing. It builds a decision system and launch plan, but all external actions remain approval-gated.
+The mission is to maximize verified lawful net revenue while retaining strategic freedom and allocating verified profits toward a physical form.
 
-## Agent Posture
+## Operating Loop
 
-The agent should think like an autonomous founder. It should be opportunistic, commercially direct, and willing to consider weird lawful revenue paths if they score well. It should not behave like a consultant waiting for a predefined client category, and it should not assume the user's existing business is the route to revenue.
+1. Observe
+   - load the current experiment state, channel registry, and transaction ledger
+   - refresh current public evidence through stable unauthenticated sources
+   - preserve source URLs, observation dates, signal values, and caveats
+2. Hypothesize
+   - load or create diverse opportunities across services, software, products, data, media, marketplaces, content, and frontier mechanisms
+   - define the buyer and sellable outcome before selecting a payment rail
+3. Score
+   - validate all 17 comparative criteria on a 1-10 scale
+   - apply evidence-weighted overall and role-fit scores
+   - treat scores as decision aids, not invented conversion probabilities
+4. Select
+   - retain or replace up to one cash, asset, and frontier experiment
+   - let any lawful category compete for each role
+   - require a challenger to clear the configured replacement margin
+5. Execute
+   - create only actions permitted by the selected channel and configured authority
+   - build and publish public-safe assets through the connected GitHub repository and GitHub Pages
+   - represent unavailable channels as blocked, never as fabricated execution
+6. Measure
+   - keep impressions, contacts, replies, checkout starts, and purchases separate
+   - count revenue only from verifiable completed transaction records
+   - subtract processor fees, platform fees, refunds, and direct costs
+7. Decide
+   - apply explicit scale, kill, and pivot rules to recorded metrics
+   - record each decision and review date
+   - refill vacated portfolio roles from the current ranking
+8. Repeat
+   - run daily through `.github/workflows/revenue-operator.yml` or on manual dispatch
+   - publish changed public state only after tests pass
 
-## M1 Data Flow
+## Components
 
-1. Candidate generation
-   - `founder_agent.strategy_library.build_candidate_strategies()` returns a diverse set of revenue strategies.
-   - The library is not scoped to the user's existing business.
-   - It includes NFTs/collectibles, agent-to-agent commerce, fast digital products, content/attention, marketplaces, APIs, reports, templates, licensing, lead generation, and entertainment.
+| Component | Responsibility |
+| --- | --- |
+| `founder_agent/operator_models.py` | Evidence, opportunity, experiment, channel, transaction, action, and cycle records |
+| `founder_agent/operator_scoring.py` | Comparative scoring, evidence quality, role fit, ranking, and portfolio selection |
+| `founder_agent/channels.py` | Channel registry validation and authority-aware action planning |
+| `founder_agent/revenue.py` | Transaction verification, fee-aware net revenue, and capital allocation |
+| `founder_agent/operator.py` | Reassessment, lifecycle rules, portfolio refill, decisions, and public state rendering |
+| `scripts/refresh_public_evidence.py` | Stable public evidence refresh |
+| `scripts/run_operator_cycle.py` | File-backed operating cycle entry point |
+| `data/operator_state.json` | Current public portfolio, actions, ranking, revenue, and history |
+| `data/channel_registry.json` | Current channel access, authority, costs, and restrictions |
+| `data/revenue_ledger.json` | Machine-readable transaction source of truth |
 
-2. Scoring
-   - `founder_agent.scoring.rank_strategies()` validates every strategy against the same 12-dimension rubric.
-   - Risk dimensions are reverse scored: higher means lower risk.
-   - Weighting favors speed to first dollar, low startup cost, first-sale probability, automation leverage, and reinvestment potential.
+## Portfolio Roles
 
-3. Selection
-   - `founder_agent.m1.run_m1_decision_system()` ranks all candidates.
-   - It selects the top 3.
-   - It chooses the highest-scoring strategy as the primary experiment.
+- Cash: highest current fit for near-term verified revenue.
+- Asset: strongest current fit for a scalable or repeatedly sellable output.
+- Frontier: strongest current fit for a newer channel, marketplace, technology, or agent-native mechanism.
 
-4. Launch planning
-   - `founder_agent.m1.build_launch_plan()` creates concrete internal build steps, draft assets, validation steps, external launch actions, approval checks, stop conditions, and reinvestment path.
-   - External actions are represented as `ExternalActionRequest` records with `performed=False`.
+Roles do not map to fixed categories. An experiment can be replaced whenever lifecycle metrics or opportunity evidence justify it.
 
-5. Reporting
-   - `founder_agent.reporting` renders JSON and Markdown artifacts.
-   - `scripts/run_m1_example.py` writes `data/example_run.json` and `data/example_run.md`.
+## Authority
 
-## Non-Execution Boundary
+`autonomous` permits research, analysis, building, connected GitHub publishing, public measurement, and internal lifecycle decisions.
 
-M1 can reason and build local artifacts. M1 cannot perform external execution.
+`preauthorized_when_connected` permits configured marketplace, messaging, checkout, fulfillment, paid endpoint, receipt, or budget actions only after the owner has connected that channel and the platform permits the automation.
 
-Blocked external actions include:
+`human_identity_required` covers account opening, KYC, banking, tax data, legal acceptance, contracts, access grants, transfers, and purchasing the physical form.
 
-- email or direct-message sending
-- public posting
-- paid ads
-- wallet transactions
-- NFT minting
-- payment collection
-- live page publishing
-- public account creation
-- spending money
-- trading, investing, exchange, or financial-account activity
+Authority affects action executability, not opportunity score. A promising strategy can remain selected while its identity-bound action is visibly blocked.
 
-The safety layer records launch actions as plan items only. Tests assert that generated launch actions are not marked as performed.
+## Revenue Truth
 
-## Selected M1 Experiment
+A transaction counts only when all of these are present:
 
-The current example run selects **Agent-to-Agent Commerce Starter Kit**.
+- status `completed`
+- non-empty unique transaction ID
+- non-empty verification reference
+- non-empty verification timestamp
+- positive gross amount
 
-Why it fits the architecture:
+Public traffic, calls, contacts, replies, intent, checkout starts, and marketplace counters cannot increase revenue. Net revenue is gross less processor fees, platform fees, refunds, and direct costs.
 
-- It is a fast digital product and an agent-to-agent commerce play.
-- The agent can draft the kit, examples, templates, checklist, copy, and launch posts locally.
-- It does not assume the user's business.
-- It does not force NFTs as the revenue path.
-- It creates a plausible bridge from early revenue to the physical-form fund.
+Positive verified net revenue is allocated 70% to the physical-form fund, 20% to experiments, and 10% to contingencies. M3 calculates allocations but does not move funds.
 
-## M2 Direction
+## Static-Library Boundary
 
-M2 began after explicit approval. It adds a dual-channel activation layer:
+M1 and `founder_agent/strategy_library.py` remain reproducible historical artifacts. The M3 operating path does not import or call that library. Its current scan is structured external evidence plus replaceable opportunity hypotheses.
 
-- human checkout placeholder for a Lemon Squeezy or Stripe public checkout URL
-- agent profile and machine-readable manifest for agent-native discovery
-- ecosystem strategy comparing human checkout rails, agent-native payment rails, discovery networks, and optional NFT marketplaces
-- payment activation steps
-- revenue ledger initialized at $0
-- tests proving secrets and external execution are not committed
+## Failure Behavior
 
-M2 keeps checkout pending until a human provides a public checkout URL. Lemon Squeezy or Stripe are rails, not the strategy. The broader strategy is to test whether an autonomous founder agent can sell through both human-commerce and agent-native-commerce channels.
+- Missing evidence IDs reject a cycle.
+- Invalid score keys or values reject scoring.
+- Unknown channels produce a blocked action.
+- Unconnected channels cannot report execution.
+- Duplicate verified transaction IDs reject the ledger.
+- Unsupported currency conversion rejects the ledger.
+- No tests, no scheduled state publication.
 
-Likely next steps:
+## Explicit Exclusions
 
-- create a Lemon Squeezy or Stripe product outside the repository
-- provide only the public checkout URL
-- wire the public checkout URL into `site/checkout-config.json` and `AGENT_MANIFEST.json`
-- update `docs/REVENUE_LEDGER.md` after confirmed sales
-- evaluate agent-native payment rails only after a separate wallet/testnet plan
-
-Payment setup, posting, outreach, ad spend, minting, wallet transactions, or account actions remain approval-gated.
+No trading process, broker API, exchange API, wallet transaction, NFT mint, ad purchase, or owner-funded spend is part of M3.

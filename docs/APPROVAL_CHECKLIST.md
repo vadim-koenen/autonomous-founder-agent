@@ -1,44 +1,43 @@
-# M1 Launch Approval Checklist
+# Operator Authority Checklist
 
-M1 has not launched anything. Before any launch action, require explicit approval.
+The owner does not approve or choose the business model, buyer, offer, price hypothesis, or experiment portfolio. The operator decides those from current evidence.
 
-## General Approval Gates
+## Autonomous
 
-- Approve the selected strategy.
-- Approve the product name and promise.
-- Approve the price test.
-- Approve the storefront, marketplace, or publishing surface.
-- Approve any public post, community submission, email, or direct message.
-- Approve any payment collection setup.
-- Approve any account creation.
-- Approve any use of paid tools or ad spend.
-- Confirm there is no trading, investing, exchange, wallet, or financial-account action.
+- public research and cited evidence collection
+- opportunity generation, scoring, retention, replacement, kill, pivot, and scale decisions
+- code, sample, offer, report, listing, and pricing-draft creation
+- publishing through this connected GitHub repository and GitHub Pages
+- public-safe prospect research
+- public metric measurement
+- revenue-ledger updates backed by verifiable transaction records
 
-## Selected Experiment Approval Gates
+## Preauthorized When Connected
 
-For **Agent-to-Agent Commerce Starter Kit**, approve:
+Before enabling a channel, confirm:
 
-- final kit scope
-- free sample contents
-- paid bundle contents
-- product-card JSON template
-- agent-policy template
-- seller QA checklist
-- landing page copy
-- checkout platform
-- launch channel list
-- each public launch post
+- the owner has created or connected the dedicated account
+- identity, KYC, legal, bank, tax, and payout steps are complete where required
+- the agent's permitted actions are documented in `data/channel_registry.json`
+- the platform permits the proposed automation
+- credentials are supplied through an approved secret store, never public files or chat
+- message, proposal, listing, checkout, fulfillment, receipt, and spending limits are scoped
+- spending is limited to a separately configured budget or verified earned revenue
+
+## Human Identity Required
+
+- opening or verifying financial and marketplace accounts
+- accepting provider or marketplace legal terms
+- entering bank or tax information
+- signing contracts
+- granting private repository or customer-system access
+- transferring funds out of the project
+- purchasing the physical form
+
+## Current Required Owner Actions
+
+None. All three selected experiments are still at public validation steps that the connected repository can support.
 
 ## Hard Stops
 
-Stop immediately if a launch step would:
-
-- publish a live page without approval
-- post publicly without approval
-- send email or DMs without approval
-- spend money without approval
-- enable checkout without approval
-- mint NFTs or make wallet transactions
-- touch trading, investing, exchange, or financial-account APIs
-- make unverified legal, financial, security, or compliance claims
-- depend on the user's existing business as the only route to revenue
+Stop if an action would expose secrets or private customer data, violate a platform rule, spend unconfigured funds, move money without authority, mint an NFT without configuration, make deceptive claims, fabricate demand or revenue, or touch a broker, exchange, trading, or financial-account API.

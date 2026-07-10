@@ -1,78 +1,68 @@
 # Payment Activation
 
-M2 keeps checkout pending until a human provides a public checkout URL.
+No checkout or wallet is active. M3 does not require the owner to open an account before a selected offer crosses its demand gate.
 
-Do not put API keys, webhook secrets, private keys, seed phrases, bank data, tax data, or account credentials in this repository.
+Never put API keys, webhook secrets, private keys, seed phrases, bank data, tax data, account credentials, or buyer personal data in this repository.
 
-## Recommended Path: Lemon Squeezy
+## Cash Experiment: Agent Launch QA Sprint
 
-1. Create or log in to a Lemon Squeezy account.
-2. Complete required store, payout, tax, and identity setup inside Lemon Squeezy.
-3. Create a product named `Agent-to-Agent Commerce Starter Kit`.
-4. Set price to `$19` one-time.
-5. Upload the paid bundle files from `starter-kit/paid-bundle/`.
-6. Add product description from `starter-kit/paid-bundle/storefront-listing.md`.
-7. Confirm refund/support language is acceptable.
-8. Copy the public checkout URL.
-9. Provide only the public checkout URL for wiring into the site.
+Trigger: one qualified buyer explicitly requests the $149 sprint or asks for a payable proposal.
 
-## Alternate Path: Stripe Payment Link
+Minimal owner setup:
 
-1. Create or log in to a Stripe account.
-2. Complete required business, payout, tax, and identity setup inside Stripe.
-3. Create a product named `Agent-to-Agent Commerce Starter Kit`.
-4. Set price to `$19` one-time.
-5. Create a Payment Link for that product.
-6. Configure post-payment delivery manually or through a separate approved delivery process.
-7. Copy the public Payment Link URL.
-8. Provide only the public checkout URL for wiring into the site.
+1. Open or connect a Contra account, or use the marketplace where the buyer originated.
+2. Complete that provider's identity, legal, tax, bank, and payout steps.
+3. Create the exact fixed-scope service from `offers/agent-launch-qa-sprint/OFFER.md`.
+4. Set the founding price to `$149` and preserve the scope boundaries.
+5. Provide only the public checkout, proposal, or contract URL to the operator.
 
-## Site Wiring
+Marketplace-originated buyers remain on the marketplace's required payment rail.
 
-After a public checkout URL exists, update `site/checkout-config.json`:
+## Asset Experiment: Agent Launch Gate
+
+Trigger: at least three qualified interest signals for the free sample.
+
+Minimal owner setup:
+
+1. Connect and verify a provider that permits the product and intended fulfillment.
+2. Complete identity, legal, tax, bank, and payout steps in that provider.
+3. Create the exact product only after the full licensed package is ready.
+4. Set the founding price to `$39` one-time.
+5. Provide only the public checkout URL.
+
+Contra is the current proposed fit. Stripe may be reconsidered if direct demand warrants it. Lemon Squeezy is not assumed and must pass product-policy review first.
+
+## Frontier Experiment: Agent Opportunity Pulse
+
+Trigger: at least three explicit endpoint requests plus one recurring use case.
+
+Minimal owner setup:
+
+1. Create a dedicated project receiving wallet separate from personal wallets.
+2. Keep the recovery phrase and private key offline and outside Codex, source code, logs, screenshots, issues, and repository settings.
+3. Approve a scoped receiving-only policy and the exact network.
+4. Provide access through a supported secret store or approved wallet integration, never a pasted private key.
+5. Run testnet validation before any paid mainnet endpoint.
+
+The proposed price is `0.25 USDC` per snapshot. No wallet setup is currently required because the demand trigger has not been met.
+
+## Public Checkout Configuration
+
+Only after a selected experiment passes its gate, update `site/checkout-config.json` with its ID and public URL:
 
 ```json
 {
   "status": "active",
-  "provider": "lemon_squeezy",
-  "checkout_url": "https://public-checkout-url.example",
-  "configured_by_human": true
+  "experiment_id": "opp-selected-experiment",
+  "provider": "approved_provider_id",
+  "checkout_url": "https://public-checkout.example",
+  "configured_by_human": true,
+  "notes": "Public URL only; no credentials."
 }
 ```
 
-Allowed providers:
+The dashboard has no generic Buy button. An offer-specific action may be added only when its configuration and fulfillment path are valid.
 
-- `lemon_squeezy`
-- `stripe_payment_link`
+## Revenue Recording
 
-Then update `AGENT_MANIFEST.json` so `commerce_channels.human_checkout.checkout_url` matches the public URL.
-
-## Revenue Tracking
-
-Revenue source of truth remains the payment provider dashboard until an API integration is explicitly approved.
-
-Manual ledger update after first sale:
-
-1. Confirm sale in Lemon Squeezy or Stripe dashboard.
-2. Record sale date, gross revenue, fees, net revenue, provider, and order/reference ID in `docs/REVENUE_LEDGER.md`.
-3. Do not record buyer personal data in the public repository.
-4. Update physical-form fund totals.
-
-## Wallet / Agent-Native Payment Setup Later
-
-Do not create or connect wallet payment rails in M2 unless a separate wallet activation plan is approved.
-
-If wallet activation is later approved:
-
-1. Create a dedicated project wallet, separate from personal wallets.
-2. Store recovery phrase offline; never paste it into chat, code, docs, environment files, screenshots, or issues.
-3. Start with testnet only.
-4. Set transaction limits.
-5. Require human approval for every mainnet transaction.
-6. Document the exact agent-native payment rail before activating it.
-
-## Current Status
-
-Checkout status: pending
-
-Reason: no public Lemon Squeezy or Stripe checkout URL has been provided yet.
+Provider dashboards or signed settlement records remain the verification source. Add a public-safe transaction to `data/revenue_ledger.json` only after confirming completion. Record gross, processor and platform fees, refunds, direct costs, a non-secret verification reference, and verification time. Do not record buyer identity.

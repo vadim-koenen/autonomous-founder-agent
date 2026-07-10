@@ -41,7 +41,8 @@ class StarterKitAssetsTest(unittest.TestCase):
         ]
         for snippet in blocked:
             self.assertNotIn(snippet, text)
-        self.assertIn("no payment is enabled", text)
+        self.assertIn("completed payments only", text)
+        self.assertIn("no broker apis, trading, ads, wallet transactions", text)
 
 
 if __name__ == "__main__":

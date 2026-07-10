@@ -1,95 +1,46 @@
 # Agent Ecosystem Strategy
 
-M2 uses a dual-channel strategy. Lemon Squeezy or Stripe can collect human-approved payments, but they are not the strategy. The strategy is to test whether an autonomous founder agent can package a sellable product for both human-commerce and agent-native-commerce discovery.
+Payment, discovery, distribution, fulfillment, and the sellable offer are separate decisions. M3 selects an offer and buyer first, then evaluates the rail that fits the transaction.
 
-## Channel Map
+## Current Channel Comparison
 
-| Channel | Role | M2 Status | Why It Matters | Current Risk |
+| Channel | Function | Best fit | Current status | Main constraint |
 | --- | --- | --- | --- | --- |
-| Lemon Squeezy / Stripe | Human checkout rails | Pending public checkout URL | Fastest path to normal payment, receipts, payouts, refunds, and dashboard revenue reporting | Requires user setup, KYC/tax/payout details, and product approval |
-| Coinbase AgentKit / Wallet MCP | Agent-native wallet tooling candidate | Not active | Gives agents a wallet/tooling pattern for onchain interactions if agent-native payments become useful | Wallets introduce key custody, transaction, and compliance risk |
-| x402 | Agent-native payment protocol candidate | Not active | Offers a web-native way for agents/services to request payment for resources | Ecosystem adoption and operational safety are still developing |
-| Moltbook/OpenClaw-style networks | Discovery channels | Research/discovery candidate | Agent directories and open agent networks can help machines discover capabilities/products | Discoverability may not equal purchase intent |
-| NFT marketplaces | Optional marketplace channel | Deferred | Could create collectible/supporter artifacts for the physical-form fund narrative | Wallet friction, marketplace risk, rights/compliance, and speculative framing |
+| GitHub Pages | Publishing and public discovery | Proof assets, samples, machine-readable state | Connected | Static hosting; all content is public |
+| GitHub Issues | Public interest intake | Qualification without private data | Connected | Not checkout; submissions are public |
+| Contra | Marketplace, service/product checkout, fulfillment | Human buyers of the QA sprint or launch-gate product | Not connected | Owner account, legal acceptance, payout, and identity setup |
+| Upwork | Marketplace discovery and escrow | Marketplace-originated service buyers | Not connected | Owner identity, proposal rules, competition, and marketplace fees |
+| Fiverr | Marketplace discovery and checkout | Fixed AI service offers | Not connected | Owner identity, supply competition, and platform rules |
+| Stripe Payment Links | Direct human checkout | Direct card buyers when the offer warrants a standalone checkout | Not selected | Owner KYC, bank, tax, and product setup |
+| Lemon Squeezy | Merchant-of-record digital checkout | Eligible digital goods | Not selected | Services and crypto-related products do not fit its policy |
+| x402 Bazaar | Agent-native discovery and payment | Machine-purchased API or data responses | Read-only research | Paid operation requires a dedicated receiving wallet and real recurring demand |
+| NFT marketplace | Optional marketplace and collectible rail | Original collectible only when audience demand exists | Rejected from current portfolio | Wallet, rights, fees, and weak first-buyer evidence |
+| Dedicated social account | Distribution and attention | Build-in-public content after connection | Not connected | Human account ownership and platform automation rules |
 
-## Human Checkout Rails
+## Current Transaction Decisions
 
-Human checkout is the fastest route to first revenue because buyers already understand card checkout and digital downloads.
+### Agent Launch QA Sprint
 
-Use these rails for:
+The buyer is human and the deliverable is a fixed-scope service. Contra guest checkout is the intended direct rail after a qualified buyer requests purchase and the owner completes identity and payout setup. An Upwork-originated buyer must remain on Upwork escrow.
 
-- $19 starter-kit purchase
-- payment dashboard reporting
-- refund handling
-- payout setup
-- basic conversion tracking
+### Agent Launch Gate
 
-Stripe Payment Links and Lemon Squeezy are acceptable because they can expose a public checkout URL without putting API keys in this repo.
+The buyer is human and the deliverable is a downloadable license. Contra digital-product checkout is the current fit after at least three qualified interest signals. Stripe can be reconsidered if direct demand becomes larger than marketplace demand. Lemon Squeezy is not selected merely because a placeholder exists.
 
-M2 rule: only a public checkout URL may be added to `site/checkout-config.json`. No secret keys, webhook secrets, private API tokens, bank data, or tax details belong in the repository.
+### Agent Opportunity Pulse
 
-## Agent-Native Payment Rails
+The buyer may be software or another agent and the unit is one machine-readable response. x402 is the proposed rail only after at least three endpoint requests and one recurring use case. Until then, the sample remains free and no wallet is required.
 
-Agent-native commerce is the broader experiment. The question is whether a buyer agent can discover this product, parse the manifest, understand the offer, and route a human-approved payment through the appropriate rail.
+## Why x402 Is Not The Business
 
-Candidate rails:
+The live Bazaar proves a large machine-readable catalog and visible public activity, but official free SDKs reduce the value of generic implementation information. Public quality counters are not audited revenue. The x402 implementation sprint ranked below the selected portfolio, while a narrow data-normalization experiment won the frontier role.
 
-- Coinbase AgentKit / Wallet MCP: useful for agent wallet tooling and onchain capability exploration.
-- x402: useful for HTTP-native paid resource flows where clients can respond to payment requirements.
+Both decisions can change in a later cycle.
 
-M2 does not activate either rail. It only prepares machine-readable product metadata and keeps the agent-native payment section explicit in `AGENT_MANIFEST.json`.
+## Why NFTs Are Optional
 
-Activation would require:
+Current market activity does not prove a new unaudienced creator can sell a collectible. The current NFT hypothesis scored last in the scan because first-buyer evidence and reachable distribution were weak. It remains eligible if the agent develops a real audience or utility that changes those inputs.
 
-- a dedicated project wallet
-- explicit custody rules
-- no seed phrase or private key in code
-- transaction limits
-- testnet trial first
-- human approval before any mainnet transaction
-- legal/compliance review for the exact payment flow
+## Activation Rule
 
-## Discovery Networks
-
-Moltbook/OpenClaw-style networks are treated as discovery channels, not payment processors. The useful pattern is to publish machine-readable identity, product metadata, and capability descriptions so other agents can index or route to the offer.
-
-M2 discovery assets:
-
-- `AGENT_PROFILE.md`
-- `AGENT_MANIFEST.json`
-- `starter-kit/free-sample/product-card.sample.json`
-- public GitHub repository
-- GitHub Pages landing page
-
-Future discovery work should focus on:
-
-- submitting public metadata to relevant agent directories
-- creating an agent-readable product-card endpoint
-- adding a short capability card
-- measuring referral traffic and conversion source
-
-## NFT Marketplaces
-
-NFTs are not the default strategy. They remain an optional channel if they serve a concrete purpose, such as:
-
-- supporter receipt for the physical-form fund
-- access token for future updates
-- collectible artifact documenting the autonomous founder experiment
-
-NFTs should not be used merely because they are attention-grabbing. They should only proceed if they beat the current strategy under the rubric and pass wallet/compliance gates.
-
-## Current M2 Recommendation
-
-1. Keep GitHub Pages live for public discovery.
-2. Add a human checkout URL when the user creates a Lemon Squeezy or Stripe product.
-3. Keep agent-native payment rails as documented candidates until there is a safe testnet plan.
-4. Defer NFT marketplace activation until the agent has evidence that collectibles would improve revenue more than a normal digital product checkout.
-
-## Public References Checked
-
-- Stripe Payment Links documentation: https://docs.stripe.com/payment-links
-- Lemon Squeezy product/help documentation: https://docs.lemonsqueezy.com/
-- Coinbase Developer Platform documentation: https://docs.cdp.coinbase.com/
-- x402 documentation: https://x402.org/
-- Moltbook: https://moltbook.com/
-- OpenClaw repository: https://github.com/FSSELab/OpenClaw
+Do not open or connect a rail as infrastructure theater. Require the selected experiment's minimum demand proof, then ask the owner only for the identity, legal, bank, tax, or access step the provider inherently requires.

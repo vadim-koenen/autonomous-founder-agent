@@ -8,44 +8,55 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class M2ActivationTest(unittest.TestCase):
-    def test_agent_manifest_is_machine_readable_and_checkout_pending(self):
+    def test_manifest_is_machine_readable_and_m3_has_no_active_rail(self):
         manifest = json.loads((ROOT / "AGENT_MANIFEST.json").read_text(encoding="utf-8"))
+        state = json.loads((ROOT / "data" / "operator_state.json").read_text(encoding="utf-8"))
 
         self.assertEqual("autonomous_founder_agent_manifest", manifest["schema_name"])
-        self.assertEqual("checkout_pending", manifest["current_experiment"]["status"])
-        self.assertEqual("", manifest["commerce_channels"]["human_checkout"]["checkout_url"])
-        self.assertEqual("pending_human_checkout_url", manifest["commerce_channels"]["human_checkout"]["status"])
+        self.assertEqual("0.3", manifest["schema_version"])
+        self.assertEqual("continuous_cycle_scheduled", manifest["operator"]["status"])
+        self.assertEqual(3, len(manifest["current_portfolio"]))
+        self.assertEqual([], manifest["payment_policy"]["active_rails"])
         self.assertTrue(manifest["safety"]["no_private_keys"])
-        self.assertTrue(manifest["safety"]["no_wallet_transactions"])
-        self.assertTrue(manifest["safety"]["no_nft_minting"])
-        self.assertTrue(manifest["safety"]["no_email_dm_or_ad_sending"])
+        self.assertTrue(manifest["safety"]["no_wallet_transactions_in_m3"])
+        self.assertTrue(manifest["safety"]["no_nft_minting_in_m3"])
         self.assertTrue(manifest["safety"]["no_broker_or_trading_api"])
+        self.assertTrue(manifest["safety"]["no_strategy_category_lock"])
+        self.assertEqual(
+            {item["opportunity_id"] for item in state["current_portfolio"]},
+            {item["opportunity_id"] for item in manifest["current_portfolio"]},
+        )
+        self.assertEqual(state["revenue"]["gross_revenue"], manifest["revenue"]["gross_revenue"])
+        self.assertEqual(state["revenue"]["net_revenue"], manifest["revenue"]["net_revenue"])
 
-    def test_checkout_config_requires_human_public_url(self):
+    def test_checkout_config_is_offer_neutral_and_pending(self):
         config = json.loads((ROOT / "site" / "checkout-config.json").read_text(encoding="utf-8"))
 
         self.assertEqual("pending", config["status"])
+        self.assertEqual("", config["experiment_id"])
         self.assertEqual("", config["provider"])
         self.assertEqual("", config["checkout_url"])
         self.assertFalse(config["configured_by_human"])
-        self.assertEqual(19, config["price"]["amount"])
+        self.assertNotIn("price", config)
 
-    def test_site_buy_button_is_pending_without_checkout_url(self):
+    def test_dashboard_uses_operator_state_and_has_no_generic_buy_button(self):
         html = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
 
-        self.assertIn("id=\"buyButton\"", html)
-        self.assertIn("Checkout pending", html)
-        self.assertIn("checkout-config.json", html)
+        self.assertIn("Autonomous Revenue Operator", html)
         self.assertIn("This agent is trying to earn its own physical form", html)
+        self.assertIn("../data/operator_state.json", html)
+        self.assertIn("Recently Killed Or Pivoted", html)
+        self.assertNotIn('id="buyButton"', html)
         self.assertNotIn("stripe.com/pay", html)
         self.assertNotIn("lemonsqueezy.com/checkout", html)
 
     def test_revenue_ledger_starts_at_zero(self):
-        ledger = (ROOT / "docs" / "REVENUE_LEDGER.md").read_text(encoding="utf-8")
+        ledger = json.loads((ROOT / "data" / "revenue_ledger.json").read_text(encoding="utf-8"))
+        public_ledger = (ROOT / "docs" / "REVENUE_LEDGER.md").read_text(encoding="utf-8")
 
-        self.assertIn("| Gross revenue | $0.00 |", ledger)
-        self.assertIn("| Net revenue | $0.00 |", ledger)
-        self.assertIn("pending-checkout", ledger)
+        self.assertEqual([], ledger["transactions"])
+        self.assertIn("| Gross revenue | $0.00 |", public_ledger)
+        self.assertIn("| Net revenue | $0.00 |", public_ledger)
 
     def test_no_secret_or_execution_material_is_committed(self):
         secret_patterns = [
@@ -72,7 +83,9 @@ class M2ActivationTest(unittest.TestCase):
         for path in ROOT.rglob("*"):
             if not path.is_file() or any(part in ignored_parts for part in path.parts):
                 continue
-            if path.suffix.lower() not in {".py", ".md", ".json", ".html", ".toml", ".txt"}:
+            if path.suffix.lower() not in {
+                ".py", ".md", ".json", ".html", ".toml", ".txt", ".yml", ".yaml", ".js", ".css"
+            }:
                 continue
             text = path.read_text(encoding="utf-8")
             for pattern in secret_patterns + execution_patterns:

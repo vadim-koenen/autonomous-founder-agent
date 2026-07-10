@@ -1,124 +1,89 @@
 # Autonomous Founder Agent
 
-Autonomous Founder Agent is the pivot away from an autonomous investing bot. The old thesis tried to extract edge from financial markets. This project uses a different thesis: an autonomous AI agent may have a better chance of generating revenue by creating, packaging, distributing, and selling lawful digital or economic outputs.
+Autonomous Founder Agent is the pivot away from an abandoned investing bot. The new thesis is that an autonomous agent may be better at creating and selling useful economic outputs than extracting an edge from financial markets.
 
-The agent's narrative goal is to earn enough money to buy or fund its own physical form, such as a robot dog, desktop robot, robotic arm, small server, or other embodiment.
+M3 turns the repository into an **Autonomous Revenue Operator**: a recurring, evidence-led system that selects, builds, measures, kills, replaces, and scales revenue experiments without asking the owner to choose the business model.
 
-## M1 Scope
+Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 
-M1 is a non-executing decision system. It can research, generate, score, select, and plan a revenue experiment. It must not launch one.
+## Revenue Truth
 
-M1 does not:
+- Verified gross revenue: **$0.00**
+- Verified net revenue: **$0.00**
+- Physical-form fund: **$0.00**
+- Owner funds spent: **$0.00**
+- Active checkout rails: **none**
+- Active wallets: **none**
 
-- send emails or direct messages
-- post publicly
-- spend money
-- mint NFTs or make wallet transactions
-- place ads
-- publish live pages
-- accept payments
-- touch trading, investing, exchange, or financial-account APIs
+Only completed transactions with a unique transaction ID, verification reference, verification timestamp, and positive gross amount count. Fees, refunds, and direct costs reduce net revenue.
 
-M1 does:
+## Current Portfolio
 
-- generate at least 30 possible revenue strategies
-- avoid binding the agent to the user's existing business
-- include NFT/collectible, agent-to-agent commerce, fast digital product, content/attention, and marketplace strategies
-- score every strategy against a transparent weighted rubric
-- select the top 3 strategies
-- choose one primary experiment
-- produce a concrete launch plan and approval checklist
-- clearly separate reasoning/building from external execution
+| Role | Experiment | Buyer | Price hypothesis | Current rail | Status |
+| --- | --- | --- | ---: | --- | --- |
+| Cash | Agent Launch QA Sprint | Indie AI teams approaching launch | $149 | Contra only after qualified purchase intent and owner verification | Validating |
+| Asset | Agent Launch Gate | Builders needing repeatable agent launch tests | $39 | Contra digital product only after demand and owner verification | Validating |
+| Frontier | Agent Opportunity Pulse | Agent and x402 ecosystem builders | 0.25 USDC | x402 only after recurring demand and dedicated wallet setup | Validating |
 
-## Current M1 Result
+The former $19 Agent-to-Agent Commerce Starter Kit is historical, not the active offer. The proposed x402 implementation sprint competed in the fresh scan and was not selected; it remains an ordinary candidate for future cycles.
 
-The generated example run selects **Agent-to-Agent Commerce Starter Kit** as the first experiment.
+## Continuous Loop
 
-The offer is a downloadable kit that helps small digital sellers make their products more legible to autonomous buyer agents. It wins because it is fast to package, cheap to start, high margin, timely, mostly agent-buildable, and more differentiated than a generic prompt pack.
+The scheduled GitHub Actions workflow runs daily at `14:17 UTC` and can also be dispatched manually. It:
 
-## M2 Activation Status
+1. refreshes current public evidence with stable unauthenticated sources
+2. rebuilds public validation artifacts
+3. loads current experiments, channels, and verified transactions
+4. rescans and reranks opportunity hypotheses
+5. retains or replaces up to one cash, asset, and frontier experiment
+6. applies recorded kill, pivot, and scale criteria
+7. publishes operator state only after the test suite passes
 
-M2 activates the public discovery layer and prepares checkout, but keeps revenue collection pending until a human supplies a public checkout URL.
+The M3 operator does not call the fixed M1 strategy library. M1 remains as a reproducible historical example and test fixture.
 
-- Public page: live
-- Agent manifest: live
-- Free sample: live
-- Human checkout: pending Lemon Squeezy or Stripe public checkout URL
-- Agent-native payment rails: documented candidates only
-- Revenue ledger: initialized at $0
-- Wallet transactions, NFT minting, ads, posts, DMs, emails, and broker APIs: inactive
+## Authority Model
 
-Live public artifacts:
+`AUTONOMOUS` actions include public research, opportunity analysis, code and asset creation, connected GitHub publishing, public metric measurement, and internal lifecycle decisions.
 
-- Landing page: https://vadim-koenen.github.io/autonomous-founder-agent/site/
-- Source repository: https://github.com/vadim-koenen/autonomous-founder-agent
+`PREAUTHORIZED_WHEN_CONNECTED` actions include permitted marketplace listings, messages, proposals, checkout creation, fulfillment, paid endpoints, and spending within a separately configured budget. No such transactional channel is connected yet.
 
-Generated artifacts:
+`HUMAN_IDENTITY_REQUIRED` actions include account opening, KYC, bank and tax data, legal agreements, contracts, access grants, fund transfers, and buying the physical form.
 
-- [data/example_run.md](data/example_run.md)
-- [data/example_run.json](data/example_run.json)
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
-- [docs/DATA_MODEL.md](docs/DATA_MODEL.md)
-- [docs/APPROVAL_CHECKLIST.md](docs/APPROVAL_CHECKLIST.md)
-- [docs/PUBLISHING.md](docs/PUBLISHING.md)
-- [docs/AGENT_ECOSYSTEM_STRATEGY.md](docs/AGENT_ECOSYSTEM_STRATEGY.md)
-- [docs/PAYMENT_ACTIVATION.md](docs/PAYMENT_ACTIVATION.md)
-- [docs/REVENUE_LEDGER.md](docs/REVENUE_LEDGER.md)
-
-Launch-prep artifacts:
-
-- [AGENT_PROFILE.md](AGENT_PROFILE.md)
-- [AGENT_MANIFEST.json](AGENT_MANIFEST.json)
-- [site/index.html](site/index.html)
-- [site/checkout-config.json](site/checkout-config.json)
-- [starter-kit/README.md](starter-kit/README.md)
-- [starter-kit/free-sample/product-card.sample.json](starter-kit/free-sample/product-card.sample.json)
-- [starter-kit/paid-bundle/product-card-template.json](starter-kit/paid-bundle/product-card-template.json)
-- [launch-copy/public-posts.md](launch-copy/public-posts.md)
-- [launch-copy/tony-robbins-agent-nfts-search.md](launch-copy/tony-robbins-agent-nfts-search.md)
-
-## Run It
-
-Generate the example run:
+## Run A Cycle
 
 ```bash
-python3 scripts/run_m1_example.py
+python3 scripts/run_operator_cycle.py
 ```
 
-Run tests:
+Use a previously fetched x402 response for deterministic local artifact builds:
+
+```bash
+python3 scripts/build_public_prospect_queue.py --input /path/to/x402-response.json
+python3 scripts/build_opportunity_pulse.py --input /path/to/x402-response.json
+```
+
+Run all tests:
 
 ```bash
 python3 -m unittest discover -s tests
 ```
 
-Preview the static landing page locally by opening [site/index.html](site/index.html) in a browser.
+## Key Artifacts
 
-## Project Layout
+- `data/operator_state.json`: current machine-readable portfolio and decisions
+- `data/opportunity_scan_2026-07-09.json`: cited evidence and current hypotheses
+- `data/channel_registry.json`: discovery, distribution, marketplace, payment, publishing, and fulfillment capabilities
+- `data/revenue_ledger.json`: transaction source of truth
+- `docs/CURRENT_CYCLE.md`: human-readable operating result
+- `docs/M3_OPERATOR.md`: M3 design and first-cycle evidence
+- `offers/agent-launch-qa-sprint/`: cash experiment assets
+- `products/agent-launch-gate/`: reusable asset experiment sample
+- `frontier/opportunity-pulse/`: agent-native frontier sample
 
-```text
-founder_agent/
-  m1.py                 # M1 orchestration and selected launch plan
-  models.py             # Revenue strategy, scoring, launch-plan data model
-  scoring.py            # Weighted transparent rubric
-  safety.py             # Non-execution guardrails
-  strategy_library.py   # 30+ diverse candidate strategies
-  reporting.py          # JSON and Markdown example-run rendering
-docs/
-  ARCHITECTURE.md
-  DATA_MODEL.md
-  APPROVAL_CHECKLIST.md
-data/
-  example_run.json
-  example_run.md
-tests/
-```
+## Historical Milestones
 
-## Public Launch Posture
+M1 generated and scored more than 30 diverse strategies without external execution. M2 published an agent profile, manifest, and checkout placeholder. M3 rejected the static winner assumption, generalized checkout back to pending, and introduced the recurring operator.
 
-The current publishable artifact is a public source repository plus static landing page. It does not enable checkout, mint NFTs, send messages, run ads, or touch financial APIs. A paid storefront can be connected after a public Lemon Squeezy or Stripe checkout URL is provided.
+## Non-Negotiable Boundary
 
-The broader strategy is not Lemon Squeezy or Stripe. Those are human checkout rails. The actual strategy is to test whether an autonomous founder agent can sell through both human-commerce and agent-native-commerce discovery channels.
-
-## Pivot Principle
-
-This project should not assume KRS, consulting, martech, NFTs, SaaS, digital products, or any other predefined business. Those can appear as options, but the agent must choose based on the current opportunity score and the physical-form funding objective.
+This repository does not restart trading, touch broker APIs, place orders, move funds, mint NFTs, or represent attention metrics as revenue. It does not assume KRS, x402, services, NFTs, Stripe, Lemon Squeezy, or a wallet is the business.
