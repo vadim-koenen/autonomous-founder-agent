@@ -14,6 +14,8 @@ Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 - Owner funds spent: **$0.00**
 - Active checkout rails: **none**
 - Active wallets: **none**
+- Buyer-ready cash offer: **live**
+- Contra discovery/payment activation: **owner setup required**
 
 Only completed transactions with a unique transaction ID, verification reference, verification timestamp, and positive gross amount count. Fees, refunds, and direct costs reduce net revenue.
 
@@ -21,11 +23,15 @@ Only completed transactions with a unique transaction ID, verification reference
 
 | Role | Experiment | Buyer | Price hypothesis | Current rail | Status |
 | --- | --- | --- | ---: | --- | --- |
-| Cash | Agent Launch QA Sprint | Indie AI teams approaching launch | $149 | Contra only after qualified purchase intent and owner verification | Validating |
+| Cash | Agent Launch QA Sprint | Indie AI teams approaching launch | $149 | Contra activation approved; owner account and public URL pending | Activating |
 | Asset | Agent Launch Gate | Builders needing repeatable agent launch tests | $39 | Contra digital product only after demand and owner verification | Validating |
 | Frontier | Agent Opportunity Pulse | Agent and x402 ecosystem builders | 0.25 USDC | x402 only after recurring demand and dedicated wallet setup | Validating |
 
 The former $19 Agent-to-Agent Commerce Starter Kit is historical, not the active offer. The proposed x402 implementation sprint competed in the fresh scan and was not selected; it remains an ordinary candidate for future cycles.
+
+Cash offer: https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html
+
+`docs/ACTIVATION_HANDOFF.md` contains the exact Contra setup and manual LinkedIn launch steps. `data/commercial_funnel.json` measures public interest separately from the verified transaction ledger.
 
 ## Continuous Loop
 
@@ -74,9 +80,11 @@ python3 -m unittest discover -s tests
 - `data/opportunity_scan_2026-07-09.json`: cited evidence and current hypotheses
 - `data/channel_registry.json`: discovery, distribution, marketplace, payment, publishing, and fulfillment capabilities
 - `data/revenue_ledger.json`: transaction source of truth
+- `data/commercial_funnel.json`: public interest signals that never count as revenue
 - `docs/CURRENT_CYCLE.md`: human-readable operating result
 - `docs/M3_OPERATOR.md`: M3 design and first-cycle evidence
 - `offers/agent-launch-qa-sprint/`: cash experiment assets
+- `docs/ACTIVATION_HANDOFF.md`: exact owner-only marketplace and payment setup
 - `products/agent-launch-gate/`: reusable asset experiment sample
 - `frontier/opportunity-pulse/`: agent-native frontier sample
 

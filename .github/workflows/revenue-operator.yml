@@ -27,6 +27,7 @@ jobs:
         run: |
           python3 scripts/build_public_prospect_queue.py
           python3 scripts/build_opportunity_pulse.py
+          python3 scripts/refresh_commercial_funnel.py
 
       - name: Run the decision cycle
         run: python3 scripts/run_operator_cycle.py
@@ -42,6 +43,6 @@ jobs:
           fi
           git config user.name "Autonomous Revenue Operator"
           git config user.email "actions@users.noreply.github.com"
-          git add data/opportunity_scan_*.json data/operator_state.json data/prospect_queue.json docs/CURRENT_CYCLE.md docs/REVENUE_LEDGER.md offers/agent-launch-qa-sprint/PROSPECTS.md frontier/opportunity-pulse/sample.json
+          git add data/opportunity_scan_*.json data/operator_state.json data/prospect_queue.json data/commercial_funnel.json docs/CURRENT_CYCLE.md docs/REVENUE_LEDGER.md offers/agent-launch-qa-sprint/PROSPECTS.md frontier/opportunity-pulse/sample.json
           git commit -m "chore: refresh revenue operator state [skip ci]"
           git push

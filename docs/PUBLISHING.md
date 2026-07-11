@@ -23,6 +23,7 @@ The workflow has repository content permission only. It references no repository
 - public channel registry
 - machine-readable and human-readable revenue ledgers
 - QA sprint offer, sample report, intake, public target queue, and audit hooks
+- buyer-ready QA sprint sales page and public commercial-funnel metrics
 - launch-gate product sample and report schema
 - opportunity-pulse manifest and sample
 - generated social preview image
@@ -36,6 +37,7 @@ The workflow has repository content permission only. It references no repository
 - no ad account
 - no email or direct-message sender
 - no dedicated social posting account
+- an owner LinkedIn profile is available for manual publication only; automated posting and messaging remain disabled
 - no customer private repository or system access
 - no trading, investing, broker, exchange, or financial-account API
 

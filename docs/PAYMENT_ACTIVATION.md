@@ -1,22 +1,24 @@
 # Payment Activation
 
-No checkout or wallet is active. M3 does not require the owner to open an account before a selected offer crosses its demand gate.
+No checkout or wallet is active. On 2026-07-10, the owner explicitly approved clearing the cash experiment's discovery and payment bottleneck. Contra activation is now the required human setup for the selected QA service; wallets remain unnecessary.
 
 Never put API keys, webhook secrets, private keys, seed phrases, bank data, tax data, account credentials, or buyer personal data in this repository.
 
 ## Cash Experiment: Agent Launch QA Sprint
 
-Trigger: one qualified buyer explicitly requests the $149 sprint or asks for a payable proposal.
+Trigger: owner activation approval, recorded on 2026-07-10.
 
 Minimal owner setup:
 
-1. Open or connect a Contra account, or use the marketplace where the buyer originated.
+1. Open or connect a Contra independent account, or use the marketplace where the buyer originated.
 2. Complete that provider's identity, legal, tax, bank, and payout steps.
-3. Create the exact fixed-scope service from `offers/agent-launch-qa-sprint/OFFER.md`.
+3. Publish the exact fixed-scope service from `offers/agent-launch-qa-sprint/LISTING.md`.
 4. Set the founding price to `$149` and preserve the scope boundaries.
-5. Provide only the public checkout, proposal, or contract URL to the operator.
+5. Create a fixed-scope project or public guest-checkout link preserving the published scope.
+6. Provide only the public service and checkout URLs to the operator.
 
 Marketplace-originated buyers remain on the marketplace's required payment rail.
+See `docs/ACTIVATION_HANDOFF.md` for the field-by-field setup.
 
 ## Asset Experiment: Agent Launch Gate
 

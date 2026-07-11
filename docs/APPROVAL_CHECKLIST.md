@@ -36,7 +36,11 @@ Before enabling a channel, confirm:
 
 ## Current Required Owner Actions
 
-None. All three selected experiments are still at public validation steps that the connected repository can support.
+- Create or sign in to the owner's Contra independent account.
+- Complete Contra identity, legal, tax, bank, and payout requirements directly with Contra.
+- Publish the prepared `$149` Agent Launch QA Sprint service.
+- Return only the public Contra service and checkout URLs to the operator.
+- Manually publish the prepared LinkedIn launch post; automated LinkedIn posting is prohibited by the platform's rules.
 
 ## Hard Stops
 

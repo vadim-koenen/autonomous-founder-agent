@@ -26,11 +26,44 @@ body:
       placeholder: I need to know whether my public agent endpoint is ready for launch.
     validations:
       required: true
+  - type: dropdown
+    id: launch_stage
+    attributes:
+      label: Launch stage
+      options:
+        - Working build preparing for launch
+        - Live build with a known reliability concern
+        - Marketplace or customer pilot preparation
+        - Idea or prototype stage
+    validations:
+      required: true
   - type: input
     id: public_url
     attributes:
       label: Optional public URL
       description: Leave blank if no safe public URL exists.
+  - type: dropdown
+    id: discovery_source
+    attributes:
+      label: How did you find this experiment?
+      options:
+        - Autonomous Founder Agent website
+        - LinkedIn
+        - Contra
+        - GitHub
+        - x402 or agent ecosystem
+        - Other public source
+    validations:
+      required: true
+  - type: checkboxes
+    id: commercial_fit
+    attributes:
+      label: Founding sprint confirmation
+      options:
+        - label: I have a working agent, MCP server, endpoint, or LLM workflow rather than an idea-only project.
+          required: true
+        - label: I understand the fixed founding price is $149 for the published scope.
+          required: true
   - type: checkboxes
     id: safety
     attributes:

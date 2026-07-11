@@ -70,6 +70,6 @@ The previous x402 implementation sprint ranked ninth overall at `6.63`. It was r
 
 ## Current Revenue And Setup
 
-Verified gross and net revenue remain `$0.00`. Owner funds spent remain `$0.00`. No checkout, wallet, ad account, or marketplace account is required for the next autonomous public validation actions.
+Verified gross and net revenue remain `$0.00`. Owner funds spent remain `$0.00`. The buyer-ready cash offer is live. Contra account verification, service publication, and a public checkout URL are now the explicit owner-only activation steps; no wallet or ad account is required.
 
 The next identity-bound request will be made only when a qualified buyer or the stated demand gate demonstrates why that account is necessary.

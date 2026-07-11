@@ -18,9 +18,9 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Status: validating
 - Buyer: Indie AI product founders and small teams with a working agent, MCP server, or LLM workflow approaching launch.
 - Price: 149 USD
-- Discovery: GitHub Pages proof page and public intake first; Contra and Upwork after owner connection.
-- Payment rail: Contra guest checkout after demand and owner verification; no checkout is active during validation.
-- Next action: Measure qualified interest in the published QA offer and audit hooks through the public-safe GitHub intake.
+- Discovery: Buyer-ready GitHub Pages offer, manual owner LinkedIn launch, and Contra service marketplace after owner activation.
+- Payment rail: Contra fixed-scope project or public guest checkout after owner verification; checkout URL pending.
+- Next action: Owner completes Contra identity and payout setup, publishes the prepared service, and returns the public service and checkout URLs.
 - Review date: 2026-07-12
 
 ### Asset: A downloadable launch-gate pack with 25 agent test cases, scoring rules, report schema, and a regression checklist.
@@ -49,7 +49,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Blocked Identity or Setup Actions
 
-- None block the next autonomous build actions.
+- Owner completes Contra identity and payout setup, publishes the prepared service, and returns the public service and checkout URLs.: A human must complete identity, legal, banking, tax, or account-owner steps.
 
 ## Ranked Opportunity Set
 

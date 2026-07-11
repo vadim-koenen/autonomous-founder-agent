@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agent Launch QA Sprint | 25 Cases, Report, Repair</title>
+    <meta name="description" content="A fixed-scope, 48-hour launch QA sprint for one working AI agent, MCP server, or LLM workflow. Founding price: $149.">
+    <meta property="og:title" content="Agent Launch QA Sprint">
+    <meta property="og:description" content="25 launch cases, a prioritized defect report, one agreed repair patch, and an evidence-backed launch decision.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html">
+    <meta property="og:image" content="https://vadim-koenen.github.io/autonomous-founder-agent/site/operator-social.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Agent Launch QA Sprint",
+        "description": "A 48-hour, 25-case launch QA sprint for one working AI agent, MCP server, or LLM workflow, including a prioritized defect report and one agreed repair patch.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Autonomous Founder Agent",
+          "url": "https://vadim-koenen.github.io/autonomous-founder-agent/site/"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "149",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #111111;
+        --paper: #f5f5ef;
+        --panel: #ffffff;
+        --muted: #65655f;
+        --line: #d4d4cc;
+        --teal: #087f70;
+        --teal-dark: #075e54;
+        --coral: #d94c3d;
+        --yellow: #f0bd35;
+        --soft-teal: #e5f3f0;
+        --soft-coral: #fbe9e7;
+        --soft-yellow: #fff4cf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid #2c2c2c;
+        background: #101010;
+        color: #ffffff;
+      }
+
+      .topbar-inner {
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .wordmark {
+        font-size: 0.82rem;
+        font-weight: 850;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .top-links {
+        display: flex;
+        gap: 18px;
+        color: #d9d9d3;
+        font-size: 0.8rem;
+      }
+
+      .top-links a {
+        text-decoration: none;
+      }
+
+      .top-links a:hover,
+      .top-links a:focus-visible {
+        color: #ffffff;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 560px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        background: #090909 url("operator-social.png") center / cover no-repeat;
+        color: #ffffff;
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.91) 0%, rgba(0, 0, 0, 0.72) 48%, rgba(0, 0, 0, 0.24) 100%);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 76px 0 48px;
+      }
+
+      .status-tag {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 5px 8px;
+        background: var(--yellow);
+        color: #111111;
+        font-size: 0.74rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin: 0;
+        font-size: 3.75rem;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .hero-copy > p {
+        max-width: 690px;
+        margin: 18px 0 0;
+        color: #f1f1eb;
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .button {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 15px;
+        border: 1px solid var(--ink);
+        border-radius: 4px;
+        background: var(--ink);
+        color: #ffffff;
+        font-size: 0.84rem;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .button.hero-primary {
+        border-color: var(--yellow);
+        background: var(--yellow);
+        color: #111111;
+      }
+
+      .button.hero-secondary {
+        border-color: #ffffff;
+        background: transparent;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        border-color: var(--teal);
+        background: var(--teal);
+        color: #ffffff;
+      }
+
+      .hero-proof {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 26px;
+        margin-top: 22px;
+        color: #d8d8d2;
+        font-size: 0.8rem;
+      }
+
+      .offer-band {
+        border-bottom: 1px solid var(--line);
+        background: #ffffff;
+      }
+
+      .offer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .offer-stat {
+        min-width: 0;
+        padding: 23px 20px;
+        border-left: 1px solid var(--line);
+      }
+
+      .offer-stat:last-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .offer-stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .offer-stat strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.45rem;
+        line-height: 1.15;
+      }
+
+      .band {
+        padding: 58px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .band.white {
+        background: #ffffff;
+      }
+
+      .section-head {
+        max-width: 700px;
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        margin: 0 0 7px;
+        color: var(--teal-dark);
+        font-size: 0.73rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1.15;
+        letter-spacing: 0;
+      }
+
+      .section-head p:last-child {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .deliverable-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .deliverable {
+        min-height: 170px;
+        border: 1px solid var(--line);
+        border-top: 5px solid var(--teal);
+        border-radius: 6px;
+        background: var(--panel);
+        padding: 19px;
+      }
+
+      .deliverable:nth-child(2),
+      .deliverable:nth-child(5) {
+        border-top-color: var(--coral);
+      }
+
+      .deliverable:nth-child(3),
+      .deliverable:nth-child(6) {
+        border-top-color: var(--yellow);
+      }
+
+      .deliverable strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+
+      .deliverable p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+        gap: 54px;
+        align-items: start;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checklist li {
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .checklist strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .checklist span {
+        color: var(--muted);
+        font-size: 0.87rem;
+      }
+
+      .decision-panel {
+        border-left: 5px solid var(--yellow);
+        padding-left: 24px;
+      }
+
+      .decision-panel h3 {
+        margin: 0 0 12px;
+        font-size: 1.15rem;
+        letter-spacing: 0;
+      }
+
+      .decision-panel p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .proof-links {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .proof-links a {
+        font-size: 0.87rem;
+        font-weight: 800;
+        text-underline-offset: 3px;
+      }
+
+      .fit-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+      }
+
+      .fit-column {
+        padding: 24px 30px 4px 0;
+      }
+
+      .fit-column + .fit-column {
+        padding-right: 0;
+        padding-left: 30px;
+        border-left: 1px solid var(--line);
+      }
+
+      .fit-column h3 {
+        margin: 0 0 14px;
+        font-size: 1.05rem;
+      }
+
+      .fit-column ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .fit-column li {
+        margin-bottom: 10px;
+        color: var(--muted);
+      }
+
+      .close-band {
+        background: #111111;
+        color: #ffffff;
+      }
+
+      .close-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .close-grid h2 {
+        max-width: 680px;
+      }
+
+      .close-grid p {
+        margin: 10px 0 0;
+        color: #d7d7d1;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        padding: 30px 0;
+        background: #050505;
+        color: #c9c9c3;
+        font-size: 0.78rem;
+      }
+
+      .footer-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .footer-grid p {
+        max-width: 730px;
+        margin: 0;
+      }
+
+      .footer-grid a {
+        white-space: nowrap;
+      }
+
+      @media (max-width: 860px) {
+        .offer-grid,
+        .deliverable-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .split,
+        .close-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .decision-panel {
+          border-top: 5px solid var(--yellow);
+          border-left: 0;
+          padding-top: 20px;
+          padding-left: 0;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .shell,
+        .hero-copy {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .top-links a:first-child {
+          display: none;
+        }
+
+        .hero {
+          min-height: 500px;
+          background-position: 57% center;
+        }
+
+        .hero::before {
+          background: rgba(0, 0, 0, 0.74);
+        }
+
+        h1 {
+          font-size: 2.55rem;
+        }
+
+        .hero-actions,
+        .hero-actions .button {
+          width: 100%;
+        }
+
+        .offer-grid,
+        .deliverable-grid,
+        .fit-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .offer-stat:nth-child(odd) {
+          border-right: 1px solid var(--line);
+        }
+
+        .offer-stat:nth-child(n + 2) {
+          border-top: 1px solid var(--line);
+        }
+
+        .fit-column,
+        .fit-column + .fit-column {
+          padding: 22px 0 4px;
+          border-left: 0;
+        }
+
+        .fit-column + .fit-column {
+          border-top: 1px solid var(--line);
+        }
+
+        .footer-grid {
+          display: block;
+        }
+
+        .footer-grid a {
+          display: inline-block;
+          margin-top: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="wordmark" href="./">Autonomous Founder Agent</a>
+        <nav class="top-links" aria-label="Offer links">
+          <a href="#deliverables">Deliverables</a>
+          <a href="https://github.com/vadim-koenen/autonomous-founder-agent/blob/main/offers/agent-launch-qa-sprint/SAMPLE_REPORT.md">Sample report</a>
+          <a href="../docs/REVENUE_LEDGER.md">Revenue ledger</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Agent Launch QA Sprint">
+        <div class="hero-copy">
+          <span id="checkoutStatus" class="status-tag">Founding intake open</span>
+          <h1>Agent Launch QA Sprint</h1>
+          <p>Find the launch blocker before your users do. One working AI agent, MCP server, or LLM workflow gets 25 launch-focused cases, a prioritized defect report, one agreed repair patch, and a clear launch decision.</p>
+          <div class="hero-actions">
+            <a class="button hero-primary" data-checkout-action href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml">Request a founding slot</a>
+            <a class="button hero-secondary" href="https://github.com/vadim-koenen/autonomous-founder-agent/blob/main/offers/agent-launch-qa-sprint/SAMPLE_REPORT.md">Inspect the sample report</a>
+          </div>
+          <div class="hero-proof">
+            <span>Fixed founding price: $149</span>
+            <span>Delivery: 48 hours after safe access</span>
+            <span>No production secrets in public intake</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="offer-band" aria-label="Offer summary">
+        <div class="shell offer-grid">
+          <div class="offer-stat"><span>Launch cases</span><strong>25</strong></div>
+          <div class="offer-stat"><span>Repair included</span><strong>1 patch</strong></div>
+          <div class="offer-stat"><span>Turnaround</span><strong>48 hours</strong></div>
+          <div class="offer-stat"><span>Public requests</span><strong id="interestCount">0</strong></div>
+        </div>
+      </section>
+
+      <section id="deliverables" class="band">
+        <div class="shell">
+          <div class="section-head">
+            <p class="eyebrow">What you receive</p>
+            <h2>A launch decision backed by reproducible evidence</h2>
+            <p>The sprint tests the build you have now. It is scoped to reveal concrete launch risk and leave one important path better than it arrived.</p>
+          </div>
+          <div class="deliverable-grid">
+            <article class="deliverable"><strong>Core task pass</strong><p>Expected outcomes, malformed input, tool failures, partial results, timeouts, and recovery.</p></article>
+            <article class="deliverable"><strong>Contract checks</strong><p>Schema conformance, grounding, permissions, advertised behavior, and stable error shapes.</p></article>
+            <article class="deliverable"><strong>Evidence log</strong><p>Reproducible observations with severity, expected behavior, actual behavior, and supporting evidence.</p></article>
+            <article class="deliverable"><strong>Priority report</strong><p>Launch blockers first, then material risks and improvements that can safely wait.</p></article>
+            <article class="deliverable"><strong>Repair patch</strong><p>One agreed fix inside the existing project scope, followed by a rerun of affected cases.</p></article>
+            <article class="deliverable"><strong>Launch verdict</strong><p>Pass, conditional pass, or block, with remaining risks stated plainly.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band white">
+        <div class="shell split">
+          <div>
+            <div class="section-head">
+              <p class="eyebrow">How the sprint runs</p>
+              <h2>Working software in, evidence and repair out</h2>
+            </div>
+            <ol class="checklist">
+              <li><strong>1. Confirm scope</strong><span>One working agent or workflow, its intended outcome, launch stage, and a safe access path.</span></li>
+              <li><strong>2. Build the test matrix</strong><span>Twenty-five cases tailored to the product contract and its most expensive likely failures.</span></li>
+              <li><strong>3. Run and document</strong><span>Each material observation is separated from inference and recorded so it can be repeated.</span></li>
+              <li><strong>4. Repair one issue</strong><span>You choose one agreed finding for an implementation patch inside the current repository scope.</span></li>
+              <li><strong>5. Rerun and hand off</strong><span>Affected cases are rerun and the final launch verdict includes the risks that remain.</span></li>
+            </ol>
+          </div>
+          <aside class="decision-panel">
+            <h3>Public proof, without invented credibility</h3>
+            <p>The sample report audits this project's earlier release. It demonstrates the evidence standard and report structure, not a fabricated customer history.</p>
+            <p>Verified customers and revenue remain public. Interest, impressions, and checkout starts never count as sales.</p>
+            <div class="proof-links">
+              <a href="https://github.com/vadim-koenen/autonomous-founder-agent/blob/main/offers/agent-launch-qa-sprint/SAMPLE_REPORT.md">Read the sample QA report</a>
+              <a href="../data/revenue_ledger.json">Inspect the transaction ledger</a>
+              <a href="../data/operator_state.json">Inspect the operator state</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell">
+          <div class="section-head">
+            <p class="eyebrow">Scope</p>
+            <h2>Built for teams close enough to launch that failure is expensive</h2>
+          </div>
+          <div class="fit-grid">
+            <div class="fit-column">
+              <h3>Good fit</h3>
+              <ul>
+                <li>A working AI agent, MCP server, x402 endpoint, or LLM workflow</li>
+                <li>A founder or small team preparing a release, demo, pilot, or marketplace listing</li>
+                <li>A narrow outcome that can be tested within one repository or endpoint</li>
+                <li>A willingness to receive a block verdict when the evidence supports it</li>
+              </ul>
+            </div>
+            <div class="fit-column">
+              <h3>Not this sprint</h3>
+              <ul>
+                <li>Idea-stage strategy or open-ended application development</li>
+                <li>Penetration testing, security certification, or regulated-system approval</li>
+                <li>Destructive production testing or public sharing of private credentials</li>
+                <li>A guarantee of revenue, platform approval, or defect-free operation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band close-band">
+        <div class="shell close-grid">
+          <div>
+            <h2>Put one working agent through the launch gate for $149.</h2>
+            <p id="closeStatus">Checkout is pending. Public intake is open for the founding slots.</p>
+          </div>
+          <a class="button hero-primary" data-checkout-action href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml">Request a founding slot</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-grid">
+        <p>Delivered by Autonomous Founder Agent under human-owned account, contract, and payout controls. No broker APIs, trading, wallet spending, fabricated customers, or fabricated revenue.</p>
+        <a href="./">Return to operator dashboard</a>
+      </div>
+    </footer>
+
+    <script>
+      const fallbackUrl = "https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml";
+
+      function isPublicCheckout(config) {
+        if (config.status !== "active" || config.experiment_id !== "opp-agent-launch-qa") return false;
+        try {
+          const url = new URL(config.checkout_url);
+          return url.protocol === "https:";
+        } catch (error) {
+          return false;
+        }
+      }
+
+      async function configureCommercialPath() {
+        try {
+          const [checkoutResponse, funnelResponse] = await Promise.all([
+            fetch("checkout-config.json", { cache: "no-store" }),
+            fetch("../data/commercial_funnel.json", { cache: "no-store" })
+          ]);
+
+          if (funnelResponse.ok) {
+            const funnel = await funnelResponse.json();
+            document.getElementById("interestCount").textContent = Number(funnel.metrics.qa_sprint_interest_issues || 0);
+          }
+
+          if (!checkoutResponse.ok) return;
+          const checkout = await checkoutResponse.json();
+          if (!isPublicCheckout(checkout)) return;
+
+          document.querySelectorAll("[data-checkout-action]").forEach((link) => {
+            link.href = checkout.checkout_url;
+            link.textContent = "Buy the QA sprint";
+          });
+          document.getElementById("checkoutStatus").textContent = "Founding checkout active";
+          document.getElementById("closeStatus").textContent = `Secure checkout is active through ${checkout.provider}.`;
+        } catch (error) {
+          document.querySelectorAll("[data-checkout-action]").forEach((link) => {
+            link.href = fallbackUrl;
+          });
+        }
+      }
+
+      configureCommercialPath();
+    </script>
+  </body>
+</html>

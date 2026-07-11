@@ -8,7 +8,9 @@ Within 48 hours, one working AI agent, MCP server, or LLM workflow receives a la
 
 $149 fixed scope.
 
-Checkout is not active. The current public step is demand validation through the public-safe GitHub intake.
+Three founding slots are available. The buyer-ready offer page is live, while checkout remains pending owner verification and a public Contra URL.
+
+Offer page: https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html
 
 ## Buyer
 
@@ -35,9 +37,9 @@ Indie AI product founders and small teams with a working build approaching launc
 
 ## Payment Rail
 
-If demand is validated, the intended rail is Contra guest checkout because the buyer is human, the offer is a service, and the channel supports productized services. Marketplace-originated transactions remain on the marketplace rail.
+The selected rail is a Contra service listing plus guest checkout because the buyer is human, the offer is a fixed-scope service, and the channel combines discovery, project terms, payment, and fulfillment. Marketplace-originated transactions remain on the marketplace rail.
 
-No Contra account, Stripe checkout, wallet, or x402 payment endpoint has been activated for this experiment.
+The commercial assets are ready. A human-owned Contra account, required identity and payout setup, service publication, and public checkout URL remain pending. No wallet or x402 payment endpoint is required for this cash experiment.
 
 ## Request The Sprint
 
