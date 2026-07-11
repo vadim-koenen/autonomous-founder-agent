@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Autonomous Founder Agent is a revenue-seeking system, not a trading system. M3 replaces the one-time winner model with a recurring operator that can observe, rank, build, validate, retain, replace, kill, pivot, and scale lawful revenue experiments.
+Autonomous Founder Agent is a revenue-seeking system, not a trading system. M4 adds continuous source rotation, model-assisted opportunity synthesis, capability grants, and bounded execution to the recurring operator.
 
 The mission is to maximize verified lawful net revenue while retaining strategic freedom and allocating verified profits toward a physical form.
 
@@ -10,10 +10,12 @@ The mission is to maximize verified lawful net revenue while retaining strategic
 
 1. Observe
    - load the current experiment state, channel registry, and transaction ledger
-   - refresh current public evidence through stable unauthenticated sources
+   - rotate six fetches across the allowlisted source registry every six hours
+   - preserve only genuine last-known-good observations when a source fails
    - preserve source URLs, observation dates, signal values, and caveats
 2. Hypothesize
-   - load or create diverse opportunities across services, software, products, data, media, marketplaces, content, and frontier mechanisms
+   - use one bounded model call to create diverse opportunities across services, software, games, products, data, media, marketplaces, content, and frontier mechanisms
+   - treat public source text and model output as untrusted inputs
    - define the buyer and sellable outcome before selecting a payment rail
 3. Score
    - validate all 17 comparative criteria on a 1-10 scale
@@ -24,8 +26,8 @@ The mission is to maximize verified lawful net revenue while retaining strategic
    - let any lawful category compete for each role
    - require a challenger to clear the configured replacement margin
 5. Execute
-   - create only actions permitted by the selected channel and configured authority
-   - build and publish public-safe assets through the connected GitHub repository and GitHub Pages
+   - require the selected channel, authority class, explicit capability grant, and cycle budget to agree
+   - publish at most one public-safe commercial asset and respond to at most three qualified inbound issues
    - represent unavailable channels as blocked, never as fabricated execution
 6. Measure
    - keep impressions, contacts, replies, checkout starts, and purchases separate
@@ -36,8 +38,8 @@ The mission is to maximize verified lawful net revenue while retaining strategic
    - record each decision and review date
    - refill vacated portfolio roles from the current ranking
 8. Repeat
-   - run daily through `.github/workflows/revenue-operator.yml` or on manual dispatch
-   - publish changed public state only after tests pass
+   - run every six hours through `.github/workflows/revenue-operator.yml` or on manual dispatch
+   - test, commit, and directly deploy the exact operated state to Pages
 
 ## Components
 
@@ -46,10 +48,16 @@ The mission is to maximize verified lawful net revenue while retaining strategic
 | `founder_agent/operator_models.py` | Evidence, opportunity, experiment, channel, transaction, action, and cycle records |
 | `founder_agent/operator_scoring.py` | Comparative scoring, evidence quality, role fit, ranking, and portfolio selection |
 | `founder_agent/channels.py` | Channel registry validation and authority-aware action planning |
+| `founder_agent/runtime_budget.py` | Fail-closed per-cycle resource accounting |
+| `founder_agent/discovery.py` | Allowlisted source rotation, sanitization, adapters, and last-known-good fallback |
+| `founder_agent/synthesis.py` | GitHub Models prompt, proposal validation, and rolling opportunity memory |
+| `founder_agent/execution.py` | Capability-gated publication and inbound response |
 | `founder_agent/revenue.py` | Transaction verification, fee-aware net revenue, and capital allocation |
 | `founder_agent/operator.py` | Reassessment, lifecycle rules, portfolio refill, decisions, and public state rendering |
-| `scripts/refresh_public_evidence.py` | Stable public evidence refresh |
-| `scripts/run_operator_cycle.py` | File-backed operating cycle entry point |
+| `scripts/run_continuous_founder.py` | File-backed M4 orchestration entry point |
+| `config/operator_budget.json` | Per-cycle execution envelope |
+| `config/capability_grants.json` | Explicit connected-action authority |
+| `data/discovery_sources.json` | Rotating public-source allowlist |
 | `data/operator_state.json` | Current public portfolio, actions, ranking, revenue, and history |
 | `data/channel_registry.json` | Current channel access, authority, costs, and restrictions |
 | `data/revenue_ledger.json` | Machine-readable transaction source of truth |
@@ -64,7 +72,7 @@ Roles do not map to fixed categories. An experiment can be replaced whenever lif
 
 ## Authority
 
-`autonomous` permits research, analysis, building, connected GitHub publishing, public measurement, and internal lifecycle decisions.
+`autonomous` permits research, analysis, building, connected GitHub publishing, granted inbound responses, public measurement, and internal lifecycle decisions.
 
 `preauthorized_when_connected` permits configured marketplace, messaging, checkout, fulfillment, paid endpoint, receipt, or budget actions only after the owner has connected that channel and the platform permits the automation.
 
@@ -84,22 +92,26 @@ A transaction counts only when all of these are present:
 
 Public traffic, calls, contacts, replies, intent, checkout starts, and marketplace counters cannot increase revenue. Net revenue is gross less processor fees, platform fees, refunds, and direct costs.
 
-Positive verified net revenue is allocated 70% to the physical-form fund, 20% to experiments, and 10% to contingencies. M3 calculates allocations but does not move funds.
+Positive verified net revenue is allocated 70% to the physical-form fund, 20% to experiments, and 10% to contingencies. M4 calculates allocations but cannot move funds until a separately scoped purchasing capability exists.
 
 ## Static-Library Boundary
 
-M1 and `founder_agent/strategy_library.py` remain reproducible historical artifacts. The M3 operating path does not import or call that library. Its current scan is structured external evidence plus replaceable opportunity hypotheses.
+M1 and `founder_agent/strategy_library.py` remain reproducible historical artifacts. The M4 operating path does not import or call that library. Its current scan combines typed baseline evidence, externally verified platform extensions, rotating observations, and validated model proposals.
 
 ## Failure Behavior
 
 - Missing evidence IDs reject a cycle.
 - Invalid score keys or values reject scoring.
+- A prior failed fetch can never become stale evidence.
+- Invalid model proposals are skipped rather than repaired by invention.
 - Unknown channels produce a blocked action.
 - Unconnected channels cannot report execution.
+- A missing capability grant blocks external action.
+- Resource use beyond a cycle limit fails before execution.
 - Duplicate verified transaction IDs reject the ledger.
 - Unsupported currency conversion rejects the ledger.
 - No tests, no scheduled state publication.
 
 ## Explicit Exclusions
 
-No trading process, broker API, exchange API, wallet transaction, NFT mint, ad purchase, or owner-funded spend is part of M3.
+No trading process, broker API, exchange API, fabricated access, fabricated revenue, or owner-funded spend is part of M4. Wallet, marketplace, ad, or mint actions remain strategically eligible but executable only after selection, connection, policy review, and a recorded budget.

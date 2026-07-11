@@ -1,0 +1,116 @@
+{
+  "schema_name": "autonomous_founder_discovery_sources",
+  "schema_version": "0.4",
+  "sources": [
+    {
+      "source_id": "x402_bazaar",
+      "name": "x402 Bazaar",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
+      "adapter": "x402_bazaar",
+      "priority": 100,
+      "enabled": true,
+      "auth": "none",
+      "allowed_host": "api.cdp.coinbase.com",
+      "signal_type": "agent_native_demand_and_supply"
+    },
+    {
+      "source_id": "official_mcp_registry",
+      "name": "Official MCP Registry",
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
+      "adapter": "mcp_registry",
+      "priority": 98,
+      "enabled": true,
+      "auth": "none",
+      "allowed_host": "registry.modelcontextprotocol.io",
+      "signal_type": "agent_tool_supply_and_new_publishers"
+    },
+    {
+      "source_id": "github_mcp_help_wanted",
+      "name": "GitHub MCP help-wanted demand",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30",
+      "adapter": "github_issues",
+      "priority": 94,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "public_builder_pain"
+    },
+    {
+      "source_id": "github_open_bounties",
+      "name": "GitHub public bounty demand",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30",
+      "adapter": "github_issues",
+      "priority": 92,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "explicit_paid_work"
+    },
+    {
+      "source_id": "github_agent_buyer_language",
+      "name": "GitHub AI-agent buyer-language search",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30",
+      "adapter": "github_issues",
+      "priority": 90,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "public_purchase_or_help_intent"
+    },
+    {
+      "source_id": "hacker_news_agents",
+      "name": "Recent Hacker News agent discussions",
+      "url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
+      "adapter": "hacker_news",
+      "priority": 84,
+      "enabled": true,
+      "auth": "none",
+      "allowed_host": "hn.algolia.com",
+      "signal_type": "emerging_builder_attention_and_pain"
+    },
+    {
+      "source_id": "roblox_creator_docs_changes",
+      "name": "Roblox creator platform changes",
+      "url": "https://api.github.com/repos/Roblox/creator-docs/commits?per_page=20",
+      "adapter": "github_commits",
+      "priority": 82,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "virtual_economy_and_creator_capability_change"
+    },
+    {
+      "source_id": "mcp_registry_releases",
+      "name": "MCP Registry releases",
+      "url": "https://api.github.com/repos/modelcontextprotocol/registry/releases?per_page=10",
+      "adapter": "github_releases",
+      "priority": 78,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "ecosystem_change"
+    },
+    {
+      "source_id": "a2a_releases",
+      "name": "A2A protocol releases",
+      "url": "https://api.github.com/repos/a2aproject/A2A/releases?per_page=10",
+      "adapter": "github_releases",
+      "priority": 76,
+      "enabled": true,
+      "auth": "github_token_optional",
+      "allowed_host": "api.github.com",
+      "signal_type": "ecosystem_change"
+    },
+    {
+      "source_id": "github_models_catalog",
+      "name": "GitHub Models catalog",
+      "url": "https://models.github.ai/catalog/models",
+      "adapter": "model_catalog",
+      "priority": 70,
+      "enabled": true,
+      "auth": "none",
+      "allowed_host": "models.github.ai",
+      "signal_type": "agent_capability_change"
+    }
+  ]
+}

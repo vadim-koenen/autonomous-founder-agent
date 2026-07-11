@@ -65,6 +65,14 @@ Only after a selected experiment passes its gate, update `site/checkout-config.j
 
 The dashboard has no generic Buy button. An offer-specific action may be added only when its configuration and fulfillment path are valid.
 
+## Roblox Candidate Activation
+
+Roblox is scored but is not currently selected for activation.
+
+For the Launch Lens plugin, wait for five qualified creator requests. Then the owner creates or verifies the Roblox account, completes government-ID and Stripe Creator Store seller onboarding, and publishes the tested original plugin. Creator Store checkout is the rail; do not create a separate wallet.
+
+For a Roblox experience, wait until the local core loop is playable. Then the owner creates the experience and a narrowly scoped Open Cloud API key for place publishing. DevEx identity and tax setup are unnecessary until the experience reaches the platform's earned-Robux threshold. No ad spend is authorized before organic retention and co-play gates pass.
+
 ## Revenue Recording
 
 Provider dashboards or signed settlement records remain the verification source. Add a public-safe transaction to `data/revenue_ledger.json` only after confirming completion. Record gross, processor and platform fees, refunds, direct costs, a non-secret verification reference, and verification time. Do not record buyer identity.

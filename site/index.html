@@ -77,6 +77,10 @@
         text-transform: uppercase;
       }
 
+      .wordmark-short {
+        display: none;
+      }
+
       .nav {
         display: flex;
         align-items: center;
@@ -180,6 +184,53 @@
       .truth-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .radar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .radar-metric {
+        min-width: 0;
+        min-height: 116px;
+        padding: 20px;
+        border-left: 1px solid var(--line);
+      }
+
+      .radar-metric:nth-child(3n),
+      .radar-metric:last-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .radar-metric:nth-child(n + 4) {
+        border-top: 1px solid var(--line);
+      }
+
+      .radar-value {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 850;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+      }
+
+      .radar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .radar-actions p {
+        max-width: 720px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.84rem;
       }
 
       .metric {
@@ -548,6 +599,22 @@
           grid-template-columns: 1fr;
         }
 
+        .radar-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .radar-metric:nth-child(3n) {
+          border-right: 0;
+        }
+
+        .radar-metric:nth-child(2n) {
+          border-right: 1px solid var(--line);
+        }
+
+        .radar-metric:nth-child(3) {
+          border-top: 1px solid var(--line);
+        }
+
         .experiment {
           min-height: 0;
         }
@@ -566,7 +633,20 @@
           width: min(100% - 28px, 1180px);
         }
 
-        .nav a:nth-child(2) {
+        .wordmark-full {
+          display: none;
+        }
+
+        .wordmark-short {
+          display: inline;
+        }
+
+        .nav {
+          gap: 14px;
+        }
+
+        .nav a:nth-child(2),
+        .nav a:nth-child(3) {
           display: none;
         }
 
@@ -590,6 +670,20 @@
 
         .truth-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .radar-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .radar-metric,
+        .radar-metric:nth-child(2n),
+        .radar-metric:nth-child(3n) {
+          border-right: 1px solid var(--line);
+        }
+
+        .radar-metric:nth-child(n + 2) {
+          border-top: 1px solid var(--line);
         }
 
         .metric:nth-child(3),
@@ -621,8 +715,9 @@
   <body>
     <header class="topbar">
       <div class="shell topbar-inner">
-        <a class="wordmark" href="#top">Autonomous Revenue Operator</a>
+        <a class="wordmark" href="#top"><span class="wordmark-full">Autonomous Revenue Operator</span><span class="wordmark-short">Founder Agent</span></a>
         <nav class="nav" aria-label="Project links">
+          <a href="#discovery">Discovery</a>
           <a href="../data/operator_state.json">State JSON</a>
           <a href="../docs/REVENUE_LEDGER.md">Revenue ledger</a>
           <a href="https://github.com/vadim-koenen/autonomous-founder-agent">Source</a>
@@ -633,7 +728,7 @@
     <main id="top">
       <section class="hero" role="img" aria-label="A desktop robot under construction at an autonomous revenue workbench">
         <div class="hero-copy">
-          <span class="kicker">Operating cycle M3</span>
+          <span class="kicker">Operating cycle M4</span>
           <h1>Autonomous Revenue Operator</h1>
           <p>This agent is trying to earn its own physical form. It evaluates current evidence, runs a cash, asset, and frontier experiment, and counts only verified completed payments as revenue.</p>
           <div class="hero-actions">
@@ -667,7 +762,52 @@
           <div class="metric">
             <span class="metric-label">Owner funds spent</span>
             <strong id="ownerSpend" class="metric-value">$0.00</strong>
-            <span class="metric-note">No spend authorized in M3</span>
+            <span class="metric-note">Bounded by verified capital</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="discovery" class="band white">
+        <div class="shell">
+          <div class="section-head">
+            <h2>Discovery Radar</h2>
+            <p class="section-note">The strategy space stays broad. Source observations and model proposals enter the scorecard only after typed validation and cited evidence checks.</p>
+          </div>
+          <div class="radar-grid" aria-live="polite">
+            <div class="radar-metric">
+              <span class="metric-label">Sources this cycle</span>
+              <strong id="radarSources" class="radar-value">Loading</strong>
+              <span id="radarSourceNote" class="metric-note">Rotating public evidence</span>
+            </div>
+            <div class="radar-metric">
+              <span class="metric-label">Synthesis</span>
+              <strong id="radarModel" class="radar-value">Loading</strong>
+              <span id="radarModelNote" class="metric-note">One bounded reasoning call</span>
+            </div>
+            <div class="radar-metric">
+              <span class="metric-label">Opportunity memory</span>
+              <strong id="radarOpportunities" class="radar-value">Loading</strong>
+              <span class="metric-note">Incumbents and challengers</span>
+            </div>
+            <div class="radar-metric">
+              <span class="metric-label">Channel candidates</span>
+              <strong id="radarChannels" class="radar-value">Loading</strong>
+              <span class="metric-note">Candidates are not connected access</span>
+            </div>
+            <div class="radar-metric">
+              <span class="metric-label">Last bounded action</span>
+              <strong id="radarAction" class="radar-value">Loading</strong>
+              <span id="radarActionNote" class="metric-note">Execution audit pending</span>
+            </div>
+            <div class="radar-metric">
+              <span class="metric-label">Cycle budget</span>
+              <strong id="radarBudget" class="radar-value">Loading</strong>
+              <span id="radarBudgetNote" class="metric-note">Unused scope does not roll over</span>
+            </div>
+          </div>
+          <div class="radar-actions">
+            <p>Connected capabilities can act within their grants: one public commercial asset and up to three replies to qualified inbound project issues per cycle. New rails become executable when their real accounts and permissions are connected.</p>
+            <a id="latestOpportunityLink" class="button secondary" href="qa-sprint.html">Open current cash experiment</a>
           </div>
         </div>
       </section>
@@ -739,10 +879,11 @@
 
     <footer>
       <div class="shell footer-grid">
-        <p>No broker APIs, trading, ads, wallet transactions, NFT mints, fabricated customers, or fabricated revenue. Public call counters and interest signals remain separate from the verified transaction ledger.</p>
+        <p>No broker APIs or trading. Ads, wallet actions, marketplace writes, and collectible mints require a selected strategy, a connected capability, and a recorded cycle budget. Public attention never becomes revenue without a verified completed transaction.</p>
         <div class="footer-links">
           <a href="../AGENT_MANIFEST.json">Manifest</a>
           <a href="../docs/CURRENT_CYCLE.md">Cycle report</a>
+          <a href="../docs/LATEST_DISCOVERY.md">Discovery report</a>
           <a href="../data/prospect_queue.json">Public targets</a>
         </div>
       </div>
@@ -852,7 +993,7 @@
 
       function renderRanking(items) {
         const list = document.getElementById("rankList");
-        list.innerHTML = (items || []).slice(0, 8).map((item) => `
+        list.innerHTML = (items || []).slice(0, 12).map((item) => `
           <li class="rank-row">
             <span class="rank-number">${Number(item.rank)}</span>
             <div><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.category)}</span></div>
@@ -863,21 +1004,59 @@
       function renderRetired(items) {
         const list = document.getElementById("retiredList");
         if (!(items || []).length) {
-          list.innerHTML = '<li><strong>None yet.</strong><span>The first M3 cycle has no fabricated history. Review rules begin with recorded metrics.</span></li>';
+          list.innerHTML = '<li><strong>None yet.</strong><span>No lifecycle event has been recorded. Review rules begin with measured results.</span></li>';
           return;
         }
         list.innerHTML = items.map((item) => `
           <li><strong>${escapeHtml(item.offer)}</strong><span>${escapeHtml(item.current_status)}: ${escapeHtml(item.last_decision)}</span></li>`).join("");
       }
 
+      function renderRadar(state, snapshot, pool, runtime, executionLog) {
+        const summary = snapshot.run_summary || {};
+        const attempted = Number(summary.sources_attempted || 0);
+        const healthy = Number(summary.sources_ok || 0);
+        const stale = Number(summary.sources_stale || 0);
+        document.getElementById("radarSources").textContent = `${healthy}/${attempted} healthy`;
+        document.getElementById("radarSourceNote").textContent = `${stale} stale / ${Number(summary.sources_failed || 0)} failed`;
+
+        document.getElementById("radarModel").textContent = String(pool.synthesis_mode || "unknown").replaceAll("_", " ");
+        document.getElementById("radarModelNote").textContent = pool.model || "Model not recorded";
+        const rankedIds = new Set((state.ranked_opportunities || []).map((item) => item.opportunity_id));
+        const extraDynamic = (pool.opportunities || []).filter((item) => !rankedIds.has(item.opportunity_id)).length;
+        document.getElementById("radarOpportunities").textContent = `${rankedIds.size + extraDynamic} tracked`;
+        document.getElementById("radarChannels").textContent = `${(pool.channel_candidates || []).length} observed`;
+
+        const executions = [...(executionLog.executions || [])];
+        const meaningful = executions.reverse().find((item) => ["executed", "published"].includes(item.status));
+        const latest = meaningful || (runtime.executions || []).slice(-1)[0] || {};
+        document.getElementById("radarAction").textContent = String(latest.action_type || "none").replaceAll("_", " ");
+        document.getElementById("radarActionNote").textContent = latest.status || "No execution recorded";
+        if (meaningful?.artifact_url?.endsWith("/site/opportunities/latest.html")) {
+          const link = document.getElementById("latestOpportunityLink");
+          link.href = "opportunities/latest.html";
+          link.textContent = "Open latest opportunity test";
+        }
+
+        const budget = runtime.budget || {};
+        const used = budget.used || {};
+        const limits = budget.limits || {};
+        document.getElementById("radarBudget").textContent = `${Number(used.publications || 0)}/${Number(limits.publications || 0)} published`;
+        document.getElementById("radarBudgetNote").textContent = `${Number(used.external_messages || 0)}/${Number(limits.external_messages || 0)} messages; ${Number(used.source_fetches || 0)}/${Number(limits.source_fetches || 0)} source fetches`;
+      }
+
       async function loadDashboard() {
         try {
-          const [stateResponse, scanResponse] = await Promise.all([
+          const [stateResponse, scanResponse, snapshotResponse, poolResponse, runtimeResponse, executionResponse] = await Promise.all([
             fetch("../data/operator_state.json", { cache: "no-store" }),
-            fetch("../data/opportunity_scan_2026-07-09.json", { cache: "no-store" })
+            fetch("../data/opportunity_scan_2026-07-09.json", { cache: "no-store" }),
+            fetch("../data/discovery_snapshot.json", { cache: "no-store" }),
+            fetch("../data/discovered_opportunities.json", { cache: "no-store" }),
+            fetch("../data/runtime_budget_state.json", { cache: "no-store" }),
+            fetch("../data/execution_log.json", { cache: "no-store" })
           ]);
-          if (!stateResponse.ok || !scanResponse.ok) throw new Error("Public state request failed");
-          const [state, scan] = await Promise.all([stateResponse.json(), scanResponse.json()]);
+          const responses = [stateResponse, scanResponse, snapshotResponse, poolResponse, runtimeResponse, executionResponse];
+          if (responses.some((response) => !response.ok)) throw new Error("Public state request failed");
+          const [state, scan, snapshot, pool, runtime, executionLog] = await Promise.all(responses.map((response) => response.json()));
 
           document.getElementById("cycleId").textContent = state.cycle_id;
           document.getElementById("asOf").textContent = `Evidence as of ${state.as_of}`;
@@ -888,15 +1067,22 @@
 
           renderExperiments(state.current_portfolio || []);
           renderActions(state);
-          renderEvidence(scan);
+          const evidenceById = new Map(
+            [...(snapshot.evidence || []), ...(scan.evidence || [])].map((item) => [item.evidence_id, item])
+          );
+          renderEvidence({ evidence: [...evidenceById.values()] });
           renderRanking(state.ranked_opportunities || []);
           renderRetired(state.recently_killed_or_pivoted || []);
+          renderRadar(state, snapshot, pool, runtime, executionLog);
         } catch (error) {
           document.getElementById("experimentGrid").innerHTML = '<p class="error">The machine-readable state could not be loaded. No revenue or execution claim is inferred.</p>';
           document.getElementById("actionList").innerHTML = '<li class="error">Action state unavailable.</li>';
           document.getElementById("evidenceList").innerHTML = '<li class="error">Evidence state unavailable.</li>';
           document.getElementById("rankList").innerHTML = '<li class="error">Ranking state unavailable.</li>';
           document.getElementById("retiredList").innerHTML = '<li class="error">Decision history unavailable.</li>';
+          ["radarSources", "radarModel", "radarOpportunities", "radarChannels", "radarAction", "radarBudget"].forEach((id) => {
+            document.getElementById(id).textContent = "Unavailable";
+          });
         }
       }
 

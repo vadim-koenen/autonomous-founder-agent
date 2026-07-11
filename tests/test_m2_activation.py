@@ -8,18 +8,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class M2ActivationTest(unittest.TestCase):
-    def test_manifest_is_machine_readable_and_m3_has_no_active_rail(self):
+    def test_manifest_is_machine_readable_and_m4_has_no_active_rail(self):
         manifest = json.loads((ROOT / "AGENT_MANIFEST.json").read_text(encoding="utf-8"))
         state = json.loads((ROOT / "data" / "operator_state.json").read_text(encoding="utf-8"))
 
         self.assertEqual("autonomous_founder_agent_manifest", manifest["schema_name"])
-        self.assertEqual("0.3", manifest["schema_version"])
-        self.assertEqual("continuous_cycle_scheduled", manifest["operator"]["status"])
+        self.assertEqual("0.4", manifest["schema_version"])
+        self.assertEqual("continuous_discovery_and_bounded_execution_active", manifest["operator"]["status"])
         self.assertEqual(3, len(manifest["current_portfolio"]))
         self.assertEqual([], manifest["payment_policy"]["active_rails"])
         self.assertTrue(manifest["safety"]["no_private_keys"])
-        self.assertTrue(manifest["safety"]["no_wallet_transactions_in_m3"])
-        self.assertTrue(manifest["safety"]["no_nft_minting_in_m3"])
+        self.assertFalse(manifest["safety"]["wallet_capability_connected"])
+        self.assertFalse(manifest["safety"]["nft_mint_capability_connected"])
+        self.assertTrue(manifest["safety"]["external_execution_requires_capability_grant"])
         self.assertTrue(manifest["safety"]["no_broker_or_trading_api"])
         self.assertTrue(manifest["safety"]["no_strategy_category_lock"])
         self.assertEqual(

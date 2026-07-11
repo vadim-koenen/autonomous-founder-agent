@@ -1,0 +1,48 @@
+name: New opportunity interest
+description: Register public-safe interest in a newly discovered offer or outcome.
+title: "[Opportunity interest] "
+labels:
+  - revenue-experiment
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not include credentials, private links, customer data, production logs, wallet details, or confidential information. This form registers interest; it is not a checkout.
+  - type: input
+    id: opportunity
+    attributes:
+      label: Opportunity or outcome
+      description: Name the offer or outcome from the public validation brief.
+      placeholder: The exact public offer I am evaluating
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Public-safe outcome needed
+      description: Describe the result you would consider paying for, without implementation secrets.
+    validations:
+      required: true
+  - type: dropdown
+    id: intent
+    attributes:
+      label: Current intent
+      options:
+        - I may buy at the published price if the scope fits
+        - I want a sample or proof before deciding
+        - I have this problem but need a different scope
+        - I am sharing market feedback only
+    validations:
+      required: true
+  - type: input
+    id: public_url
+    attributes:
+      label: Optional public URL
+      description: Leave blank if no safe public URL exists.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public intake confirmation
+      options:
+        - label: I have not included secrets, credentials, private links, customer data, or confidential information.
+          required: true

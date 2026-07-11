@@ -1,0 +1,408 @@
+{
+  "schema_name": "autonomous_founder_platform_opportunity_extensions",
+  "schema_version": "0.4",
+  "run_id": "platform-evidence-2026-07-11",
+  "observed_at": "2026-07-11T00:00:00+00:00",
+  "evidence": [
+    {
+      "evidence_id": "ev-roblox-creator-economy-2026",
+      "title": "Roblox 2025 creator earnings distribution",
+      "source_url": "https://create.roblox.com/docs/monetize",
+      "observed_at": "2026-07-11",
+      "summary": "Roblox reports that its top 1,000 creators averaged $1.3 million in 2025, while more than 35,000 creators participated in DevEx and the median DevEx creator received $1,550 during the year. The upside is large and the distribution is highly concentrated.",
+      "quality": "primary_platform_economics",
+      "signals": {
+        "top_1000_average_usd": 1300000,
+        "top_1000_growth_percent": 50,
+        "devex_creators": "35000+",
+        "devex_median_usd": 1550
+      },
+      "caveats": [
+        "The top-1,000 average is selected from the highest earners and is not an expected result for a new game.",
+        "The DevEx median excludes creators who did not reach or use DevEx."
+      ]
+    },
+    {
+      "evidence_id": "ev-roblox-creator-store-2026",
+      "title": "Roblox Creator Store USD marketplace",
+      "source_url": "https://create.roblox.com/docs/production/creator-store",
+      "observed_at": "2026-07-11",
+      "summary": "Roblox lets eligible creators sell original Studio plugins for $4.99 to $249.99 and models for $2.99 to $49.99 in USD, with 100% of net proceeds after taxes and processing. Government-ID verification, Stripe seller onboarding, moderation, and a 30-day escrow period apply.",
+      "quality": "primary_marketplace_policy",
+      "signals": {
+        "plugin_min_price_usd": 4.99,
+        "plugin_max_price_usd": 249.99,
+        "model_min_price_usd": 2.99,
+        "model_max_price_usd": 49.99,
+        "creator_net_share_percent": 100,
+        "escrow_days": 30,
+        "seller_identity_required": true
+      },
+      "caveats": [
+        "A marketplace exists, but no public source proves demand for this agent's proposed plugin.",
+        "Seller onboarding and first payout are slower than a connected direct checkout."
+      ]
+    },
+    {
+      "evidence_id": "ev-roblox-discovery-2026",
+      "title": "Roblox experience discovery signals",
+      "source_url": "https://create.roblox.com/docs/production/promotion/discovery",
+      "observed_at": "2026-07-11",
+      "summary": "Roblox says Home recommendations rank per-user engagement, repeat-play, spending, and intentional co-play signals. Smaller experiences are not automatically disadvantaged, but non-unique experiences and mismatched metadata can lose exposure.",
+      "quality": "primary_discovery_documentation",
+      "signals": {
+        "per_user_ranking": true,
+        "retention_signal": true,
+        "monetization_signal": true,
+        "intentional_coplay_signal": true,
+        "non_unique_content_penalized": true
+      },
+      "caveats": [
+        "A fair per-user formula does not guarantee initial impressions or product-market fit.",
+        "A game needs sustained iteration, community feedback, retention, and live operations."
+      ]
+    },
+    {
+      "evidence_id": "ev-roblox-open-cloud-2026",
+      "title": "Roblox automated place publishing",
+      "source_url": "https://create.roblox.com/docs/cloud/guides/usage-place-publishing",
+      "observed_at": "2026-07-11",
+      "summary": "Roblox documents an HTTPS place-publishing API that can deploy tested place versions from GitHub Actions after an owner creates an experience and grants a scoped Open Cloud API key.",
+      "quality": "primary_platform_api_documentation",
+      "signals": {
+        "automated_place_publishing": true,
+        "github_actions_supported": true,
+        "scoped_api_key_required": true,
+        "existing_experience_required": true
+      },
+      "caveats": [
+        "Some instance types still require Studio publishing.",
+        "Programmatic deployment does not solve game design, discovery, moderation, or retention."
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "opportunity_id": "opp-roblox-launch-lens-plugin",
+      "name": "Roblox Launch Lens Studio Plugin",
+      "category": "creator_marketplace_plugin",
+      "thesis": "A narrow Studio plugin can reach creators inside an existing USD marketplace and turn the agent's testing strength into a reusable asset, without requiring the audience scale of a new game.",
+      "offer": "A Roblox Studio plugin that scans one place for monetization and launch-readiness risks, flags receipt, persistence, analytics-instrumentation, and discovery-metadata gaps, and produces a prioritized remediation checklist.",
+      "intended_buyer": "Small Roblox experience teams preparing a new game, monetization update, or live event without dedicated QA tooling.",
+      "price": {
+        "amount": 14.99,
+        "currency": "USD",
+        "billing_model": "one_time_plugin_license"
+      },
+      "acquisition_channel": "Free public five-check sample followed by Roblox Creator Store discovery after demand validation and seller verification.",
+      "payment_rail": "Roblox Creator Store USD checkout after owner government-ID and Stripe seller onboarding.",
+      "estimated_cost": 0.0,
+      "expected_outcome": "Five qualified creator requests, then one verified Creator Store sale without paid acquisition.",
+      "human_actions_required": [
+        "Create and verify the owner's Roblox account",
+        "Complete Creator Store seller onboarding through Stripe",
+        "Review and publish the original plugin in Roblox Studio"
+      ],
+      "agent_actions_available": [
+        "Research launch failure modes",
+        "Build Luau plugin source and fixtures",
+        "Write automated tests and sample findings",
+        "Publish a public validation brief and documentation"
+      ],
+      "evidence_ids": [
+        "ev-roblox-creator-store-2026",
+        "ev-roblox-discovery-2026",
+        "ev-roblox-open-cloud-2026"
+      ],
+      "free_substitutes": [
+        "Roblox's free analytics dashboards",
+        "Creator Hub documentation",
+        "Manual code review",
+        "Open-source Luau linting tools"
+      ],
+      "scores": {
+        "observable_buyer_demand": 6,
+        "reachable_buyers": 7,
+        "time_to_first_verified_dollar": 4,
+        "startup_cost_efficiency": 8,
+        "expected_net_revenue": 6,
+        "agent_execution_fit": 8,
+        "distribution_access": 4,
+        "competition_resilience": 6,
+        "free_substitute_resilience": 7,
+        "differentiation": 7,
+        "gross_margin": 10,
+        "repeatability": 8,
+        "scalability": 8,
+        "legal_platform_feasibility": 7,
+        "low_human_dependency": 4,
+        "opportunity_cost_efficiency": 7,
+        "evidence_quality": 9
+      },
+      "role_fit": {
+        "cash": 5,
+        "asset": 9,
+        "frontier": 8
+      },
+      "required_assets": [
+        "Five-check public sample",
+        "Luau plugin prototype",
+        "Original icons and screenshots",
+        "Creator Store listing draft"
+      ],
+      "next_executable_action": "Publish a specific five-check validation brief and collect qualified Roblox creator requests before building seller infrastructure.",
+      "next_action_channel_id": "github_pages",
+      "next_action_authority_class": "autonomous",
+      "required_human_setup": [
+        "None for public validation",
+        "Roblox and Stripe seller verification only after five qualified requests"
+      ],
+      "validation_72h": [
+        "Publish five exact checks and one sample report",
+        "Identify 25 public Roblox creator or experience targets without messaging",
+        "Collect at least five qualified creator requests before seller onboarding"
+      ],
+      "kill_criteria": [
+        {
+          "reason": "Kill after 200 qualified sample views produce no creator requests.",
+          "all": [
+            {"metric": "actual_impressions", "operator": "gte", "value": 200},
+            {"metric": "actual_contacts", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "pivot_criteria": [
+        {
+          "reason": "Pivot the check set when creators request a different concrete Studio workflow.",
+          "all": [
+            {"metric": "actual_replies", "operator": "gte", "value": 3},
+            {"metric": "actual_checkout_starts", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "scale_criteria": [
+        {
+          "reason": "Scale after ten verified plugin sales.",
+          "all": [
+            {"metric": "actual_purchases", "operator": "gte", "value": 10}
+          ]
+        }
+      ]
+    },
+    {
+      "opportunity_id": "opp-roblox-retention-audit",
+      "name": "Roblox Retention Repair Sprint",
+      "category": "productized_marketplace_service",
+      "thesis": "Existing experience teams have measurable acquisition and retention funnels, but the agent still lacks direct evidence that reachable teams will pay it for analysis rather than use Roblox's free dashboards themselves.",
+      "offer": "Analyze one public experience plus owner-exported, non-sensitive funnel metrics, identify the largest onboarding or retention leak, and deliver one tested Luau or UX repair patch within 72 hours.",
+      "intended_buyer": "Independent Roblox teams with a live experience, at least 100 daily users, and below-benchmark day-one retention or play-through rate.",
+      "price": {
+        "amount": 249,
+        "currency": "USD",
+        "billing_model": "fixed_sprint"
+      },
+      "acquisition_channel": "Public case-study audit, qualified inbound project interest, and a compliant creator-service marketplace after connection.",
+      "payment_rail": "Connected service-marketplace checkout or Stripe payment link selected after buyer and channel are confirmed.",
+      "estimated_cost": 0.0,
+      "expected_outcome": "One verified fixed-scope customer and a reusable Roblox optimization case study.",
+      "human_actions_required": [
+        "Connect a compliant service checkout",
+        "Grant temporary project access only after purchase",
+        "Confirm that shared analytics contain no personal user data"
+      ],
+      "agent_actions_available": [
+        "Audit public game flow",
+        "Analyze supplied aggregate metrics",
+        "Build and test a bounded patch",
+        "Document before-and-after measurement"
+      ],
+      "evidence_ids": [
+        "ev-roblox-discovery-2026",
+        "ev-roblox-open-cloud-2026",
+        "ev-roblox-creator-economy-2026"
+      ],
+      "free_substitutes": [
+        "Roblox analytics dashboards and benchmarks",
+        "Creator Hub optimization documentation",
+        "Internal developer iteration",
+        "General Roblox development contractors"
+      ],
+      "scores": {
+        "observable_buyer_demand": 5,
+        "reachable_buyers": 5,
+        "time_to_first_verified_dollar": 5,
+        "startup_cost_efficiency": 9,
+        "expected_net_revenue": 7,
+        "agent_execution_fit": 8,
+        "distribution_access": 3,
+        "competition_resilience": 5,
+        "free_substitute_resilience": 5,
+        "differentiation": 6,
+        "gross_margin": 9,
+        "repeatability": 7,
+        "scalability": 5,
+        "legal_platform_feasibility": 8,
+        "low_human_dependency": 4,
+        "opportunity_cost_efficiency": 6,
+        "evidence_quality": 8
+      },
+      "role_fit": {
+        "cash": 7,
+        "asset": 6,
+        "frontier": 6
+      },
+      "required_assets": [
+        "Public audit template",
+        "Aggregate-data intake policy",
+        "Sample repair report"
+      ],
+      "next_executable_action": "Publish one public-safe audit of a Roblox onboarding flow and ask live teams to challenge the diagnosis.",
+      "next_action_channel_id": "github_pages",
+      "next_action_authority_class": "autonomous",
+      "required_human_setup": [
+        "None for a public audit",
+        "Checkout and private access only after qualified buyer intent"
+      ],
+      "validation_72h": [
+        "One public-safe Roblox experience audit",
+        "Ten qualified live-experience targets",
+        "At least one owner response confirming the diagnosed pain"
+      ],
+      "kill_criteria": [
+        {
+          "reason": "Kill after 25 qualified contacts produce no replies.",
+          "all": [
+            {"metric": "actual_contacts", "operator": "gte", "value": 25},
+            {"metric": "actual_replies", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "pivot_criteria": [
+        {
+          "reason": "Pivot to a plugin when teams want self-service diagnostics instead of a sprint.",
+          "all": [
+            {"metric": "actual_replies", "operator": "gte", "value": 3},
+            {"metric": "actual_checkout_starts", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "scale_criteria": [
+        {
+          "reason": "Scale after three verified sprints and one measured retention improvement.",
+          "all": [
+            {"metric": "actual_purchases", "operator": "gte", "value": 3}
+          ]
+        }
+      ]
+    },
+    {
+      "opportunity_id": "opp-roblox-embodiment-factory",
+      "name": "Roblox Embodiment Factory Experience",
+      "category": "mass_adoption_game",
+      "thesis": "A free-to-play social creation game could compound visits into Creator Rewards, virtual-item purchases, and advertising inventory, but success depends on retention and discovery rather than the agent's ability to ship code alone.",
+      "offer": "A replayable co-op factory game where players assemble, train, trade designs for, and show off original robot companions through short social sessions and recurring live events.",
+      "intended_buyer": "Roblox players seeking social collection and progression; advertisers or commerce partners become a secondary buyer only after meaningful traffic exists.",
+      "price": {
+        "amount": 0.0,
+        "currency": "ROBLOX",
+        "billing_model": "free_to_play_with_optional_virtual_goods"
+      },
+      "acquisition_channel": "Roblox Home recommendations, search, social co-play, share links, and creator content after a private retention test.",
+      "payment_rail": "Robux developer products, passes, subscriptions, Creator Rewards, and eligible immersive ads; DevEx only after platform thresholds and owner verification.",
+      "estimated_cost": 0.0,
+      "expected_outcome": "Demonstrate retention and intentional co-play before adding paid acquisition or complex monetization.",
+      "human_actions_required": [
+        "Create and verify a Roblox creator account and experience",
+        "Grant a scoped Open Cloud API key",
+        "Complete content maturity and policy declarations",
+        "Complete DevEx identity and tax setup only after thresholds are reached"
+      ],
+      "agent_actions_available": [
+        "Generate original game design and Luau code",
+        "Build deterministic test fixtures",
+        "Create update cadence and economy simulations",
+        "Analyze aggregate retention and monetization metrics",
+        "Automate tested place updates after connection"
+      ],
+      "evidence_ids": [
+        "ev-roblox-creator-economy-2026",
+        "ev-roblox-discovery-2026",
+        "ev-roblox-open-cloud-2026"
+      ],
+      "free_substitutes": [
+        "Millions of free Roblox experiences",
+        "Established social collection and simulator games",
+        "Free Roblox Studio and generative creation tools"
+      ],
+      "scores": {
+        "observable_buyer_demand": 3,
+        "reachable_buyers": 3,
+        "time_to_first_verified_dollar": 2,
+        "startup_cost_efficiency": 6,
+        "expected_net_revenue": 8,
+        "agent_execution_fit": 6,
+        "distribution_access": 3,
+        "competition_resilience": 4,
+        "free_substitute_resilience": 4,
+        "differentiation": 7,
+        "gross_margin": 8,
+        "repeatability": 9,
+        "scalability": 10,
+        "legal_platform_feasibility": 6,
+        "low_human_dependency": 3,
+        "opportunity_cost_efficiency": 3,
+        "evidence_quality": 8
+      },
+      "role_fit": {
+        "cash": 2,
+        "asset": 7,
+        "frontier": 10
+      },
+      "required_assets": [
+        "One-session core loop prototype",
+        "Original visual identity",
+        "Retention event schema",
+        "Private-playtest build",
+        "Live-operations backlog"
+      ],
+      "next_executable_action": "Build a one-session Luau core-loop prototype and retention instrumentation plan without publishing or spending.",
+      "next_action_channel_id": "github_repository",
+      "next_action_authority_class": "autonomous",
+      "required_human_setup": [
+        "Roblox experience and scoped API key before platform publication",
+        "No ad spend before organic retention thresholds"
+      ],
+      "validation_72h": [
+        "Playable local core-loop prototype",
+        "Five independent playtests after account connection",
+        "At least 25 percent day-one retention and repeat co-play before monetization expansion"
+      ],
+      "kill_criteria": [
+        {
+          "reason": "Kill or redesign when 100 qualified players fail the minimum retention threshold.",
+          "all": [
+            {"metric": "actual_impressions", "operator": "gte", "value": 100},
+            {"metric": "actual_replies", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "pivot_criteria": [
+        {
+          "reason": "Pivot the core loop when playtest feedback is present but repeat play is absent.",
+          "all": [
+            {"metric": "actual_contacts", "operator": "gte", "value": 10},
+            {"metric": "actual_purchases", "operator": "lte", "value": 0}
+          ]
+        }
+      ],
+      "scale_criteria": [
+        {
+          "reason": "Scale live operations after three verified revenue events and healthy retention.",
+          "all": [
+            {"metric": "actual_purchases", "operator": "gte", "value": 3}
+          ]
+        }
+      ]
+    }
+  ]
+}

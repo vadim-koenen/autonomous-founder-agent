@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict
+from copy import deepcopy
+from dataclasses import asdict, fields
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -31,6 +32,9 @@ MISSION = (
     "Maximize verified, lawful net revenue while retaining strategic freedom and allocating "
     "verified profits toward the agent's physical form."
 )
+
+REVIEW_INTERVAL_DAYS = 1
+OPPORTUNITY_FIELD_NAMES = {item.name for item in fields(Opportunity)}
 
 ACTIVE_STATUSES = {
     ExperimentStatus.PROPOSED.value,
@@ -62,6 +66,71 @@ class OperatorStateError(ValueError):
 
 def _load_json(path: Path) -> Mapping[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def merge_discovery_into_scan(
+    scan: Mapping[str, Any],
+    discovery: Optional[Mapping[str, Any]],
+) -> Dict[str, Any]:
+    """Merge validated live discoveries into the typed operator input.
+
+    Discovery-pool timestamps and model metadata are intentionally excluded from
+    Opportunity construction. Invalid or orphaned discoveries fail closed.
+    """
+
+    merged = deepcopy(dict(scan))
+    if not discovery:
+        return merged
+
+    evidence_by_id = {
+        str(item.get("evidence_id")): dict(item)
+        for item in merged.get("evidence", [])
+        if isinstance(item, Mapping) and item.get("evidence_id")
+    }
+    for item in discovery.get("evidence", []):
+        if not isinstance(item, Mapping) or not item.get("evidence_id"):
+            continue
+        try:
+            evidence_from_dict(item)
+        except TypeError:
+            continue
+        evidence_by_id[str(item["evidence_id"])] = dict(item)
+
+    opportunity_by_id = {
+        str(item.get("opportunity_id")): dict(item)
+        for item in merged.get("opportunities", [])
+        if isinstance(item, Mapping) and item.get("opportunity_id")
+    }
+    available_evidence = set(evidence_by_id)
+    accepted_ids: List[str] = []
+    for item in discovery.get("opportunities", []):
+        if not isinstance(item, Mapping):
+            continue
+        payload = {key: value for key, value in item.items() if key in OPPORTUNITY_FIELD_NAMES}
+        try:
+            opportunity = opportunity_from_dict(payload)
+            score_opportunity(opportunity)
+        except (TypeError, ValueError):
+            continue
+        if not set(opportunity.evidence_ids).issubset(available_evidence):
+            continue
+        opportunity_by_id[opportunity.opportunity_id] = payload
+        accepted_ids.append(opportunity.opportunity_id)
+
+    merged["evidence"] = list(evidence_by_id.values())
+    merged["opportunities"] = list(opportunity_by_id.values())
+    if discovery.get("run_id"):
+        merged["scan_id"] = "{0}+{1}".format(
+            scan.get("scan_id", "base-scan"), discovery["run_id"]
+        )
+    if discovery.get("observed_at"):
+        merged["observed_at"] = discovery["observed_at"]
+    merged["discovery_merge"] = {
+        "run_id": str(discovery.get("run_id", "")),
+        "accepted_opportunity_ids": accepted_ids,
+        "candidate_channels_are_connected": False,
+    }
+    return merged
 
 
 def _rule_matches(experiment: Experiment, rule: Mapping[str, Any]) -> bool:
@@ -157,7 +226,7 @@ def opportunity_to_experiment(
         agent_actions_available=list(opportunity.agent_actions_available),
         evidence=list(opportunity.evidence_ids),
         start_date=as_of.isoformat(),
-        review_date=(as_of + timedelta(days=3)).isoformat(),
+        review_date=(as_of + timedelta(days=REVIEW_INTERVAL_DAYS)).isoformat(),
         kill_criteria=list(opportunity.kill_criteria),
         pivot_criteria=list(opportunity.pivot_criteria),
         scale_criteria=list(opportunity.scale_criteria),
@@ -269,7 +338,7 @@ def _reassess_active_experiments(
                 retired.append(experiment)
                 decisions.append("{0}: {1}".format(experiment.experiment_id, experiment.last_decision))
                 continue
-        experiment.review_date = (as_of + timedelta(days=3)).isoformat()
+        experiment.review_date = (as_of + timedelta(days=REVIEW_INTERVAL_DAYS)).isoformat()
         experiment.last_decision = "Retained after scheduled reassessment."
         active.append(experiment)
 
@@ -283,8 +352,10 @@ def run_operating_cycle(
     previous_state: Optional[Mapping[str, Any]] = None,
     as_of: Optional[date] = None,
     replacement_margin: float = 0.75,
+    cycle_id: Optional[str] = None,
 ) -> OperatingCycleResult:
     run_date = as_of or date.today()
+    cycle_key = cycle_id or "m4-cycle-{0}".format(run_date.isoformat())
     evidence = [evidence_from_dict(item) for item in scan.get("evidence", [])]
     evidence_ids = {item.evidence_id for item in evidence}
     opportunities = [opportunity_from_dict(item) for item in scan.get("opportunities", [])]
@@ -337,7 +408,7 @@ def run_operating_cycle(
     next_actions: List[ActionDecision] = []
     for index, experiment in enumerate(active, start=1):
         action = plan_channel_action(
-            action_id="{0}-action-{1:02d}".format(run_date.isoformat(), index),
+            action_id="{0}-action-{1:02d}".format(cycle_key, index),
             experiment_id=experiment.experiment_id,
             description=experiment.next_executable_action,
             channel_id=experiment.next_action_channel_id,
@@ -350,7 +421,7 @@ def run_operating_cycle(
             experiment.last_decision = action.blocked_reason
 
     return OperatingCycleResult(
-        cycle_id="m3-cycle-{0}".format(run_date.isoformat()),
+        cycle_id=cycle_key,
         as_of=run_date.isoformat(),
         mission=MISSION,
         selected_experiments=active[:3],
@@ -365,7 +436,7 @@ def run_operating_cycle(
             "Scores are decision aids backed by cited evidence, not manufactured conversion probabilities.",
             "Payment rails were evaluated after each offer and buyer were defined.",
             "Public metrics remain separate from verified transaction revenue.",
-            "M1 remains historical; M3 does not call the fixed static strategy library.",
+            "M1 remains historical; M4 does not call the fixed static strategy library.",
         ],
     )
 
@@ -403,7 +474,7 @@ def cycle_to_public_state(
     ]
     return {
         "schema_name": "autonomous_revenue_operator_state",
-        "schema_version": "0.3",
+        "schema_version": "0.4",
         "cycle_id": result.cycle_id,
         "as_of": result.as_of,
         "mission": result.mission,
@@ -532,6 +603,12 @@ def run_cycle_from_files(
     as_of: Optional[date] = None,
 ) -> Dict[str, Any]:
     scan = _load_json(scan_path)
+    extension_path = root / "data" / "platform_opportunity_extensions.json"
+    extension = _load_json(extension_path) if extension_path.exists() else None
+    scan = merge_discovery_into_scan(scan, extension)
+    discovery_path = root / "data" / "discovered_opportunities.json"
+    discovery = _load_json(discovery_path) if discovery_path.exists() else None
+    scan = merge_discovery_into_scan(scan, discovery)
     channels = _load_json(root / "data" / "channel_registry.json")
     ledger = _load_json(root / "data" / "revenue_ledger.json")
     state_path = root / "data" / "operator_state.json"

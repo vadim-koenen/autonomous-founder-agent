@@ -8,6 +8,7 @@ The owner does not approve or choose the business model, buyer, offer, price hyp
 - opportunity generation, scoring, retention, replacement, kill, pivot, and scale decisions
 - code, sample, offer, report, listing, and pricing-draft creation
 - publishing through this connected GitHub repository and GitHub Pages
+- up to three replies per cycle to inbound project issues labeled `revenue-experiment`
 - public-safe prospect research
 - public metric measurement
 - revenue-ledger updates backed by verifiable transaction records
@@ -22,6 +23,7 @@ Before enabling a channel, confirm:
 - the platform permits the proposed automation
 - credentials are supplied through an approved secret store, never public files or chat
 - message, proposal, listing, checkout, fulfillment, receipt, and spending limits are scoped
+- the capability is explicitly enabled in `config/capability_grants.json`
 - spending is limited to a separately configured budget or verified earned revenue
 
 ## Human Identity Required
@@ -44,4 +46,4 @@ Before enabling a channel, confirm:
 
 ## Hard Stops
 
-Stop if an action would expose secrets or private customer data, violate a platform rule, spend unconfigured funds, move money without authority, mint an NFT without configuration, make deceptive claims, fabricate demand or revenue, or touch a broker, exchange, trading, or financial-account API.
+Stop if an action would expose secrets or private customer data, violate a platform rule, exceed a cycle budget, use an unconfigured capability, spend unconfigured funds, move money without authority, mint an NFT without configuration, make deceptive claims, fabricate demand or revenue, or touch a broker, exchange, trading, or financial-account API.

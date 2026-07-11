@@ -28,7 +28,7 @@ class StarterKitAssetsTest(unittest.TestCase):
         self.assertIn("drafts only", text)
         self.assertIn("do not post without explicit approval", text)
 
-    def test_landing_page_has_no_checkout_or_wallet_action(self):
+    def test_landing_page_has_no_unconfigured_checkout_or_wallet_action(self):
         text = (ROOT / "site" / "index.html").read_text(encoding="utf-8").lower()
         blocked = [
             "href=\"https://buy.stripe.com",
@@ -42,7 +42,9 @@ class StarterKitAssetsTest(unittest.TestCase):
         for snippet in blocked:
             self.assertNotIn(snippet, text)
         self.assertIn("completed payments only", text)
-        self.assertIn("no broker apis, trading, ads, wallet transactions", text)
+        self.assertIn("no broker apis or trading", text)
+        self.assertIn("wallet actions", text)
+        self.assertIn("connected capability", text)
 
 
 if __name__ == "__main__":

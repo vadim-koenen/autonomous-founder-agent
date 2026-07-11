@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Dict, Iterable, List, Mapping
 
 from .operator_models import ExperimentRole, Opportunity, ScoredOpportunity
@@ -44,7 +45,11 @@ def validate_opportunity_scores(scores: Mapping[str, float]) -> None:
     invalid = {
         key: value
         for key, value in scores.items()
-        if not isinstance(value, (int, float)) or value < 1 or value > 10
+        if isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not math.isfinite(float(value))
+        or value < 1
+        or value > 10
     }
     if invalid:
         raise OperatorScoringError("scores must be numbers from 1 to 10: {0}".format(invalid))
@@ -62,7 +67,11 @@ def validate_role_fit(role_fit: Mapping[str, float]) -> None:
     invalid = {
         key: value
         for key, value in role_fit.items()
-        if not isinstance(value, (int, float)) or value < 1 or value > 10
+        if isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not math.isfinite(float(value))
+        or value < 1
+        or value > 10
     }
     if invalid:
         raise OperatorScoringError("role fit values must be numbers from 1 to 10: {0}".format(invalid))

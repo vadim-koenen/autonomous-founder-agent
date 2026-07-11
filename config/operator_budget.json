@@ -1,0 +1,37 @@
+{
+  "schema_name": "autonomous_founder_runtime_budget",
+  "schema_version": "0.4",
+  "cycle_cadence_hours": 6,
+  "model": "openai/gpt-5",
+  "model_preference": ["openai/gpt-5.5", "openai/gpt-5"],
+  "limits": {
+    "source_fetches": 6,
+    "model_calls": 1,
+    "new_opportunities": 4,
+    "channel_candidates": 3,
+    "publications": 1,
+    "external_messages": 3,
+    "repository_writes": 1,
+    "spend_usd": 0.0,
+    "runtime_minutes": 12
+  },
+  "capital_policy": {
+    "owner_capital_per_cycle_usd": 0.0,
+    "verified_reinvestment_per_cycle_cap_usd": 25.0,
+    "spend_requires_configured_channel": true,
+    "spend_requires_recorded_budget": true
+  },
+  "execution_priority": [
+    "collect_verified_revenue",
+    "respond_to_qualified_purchase_intent",
+    "publish_demand_validation",
+    "build_sellable_asset",
+    "research_new_channel"
+  ],
+  "notes": [
+    "Limits bound each cycle, not the agent's strategy space.",
+    "Unused budget does not roll into a later cycle.",
+    "Identity, legal acceptance, bank setup, tax setup, and secret provisioning require capabilities outside the autonomous runtime.",
+    "Spend remains zero until verified reinvestment funds and a separately configured spending channel exist."
+  ]
+}
