@@ -59,20 +59,21 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 4. Fixed-Scope Data Cleanup Service - 7.55
 - 5. MCP / Agent Preflight Full Audit - 7.37
 - 6. Fix Memanto Bug for Explicit Bounty Payment - 7.36
-- 7. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
-- 8. MCP / Agent Preflight Metered API - 7.12
-- 9. Founder Demo Repurposing Pack - 7.10
-- 10. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
-- 11. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
-- 12. Agent-Ready Commerce Catalog Repair - 6.80
-- 13. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 14. Bug Fix: Expensify Invoice Payment Error - 6.78
-- 15. Roblox Launch Lens Studio Plugin - 6.74
-- 16. x402 Endpoint Implementation Sprint - 6.63
-- 17. Original AI Media Commission - 6.57
-- 18. Roblox Retention Repair Sprint - 6.18
-- 19. Build-in-Public Revenue Series - 6.03
-- 20. Hosted Agent Eval Dashboard - 5.80
-- 21. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 22. Roblox Embodiment Factory Experience - 5.26
-- 23. Embodiment Milestone Collectible - 4.44
+- 7. Agent endpoint search validation brief (Exa) - 7.36
+- 8. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 9. MCP / Agent Preflight Metered API - 7.12
+- 10. Founder Demo Repurposing Pack - 7.10
+- 11. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
+- 12. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
+- 13. Agent-Ready Commerce Catalog Repair - 6.80
+- 14. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 15. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 16. Roblox Launch Lens Studio Plugin - 6.74
+- 17. x402 Endpoint Implementation Sprint - 6.63
+- 18. Original AI Media Commission - 6.57
+- 19. Roblox Retention Repair Sprint - 6.18
+- 20. Build-in-Public Revenue Series - 6.03
+- 21. Hosted Agent Eval Dashboard - 5.80
+- 22. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 23. Roblox Embodiment Factory Experience - 5.26
+- 24. Embodiment Milestone Collectible - 4.44
