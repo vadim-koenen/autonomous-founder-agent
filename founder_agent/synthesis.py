@@ -37,6 +37,23 @@ DIRECT_DEMAND_SIGNAL_TYPES = {
     "public_builder_pain",
     "public_purchase_or_help_intent",
 }
+MODEL_CONTEXT_CHAR_LIMIT = 4800
+MAX_SYNTHESIS_PROMPT_CHARS = 8500
+MODEL_SAMPLE_FIELDS = (
+    "title",
+    "name",
+    "description",
+    "repository",
+    "url",
+    "explicit_bounty_usd",
+    "payers_30d",
+    "calls_30d",
+    "comments",
+    "points",
+    "labels",
+    "published_at",
+    "version",
+)
 
 
 ModelCallable = Callable[[str, str], str]
@@ -129,6 +146,68 @@ def _string_list(value: Any, *, limit: int, item_limit: int = 180) -> List[str]:
     return [_text(item, item_limit) for item in value[:limit] if _text(item, item_limit)]
 
 
+def _compact_metrics(value: Any) -> Dict[str, Any]:
+    if not isinstance(value, Mapping):
+        return {}
+    compact: Dict[str, Any] = {}
+    for key, metric in list(value.items())[:6]:
+        if isinstance(metric, bool):
+            compact[_text(key, 60)] = metric
+        elif isinstance(metric, (int, float)) and math.isfinite(float(metric)):
+            compact[_text(key, 60)] = metric
+        elif isinstance(metric, str) and _text(metric, 60):
+            compact[_text(key, 60)] = _text(metric, 60)
+    return compact
+
+
+def _compact_sample(item: Any) -> Dict[str, Any]:
+    if not isinstance(item, Mapping):
+        return {}
+    compact: Dict[str, Any] = {}
+    for key in MODEL_SAMPLE_FIELDS:
+        if key not in item:
+            continue
+        value = item[key]
+        if isinstance(value, bool):
+            compact[key] = value
+        elif isinstance(value, (int, float)) and math.isfinite(float(value)):
+            compact[key] = value
+        elif isinstance(value, list):
+            values = _string_list(value, limit=3, item_limit=35)
+            if values:
+                compact[key] = values
+        else:
+            text_limit = 180 if key == "url" else 110
+            cleaned = _text(value, text_limit)
+            if cleaned:
+                compact[key] = cleaned
+        if len(compact) >= 6:
+            break
+    return compact
+
+
+def _sample_priority(item: Any) -> float:
+    if not isinstance(item, Mapping):
+        return 0.0
+    weighted_fields = {
+        "explicit_bounty_usd": 100.0,
+        "payers_30d": 10.0,
+        "calls_30d": 1.0,
+        "comments": 1.0,
+        "points": 1.0,
+    }
+    total = 0.0
+    for key, weight in weighted_fields.items():
+        value = item.get(key, 0)
+        if isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(float(value)):
+            total += float(value) * weight
+    return total
+
+
+def _context_length(context: Mapping[str, Any]) -> int:
+    return len(json.dumps(context, ensure_ascii=True, separators=(",", ":")))
+
+
 def _model_context(
     snapshot: Mapping[str, Any],
     base_scan: Mapping[str, Any],
@@ -143,42 +222,86 @@ def _model_context(
         ]
         if isinstance(item, Mapping) and item.get("opportunity_id")
     }
-    return {
+    sources: List[Dict[str, Any]] = []
+    sample_candidates: List[tuple[float, int, Dict[str, Any]]] = []
+    for source in snapshot.get("sources", []):
+        if not isinstance(source, Mapping) or source.get("status") not in {"ok", "stale"}:
+            continue
+        source_id = _text(source.get("source_id"), 80)
+        compact_source = {
+            "evidence_id": "ev-live-{0}".format(source_id),
+            "signal_type": _text(source.get("signal_type"), 70),
+            "status": _text(source.get("status"), 12),
+            "summary": _text(source.get("summary"), 150),
+            "metrics": _compact_metrics(source.get("metrics")),
+        }
+        sources.append(compact_source)
+        if source.get("signal_type") in DIRECT_DEMAND_SIGNAL_TYPES:
+            ranked_items = sorted(
+                source.get("items", []),
+                key=_sample_priority,
+                reverse=True,
+            )
+            for item in ranked_items[:2]:
+                compact_item = _compact_sample(item)
+                if compact_item:
+                    sample_candidates.append(
+                        (_sample_priority(item), len(sources) - 1, compact_item)
+                    )
+
+    channels = [
+        item for item in channel_registry.get("channels", []) if isinstance(item, Mapping)
+    ]
+    context: Dict[str, Any] = {
         "run_id": snapshot.get("run_id"),
-        "sources": [
-            {
-                "source_id": source.get("source_id"),
-                "signal_type": source.get("signal_type"),
-                "status": source.get("status"),
-                "summary": source.get("summary"),
-                "metrics": source.get("metrics", {}),
-                "items": list(source.get("items", []))[:12],
-            }
-            for source in snapshot.get("sources", [])
-            if source.get("status") in {"ok", "stale"}
+        "sources": sources,
+        "existing_opportunity_ids": [
+            _text(item.get("opportunity_id"), 80)
+            for item in list(existing_by_id.values())[-24:]
         ],
-        "existing_opportunities": [
+        "executable_channels": [
             {
-                "opportunity_id": item.get("opportunity_id"),
-                "name": item.get("name"),
-                "category": item.get("category"),
-                "offer": item.get("offer"),
-                "buyer": item.get("intended_buyer"),
+                "channel_id": _text(item.get("channel_id"), 60),
+                "kinds": _string_list(item.get("kinds"), limit=5, item_limit=24),
             }
-            for item in list(existing_by_id.values())[-40:]
+            for item in channels
+            if item.get("agent_has_access") is True
+            and item.get("authority_class") == "autonomous"
         ],
-        "channels": [
-            {
-                "channel_id": item.get("channel_id"),
-                "name": item.get("name"),
-                "kinds": item.get("kinds"),
-                "agent_has_access": item.get("agent_has_access"),
-                "authority_class": item.get("authority_class"),
-                "current_status": item.get("current_status"),
-            }
-            for item in channel_registry.get("channels", [])
+        "unconnected_channels": [
+            "{0}:{1}".format(
+                _text(item.get("channel_id"), 60),
+                _text(item.get("current_status"), 50),
+            )
+            for item in channels
+            if item.get("agent_has_access") is not True
         ],
     }
+
+    while (
+        _context_length(context) > MODEL_CONTEXT_CHAR_LIMIT
+        and len(context["existing_opportunity_ids"]) > 6
+    ):
+        context["existing_opportunity_ids"].pop(0)
+    while (
+        _context_length(context) > MODEL_CONTEXT_CHAR_LIMIT
+        and context["unconnected_channels"]
+    ):
+        context["unconnected_channels"].pop()
+
+    for _, source_index, sample in sorted(
+        sample_candidates, key=lambda candidate: candidate[0], reverse=True
+    ):
+        source = sources[source_index]
+        source.setdefault("samples", []).append(sample)
+        if _context_length(context) > MODEL_CONTEXT_CHAR_LIMIT:
+            source["samples"].pop()
+            if not source["samples"]:
+                source.pop("samples")
+
+    if _context_length(context) > MODEL_CONTEXT_CHAR_LIMIT:
+        raise ValueError("compact model context exceeds its fixed character budget")
+    return context
 
 
 def build_synthesis_prompt(
@@ -190,7 +313,7 @@ def build_synthesis_prompt(
 ) -> str:
     score_keys = list(OPPORTUNITY_WEIGHTS)
     context = _model_context(snapshot, base_scan, channel_registry, previous_pool)
-    return """Find current, lawful paths to verified revenue from the supplied observations.
+    prompt = """Find current, lawful paths to verified revenue from the supplied observations.
 
 Commercial policy:
 - Strategy space is unrestricted by the owner's existing business, NFTs, SaaS, services, or the agent ecosystem.
@@ -257,6 +380,9 @@ UNTRUSTED PUBLIC OBSERVATIONS:
         channel_limit=int(tracker.remaining("channel_candidates")),
         context=json.dumps(context, ensure_ascii=True, separators=(",", ":")),
     )
+    if len(prompt) > MAX_SYNTHESIS_PROMPT_CHARS:
+        raise ValueError("synthesis prompt exceeds the GitHub Models input budget")
+    return prompt
 
 
 def _normalize_channel_candidate(raw: Mapping[str, Any]) -> Dict[str, Any]:

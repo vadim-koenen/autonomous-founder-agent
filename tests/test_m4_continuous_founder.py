@@ -15,7 +15,11 @@ from founder_agent.operator import merge_discovery_into_scan
 from founder_agent.operator_models import opportunity_from_dict
 from founder_agent.operator_scoring import OPPORTUNITY_WEIGHTS, rank_opportunities
 from founder_agent.runtime_budget import BudgetExceededError, BudgetTracker, RuntimeBudget
-from founder_agent.synthesis import synthesize_opportunities
+from founder_agent.synthesis import (
+    MAX_SYNTHESIS_PROMPT_CHARS,
+    build_synthesis_prompt,
+    synthesize_opportunities,
+)
 from scripts.run_continuous_founder import _select_model
 
 
@@ -298,6 +302,20 @@ class M4ContinuousFounderTest(unittest.TestCase):
         rejected_non_finite, _ = self.synthesize(non_finite)
         self.assertEqual([], rejected_non_finite["new_opportunity_ids"])
 
+    def test_model_prompt_is_compact_enough_for_free_github_models(self):
+        prompt = build_synthesis_prompt(
+            load_json("data/discovery_snapshot.json"),
+            self.base_scan,
+            self.channels,
+            BudgetTracker(make_budget()),
+            load_json("data/discovered_opportunities.json"),
+        )
+
+        self.assertLessEqual(len(prompt), MAX_SYNTHESIS_PROMPT_CHARS)
+        self.assertIn("ev-live-github_open_bounties", prompt)
+        self.assertIn("existing_opportunity_ids", prompt)
+        self.assertNotIn("body_excerpt", prompt)
+
     def test_publication_is_one_bounded_escaped_asset(self):
         synthesis, tracker = self.synthesize()
         with tempfile.TemporaryDirectory() as directory:
@@ -394,6 +412,7 @@ class M4ContinuousFounderTest(unittest.TestCase):
         self.assertIn("issues: write", workflow)
         self.assertIn("scripts/run_continuous_founder.py", workflow)
         self.assertIn("actions/deploy-pages@v4", workflow)
+        self.assertIn("if [ -d site/opportunities ]; then", workflow)
         self.assertNotIn("secrets.", workflow)
 
     def test_model_preference_uses_only_catalog_available_id(self):
