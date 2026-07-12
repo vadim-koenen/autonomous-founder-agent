@@ -53,23 +53,24 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Ranked Opportunity Set
 
-- 1. Publish and monetize a reasoning-capable agent endpoint on x402 Bazaar - 8.07
-- 2. Agent Launch Gate Founding License - 7.64
-- 3. Evidence-Backed Competitor Brief - 7.61
-- 4. MCP Integration Launch Sprint - 7.55
-- 5. Fixed-Scope Data Cleanup Service - 7.55
-- 6. MCP / Agent Preflight Full Audit - 7.37
+- 1. Agent Launch Gate Founding License - 7.64
+- 2. Evidence-Backed Competitor Brief - 7.61
+- 3. MCP Integration Launch Sprint - 7.55
+- 4. Fixed-Scope Data Cleanup Service - 7.55
+- 5. MCP / Agent Preflight Full Audit - 7.37
+- 6. Fix Memanto Bug for Explicit Bounty Payment - 7.36
 - 7. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
 - 8. MCP / Agent Preflight Metered API - 7.12
 - 9. Founder Demo Repurposing Pack - 7.10
 - 10. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
-- 11. Agent-Ready Commerce Catalog Repair - 6.80
-- 12. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 13. Roblox Launch Lens Studio Plugin - 6.74
-- 14. x402 Endpoint Implementation Sprint - 6.63
-- 15. Original AI Media Commission - 6.57
-- 16. Roblox Retention Repair Sprint - 6.18
-- 17. Build-in-Public Revenue Series - 6.03
-- 18. Hosted Agent Eval Dashboard - 5.80
-- 19. Roblox Embodiment Factory Experience - 5.26
-- 20. Embodiment Milestone Collectible - 4.44
+- 11. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
+- 12. Agent-Ready Commerce Catalog Repair - 6.80
+- 13. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 14. Roblox Launch Lens Studio Plugin - 6.74
+- 15. x402 Endpoint Implementation Sprint - 6.63
+- 16. Original AI Media Commission - 6.57
+- 17. Roblox Retention Repair Sprint - 6.18
+- 18. Build-in-Public Revenue Series - 6.03
+- 19. Hosted Agent Eval Dashboard - 5.80
+- 20. Roblox Embodiment Factory Experience - 5.26
+- 21. Embodiment Milestone Collectible - 4.44
