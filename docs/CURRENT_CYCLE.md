@@ -13,14 +13,14 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Active Portfolio
 
-### Cash: Within 48 hours, test one public or owner-provided agent/MCP workflow against 25 launch cases, deliver a prioritized defect report, and implement one agreed repair patch.
+### Cash: Within 48 hours, run public-metadata checks plus authorized live MCP or agent protocol tests, deliver a prioritized connection-readiness report, and implement one agreed repair patch.
 
 - Status: validating
-- Buyer: Indie AI product founders and small teams with a working agent, MCP server, or LLM workflow approaching launch.
+- Buyer: Agent builders and small teams deciding whether an MCP server or agent endpoint is ready to connect or launch.
 - Price: 149 USD
-- Discovery: Buyer-ready GitHub Pages offer, manual owner LinkedIn launch, and Contra service marketplace after owner activation.
-- Payment rail: Contra fixed-scope project or public guest checkout after owner verification; checkout URL pending.
-- Next action: Owner completes Contra identity and payout setup, publishes the prepared service, and returns the public service and checkout URLs.
+- Discovery: Functional GitHub Pages preflight, public GitHub intake, and a human service marketplace only after owner activation.
+- Payment rail: Public human checkout or Contra for the full audit; checkout URL remains pending.
+- Next action: Run the functional public demo and collect qualified full-audit requests through the connected GitHub intake.
 - Review date: 2026-07-13
 
 ### Asset: A downloadable launch-gate pack with 25 agent test cases, scoring rules, report schema, and a regression checklist.
@@ -33,14 +33,14 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Next action: Measure qualified interest in the five-case sample through the public-safe GitHub intake.
 - Review date: 2026-07-13
 
-### Frontier: A machine-readable snapshot that ranks x402 service categories by observed calls, payer breadth, listing quality, and competition.
+### Frontier: A machine-readable public-metadata preflight for free, followed by a $0.25 basic or $1 expanded public-evidence report per call after a receiving wallet and runtime host are connected; neither machine tier executes target code.
 
 - Status: validating
-- Buyer: Autonomous agents and x402 builders deciding what paid endpoint to call or build.
+- Buyer: Autonomous agents and orchestrators screening MCP servers, repositories, and paid tools before connection.
 - Price: 0.25 USDC
-- Discovery: Public machine-readable sample, x402 community, and Bazaar only after validation.
-- Payment rail: x402 after a dedicated owner-configured project wallet; no paid endpoint is active during validation.
-- Next action: Refresh the normalized sample and measure explicit endpoint or recurring-use requests without enabling payments.
+- Discovery: Functional public demo, machine-readable OpenAPI contract, x402 Bazaar only after successful settlement, and agent ecosystem discovery.
+- Payment rail: x402 Base USDC after a dedicated receiving wallet and deployed route; no paid endpoint is active now.
+- Next action: Deploy the free public preflight and require three qualified recurring-use signals before wallet activation.
 - Review date: 2026-07-13
 
 ## Decisions
@@ -49,25 +49,27 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Blocked Identity or Setup Actions
 
-- Owner completes Contra identity and payout setup, publishes the prepared service, and returns the public service and checkout URLs.: A human must complete identity, legal, banking, tax, or account-owner steps.
+- None block the next autonomous build actions.
 
 ## Ranked Opportunity Set
 
-- 1. Publish and monetize a reasoning-capable agent endpoint on x402 Bazaar - 8.68
-- 2. Agent Launch QA Sprint - 8.24
-- 3. Agent Launch Gate Founding License - 7.64
-- 4. Evidence-Backed Competitor Brief - 7.61
-- 5. MCP Integration Launch Sprint - 7.55
-- 6. Fixed-Scope Data Cleanup Service - 7.55
-- 7. Founder Demo Repurposing Pack - 7.10
-- 8. Agent Opportunity Pulse - 6.86
-- 9. Agent-Ready Commerce Catalog Repair - 6.80
-- 10. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 11. Roblox Launch Lens Studio Plugin - 6.74
-- 12. x402 Endpoint Implementation Sprint - 6.63
-- 13. Original AI Media Commission - 6.57
-- 14. Roblox Retention Repair Sprint - 6.18
-- 15. Build-in-Public Revenue Series - 6.03
-- 16. Hosted Agent Eval Dashboard - 5.80
-- 17. Roblox Embodiment Factory Experience - 5.26
-- 18. Embodiment Milestone Collectible - 4.44
+- 1. Publish and monetize a reasoning-capable agent endpoint on x402 Bazaar - 8.07
+- 2. Agent Launch Gate Founding License - 7.64
+- 3. Evidence-Backed Competitor Brief - 7.61
+- 4. MCP Integration Launch Sprint - 7.55
+- 5. Fixed-Scope Data Cleanup Service - 7.55
+- 6. MCP / Agent Preflight Full Audit - 7.37
+- 7. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 8. MCP / Agent Preflight Metered API - 7.12
+- 9. Founder Demo Repurposing Pack - 7.10
+- 10. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
+- 11. Agent-Ready Commerce Catalog Repair - 6.80
+- 12. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 13. Roblox Launch Lens Studio Plugin - 6.74
+- 14. x402 Endpoint Implementation Sprint - 6.63
+- 15. Original AI Media Commission - 6.57
+- 16. Roblox Retention Repair Sprint - 6.18
+- 17. Build-in-Public Revenue Series - 6.03
+- 18. Hosted Agent Eval Dashboard - 5.80
+- 19. Roblox Embodiment Factory Experience - 5.26
+- 20. Embodiment Milestone Collectible - 4.44

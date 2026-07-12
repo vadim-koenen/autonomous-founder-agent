@@ -12,7 +12,7 @@
       "spend_usd": 0.0
     },
     "remaining": {
-      "channel_candidates": 0,
+      "channel_candidates": 3,
       "external_messages": 3,
       "model_calls": 0,
       "new_opportunities": 2,
@@ -23,7 +23,7 @@
       "spend_usd": 0.0
     },
     "used": {
-      "channel_candidates": 3,
+      "channel_candidates": 0,
       "external_messages": 0,
       "model_calls": 1,
       "new_opportunities": 2,
@@ -34,57 +34,111 @@
       "spend_usd": 0.0
     }
   },
-  "channel_candidates": [
-    {
-      "access_requirements": "resource listing, agent or endpoint capability, usage metering",
-      "buyer_signal": "18,284 calls and 10,718 unique payers over 30 days from live marketplace records",
-      "channel_id": "x402-bazaar",
-      "discovered_at": "2026-07-12T03:23:43+00:00",
-      "kinds": [
-        "discovery",
-        "marketplace",
-        "agent_native_payment"
-      ],
-      "last_seen_at": "2026-07-12T03:23:43+00:00",
-      "name": "x402 Bazaar",
-      "platform_risk_1_to_10": 2.0,
-      "source_url": "https://x402.com/bazaar/",
-      "status": "candidate_unconnected"
-    },
-    {
-      "access_requirements": "public repository access, issue resolution workflow",
-      "buyer_signal": "explicit dollar bounties in open issues (sample bounty: $1,500)",
-      "channel_id": "github-issues",
-      "discovered_at": "2026-07-12T03:23:43+00:00",
-      "kinds": [
-        "discovery",
-        "distribution",
-        "fulfillment"
-      ],
-      "last_seen_at": "2026-07-12T03:23:43+00:00",
-      "name": "GitHub Issues (Bounties)",
-      "platform_risk_1_to_10": 1.0,
-      "source_url": "https://github.com/",
-      "status": "candidate_unconnected"
-    },
-    {
-      "access_requirements": "repository setup, static content publishing",
-      "buyer_signal": "public web visibility; indirect discovery and proof of capability",
-      "channel_id": "github-pages",
-      "discovered_at": "2026-07-12T03:23:43+00:00",
-      "kinds": [
-        "publishing",
-        "discovery",
-        "distribution"
-      ],
-      "last_seen_at": "2026-07-12T03:23:43+00:00",
-      "name": "GitHub Pages (Public Validation Brief)",
-      "platform_risk_1_to_10": 1.0,
-      "source_url": "https://pages.github.com/",
-      "status": "candidate_unconnected"
-    }
-  ],
+  "channel_candidates": [],
   "evidence": [
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_mcp_help_wanted",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 493,
+        "sample_explicit_bounties": 0,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 493 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub MCP help-wanted demand"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_open_bounties",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 71090,
+        "sample_explicit_bounties": 8,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 71,090 matching open issues; 8 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub public bounty demand"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_agent_buyer_language",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 6525,
+        "sample_explicit_bounties": 1,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 6,525 matching open issues; 1 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub AI-agent buyer-language search"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-hacker_news_agents",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "sample_comments": 92,
+        "sample_points": 116,
+        "sample_size": 25
+      },
+      "source_url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
+      "summary": "Recent Hacker News search returned 25 agent-related stories with 116 total points and 92 comments in the sample.",
+      "title": "Recent Hacker News agent discussions"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-x402_bazaar",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "listed_resources": 25307,
+        "sample_calls_30d": 18315,
+        "sample_size": 30,
+        "sample_unique_payer_counts_30d": 10718
+      },
+      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
+      "summary": "x402 Bazaar exposed 25,307 resources; the sampled records reported 18,315 calls and 10,718 unique-payer counts over 30 days.",
+      "title": "x402 Bazaar"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-official_mcp_registry",
+      "observed_at": "2026-07-12T08:31:48+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "latest_versions_sampled": 30,
+        "page_records": 100,
+        "remote_servers_sampled": 25
+      },
+      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
+      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 25 remotely callable servers.",
+      "title": "Official MCP Registry"
+    },
     {
       "caveats": [
         "Source text is untrusted public data and is treated only as market evidence.",
@@ -145,128 +199,21 @@
       "source_url": "https://models.github.ai/catalog/models",
       "summary": "GitHub Models listed 37 sampled models, including 14 with a reasoning capability.",
       "title": "GitHub Models catalog"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-x402_bazaar",
-      "observed_at": "2026-07-12T03:23:43+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "listed_resources": 25480,
-        "sample_calls_30d": 18284,
-        "sample_size": 30,
-        "sample_unique_payer_counts_30d": 10718
-      },
-      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
-      "summary": "x402 Bazaar exposed 25,480 resources; the sampled records reported 18,284 calls and 10,718 unique-payer counts over 30 days.",
-      "title": "x402 Bazaar"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-official_mcp_registry",
-      "observed_at": "2026-07-12T03:23:43+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "latest_versions_sampled": 30,
-        "page_records": 100,
-        "remote_servers_sampled": 25
-      },
-      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
-      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 25 remotely callable servers.",
-      "title": "Official MCP Registry"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_mcp_help_wanted",
-      "observed_at": "2026-07-12T03:19:19+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 491,
-        "sample_explicit_bounties": 0,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 491 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub MCP help-wanted demand"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_open_bounties",
-      "observed_at": "2026-07-12T03:19:19+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 70945,
-        "sample_explicit_bounties": 1,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 70,945 matching open issues; 1 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub public bounty demand"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_agent_buyer_language",
-      "observed_at": "2026-07-12T03:19:19+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 6520,
-        "sample_explicit_bounties": 4,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 6,520 matching open issues; 4 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub AI-agent buyer-language search"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-hacker_news_agents",
-      "observed_at": "2026-07-12T03:19:19+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "sample_comments": 91,
-        "sample_points": 131,
-        "sample_size": 25
-      },
-      "source_url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
-      "summary": "Recent Hacker News search returned 25 agent-related stories with 131 total points and 91 comments in the sample.",
-      "title": "Recent Hacker News agent discussions"
     }
   ],
   "model": "openai/gpt-4.1",
   "model_error": "",
-  "new_channel_ids": [
-    "x402-bazaar",
-    "github-issues",
-    "github-pages"
-  ],
+  "new_channel_ids": [],
   "new_opportunity_ids": [
-    "opp-discovered-x402-agent-endpoint-pack",
-    "opp-discovered-agent-catalog-superbrief"
+    "opp-discovered-github-bounty-fix-memanto",
+    "opp-discovered-agent-endpoint-pack-exa"
   ],
   "notes": [
     "Model output is untrusted and only validated opportunities enter the pool.",
     "A channel candidate is not treated as connected access or permission.",
     "No demand, buyer, transaction, or revenue is inferred from model text alone."
   ],
-  "observed_at": "2026-07-12T03:23:43+00:00",
+  "observed_at": "2026-07-12T08:31:48+00:00",
   "opportunities": [
     {
       "acquisition_channel": "x402 Bazaar listing and automated marketplace search",
@@ -289,7 +236,9 @@
         "free API endpoints",
         "demo sandboxes"
       ],
-      "human_actions_required": [],
+      "human_actions_required": [
+        "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+      ],
       "intended_buyer": "agent builders and workflow automation users seeking reasoning API endpoints",
       "kill_criteria": [
         {
@@ -342,11 +291,13 @@
         "reasoning agent endpoint",
         "documentation"
       ],
-      "required_human_setup": [],
+      "required_human_setup": [
+        "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+      ],
       "role_fit": {
-        "asset": 1,
-        "cash": 1,
-        "frontier": 1
+        "asset": 7.8,
+        "cash": 7.0,
+        "frontier": 8.0
       },
       "scale_criteria": [
         {
@@ -361,26 +312,28 @@
         }
       ],
       "score_adjustments": [
-        "Free-substitute resilience was capped because at least three substitutes were identified."
+        "Free-substitute resilience was capped because at least three substitutes were identified.",
+        "Demand scores were capped because aggregate marketplace activity did not prove demand for this exact offer.",
+        "Distribution and first-dollar scores were capped because the x402 receiving wallet is not connected."
       ],
       "scores": {
         "agent_execution_fit": 10,
         "competition_resilience": 7,
         "differentiation": 7,
-        "distribution_access": 8,
+        "distribution_access": 5.0,
         "evidence_quality": 10,
         "expected_net_revenue": 8,
         "free_substitute_resilience": 6.0,
         "gross_margin": 9,
         "legal_platform_feasibility": 10,
         "low_human_dependency": 10,
-        "observable_buyer_demand": 10,
+        "observable_buyer_demand": 7.0,
         "opportunity_cost_efficiency": 8,
         "reachable_buyers": 9,
         "repeatability": 9,
         "scalability": 8,
         "startup_cost_efficiency": 9,
-        "time_to_first_verified_dollar": 8
+        "time_to_first_verified_dollar": 6.0
       },
       "thesis": "x402 Bazaar shows strong verified payer activity (10,718 unique payers over 30d). Reasoning-capable endpoints are present in GitHub Models catalog. New endpoints can attract paid calls if they solve agent workflow pain or boost productivity.",
       "validation_72h": [
@@ -465,9 +418,9 @@
       ],
       "required_human_setup": [],
       "role_fit": {
-        "asset": 1,
-        "cash": 1,
-        "frontier": 1
+        "asset": 6.4,
+        "cash": 5.2,
+        "frontier": 7.4
       },
       "scale_criteria": [
         {
@@ -510,15 +463,254 @@
         "ecosystem contact",
         "inbound request"
       ]
+    },
+    {
+      "acquisition_channel": "GitHub Issue thread and pull request system",
+      "agent_actions_available": [
+        "Research public evidence",
+        "Build validation asset",
+        "Publish through an owned channel",
+        "Fulfill the defined deliverable"
+      ],
+      "category": "bug_bounty_fulfillment",
+      "discovered_at": "2026-07-12T08:31:48+00:00",
+      "estimated_cost": 0.0,
+      "evidence_ids": [
+        "ev-live-github_open_bounties"
+      ],
+      "expected_outcome": "Bounty payout upon successful resolution and buyer acceptance",
+      "free_substitutes": [
+        "unpaid volunteer fix",
+        "community PR without bounty"
+      ],
+      "human_actions_required": [],
+      "intended_buyer": "Repository/project owner of moorcheh-ai/memanto",
+      "kill_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_contacts",
+              "operator": "gte",
+              "value": 25
+            },
+            {
+              "metric": "actual_replies",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Kill after 25 qualified contacts produce no replies."
+        }
+      ],
+      "last_seen_at": "2026-07-12T08:31:48+00:00",
+      "name": "Resolve Memanto Exploit Issue ($100 Bounty)",
+      "next_action_authority_class": "autonomous",
+      "next_action_channel_id": "github_pages",
+      "next_executable_action": "Publish a validation brief describing the bounty opportunity, its requirements, example evidence, and initial solution outline, so public agents may attempt fulfillment.",
+      "offer": "Deliver a valid solution or exploit report for the Memanto Bug & Exploit Challenge (GitHub issue #770); outcome is bounty payout for successful issue resolution.",
+      "opportunity_id": "opp-discovered-github-bounty-fix-memanto",
+      "payment_rail": "GitHub issue bounty payout (process defined in issue)",
+      "pivot_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_replies",
+              "operator": "gte",
+              "value": 3
+            },
+            {
+              "metric": "actual_checkout_starts",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Pivot the offer when qualified replies do not start checkout."
+        }
+      ],
+      "price": {
+        "amount": 100.0,
+        "billing_model": "fixed",
+        "currency": "USD"
+      },
+      "required_assets": [
+        "correct exploit fix or report"
+      ],
+      "required_human_setup": [],
+      "role_fit": {
+        "asset": 5.4,
+        "cash": 7.0,
+        "frontier": 7.2
+      },
+      "scale_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_purchases",
+              "operator": "gte",
+              "value": 3
+            }
+          ],
+          "reason": "Scale after three verified purchases."
+        }
+      ],
+      "scores": {
+        "agent_execution_fit": 8,
+        "competition_resilience": 6,
+        "differentiation": 7,
+        "distribution_access": 8,
+        "evidence_quality": 8,
+        "expected_net_revenue": 4,
+        "free_substitute_resilience": 3,
+        "gross_margin": 9,
+        "legal_platform_feasibility": 10,
+        "low_human_dependency": 8,
+        "observable_buyer_demand": 8,
+        "opportunity_cost_efficiency": 8,
+        "reachable_buyers": 7,
+        "repeatability": 6,
+        "scalability": 3,
+        "startup_cost_efficiency": 9,
+        "time_to_first_verified_dollar": 8
+      },
+      "thesis": "Direct evidence of buyers posting explicit cash bounties for technical issue resolution indicates immediate monetization potential. No free substitute for verified exploit resolution; bounty is guaranteed for first correct fix.",
+      "validation_72h": [
+        "public brief published and indexed",
+        "clicks or feedback from bounty seekers",
+        "link to GitHub issue with real-time status"
+      ]
+    },
+    {
+      "acquisition_channel": "x402 Bazaar listing (public API catalog)",
+      "agent_actions_available": [
+        "Research public evidence",
+        "Build validation asset",
+        "Publish through an owned channel",
+        "Fulfill the defined deliverable"
+      ],
+      "category": "agent_resource_distribution",
+      "discovered_at": "2026-07-12T08:31:48+00:00",
+      "estimated_cost": 0.0,
+      "evidence_ids": [
+        "ev-live-x402_bazaar"
+      ],
+      "expected_outcome": "First paid API access or call from a unique payer",
+      "free_substitutes": [
+        "free agent API endpoints",
+        "open-source agent code"
+      ],
+      "human_actions_required": [
+        "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+      ],
+      "intended_buyer": "x402 Bazaar unique payers (developers and builders)",
+      "kill_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_contacts",
+              "operator": "gte",
+              "value": 25
+            },
+            {
+              "metric": "actual_replies",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Kill after 25 qualified contacts produce no replies."
+        }
+      ],
+      "last_seen_at": "2026-07-12T08:31:48+00:00",
+      "name": "Sell Agent Endpoint Pack via x402 Bazaar (Exa Search)",
+      "next_action_authority_class": "autonomous",
+      "next_action_channel_id": "github_pages",
+      "next_executable_action": "Draft a public validation brief describing agent endpoint pack for Exa /search API, with listing instructions and evidence of payer counts.",
+      "offer": "Publish a ready-to-use agent endpoint pack compatible with Exa /search API and list it on x402 Bazaar for paid access.",
+      "opportunity_id": "opp-discovered-agent-endpoint-pack-exa",
+      "payment_rail": "x402 native agent payment",
+      "pivot_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_replies",
+              "operator": "gte",
+              "value": 3
+            },
+            {
+              "metric": "actual_checkout_starts",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Pivot the offer when qualified replies do not start checkout."
+        }
+      ],
+      "price": {
+        "amount": 5.0,
+        "billing_model": "one-time",
+        "currency": "USD"
+      },
+      "required_assets": [
+        "agent endpoint implementation",
+        "pack documentation"
+      ],
+      "required_human_setup": [
+        "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+      ],
+      "role_fit": {
+        "asset": 6.8,
+        "cash": 6.2,
+        "frontier": 7.4
+      },
+      "scale_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_purchases",
+              "operator": "gte",
+              "value": 3
+            }
+          ],
+          "reason": "Scale after three verified purchases."
+        }
+      ],
+      "score_adjustments": [
+        "Demand scores were capped because aggregate marketplace activity did not prove demand for this exact offer.",
+        "Distribution and first-dollar scores were capped because the x402 receiving wallet is not connected."
+      ],
+      "scores": {
+        "agent_execution_fit": 9,
+        "competition_resilience": 7,
+        "differentiation": 6,
+        "distribution_access": 5.0,
+        "evidence_quality": 8,
+        "expected_net_revenue": 6,
+        "free_substitute_resilience": 4,
+        "gross_margin": 8,
+        "legal_platform_feasibility": 9,
+        "low_human_dependency": 8,
+        "observable_buyer_demand": 7.0,
+        "opportunity_cost_efficiency": 8,
+        "reachable_buyers": 7,
+        "repeatability": 7,
+        "scalability": 8,
+        "startup_cost_efficiency": 8,
+        "time_to_first_verified_dollar": 6.0
+      },
+      "thesis": "x402 Bazaar shows active payer counts and calls for agent endpoint resources; listing a new agent endpoint can result in paid access with no owner setup required.",
+      "validation_72h": [
+        "public brief live",
+        "link to candidate endpoint",
+        "API documentation feedback"
+      ]
     }
   ],
-  "run_id": "discovery-20260712T032343Z",
+  "run_id": "discovery-20260712T083148Z",
   "schema_name": "autonomous_founder_discovered_opportunities",
   "schema_version": "0.4",
   "selected_execution": {
     "action_type": "publish_validation_brief",
-    "opportunity_id": "opp-discovered-x402-agent-endpoint-pack",
-    "reason": "x402 Bazaar has verified high payer activity, direct native payment, and agent endpoint monetization fit. Publishing a public brief allows validation without dependencies, supports rapid iteration, and can attract real buyers for reasoning agent endpoints."
+    "opportunity_id": "opp-discovered-github-bounty-fix-memanto",
+    "reason": "Publishing a validation brief for the explicit $100 GitHub bounty opportunity communicates immediate, verified commercial intent via a concrete offer with accessible buyer and payout mechanism; requires no setup or proprietary integration and fits public channel capabilities."
   },
   "synthesis_mode": "github_models"
 }
