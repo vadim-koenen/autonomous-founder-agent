@@ -72,5 +72,6 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 17. Roblox Retention Repair Sprint - 6.18
 - 18. Build-in-Public Revenue Series - 6.03
 - 19. Hosted Agent Eval Dashboard - 5.80
-- 20. Roblox Embodiment Factory Experience - 5.26
-- 21. Embodiment Milestone Collectible - 4.44
+- 20. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 21. Roblox Embodiment Factory Experience - 5.26
+- 22. Embodiment Milestone Collectible - 4.44
