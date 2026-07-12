@@ -152,6 +152,10 @@ class PreflightTest(unittest.TestCase):
         self.assertIn("wallet</span><strong class=\"truth-value\">Not connected", page)
         self.assertNotIn("private key", page.lower())
         self.assertNotIn("localStorage", page)
+        self.assertRegex(
+            page,
+            r"\.button\.secondary:hover, \.button\.secondary:focus-visible \{[^}]*background: var\(--teal\);[^}]*color: #ffffff;",
+        )
 
     def test_bundled_sample_is_explicitly_synthetic(self):
         sample_input = json.loads(
