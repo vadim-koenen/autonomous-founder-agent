@@ -18,6 +18,7 @@ from .runtime_budget import BudgetTracker
 
 
 MODEL_ENDPOINT = "https://models.github.ai/inference/chat/completions"
+GITHUB_MODELS_API_VERSION = "2026-03-10"
 PROHIBITED_STRATEGY_TERMS = (
     "broker api",
     "place trades",
@@ -95,7 +96,7 @@ class GitHubModelsClient:
                 "Authorization": "Bearer {0}".format(self._token),
                 "Content-Type": "application/json",
                 "User-Agent": "AutonomousFounderAgent/0.4",
-                "X-GitHub-Api-Version": "2022-11-28",
+                "X-GitHub-Api-Version": GITHUB_MODELS_API_VERSION,
             },
         )
         try:
@@ -104,7 +105,18 @@ class GitHubModelsClient:
             ) as response:
                 payload = json.load(response)
         except HTTPError as exc:
-            raise RuntimeError("GitHub Models request failed with HTTP {0}".format(exc.code)) from exc
+            detail = ""
+            try:
+                error_payload = json.loads(exc.read(4096).decode("utf-8", errors="replace"))
+                error = error_payload.get("error", {}) if isinstance(error_payload, Mapping) else {}
+                if isinstance(error, Mapping):
+                    detail = _text(error.get("message") or error.get("code"), 220)
+            except (AttributeError, json.JSONDecodeError, OSError):
+                detail = ""
+            suffix = ": {0}".format(detail) if detail else ""
+            raise RuntimeError(
+                "GitHub Models request failed with HTTP {0}{1}".format(exc.code, suffix)
+            ) from exc
         choices = payload.get("choices", [])
         if not choices:
             raise RuntimeError("GitHub Models returned no completion choices")

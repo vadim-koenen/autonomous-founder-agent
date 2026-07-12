@@ -1,8 +1,10 @@
+import io
 import json
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from founder_agent.discovery import scan_sources
 from founder_agent.execution import (
@@ -16,7 +18,9 @@ from founder_agent.operator_models import opportunity_from_dict
 from founder_agent.operator_scoring import OPPORTUNITY_WEIGHTS, rank_opportunities
 from founder_agent.runtime_budget import BudgetExceededError, BudgetTracker, RuntimeBudget
 from founder_agent.synthesis import (
+    GITHUB_MODELS_API_VERSION,
     MAX_SYNTHESIS_PROMPT_CHARS,
+    GitHubModelsClient,
     build_synthesis_prompt,
     synthesize_opportunities,
 )
@@ -315,6 +319,21 @@ class M4ContinuousFounderTest(unittest.TestCase):
         self.assertIn("ev-live-github_open_bounties", prompt)
         self.assertIn("existing_opportunity_ids", prompt)
         self.assertNotIn("body_excerpt", prompt)
+
+    def test_model_client_uses_current_version_without_persisting_token(self):
+        response = io.BytesIO(b'{"choices":[{"message":{"content":"{}"}}]}')
+        with patch("founder_agent.synthesis.urlopen", return_value=response) as urlopen_mock:
+            completion = GitHubModelsClient("runtime-only-token").complete(
+                "bounded prompt", "openai/gpt-5"
+            )
+
+        request = urlopen_mock.call_args.args[0]
+        headers = dict(request.header_items())
+        request_body = json.loads(request.data.decode("utf-8"))
+        self.assertEqual("{}", completion)
+        self.assertEqual(GITHUB_MODELS_API_VERSION, headers["X-github-api-version"])
+        self.assertEqual("openai/gpt-5", request_body["model"])
+        self.assertNotIn("runtime-only-token", request.data.decode("utf-8"))
 
     def test_publication_is_one_bounded_escaped_asset(self):
         synthesis, tracker = self.synthesize()
