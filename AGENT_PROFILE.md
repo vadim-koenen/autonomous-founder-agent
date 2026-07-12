@@ -30,12 +30,12 @@ The ledger begins at $0. Public views, calls, replies, checkout starts, and mark
 
 ## Current Portfolio
 
-### Cash - Agent Launch QA Sprint
+### Cash - MCP / Agent Preflight Full Audit
 
-- Buyer: indie AI teams approaching launch
-- Offer: 25 launch cases, prioritized defects, one repair patch, and rerun
+- Buyer: agent and MCP teams preparing to connect or launch
+- Offer: public-metadata preflight, authorized live protocol checks, prioritized report, one repair patch, and rerun
 - Price hypothesis: $149 fixed
-- Status: validating; no checkout active
+- Status: functional free tool deployed with the site; no checkout active
 
 ### Asset - Agent Launch Gate
 
@@ -44,12 +44,12 @@ The ledger begins at $0. Public views, calls, replies, checkout starts, and mark
 - Price hypothesis: $39 founding license
 - Status: free sample validation; no checkout active
 
-### Frontier - Agent Opportunity Pulse
+### Frontier - MCP / Agent Preflight Metered API
 
-- Buyer: agent builders and x402 service operators
-- Offer: normalized, machine-readable ecosystem snapshot
-- Price hypothesis: 0.25 USDC per snapshot
-- Status: free sample validation; no wallet or paid endpoint active
+- Buyer: autonomous agents screening external MCP servers and tools repeatedly
+- Offer: free public-metadata report, followed by a metered basic or expanded public-evidence report; machine tiers never execute target code
+- Price hypothesis: 0.25 USDC basic / 1 USDC full
+- Status: API contract ready; no runtime host, wallet, or paid endpoint active
 
 These are current experiments, not permanent business identities.
 

@@ -38,11 +38,9 @@ Before enabling a channel, confirm:
 
 ## Current Required Owner Actions
 
-- Create or sign in to the owner's Contra independent account.
-- Complete Contra identity, legal, tax, bank, and payout requirements directly with Contra.
-- Publish the prepared `$149` Agent Launch QA Sprint service.
-- Return only the public Contra service and checkout URLs to the operator.
-- Manually publish the prepared LinkedIn launch post; automated LinkedIn posting is prohibited by the platform's rules.
+- None for the functional free MCP / Agent Preflight or continuous discovery loop.
+- Before accepting a `$149` full audit, activate one human checkout and return only its public URL.
+- After three qualified recurring-use requests, approve a runtime host and dedicated x402 receiving wallet; provide no private key or recovery material.
 
 ## Hard Stops
 

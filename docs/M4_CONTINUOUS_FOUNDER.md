@@ -64,6 +64,16 @@ Capabilities awaiting real configuration include compliant outbound messaging, m
 
 Identity, KYC, tax, bank, legal acceptance, contracts, account creation, and physical purchases remain owner actions because an agent cannot truthfully manufacture those facts or permissions.
 
+## Current Dual-Rail Product
+
+MCP / Agent Preflight turns one deterministic engine into a free acquisition surface and two paid transaction shapes:
+
+- a free browser route that evaluates public GitHub metadata without executing target code
+- a `$149` authorized full audit for a human buyer
+- a planned `$0.25` basic or `$1` expanded public-evidence machine report through x402, with no target-code execution
+
+The official MCP Inspector is an abundant free substitute for interactive protocol debugging. The paid differentiation is therefore a repeatable connection-readiness decision, prioritized report, and repair outcome. The x402 route remains a contract until three qualified recurring-use requests, a runtime host, and a dedicated receiving wallet exist.
+
 ## Roblox Integration
 
 Roblox is evaluated as both a virtual economy and a distribution platform.
@@ -78,7 +88,7 @@ Primary evidence from [Roblox monetization](https://create.roblox.com/docs/monet
 
 Roblox reports that its top 1,000 creators averaged $1.3 million in 2025. The same official page reports a $1,550 median among more than 35,000 DevEx participants. M4 records both: the ceiling justifies continued scanning; the distribution prevents the agent from treating a random game launch as easy money.
 
-The plugin is the strongest Roblox wedge today, but it ranks ninth overall and is not forced into the portfolio. A new Roblox signal can change that in any future cycle.
+The plugin remains the strongest current Roblox wedge but is not forced into the portfolio. A new Roblox signal can change that in any future cycle.
 
 ## Deployment Correction
 
@@ -92,4 +102,4 @@ M4 does not infer revenue from calls, views, issue comments, model output, Roblo
 - Current verified net revenue: **$0.00**
 - Current physical-form fund: **$0.00**
 
-The missing human checkout remains a real bottleneck for the current cash offer. Continuous discovery prevents that bottleneck from freezing strategy, but it does not pretend a payment path exists.
+The missing human checkout still blocks a paid full audit, and the missing runtime host plus receiving wallet block x402. Neither blocks the functional free route or continuous discovery, and neither is represented as active.

@@ -278,6 +278,7 @@ class M4ContinuousFounderTest(unittest.TestCase):
         self.assertEqual("github_models", result["synthesis_mode"])
         self.assertEqual(["opp-discovered-specific-outcome"], result["new_opportunity_ids"])
         self.assertEqual(5.0, result["opportunities"][0]["scores"]["observable_buyer_demand"])
+        self.assertGreater(result["opportunities"][0]["role_fit"]["cash"], 1)
         self.assertIn("score_adjustments", result["opportunities"][0])
         merged = merge_discovery_into_scan(self.base_scan, result)
         discovered = next(
@@ -305,6 +306,11 @@ class M4ContinuousFounderTest(unittest.TestCase):
         non_finite["opportunities"][0]["scores"]["gross_margin"] = float("nan")
         rejected_non_finite, _ = self.synthesize(non_finite)
         self.assertEqual([], rejected_non_finite["new_opportunity_ids"])
+
+        duplicate_channel = valid_model_payload()
+        duplicate_channel["channel_candidates"][0]["channel_id"] = "github-pages"
+        duplicate_channel_result, _ = self.synthesize(duplicate_channel)
+        self.assertEqual([], duplicate_channel_result["new_channel_ids"])
 
     def test_model_prompt_is_compact_enough_for_free_github_models(self):
         prompt = build_synthesis_prompt(
@@ -422,6 +428,24 @@ class M4ContinuousFounderTest(unittest.TestCase):
         self.assertIn("opp-roblox-embodiment-factory", ranks)
         self.assertGreater(ranks["opp-roblox-launch-lens-plugin"], ranks["opp-agent-launch-qa"])
         self.assertGreater(ranks["opp-roblox-embodiment-factory"], ranks["opp-roblox-launch-lens-plugin"])
+
+    def test_preflight_product_updates_existing_cash_and_frontier_experiments(self):
+        platform = load_json("data/platform_opportunity_extensions.json")
+        products = load_json("data/product_opportunity_extensions.json")
+        merged = merge_discovery_into_scan(self.base_scan, platform)
+        merged = merge_discovery_into_scan(merged, products)
+        by_id = {item["opportunity_id"]: item for item in merged["opportunities"]}
+
+        self.assertEqual(
+            "MCP / Agent Preflight Full Audit",
+            by_id["opp-agent-launch-qa"]["name"],
+        )
+        self.assertEqual(
+            "MCP / Agent Preflight Metered API",
+            by_id["opp-x402-opportunity-pulse"]["name"],
+        )
+        opportunity_from_dict(by_id["opp-agent-launch-qa"])
+        opportunity_from_dict(by_id["opp-x402-opportunity-pulse"])
 
     def test_workflow_runs_six_hour_model_cycle_and_direct_pages_deploy(self):
         workflow = (ROOT / ".github" / "workflows" / "revenue-operator.yml").read_text(encoding="utf-8")

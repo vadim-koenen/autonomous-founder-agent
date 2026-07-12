@@ -38,6 +38,7 @@ DIRECT_DEMAND_SIGNAL_TYPES = {
     "public_builder_pain",
     "public_purchase_or_help_intent",
 }
+AGGREGATE_MARKET_SIGNAL_TYPES = {"agent_native_demand_and_supply"}
 MODEL_CONTEXT_CHAR_LIMIT = 4800
 MAX_SYNTHESIS_PROMPT_CHARS = 8500
 MODEL_SAMPLE_FIELDS = (
@@ -156,6 +157,100 @@ def _string_list(value: Any, *, limit: int, item_limit: int = 180) -> List[str]:
     if not isinstance(value, list):
         return []
     return [_text(item, item_limit) for item in value[:limit] if _text(item, item_limit)]
+
+
+def _average_scores(scores: Mapping[str, Any], keys: List[str]) -> float:
+    values = [float(scores[key]) for key in keys if isinstance(scores.get(key), (int, float))]
+    return round(sum(values) / len(values), 1) if len(values) == len(keys) else 1.0
+
+
+def _derived_role_fit(scores: Mapping[str, Any]) -> Dict[str, float]:
+    return {
+        "cash": _average_scores(
+            scores,
+            [
+                "observable_buyer_demand",
+                "reachable_buyers",
+                "time_to_first_verified_dollar",
+                "expected_net_revenue",
+                "distribution_access",
+            ],
+        ),
+        "asset": _average_scores(
+            scores,
+            [
+                "gross_margin",
+                "repeatability",
+                "scalability",
+                "competition_resilience",
+                "free_substitute_resilience",
+            ],
+        ),
+        "frontier": _average_scores(
+            scores,
+            [
+                "agent_execution_fit",
+                "differentiation",
+                "distribution_access",
+                "scalability",
+                "legal_platform_feasibility",
+            ],
+        ),
+    }
+
+
+def _cap_score(
+    scores: Dict[str, Any],
+    key: str,
+    maximum: float,
+) -> None:
+    if isinstance(scores.get(key), (int, float)) and not isinstance(scores.get(key), bool):
+        scores[key] = min(float(scores[key]), maximum)
+
+
+def _apply_score_policies(
+    scores: Mapping[str, Any],
+    evidence_ids: List[str],
+    evidence_signal_types: Mapping[str, str],
+    free_substitutes: List[str],
+    payment_rail: str,
+    channels_by_id: Mapping[str, Mapping[str, Any]],
+) -> tuple[Dict[str, Any], List[str], bool]:
+    adjusted = dict(scores)
+    adjustments: List[str] = []
+    referenced_signal_types = {
+        evidence_signal_types.get(evidence_id, "") for evidence_id in evidence_ids
+    }
+    direct_types = referenced_signal_types.intersection(DIRECT_DEMAND_SIGNAL_TYPES)
+    offer_specific_types = direct_types - AGGREGATE_MARKET_SIGNAL_TYPES
+    if not direct_types:
+        _cap_score(adjusted, "observable_buyer_demand", 5.0)
+        _cap_score(adjusted, "time_to_first_verified_dollar", 6.0)
+        adjustments.append(
+            "Demand and first-dollar scores were capped because cited sources did not contain a direct demand signal."
+        )
+    elif direct_types.intersection(AGGREGATE_MARKET_SIGNAL_TYPES) and not offer_specific_types:
+        _cap_score(adjusted, "observable_buyer_demand", 7.0)
+        _cap_score(adjusted, "time_to_first_verified_dollar", 7.0)
+        adjustments.append(
+            "Demand scores were capped because aggregate marketplace activity did not prove demand for this exact offer."
+        )
+    if len(free_substitutes) >= 3:
+        _cap_score(adjusted, "free_substitute_resilience", 6.0)
+        adjustments.append(
+            "Free-substitute resilience was capped because at least three substitutes were identified."
+        )
+
+    wallet = channels_by_id.get("project_wallet", {})
+    wallet_connected = bool(wallet.get("agent_has_access")) and wallet.get("current_status") == "connected"
+    x402_unconnected = "x402" in payment_rail.lower() and not wallet_connected
+    if x402_unconnected:
+        _cap_score(adjusted, "distribution_access", 5.0)
+        _cap_score(adjusted, "time_to_first_verified_dollar", 6.0)
+        adjustments.append(
+            "Distribution and first-dollar scores were capped because the x402 receiving wallet is not connected."
+        )
+    return adjusted, adjustments, x402_unconnected
 
 
 def _compact_metrics(value: Any) -> Dict[str, Any]:
@@ -335,6 +430,8 @@ Commercial policy:
 - Never propose trading, broker access, market manipulation, spam, fake engagement, credential collection, or terms violations.
 - Existing portfolio items have no entitlement to remain winners.
 - A channel candidate is evidence to investigate, not permission or account access.
+- Aggregate marketplace calls or payer counts do not prove demand for an unrelated offer; require outcome-specific evidence.
+- The engine derives cash, asset, and frontier role fit from the scored economics. Do not return role-fit placeholders.
 - Select one execution that can run now through an existing channel. Prefer github_pages for a public validation brief when no commercial write channel is connected.
 
 Return JSON with this exact top-level shape:
@@ -363,7 +460,6 @@ Return JSON with this exact top-level shape:
     "evidence_ids": ["ev-live-source-id"],
     "free_substitutes": ["substitute"],
     "scores": {{"every rubric key": 1}},
-    "role_fit": {{"cash": 1, "asset": 1, "frontier": 1}},
     "required_assets": ["asset"],
     "next_action": {{
       "description": "one bounded executable action",
@@ -430,6 +526,7 @@ def _normalize_opportunity(
     evidence_ids: set[str],
     channel_ids: set[str],
     evidence_signal_types: Mapping[str, str],
+    channels_by_id: Mapping[str, Mapping[str, Any]],
 ) -> Dict[str, Any]:
     if not isinstance(raw, Mapping):
         raise ValueError("opportunity must be an object")
@@ -473,26 +570,15 @@ def _normalize_opportunity(
         raise ValueError("next action must use an existing registered channel")
 
     free_substitutes = _string_list(raw.get("free_substitutes"), limit=8)
-    scores = dict(raw.get("scores", {})) if isinstance(raw.get("scores"), Mapping) else {}
-    score_adjustments: List[str] = []
-    referenced_signal_types = {
-        evidence_signal_types.get(evidence_id, "") for evidence_id in referenced_evidence
-    }
-    if not referenced_signal_types.intersection(DIRECT_DEMAND_SIGNAL_TYPES):
-        if isinstance(scores.get("observable_buyer_demand"), (int, float)):
-            scores["observable_buyer_demand"] = min(float(scores["observable_buyer_demand"]), 5.0)
-        if isinstance(scores.get("time_to_first_verified_dollar"), (int, float)):
-            scores["time_to_first_verified_dollar"] = min(
-                float(scores["time_to_first_verified_dollar"]), 6.0
-            )
-        score_adjustments.append("Demand and first-dollar scores were capped because cited sources did not contain a direct demand signal.")
-    if len(free_substitutes) >= 3 and isinstance(
-        scores.get("free_substitute_resilience"), (int, float)
-    ):
-        scores["free_substitute_resilience"] = min(
-            float(scores["free_substitute_resilience"]), 6.0
-        )
-        score_adjustments.append("Free-substitute resilience was capped because at least three substitutes were identified.")
+    payment_rail = _text(raw.get("payment_rail"), 400)
+    scores, score_adjustments, x402_unconnected = _apply_score_policies(
+        dict(raw.get("scores", {})) if isinstance(raw.get("scores"), Mapping) else {},
+        referenced_evidence,
+        evidence_signal_types,
+        free_substitutes,
+        payment_rail,
+        channels_by_id,
+    )
 
     normalized = {
         "opportunity_id": "opp-discovered-{0}".format(slug),
@@ -507,7 +593,7 @@ def _normalize_opportunity(
             "billing_model": _text(price.get("billing_model") or "fixed", 40),
         },
         "acquisition_channel": _text(raw.get("acquisition_channel"), 500),
-        "payment_rail": _text(raw.get("payment_rail"), 400),
+        "payment_rail": payment_rail,
         "estimated_cost": float(estimated_cost),
         "expected_outcome": _text(raw.get("expected_outcome"), 400),
         "human_actions_required": [],
@@ -520,7 +606,7 @@ def _normalize_opportunity(
         "evidence_ids": referenced_evidence,
         "free_substitutes": free_substitutes,
         "scores": scores,
-        "role_fit": dict(raw.get("role_fit", {})) if isinstance(raw.get("role_fit"), Mapping) else {},
+        "role_fit": _derived_role_fit(scores),
         "required_assets": _string_list(raw.get("required_assets"), limit=10),
         "next_executable_action": _text(next_action.get("description"), 500),
         "next_action_channel_id": channel_id,
@@ -557,6 +643,10 @@ def _normalize_opportunity(
             "Complete the channel's identity, legal, tax, banking, or account-owner requirements."
         ]
         normalized["required_human_setup"] = list(normalized["human_actions_required"])
+    if x402_unconnected:
+        x402_setup = "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+        normalized["human_actions_required"].append(x402_setup)
+        normalized["required_human_setup"].append(x402_setup)
     opportunity = opportunity_from_dict(normalized)
     score_opportunity(opportunity)
     if not all(
@@ -597,6 +687,38 @@ def _normalize_execution(raw: Mapping[str, Any], opportunities: List[Mapping[str
         "action_type": action_type,
         "reason": _text(raw.get("reason"), 500),
     }
+
+
+def _refresh_persisted_opportunity(
+    item: Mapping[str, Any],
+    evidence_signal_types: Mapping[str, str],
+    channels_by_id: Mapping[str, Mapping[str, Any]],
+) -> Dict[str, Any]:
+    refreshed = dict(item)
+    evidence_ids = _string_list(refreshed.get("evidence_ids"), limit=6, item_limit=100)
+    free_substitutes = _string_list(refreshed.get("free_substitutes"), limit=8)
+    scores, adjustments, x402_unconnected = _apply_score_policies(
+        refreshed.get("scores", {}) if isinstance(refreshed.get("scores"), Mapping) else {},
+        evidence_ids,
+        evidence_signal_types,
+        free_substitutes,
+        str(refreshed.get("payment_rail", "")),
+        channels_by_id,
+    )
+    refreshed["scores"] = scores
+    refreshed["role_fit"] = _derived_role_fit(scores)
+    existing_adjustments = _string_list(refreshed.get("score_adjustments"), limit=10, item_limit=220)
+    refreshed["score_adjustments"] = list(dict.fromkeys([*existing_adjustments, *adjustments]))
+    if x402_unconnected:
+        setup = "Connect a dedicated receiving wallet and deployed paid route before x402 activation."
+        for field in ("human_actions_required", "required_human_setup"):
+            values = _string_list(refreshed.get(field), limit=10)
+            refreshed[field] = list(dict.fromkeys([*values, setup]))
+    return refreshed
+
+
+def _channel_identity(value: Any) -> str:
+    return re.sub(r"[-_\s]+", "", str(value or "").lower())
 
 
 def _merge_by_id(
@@ -679,9 +801,12 @@ def synthesize_opportunities(
         for item in snapshot.get("sources", [])
         if item.get("source_id")
     }
-    registered_channels = {
-        str(item.get("channel_id")) for item in channel_registry.get("channels", [])
+    channels_by_id = {
+        str(item.get("channel_id")): item
+        for item in channel_registry.get("channels", [])
+        if isinstance(item, Mapping) and item.get("channel_id")
     }
+    registered_channels = set(channels_by_id)
     opportunities: List[Dict[str, Any]] = []
     raw_opportunities = raw.get("opportunities", [])
     if not isinstance(raw_opportunities, list):
@@ -697,6 +822,7 @@ def synthesize_opportunities(
                 available_evidence,
                 registered_channels,
                 evidence_signal_types,
+                channels_by_id,
             )
         except (TypeError, ValueError):
             continue
@@ -706,6 +832,8 @@ def synthesize_opportunities(
         opportunities.append(normalized)
 
     channel_candidates: List[Dict[str, Any]] = []
+    registered_channel_identities = {_channel_identity(item) for item in registered_channels}
+    current_channel_identities: set[str] = set()
     raw_channels = raw.get("channel_candidates", [])
     if not isinstance(raw_channels, list):
         raw_channels = []
@@ -718,13 +846,26 @@ def synthesize_opportunities(
             normalized_channel = _normalize_channel_candidate(item)
         except (TypeError, ValueError):
             continue
+        identity = _channel_identity(normalized_channel["channel_id"])
+        if identity in registered_channel_identities or identity in current_channel_identities:
+            continue
         tracker.consume("channel_candidates")
+        current_channel_identities.add(identity)
         normalized_channel["discovered_at"] = now.isoformat()
         normalized_channel["last_seen_at"] = now.isoformat()
         channel_candidates.append(normalized_channel)
 
-    previous_opportunities = list((previous_pool or {}).get("opportunities", []))
-    previous_channels = list((previous_pool or {}).get("channel_candidates", []))
+    previous_opportunities = [
+        _refresh_persisted_opportunity(item, evidence_signal_types, channels_by_id)
+        for item in (previous_pool or {}).get("opportunities", [])
+        if isinstance(item, Mapping)
+    ]
+    previous_channels = [
+        item
+        for item in (previous_pool or {}).get("channel_candidates", [])
+        if isinstance(item, Mapping)
+        and _channel_identity(item.get("channel_id")) not in registered_channel_identities
+    ]
     merged_opportunities = _merge_by_id(
         previous_opportunities, opportunities, "opportunity_id", 40, now
     )

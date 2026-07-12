@@ -1,0 +1,167 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MCP / Agent Preflight API",
+    "version": "0.1.0",
+    "description": "Deployment contract for public-metadata and metered MCP/agent preflight reports. No paid route is live until the activation fields say otherwise."
+  },
+  "x-deployment-status": "contract_only_runtime_host_and_wallet_pending",
+  "paths": {
+    "/v1/preflight/public-metadata": {
+      "post": {
+        "summary": "Generate a public-metadata-only preflight report",
+        "operationId": "publicMetadataPreflight",
+        "x-price": {
+          "amount": 0,
+          "currency": "USD"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreflightRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deterministic public metadata report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unsupported or invalid repository target"
+          }
+        }
+      }
+    },
+    "/v1/preflight/full": {
+      "post": {
+        "summary": "Generate a metered expanded public-evidence preflight report",
+        "operationId": "fullPreflight",
+        "x-activation-status": "not_live",
+        "x-target-code-executed": false,
+        "x-price-hypotheses": [
+          {
+            "amount": 0.25,
+            "currency": "USDC",
+            "scope": "basic"
+          },
+          {
+            "amount": 1,
+            "currency": "USDC",
+            "scope": "full"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreflightRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Expanded nonexecuting public-evidence report after a verified x402 settlement",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreflightReport"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required after wallet activation"
+          },
+          "503": {
+            "description": "Current truthful response while the runtime host or wallet is not configured"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PreflightRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository_url"
+        ],
+        "properties": {
+          "repository_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://(www\\.)?github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\\.git)?$"
+          },
+          "registry_name": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "remote_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "PreflightReport": {
+        "type": "object",
+        "required": [
+          "schema_name",
+          "report_id",
+          "score",
+          "verdict",
+          "checks",
+          "execution_claims",
+          "limitations"
+        ],
+        "properties": {
+          "schema_name": {
+            "const": "mcp_agent_public_preflight_report"
+          },
+          "report_id": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "verdict": {
+            "enum": [
+              "ready_for_live_protocol_test",
+              "review_before_connection",
+              "insufficient_public_assurance"
+            ]
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "execution_claims": {
+            "type": "object"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

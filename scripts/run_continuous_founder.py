@@ -342,6 +342,10 @@ def run_continuous_cycle(
         root / "data" / "platform_opportunity_extensions.json", {}
     )
     base_scan = merge_discovery_into_scan(base_scan, platform_extensions)
+    product_extensions = _load_json(
+        root / "data" / "product_opportunity_extensions.json", {}
+    )
+    base_scan = merge_discovery_into_scan(base_scan, product_extensions)
     channel_registry = _load_json(root / "data" / "channel_registry.json")
     previous_pool = _load_json(root / "data" / "discovered_opportunities.json", {})
     model_access_path = root / "data" / "model_access_state.json"

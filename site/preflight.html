@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCP / Agent Preflight | Autonomous Founder Agent</title>
+    <meta name="description" content="Run a deterministic public-metadata preflight on an MCP server or agent repository.">
+    <link rel="canonical" href="https://vadim-koenen.github.io/autonomous-founder-agent/site/preflight.html">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #111111;
+        --paper: #f5f6f2;
+        --panel: #ffffff;
+        --muted: #64645d;
+        --line: #d8d9d2;
+        --teal: #087f70;
+        --coral: #c9473a;
+        --yellow: #e5b52d;
+        --soft-teal: #e6f4f0;
+        --soft-coral: #f9e9e7;
+        --soft-yellow: #fff4cf;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+      a { color: inherit; text-underline-offset: 3px; }
+      button, input { font: inherit; }
+      .shell { width: min(1100px, calc(100% - 36px)); margin: 0 auto; }
+
+      header { background: #101010; color: #ffffff; border-bottom: 1px solid #2b2b2b; }
+      .topbar { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+      .wordmark { font-size: .82rem; font-weight: 850; text-decoration: none; text-transform: uppercase; }
+      nav { display: flex; gap: 18px; color: #d9d9d2; font-size: .8rem; }
+      nav a { text-decoration: none; }
+      nav a:hover, nav a:focus-visible { color: #ffffff; text-decoration: underline; }
+
+      .workspace { padding: 42px 0 50px; border-bottom: 1px solid var(--line); background: var(--panel); }
+      .workspace-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 26px; }
+      .eyebrow { margin: 0 0 7px; color: var(--teal); font-size: .75rem; font-weight: 900; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 2.2rem; line-height: 1.08; letter-spacing: 0; }
+      .scope { max-width: 520px; margin: 0; color: var(--muted); font-size: .86rem; }
+
+      form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
+      label { display: grid; gap: 7px; color: var(--muted); font-size: .76rem; font-weight: 800; text-transform: uppercase; }
+      input {
+        width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #adada6; border-radius: 4px;
+        background: #ffffff; color: var(--ink); text-transform: none;
+      }
+      input:focus { outline: 3px solid var(--soft-teal); border-color: var(--teal); }
+      .button {
+        min-height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 10px 15px;
+        border: 1px solid var(--ink); border-radius: 4px; background: var(--ink); color: #ffffff;
+        font-size: .82rem; font-weight: 850; text-decoration: none; cursor: pointer;
+      }
+      .button:hover, .button:focus-visible { border-color: var(--teal); background: var(--teal); }
+      .button.secondary { background: transparent; color: var(--ink); }
+      .button.secondary:hover, .button.secondary:focus-visible { color: #ffffff; }
+      .button:disabled { opacity: .55; cursor: wait; }
+      .form-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-top: 10px; color: var(--muted); font-size: .76rem; }
+      .example-link { border: 0; padding: 0; background: transparent; color: var(--teal); font-weight: 800; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+      .truth-strip { background: #111111; color: #ffffff; }
+      .truth-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .truth-item { min-width: 0; min-height: 88px; padding: 17px 18px; border-left: 1px solid #353535; }
+      .truth-item:last-child { border-right: 1px solid #353535; }
+      .truth-label { display: block; color: #bdbdb6; font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+      .truth-value { display: block; margin-top: 6px; font-size: .95rem; font-weight: 850; overflow-wrap: anywhere; }
+
+      .report-band { min-height: 610px; padding: 42px 0 56px; }
+      .report-head { display: grid; grid-template-columns: 170px minmax(0, 1fr) auto; gap: 28px; align-items: center; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+      .score-box { min-height: 132px; display: grid; place-content: center; border: 5px solid var(--line); background: #ffffff; text-align: center; }
+      .score { font-size: 2.6rem; font-weight: 900; line-height: 1; }
+      .score-label { margin-top: 7px; color: var(--muted); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+      .report-title h2 { margin: 0; font-size: 1.5rem; line-height: 1.15; letter-spacing: 0; overflow-wrap: anywhere; }
+      .report-title p { margin: 9px 0 0; color: var(--muted); font-size: .86rem; }
+      .report-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+      .report-actions .button { min-width: 132px; min-height: 40px; }
+
+      .status-message { min-height: 48px; display: flex; align-items: center; margin-top: 20px; padding: 11px 14px; border-left: 5px solid var(--yellow); background: var(--soft-yellow); font-size: .84rem; }
+      .status-message.error { border-color: var(--coral); background: var(--soft-coral); color: #75271f; }
+      .status-message.success { border-color: var(--teal); background: var(--soft-teal); color: #075f54; }
+
+      .checks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+      .check { min-width: 0; min-height: 154px; padding: 17px; border: 1px solid var(--line); border-radius: 5px; background: #ffffff; }
+      .check-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .check-status { display: inline-flex; align-items: center; gap: 7px; font-size: .7rem; font-weight: 900; text-transform: uppercase; }
+      .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); }
+      [data-status="pass"] .dot { background: var(--teal); }
+      [data-status="fail"] .dot { background: var(--coral); }
+      .check-score { font-size: .78rem; font-weight: 850; font-variant-numeric: tabular-nums; }
+      .check h3 { margin: 14px 0 6px; font-size: .92rem; line-height: 1.25; letter-spacing: 0; }
+      .check p { margin: 0; color: var(--muted); font-size: .78rem; overflow-wrap: anywhere; }
+
+      .commercial { padding: 44px 0; border-top: 1px solid var(--line); background: #ffffff; }
+      .commercial-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 44px; }
+      .commercial h2 { margin: 0 0 10px; font-size: 1.35rem; letter-spacing: 0; }
+      .commercial p { margin: 0; color: var(--muted); font-size: .86rem; }
+      .commercial-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+      table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: .82rem; }
+      th, td { padding: 11px 8px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+      th { color: var(--muted); font-size: .7rem; text-transform: uppercase; }
+      td:last-child, th:last-child { text-align: right; }
+      .boundary { border-left: 5px solid var(--coral); padding-left: 20px; }
+      .boundary ul { margin: 16px 0 22px; padding-left: 18px; color: var(--muted); font-size: .82rem; }
+      .boundary li + li { margin-top: 7px; }
+
+      dialog { width: min(760px, calc(100% - 32px)); max-height: 80vh; padding: 0; border: 1px solid var(--line); border-radius: 5px; }
+      dialog::backdrop { background: rgba(0, 0, 0, .58); }
+      .dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+      .dialog-head h2 { margin: 0; font-size: 1rem; }
+      .icon-button { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 4px; background: #ffffff; font-size: 1.2rem; cursor: pointer; }
+      pre { margin: 0; padding: 18px; overflow: auto; background: #151515; color: #f5f5ef; font: .75rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+      footer { padding: 28px 0; background: #101010; color: #d8d8d2; font-size: .78rem; }
+      .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
+      .footer-inner p { max-width: 720px; margin: 0; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
+
+      @media (max-width: 820px) {
+        .workspace-head, .commercial-grid { display: block; }
+        .scope { margin-top: 12px; }
+        .report-head { grid-template-columns: 130px minmax(0, 1fr); }
+        .report-actions { grid-column: 1 / -1; flex-direction: row; }
+        .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .boundary { margin-top: 30px; }
+      }
+      @media (max-width: 600px) {
+        .shell { width: min(100% - 26px, 1100px); }
+        nav a:nth-child(2) { display: none; }
+        .workspace { padding-top: 30px; }
+        h1 { font-size: 1.75rem; }
+        form { grid-template-columns: 1fr; }
+        .truth-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .truth-item:nth-child(n + 3) { border-top: 1px solid #353535; }
+        .report-head { grid-template-columns: 1fr; align-items: start; }
+        .score-box { width: 132px; }
+        .report-actions, .report-actions .button { width: 100%; }
+        .checks { grid-template-columns: 1fr; }
+        .footer-inner { display: block; }
+        .footer-links { margin-top: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="shell topbar">
+        <a class="wordmark" href="index.html">Autonomous Founder Agent</a>
+        <nav aria-label="Product links">
+          <a href="index.html">Operator</a>
+          <a href="../products/mcp-agent-preflight/openapi.json">API contract</a>
+          <a href="https://github.com/vadim-koenen/autonomous-founder-agent">Source</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="workspace">
+        <div class="shell">
+          <div class="workspace-head">
+            <div>
+              <p class="eyebrow">Free public-metadata route</p>
+              <h1>MCP / Agent Preflight</h1>
+            </div>
+            <p class="scope">Public GitHub metadata only. Target code, credentials, tools, and remote MCP methods are never executed by this route.</p>
+          </div>
+          <form id="preflightForm">
+            <label for="repoUrl">
+              GitHub repository URL
+              <input id="repoUrl" name="repoUrl" type="url" required autocomplete="url" spellcheck="false" value="https://github.com/github/github-mcp-server" pattern="https://(www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?">
+            </label>
+            <button id="runButton" class="button" type="submit">Run preflight</button>
+          </form>
+          <div class="form-meta">
+            <span>Nothing is submitted to this project; your browser calls GitHub directly.</span>
+            <button id="sampleButton" class="example-link" type="button">Open synthetic sample</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="truth-strip" aria-label="Commercial activation truth">
+        <div class="shell truth-grid">
+          <div class="truth-item"><span class="truth-label">Free route</span><strong class="truth-value">Active</strong></div>
+          <div class="truth-item"><span class="truth-label">Metered API</span><strong class="truth-value">Contract ready</strong></div>
+          <div class="truth-item"><span class="truth-label">x402 wallet</span><strong class="truth-value">Not connected</strong></div>
+          <div class="truth-item"><span class="truth-label">Verified revenue</span><strong class="truth-value">$0.00</strong></div>
+        </div>
+      </section>
+
+      <section class="report-band">
+        <div class="shell">
+          <div class="report-head">
+            <div class="score-box" aria-label="Preflight score">
+              <strong id="score" class="score">--</strong>
+              <span class="score-label">Public readiness / 100</span>
+            </div>
+            <div class="report-title">
+              <h2 id="verdict">Run a repository preflight</h2>
+              <p id="target">The report will appear here without executing the target project.</p>
+            </div>
+            <div class="report-actions">
+              <button id="jsonButton" class="button secondary" type="button" disabled>View JSON</button>
+              <a class="button" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&title=MCP%20preflight%20full%20audit">Request full audit</a>
+            </div>
+          </div>
+          <div id="statusMessage" class="status-message" role="status">Ready for a public repository URL.</div>
+          <div id="checks" class="checks" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="commercial">
+        <div class="shell commercial-grid">
+          <div>
+            <h2>One Engine, Two Revenue Rails</h2>
+            <p>The full audit adds authorized live protocol checks and a prioritized repair report. The metered route remains inactive until its runtime host and receiving wallet exist.</p>
+            <table>
+              <thead><tr><th>Offer</th><th>Buyer</th><th>Price</th></tr></thead>
+              <tbody>
+                <tr><td>Public metadata preflight</td><td>Builders screening repositories</td><td>Free</td></tr>
+                <tr><td>Metered basic / full</td><td>Agents screening tools repeatedly</td><td>$0.25 / $1 USDC</td></tr>
+                <tr><td>Full launch audit</td><td>Teams preparing to ship</td><td>$149 USD</td></tr>
+              </tbody>
+            </table>
+            <div class="commercial-actions">
+              <a class="button" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&amp;title=MCP%20preflight%20metered%20route">Request metered route</a>
+              <a class="button secondary" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&amp;title=MCP%20preflight%20full%20audit">Request full audit</a>
+            </div>
+          </div>
+          <aside class="boundary">
+            <h2>Report Boundary</h2>
+            <ul>
+              <li>Public metadata may be stale or incomplete.</li>
+              <li>A high score does not prove a server is safe.</li>
+              <li>Authentication, latency, schemas, and protocol behavior require a separately authorized test.</li>
+            </ul>
+            <a class="button secondary" href="https://github.com/modelcontextprotocol/inspector">Open official MCP Inspector</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="jsonDialog">
+      <div class="dialog-head"><h2>Machine-readable report</h2><button id="closeDialog" class="icon-button" type="button" aria-label="Close report">×</button></div>
+      <pre id="jsonOutput"></pre>
+    </dialog>
+
+    <footer>
+      <div class="shell footer-inner">
+        <p>No payment, wallet action, target-code execution, or security claim occurs in this public route.</p>
+        <div class="footer-links"><a href="../products/mcp-agent-preflight/product.json">Product state</a><a href="../products/mcp-agent-preflight/sample-response.json">Sample JSON</a></div>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("preflightForm");
+      const repoInput = document.getElementById("repoUrl");
+      const runButton = document.getElementById("runButton");
+      const sampleButton = document.getElementById("sampleButton");
+      const jsonButton = document.getElementById("jsonButton");
+      const dialog = document.getElementById("jsonDialog");
+      const statusMessage = document.getElementById("statusMessage");
+      let currentReport = null;
+
+      function parseRepository(value) {
+        const match = String(value).trim().match(/^https:\/\/(?:www\.)?github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?$/);
+        if (!match) throw new Error("Use an exact https://github.com/owner/repository URL.");
+        return { owner: match[1], repo: match[2], url: `https://github.com/${match[1]}/${match[2]}` };
+      }
+
+      function ageDays(timestamp) {
+        const value = Date.parse(timestamp || "");
+        return Number.isFinite(value) ? Math.max(0, Math.floor((Date.now() - value) / 86400000)) : null;
+      }
+
+      function makeCheck(checkId, label, status, score, maxScore, evidence) {
+        return { check_id: checkId, label, status, score, max_score: maxScore, evidence };
+      }
+
+      function analyzeSnapshot(target, metadata, files, release) {
+        const paths = files.map((item) => String(item.path || "").toLowerCase());
+        const has = (name) => paths.includes(name.toLowerCase());
+        const days = ageDays(metadata.pushed_at);
+        const checks = [];
+        checks.push(makeCheck("repository_active", "Active source repository", metadata.archived ? "fail" : "pass", metadata.archived ? 0 : 15, 15, metadata.archived ? "Repository is archived." : "Repository is not archived."));
+        if (days === null) checks.push(makeCheck("recent_maintenance", "Recent maintenance", "warn", 5, 15, "No valid push timestamp was returned."));
+        else if (days <= 90) checks.push(makeCheck("recent_maintenance", "Recent maintenance", "pass", 15, 15, `Latest push was ${days} ${days === 1 ? "day" : "days"} ago.`));
+        else if (days <= 365) checks.push(makeCheck("recent_maintenance", "Recent maintenance", "warn", 9, 15, `Latest push was ${days} days ago.`));
+        else checks.push(makeCheck("recent_maintenance", "Recent maintenance", "fail", 2, 15, `Latest push was ${days} days ago.`));
+        const description = String(metadata.description || "").trim();
+        checks.push(makeCheck("project_description", "Outcome description", description.length >= 30 ? "pass" : "warn", description.length >= 30 ? 8 : 3, 8, description || "No public description was returned."));
+        checks.push(makeCheck("readme_present", "Public setup documentation", paths.some((path) => path.startsWith("readme")) ? "pass" : "fail", paths.some((path) => path.startsWith("readme")) ? 10 : 0, 10, paths.some((path) => path.startsWith("readme")) ? "README found in repository root." : "No root README was observed."));
+        const license = metadata.license?.spdx_id && metadata.license.spdx_id !== "NOASSERTION";
+        checks.push(makeCheck("license_declared", "License declared", license || has("license") ? "pass" : "fail", license || has("license") ? 10 : 0, 10, license ? metadata.license.spdx_id : (has("license") ? "LICENSE file found." : "No declared license was observed.")));
+        checks.push(makeCheck("security_policy", "Security reporting policy", has("security.md") ? "pass" : "warn", has("security.md") ? 10 : 3, 10, has("security.md") ? "SECURITY.md found." : "No root SECURITY.md was observed."));
+        const version = release?.tag_name || "";
+        checks.push(makeCheck("version_declared", "Pinned release version", version ? "pass" : "warn", version ? 10 : 3, 10, version ? `Latest public release: ${version}.` : "No public latest release was returned."));
+        const packageFiles = ["package.json", "pyproject.toml", "go.mod", "cargo.toml", "dockerfile", ".mcp.json", "server.json"];
+        const packageHits = packageFiles.filter((name) => has(name));
+        checks.push(makeCheck("transport_declared", "Install or transport metadata", packageHits.length ? "pass" : "warn", packageHits.length ? 12 : 4, 12, packageHits.length ? `Observed: ${packageHits.join(", ")}.` : "No common root package or MCP manifest was observed."));
+        checks.push(makeCheck("remote_https", "Remote transport uses HTTPS", "warn", 5, 10, "The free route does not connect to a remote MCP transport."));
+        const score = checks.reduce((sum, item) => sum + item.score, 0);
+        const hasFailure = checks.some((item) => item.status === "fail");
+        const verdict = score >= 82 && !hasFailure ? "ready_for_live_protocol_test" : (score >= 60 ? "review_before_connection" : "insufficient_public_assurance");
+        return {
+          schema_name: "mcp_agent_public_preflight_report",
+          schema_version: "0.1",
+          report_id: `browser-${target.owner}-${target.repo}-${Math.round(score)}`.toLowerCase(),
+          observed_at: new Date().toISOString(),
+          scope: "public_metadata_only",
+          target: { repository_url: target.url, registry_name: "", declared_version: version },
+          score,
+          max_score: 100,
+          verdict,
+          checks,
+          strengths: checks.filter((item) => item.status === "pass").map((item) => item.label),
+          risk_flags: checks.filter((item) => item.status !== "pass").map((item) => item.check_id),
+          next_actions: checks.filter((item) => item.status !== "pass").map((item) => item.label),
+          execution_claims: { target_code_executed: false, target_credentials_used: false, live_mcp_protocol_test_performed: false, security_audit_completed: false },
+          limitations: ["Public metadata can be stale, incomplete, or misleading.", "This report does not execute target code or prove that a server is safe.", "Authentication, tool schemas, latency, and protocol behavior require a separately authorized live test."]
+        };
+      }
+
+      function verdictLabel(value) {
+        const labels = {
+          ready_for_live_protocol_test: "Ready for an authorized live protocol test",
+          review_before_connection: "Review before connecting",
+          insufficient_public_assurance: "Insufficient public assurance"
+        };
+        return labels[value] || "Preflight complete";
+      }
+
+      function render(report, statusText, statusClass) {
+        currentReport = report;
+        document.getElementById("score").textContent = Number(report.score).toFixed(0);
+        document.getElementById("verdict").textContent = verdictLabel(report.verdict);
+        document.getElementById("target").textContent = report.target.repository_url;
+        statusMessage.textContent = statusText;
+        statusMessage.className = `status-message ${statusClass || ""}`;
+        document.getElementById("checks").innerHTML = report.checks.map((check) => `
+          <article class="check" data-status="${check.status}">
+            <div class="check-top"><span class="check-status"><span class="dot"></span>${check.status}</span><span class="check-score">${check.score}/${check.max_score}</span></div>
+            <h3>${escapeHtml(check.label)}</h3><p>${escapeHtml(check.evidence)}</p>
+          </article>`).join("");
+        document.getElementById("jsonOutput").textContent = JSON.stringify(report, null, 2);
+        jsonButton.disabled = false;
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+      }
+
+      async function fetchOptionalRelease(base) {
+        try {
+          const response = await fetch(`${base}/releases/latest`, { headers: { Accept: "application/vnd.github+json" } });
+          if (!response.ok) return null;
+          return response.json();
+        } catch {
+          return null;
+        }
+      }
+
+      async function runPreflight(value) {
+        const target = parseRepository(value);
+        const base = `https://api.github.com/repos/${encodeURIComponent(target.owner)}/${encodeURIComponent(target.repo)}`;
+        const [metadataResponse, contentsResponse, release] = await Promise.all([
+          fetch(base, { headers: { Accept: "application/vnd.github+json" } }),
+          fetch(`${base}/contents`, { headers: { Accept: "application/vnd.github+json" } }),
+          fetchOptionalRelease(base)
+        ]);
+        if (!metadataResponse.ok || !contentsResponse.ok) {
+          const status = metadataResponse.ok ? contentsResponse.status : metadataResponse.status;
+          throw new Error(`GitHub returned ${status}. The repository may be private, missing, or rate-limited.`);
+        }
+        const [metadata, files] = await Promise.all([metadataResponse.json(), contentsResponse.json()]);
+        if (!Array.isArray(files)) throw new Error("GitHub did not return repository root contents.");
+        return analyzeSnapshot(target, metadata, files, release);
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        runButton.disabled = true;
+        runButton.textContent = "Running...";
+        statusMessage.textContent = "Reading public GitHub metadata...";
+        statusMessage.className = "status-message";
+        try {
+          const report = await runPreflight(repoInput.value);
+          render(report, "Live public metadata loaded from GitHub. No target code or credentials were used.", "success");
+        } catch (error) {
+          statusMessage.textContent = `${error.message} The synthetic sample remains available and is labeled as such.`;
+          statusMessage.className = "status-message error";
+        } finally {
+          runButton.disabled = false;
+          runButton.textContent = "Run preflight";
+        }
+      });
+
+      sampleButton.addEventListener("click", async () => {
+        try {
+          const response = await fetch("../products/mcp-agent-preflight/sample-response.json", { cache: "no-store" });
+          if (!response.ok) throw new Error("Sample report unavailable.");
+          const report = await response.json();
+          render(report, "Synthetic fixture loaded. It demonstrates report shape and is not market evidence.", "");
+        } catch (error) {
+          statusMessage.textContent = error.message;
+          statusMessage.className = "status-message error";
+        }
+      });
+
+      jsonButton.addEventListener("click", () => dialog.showModal());
+      document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+    </script>
+  </body>
+</html>

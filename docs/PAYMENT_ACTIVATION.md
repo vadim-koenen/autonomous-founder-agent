@@ -1,10 +1,10 @@
 # Payment Activation
 
-No checkout or wallet is active. On 2026-07-10, the owner explicitly approved clearing the cash experiment's discovery and payment bottleneck. Contra activation is now the required human setup for the selected QA service; wallets remain unnecessary.
+No checkout or wallet is active. The functional free MCP / Agent Preflight requires neither. Human checkout remains optional activation for the `$149` full audit; x402 requires its separate recurring-use gate, runtime host, and dedicated receiving wallet.
 
 Never put API keys, webhook secrets, private keys, seed phrases, bank data, tax data, account credentials, or buyer personal data in this repository.
 
-## Cash Experiment: Agent Launch QA Sprint
+## Cash Experiment: MCP / Agent Preflight Full Audit
 
 Trigger: owner activation approval, recorded on 2026-07-10.
 
@@ -12,7 +12,7 @@ Minimal owner setup:
 
 1. Open or connect a Contra independent account, or use the marketplace where the buyer originated.
 2. Complete that provider's identity, legal, tax, bank, and payout steps.
-3. Publish the exact fixed-scope service from `offers/agent-launch-qa-sprint/LISTING.md`.
+3. Publish the exact fixed-scope service shown on `site/qa-sprint.html`.
 4. Set the founding price to `$149` and preserve the scope boundaries.
 5. Create a fixed-scope project or public guest-checkout link preserving the published scope.
 6. Provide only the public service and checkout URLs to the operator.
@@ -34,19 +34,19 @@ Minimal owner setup:
 
 Contra is the current proposed fit. Stripe may be reconsidered if direct demand warrants it. Lemon Squeezy is not assumed and must pass product-policy review first.
 
-## Frontier Experiment: Agent Opportunity Pulse
+## Frontier Experiment: MCP / Agent Preflight Metered API
 
-Trigger: at least three explicit endpoint requests plus one recurring use case.
+Trigger: at least three qualified recurring-use requests, including one repeated agent workflow, plus an approved runtime host.
 
 Minimal owner setup:
 
 1. Create a dedicated project receiving wallet separate from personal wallets.
 2. Keep the recovery phrase and private key offline and outside Codex, source code, logs, screenshots, issues, and repository settings.
-3. Approve a scoped receiving-only policy and the exact network.
-4. Provide access through a supported secret store or approved wallet integration, never a pasted private key.
-5. Run testnet validation before any paid mainnet endpoint.
+3. Approve a scoped receiving policy and Base USDC only after reviewing current x402 requirements.
+4. Provide the public receiving address through approved configuration; signing material remains in a supported secret store.
+5. Deploy the route defined by `products/mcp-agent-preflight/openapi.json` and complete a labeled test settlement.
 
-The proposed price is `0.25 USDC` per snapshot. No wallet setup is currently required because the demand trigger has not been met.
+The proposed prices are `0.25 USDC` for a basic report and `1 USDC` for an expanded public-evidence report. Neither machine tier executes target code. No wallet setup is currently required because the demand trigger has not been met. A self-funded test does not count as revenue.
 
 ## Public Checkout Configuration
 
