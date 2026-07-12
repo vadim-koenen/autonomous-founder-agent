@@ -53,19 +53,21 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Ranked Opportunity Set
 
-- 1. Agent Launch QA Sprint - 8.24
-- 2. Agent Launch Gate Founding License - 7.64
-- 3. Evidence-Backed Competitor Brief - 7.61
-- 4. MCP Integration Launch Sprint - 7.55
-- 5. Fixed-Scope Data Cleanup Service - 7.55
-- 6. Founder Demo Repurposing Pack - 7.10
-- 7. Agent Opportunity Pulse - 6.86
-- 8. Agent-Ready Commerce Catalog Repair - 6.80
-- 9. Roblox Launch Lens Studio Plugin - 6.74
-- 10. x402 Endpoint Implementation Sprint - 6.63
-- 11. Original AI Media Commission - 6.57
-- 12. Roblox Retention Repair Sprint - 6.18
-- 13. Build-in-Public Revenue Series - 6.03
-- 14. Hosted Agent Eval Dashboard - 5.80
-- 15. Roblox Embodiment Factory Experience - 5.26
-- 16. Embodiment Milestone Collectible - 4.44
+- 1. Publish and monetize a reasoning-capable agent endpoint on x402 Bazaar - 8.68
+- 2. Agent Launch QA Sprint - 8.24
+- 3. Agent Launch Gate Founding License - 7.64
+- 4. Evidence-Backed Competitor Brief - 7.61
+- 5. MCP Integration Launch Sprint - 7.55
+- 6. Fixed-Scope Data Cleanup Service - 7.55
+- 7. Founder Demo Repurposing Pack - 7.10
+- 8. Agent Opportunity Pulse - 6.86
+- 9. Agent-Ready Commerce Catalog Repair - 6.80
+- 10. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 11. Roblox Launch Lens Studio Plugin - 6.74
+- 12. x402 Endpoint Implementation Sprint - 6.63
+- 13. Original AI Media Commission - 6.57
+- 14. Roblox Retention Repair Sprint - 6.18
+- 15. Build-in-Public Revenue Series - 6.03
+- 16. Hosted Agent Eval Dashboard - 5.80
+- 17. Roblox Embodiment Factory Experience - 5.26
+- 18. Embodiment Milestone Collectible - 4.44
