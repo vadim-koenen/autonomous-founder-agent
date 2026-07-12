@@ -8,7 +8,7 @@ import json
 import os
 import sys
 import time
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Optional
 
@@ -53,16 +53,85 @@ def _latest_scan(root: Path) -> Path:
     return scans[-1]
 
 
-def _select_model(snapshot: Mapping[str, Any], budget_config: Mapping[str, Any]) -> str:
+def _model_is_temporarily_unavailable(
+    model: str,
+    access_state: Mapping[str, Any],
+    observed_at: datetime,
+) -> bool:
+    record = access_state.get("models", {}).get(model, {})
+    if not isinstance(record, Mapping) or record.get("status") != "unavailable":
+        return False
+    try:
+        retry_after = datetime.fromisoformat(
+            str(record.get("retry_after", "")).replace("Z", "+00:00")
+        )
+    except ValueError:
+        return False
+    if retry_after.tzinfo is None:
+        retry_after = retry_after.replace(tzinfo=timezone.utc)
+    return observed_at < retry_after
+
+
+def _select_model(
+    snapshot: Mapping[str, Any],
+    budget_config: Mapping[str, Any],
+    access_state: Optional[Mapping[str, Any]] = None,
+    observed_at: Optional[datetime] = None,
+) -> str:
+    now = observed_at or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    model_access = access_state or {}
     available = set()
     for source in snapshot.get("sources", []):
         if source.get("source_id") != "github_models_catalog" or source.get("status") not in {"ok", "stale"}:
             continue
         available.update(str(item.get("id")) for item in source.get("items", []) if item.get("id"))
     for model in budget_config.get("model_preference", []):
-        if model in available:
+        if model in available and not _model_is_temporarily_unavailable(
+            str(model), model_access, now
+        ):
             return str(model)
     return str(budget_config["model"])
+
+
+def _update_model_access_state(
+    access_state: Mapping[str, Any],
+    synthesis: Mapping[str, Any],
+    observed_at: datetime,
+) -> Dict[str, Any]:
+    models = {
+        str(model): dict(record)
+        for model, record in access_state.get("models", {}).items()
+        if isinstance(record, Mapping)
+    }
+    state: Dict[str, Any] = {
+        "schema_name": "autonomous_founder_model_access_state",
+        "schema_version": "0.4",
+        "updated_at": observed_at.isoformat(),
+        "models": models,
+    }
+    model = str(synthesis.get("model", ""))
+    if not model:
+        return state
+    error = str(synthesis.get("model_error", ""))
+    record: Dict[str, Any] = {
+        "last_checked_at": observed_at.isoformat(),
+        "last_error": error[:300],
+    }
+    if synthesis.get("synthesis_mode") == "github_models":
+        record.update({"status": "available", "retry_after": ""})
+    elif "unavailable model" in error.lower():
+        record.update(
+            {
+                "status": "unavailable",
+                "retry_after": (observed_at + timedelta(days=7)).isoformat(),
+            }
+        )
+    else:
+        record.update({"status": "transient_error", "retry_after": ""})
+    models[model] = record
+    return state
 
 
 def _markdown_text(value: Any) -> str:
@@ -275,7 +344,10 @@ def run_continuous_cycle(
     base_scan = merge_discovery_into_scan(base_scan, platform_extensions)
     channel_registry = _load_json(root / "data" / "channel_registry.json")
     previous_pool = _load_json(root / "data" / "discovered_opportunities.json", {})
-    selected_model = _select_model(snapshot, budget_config)
+    model_access_path = root / "data" / "model_access_state.json"
+    model_access = _load_json(model_access_path, {})
+    model_access = _update_model_access_state(model_access, previous_pool, now)
+    selected_model = _select_model(snapshot, budget_config, model_access, now)
     synthesis = synthesize_opportunities(
         snapshot,
         base_scan,
@@ -287,8 +359,10 @@ def run_continuous_cycle(
         model_callable=model_callable,
         observed_at=now,
     )
+    model_access = _update_model_access_state(model_access, synthesis, now)
     _write_json(root / "data" / "discovery_snapshot.json", snapshot)
     _write_json(root / "data" / "discovered_opportunities.json", synthesis)
+    _write_json(model_access_path, model_access)
 
     merged_scan = merge_discovery_into_scan(base_scan, synthesis)
     ledger = _load_json(root / "data" / "revenue_ledger.json")

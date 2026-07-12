@@ -26,14 +26,14 @@ One cycle performs these steps:
 
 1. Select up to six least-recently-attempted sources from the allowlist.
 2. Preserve only last-known-good observations when a source fails.
-3. Supply sanitized observations, current opportunities, and channel state to one `openai/gpt-5` GitHub Models call.
+3. Supply sanitized observations, current opportunity IDs, and channel state to one bounded GitHub Models call.
 4. Reject proposals with invented evidence, incomplete scores, invalid channels, unsupported authority, negative economics, or prohibited conduct.
 5. Merge validated proposals into a rolling 40-opportunity memory.
 6. Rerank the typed opportunity set and reassess incumbents every day.
 7. Execute only through explicit capability grants and resource budgets.
 8. Test, commit, and directly deploy the exact operated state to GitHub Pages.
 
-GitHub Models uses the workflow's ephemeral `GITHUB_TOKEN` with `models: read`. No model credential is stored. The requested `openai/gpt-5.5` is the first preference; because it is not currently in the callable GitHub Models catalog, the runtime selects the verified `openai/gpt-5` fallback. It will upgrade automatically when the preferred ID appears. When inference is unavailable, discovery and deterministic scoring continue without fabricating new ideas.
+GitHub Models uses the workflow's ephemeral `GITHUB_TOKEN` with `models: read`. No model credential is stored. The requested `openai/gpt-5.5` remains the first preference, followed by `openai/gpt-5`; the repository token currently cannot invoke either preferred model, so the runtime uses GitHub's documented `openai/gpt-4.1` workflow fallback. Temporary access failures are remembered for seven days, then retried automatically. When inference is unavailable, discovery and deterministic scoring continue without fabricating new ideas.
 
 ## Cycle Budget
 

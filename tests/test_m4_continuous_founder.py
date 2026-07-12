@@ -24,7 +24,7 @@ from founder_agent.synthesis import (
     build_synthesis_prompt,
     synthesize_opportunities,
 )
-from scripts.run_continuous_founder import _select_model
+from scripts.run_continuous_founder import _select_model, _update_model_access_state
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -448,6 +448,38 @@ class M4ContinuousFounderTest(unittest.TestCase):
         self.assertEqual("openai/gpt-5", _select_model(snapshot, config))
         snapshot["sources"][0]["items"].insert(0, {"id": "openai/gpt-5.5"})
         self.assertEqual("openai/gpt-5.5", _select_model(snapshot, config))
+
+    def test_unavailable_preferred_model_uses_temporary_fallback(self):
+        config = load_json("config/operator_budget.json")
+        snapshot = {
+            "sources": [
+                {
+                    "source_id": "github_models_catalog",
+                    "status": "ok",
+                    "items": [
+                        {"id": "openai/gpt-5"},
+                        {"id": "openai/gpt-4.1"},
+                    ],
+                }
+            ]
+        }
+        now = datetime(2026, 7, 11, 12, tzinfo=timezone.utc)
+        access = _update_model_access_state(
+            {},
+            {
+                "model": "openai/gpt-5",
+                "model_error": "GitHub Models request failed with HTTP 400: Unavailable model: gpt-5",
+                "synthesis_mode": "deterministic_fallback",
+            },
+            now,
+        )
+
+        self.assertEqual("openai/gpt-4.1", _select_model(snapshot, config, access, now))
+        self.assertEqual(
+            "openai/gpt-5",
+            _select_model(snapshot, config, access, datetime(2026, 7, 19, tzinfo=timezone.utc)),
+        )
+        self.assertNotIn("runtime-only-token", json.dumps(access))
 
     def test_unconnected_high_impact_capabilities_remain_explicit(self):
         capabilities = load_json("config/capability_grants.json")

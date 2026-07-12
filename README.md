@@ -42,7 +42,7 @@ Cash offer: https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-spri
 The scheduled GitHub Actions workflow runs at minute 17 every six hours and can also be dispatched manually. It:
 
 1. rotates six fetches across x402, the official MCP Registry, public paid-work signals, Hacker News, A2A/MCP releases, Roblox creator-platform changes, and model capabilities
-2. makes at most one GitHub Models `openai/gpt-5` synthesis call, with deterministic fallback
+2. makes at most one GitHub Models synthesis call, preferring GPT-5.5/GPT-5 and using the callable `openai/gpt-4.1` workflow fallback
 3. rejects model output that lacks live evidence, complete scores, a registered channel, or valid authority
 4. reranks the full cash, asset, and frontier opportunity set and reassesses experiments daily
 5. replies to at most three qualified inbound project issues through the explicit grant
