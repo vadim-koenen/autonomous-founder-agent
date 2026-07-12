@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class M2ActivationTest(unittest.TestCase):
-    def test_manifest_is_machine_readable_and_m4_has_no_active_rail(self):
+    def test_manifest_is_machine_readable_and_has_only_human_checkout_active(self):
         manifest = json.loads((ROOT / "AGENT_MANIFEST.json").read_text(encoding="utf-8"))
         state = json.loads((ROOT / "data" / "operator_state.json").read_text(encoding="utf-8"))
 
@@ -16,7 +16,8 @@ class M2ActivationTest(unittest.TestCase):
         self.assertEqual("0.4", manifest["schema_version"])
         self.assertEqual("continuous_discovery_and_bounded_execution_active", manifest["operator"]["status"])
         self.assertEqual(3, len(manifest["current_portfolio"]))
-        self.assertEqual([], manifest["payment_policy"]["active_rails"])
+        self.assertEqual(["stripe_payment_link"], manifest["payment_policy"]["active_rails"])
+        self.assertTrue(manifest["safety"]["human_checkout_connected"])
         self.assertTrue(manifest["safety"]["no_private_keys"])
         self.assertFalse(manifest["safety"]["wallet_capability_connected"])
         self.assertFalse(manifest["safety"]["nft_mint_capability_connected"])
@@ -30,14 +31,14 @@ class M2ActivationTest(unittest.TestCase):
         self.assertEqual(state["revenue"]["gross_revenue"], manifest["revenue"]["gross_revenue"])
         self.assertEqual(state["revenue"]["net_revenue"], manifest["revenue"]["net_revenue"])
 
-    def test_checkout_config_is_offer_neutral_and_pending(self):
+    def test_checkout_config_is_scoped_and_human_configured(self):
         config = json.loads((ROOT / "site" / "checkout-config.json").read_text(encoding="utf-8"))
 
-        self.assertEqual("pending", config["status"])
-        self.assertEqual("", config["experiment_id"])
-        self.assertEqual("", config["provider"])
-        self.assertEqual("", config["checkout_url"])
-        self.assertFalse(config["configured_by_human"])
+        self.assertEqual("active", config["status"])
+        self.assertEqual("opp-agent-launch-qa", config["experiment_id"])
+        self.assertEqual("stripe", config["provider"])
+        self.assertTrue(config["checkout_url"].startswith("https://buy.stripe.com/"))
+        self.assertTrue(config["configured_by_human"])
         self.assertNotIn("price", config)
 
     def test_dashboard_uses_operator_state_and_has_no_generic_buy_button(self):

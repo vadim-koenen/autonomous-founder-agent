@@ -60,7 +60,7 @@ Current connected grants:
 
 The inbound grant is repository-specific and inbound-only. The runtime cannot open unsolicited issues on other repositories, persist issue bodies, or exceed the message budget.
 
-Capabilities awaiting real configuration include compliant outbound messaging, marketplace writes, a human checkout, agent-native payment receipt, verified-revenue reinvestment, and collectible minting. These are eligible future actions rather than permanent prohibitions.
+The public Stripe Payment Link for the full audit is connected. Capabilities still awaiting real configuration include compliant outbound messaging, marketplace writes, Stripe account management, agent-native payment receipt, verified-revenue reinvestment, and collectible minting. These are eligible future actions rather than permanent prohibitions.
 
 Identity, KYC, tax, bank, legal acceptance, contracts, account creation, and physical purchases remain owner actions because an agent cannot truthfully manufacture those facts or permissions.
 
@@ -102,4 +102,4 @@ M4 does not infer revenue from calls, views, issue comments, model output, Roblo
 - Current verified net revenue: **$0.00**
 - Current physical-form fund: **$0.00**
 
-The missing human checkout still blocks a paid full audit, and the missing runtime host plus receiving wallet block x402. Neither blocks the functional free route or continuous discovery, and neither is represented as active.
+The human Stripe checkout is active for the paid full audit. The missing runtime host plus receiving wallet still block x402; neither is represented as active.

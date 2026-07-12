@@ -39,12 +39,12 @@
   "capability_policy": {
     "currently_enabled": [
       "connected GitHub publishing",
-      "up to three replies to qualified inbound project issues per cycle"
+      "up to three replies to qualified inbound project issues per cycle",
+      "human Stripe Payment Link for the full preflight audit"
     ],
     "enable_when_connected": [
       "compliant outbound messaging",
       "marketplace writes",
-      "human checkout",
       "agent-native receipts",
       "verified-revenue reinvestment",
       "collectible minting when selected"
@@ -54,12 +54,12 @@
   "current_portfolio": [
     {
       "buyer": "Agent builders and small teams deciding whether an MCP server or agent endpoint is ready to connect or launch.",
-      "discovery": "Functional GitHub Pages preflight, public GitHub intake, and a human service marketplace only after owner activation.",
+      "discovery": "Functional GitHub Pages preflight and public GitHub intake feed direct buyers into the active Stripe Payment Link; optional service marketplaces remain separate future channels.",
       "name": "MCP / Agent Preflight Full Audit",
       "offer": "Within 48 hours, run public-metadata checks plus authorized live MCP or agent protocol tests, deliver a prioritized connection-readiness report, and implement one agreed repair patch.",
       "opportunity_id": "opp-agent-launch-qa",
-      "payment_rail": "Public human checkout or Contra for the full audit; checkout URL remains pending.",
-      "payment_status": "active_only_when_a_public_configured_rail_exists",
+      "payment_rail": "Active owner-configured Stripe Payment Link: https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00",
+      "payment_status": "active_public_checkout",
       "price": {
         "amount": 149,
         "billing_model": "fixed_full_audit",
@@ -135,9 +135,11 @@
     "status": "continuous_discovery_and_bounded_execution_active"
   },
   "payment_policy": {
-    "active_rails": [],
+    "active_rails": [
+      "stripe_payment_link"
+    ],
     "agent_native_payment_status": "inactive_until_three_qualified_recurring_use_signals_runtime_host_and_wallet_setup",
-    "human_checkout_config_status": "pending_owner_contra_account_and_public_url",
+    "human_checkout_config_status": "active_human_configured_public_stripe_payment_link",
     "no_private_credentials_in_repository": true,
     "provider_selection_rule": "Select a rail only after defining the offer, buyer, transaction shape, and channel obligations."
   },
@@ -147,6 +149,8 @@
       "name": "MCP / Agent Preflight",
       "openapi_url": "https://vadim-koenen.github.io/autonomous-founder-agent/products/mcp-agent-preflight/openapi.json",
       "paid_endpoint_live": false,
+      "human_checkout_live": true,
+      "human_checkout_url": "https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00",
       "product_id": "mcp-agent-preflight",
       "product_state_url": "https://vadim-koenen.github.io/autonomous-founder-agent/products/mcp-agent-preflight/product.json",
       "qualified_interest_url": "https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&title=MCP%20preflight%20metered%20route",
@@ -165,6 +169,7 @@
   },
   "safety": {
     "external_execution_requires_capability_grant": true,
+    "human_checkout_connected": true,
     "marketplace_write_capability_connected": false,
     "nft_mint_capability_connected": false,
     "no_api_secrets_in_public_state": true,

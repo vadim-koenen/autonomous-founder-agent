@@ -11,6 +11,7 @@ import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Optional
+from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -235,6 +236,17 @@ def _update_manifest(
 ) -> None:
     path = root / "AGENT_MANIFEST.json"
     manifest = dict(_load_json(path))
+    checkout = _load_json(root / "site" / "checkout-config.json", {})
+    checkout_url = str(checkout.get("checkout_url", ""))
+    parsed_checkout = urlparse(checkout_url)
+    checkout_active = (
+        checkout.get("status") == "active"
+        and checkout.get("experiment_id") == "opp-agent-launch-qa"
+        and checkout.get("configured_by_human") is True
+        and checkout.get("provider") in {"stripe", "contra", "lemon_squeezy"}
+        and parsed_checkout.scheme == "https"
+        and bool(parsed_checkout.hostname)
+    )
     names = {
         item.get("opportunity_id"): item.get("name")
         for item in state.get("ranked_opportunities", [])
@@ -265,7 +277,11 @@ def _update_manifest(
             "price": item.get("price"),
             "discovery": item.get("acquisition_channel"),
             "payment_rail": item.get("payment_rail"),
-            "payment_status": "active_only_when_a_public_configured_rail_exists",
+            "payment_status": (
+                "active_public_checkout"
+                if checkout_active and item.get("opportunity_id") == "opp-agent-launch-qa"
+                else "active_only_when_a_public_configured_rail_exists"
+            ),
         }
         for item in state.get("current_portfolio", [])
     ]
@@ -278,21 +294,34 @@ def _update_manifest(
             "owner_funds_spent": state["owner_funds_spent"],
         }
     )
+    currently_enabled = [
+        "connected GitHub publishing",
+        "up to three replies to qualified inbound project issues per cycle",
+    ]
+    enable_when_connected = [
+        "compliant outbound messaging",
+        "marketplace writes",
+        "agent-native receipts",
+        "verified-revenue reinvestment",
+        "collectible minting when selected",
+    ]
+    if checkout_active:
+        currently_enabled.append("human Stripe Payment Link for the full preflight audit")
+    else:
+        enable_when_connected.append("human checkout")
     manifest["capability_policy"] = {
         "rule": "Missing capabilities constrain execution, never the strategy search.",
-        "currently_enabled": [
-            "connected GitHub publishing",
-            "up to three replies to qualified inbound project issues per cycle",
-        ],
-        "enable_when_connected": [
-            "compliant outbound messaging",
-            "marketplace writes",
-            "human checkout",
-            "agent-native receipts",
-            "verified-revenue reinvestment",
-            "collectible minting when selected",
-        ],
+        "currently_enabled": currently_enabled,
+        "enable_when_connected": enable_when_connected,
     }
+    payment_policy = dict(manifest.get("payment_policy", {}))
+    payment_policy["active_rails"] = ["stripe_payment_link"] if checkout_active else []
+    payment_policy["human_checkout_config_status"] = (
+        "active_human_configured_public_stripe_payment_link"
+        if checkout_active
+        else "pending_human_checkout"
+    )
+    manifest["payment_policy"] = payment_policy
     manifest["safety"] = {
         "no_private_keys": True,
         "no_api_secrets_in_public_state": True,
@@ -300,6 +329,7 @@ def _update_manifest(
         "no_broker_or_trading_api": True,
         "no_strategy_category_lock": True,
         "external_execution_requires_capability_grant": True,
+        "human_checkout_connected": checkout_active,
         "owner_funded_spend_enabled": False,
         "wallet_capability_connected": False,
         "marketplace_write_capability_connected": False,

@@ -38,13 +38,23 @@ class CommercialActivationTest(unittest.TestCase):
         self.assertEqual(0.0, revenue.gross_revenue)
         self.assertEqual(0.0, revenue.net_revenue)
 
-    def test_sales_page_falls_back_to_public_intake_until_checkout_is_active(self):
+    def test_sales_page_uses_human_configured_public_checkout(self):
         checkout = json.loads((ROOT / "site" / "checkout-config.json").read_text(encoding="utf-8"))
         page = (ROOT / "site" / "qa-sprint.html").read_text(encoding="utf-8")
 
-        self.assertEqual("pending", checkout["status"])
-        self.assertEqual("", checkout["checkout_url"])
-        self.assertIn("revenue-experiment-interest.yml", page)
+        self.assertEqual("active", checkout["status"])
+        self.assertEqual("stripe", checkout["provider"])
+        self.assertTrue(checkout["configured_by_human"])
+        self.assertEqual(
+            "https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00",
+            checkout["checkout_url"],
+        )
+        self.assertIn("Buy the full audit — $149", page)
+        self.assertIn('target="_blank" rel="noopener"', page)
+        self.assertIn("preflight.html", page)
+        self.assertIn("SAMPLE_REPORT.md", page)
+        self.assertIn("vadimkoenen@gmail.com", page)
+        self.assertIn("Refunds: full refund if the audit isn't delivered within the agreed scope.", page)
         self.assertIn("checkout-config.json", page)
         self.assertNotIn("sk_live_", page)
         self.assertNotIn("private_key", page.lower())

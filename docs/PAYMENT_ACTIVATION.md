@@ -1,21 +1,19 @@
 # Payment Activation
 
-No checkout or wallet is active. The functional free MCP / Agent Preflight requires neither. Human checkout remains optional activation for the `$149` full audit; x402 requires its separate recurring-use gate, runtime host, and dedicated receiving wallet.
+The owner-provided public Stripe Payment Link is active for the `$149` full audit. No Stripe API key, webhook secret, or account-management credential is stored. The functional free MCP / Agent Preflight still requires no payment, while x402 remains behind its separate recurring-use gate, runtime host, and dedicated receiving wallet.
 
 Never put API keys, webhook secrets, private keys, seed phrases, bank data, tax data, account credentials, or buyer personal data in this repository.
 
 ## Cash Experiment: MCP / Agent Preflight Full Audit
 
-Trigger: owner activation approval, recorded on 2026-07-10.
+Status: active on 2026-07-12 through the public Stripe Payment Link in `site/checkout-config.json`.
 
-Minimal owner setup:
+Configured boundary:
 
-1. Open or connect a Contra independent account, or use the marketplace where the buyer originated.
-2. Complete that provider's identity, legal, tax, bank, and payout steps.
-3. Publish the exact fixed-scope service shown on `site/qa-sprint.html`.
-4. Set the founding price to `$149` and preserve the scope boundaries.
-5. Create a fixed-scope project or public guest-checkout link preserving the published scope.
-6. Provide only the public service and checkout URLs to the operator.
+1. Buyers may open the public `$149` Stripe Payment Link from `site/qa-sprint.html`.
+2. Stripe identity, legal, tax, bank, payout, refund, and account controls remain human-owned.
+3. The repository stores only the public checkout URL.
+4. Fulfillment remains the published 48-hour audit scope, prioritized report, one repair patch, and rerun.
 
 Marketplace-originated buyers remain on the marketplace's required payment rail.
 See `docs/ACTIVATION_HANDOFF.md` for the field-by-field setup.
@@ -50,16 +48,16 @@ The proposed prices are `0.25 USDC` for a basic report and `1 USDC` for an expan
 
 ## Public Checkout Configuration
 
-Only after a selected experiment passes its gate, update `site/checkout-config.json` with its ID and public URL:
+The active configuration is:
 
 ```json
 {
   "status": "active",
-  "experiment_id": "opp-selected-experiment",
-  "provider": "approved_provider_id",
-  "checkout_url": "https://public-checkout.example",
+  "experiment_id": "opp-agent-launch-qa",
+  "provider": "stripe",
+  "checkout_url": "https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00",
   "configured_by_human": true,
-  "notes": "Public URL only; no credentials."
+  "notes": "Public Stripe Payment Link only; no credentials."
 }
 ```
 

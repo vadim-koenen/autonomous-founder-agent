@@ -11,7 +11,7 @@ Payment, discovery, distribution, fulfillment, and the sellable offer are separa
 | Contra | Marketplace, service/product checkout, fulfillment | Human buyers of the full preflight audit or launch-gate product | Not connected | Owner account, legal acceptance, payout, and identity setup |
 | Upwork | Marketplace discovery and escrow | Marketplace-originated service buyers | Not connected | Owner identity, proposal rules, competition, and marketplace fees |
 | Fiverr | Marketplace discovery and checkout | Fixed AI service offers | Not connected | Owner identity, supply competition, and platform rules |
-| Stripe Payment Links | Direct human checkout | Direct card buyers when the offer warrants a standalone checkout | Not selected | Owner KYC, bank, tax, and product setup |
+| Stripe Payment Links | Direct human checkout | Direct card buyers of the full preflight audit | Active public Payment Link | No API/account access; refunds and payouts remain human-owned |
 | Lemon Squeezy | Merchant-of-record digital checkout | Eligible digital goods | Not selected | Services and crypto-related products do not fit its policy |
 | x402 Bazaar | Agent-native discovery and payment | Machine-purchased API or data responses | Read-only research | Paid operation requires a dedicated receiving wallet and real recurring demand |
 | NFT marketplace | Optional marketplace and collectible rail | Original collectible only when audience demand exists | Rejected from current portfolio | Wallet, rights, fees, and weak first-buyer evidence |
@@ -21,7 +21,7 @@ Payment, discovery, distribution, fulfillment, and the sellable offer are separa
 
 ### MCP / Agent Preflight Full Audit
 
-The buyer is human and the deliverable adds authorized live protocol checks, a decision report, and one repair to the free public-metadata route. Contra or a direct public checkout may be activated after the owner completes identity and payout setup. An Upwork-originated buyer must remain on Upwork escrow.
+The buyer is human and the deliverable adds authorized live protocol checks, a decision report, and one repair to the free public-metadata route. The owner-provided `$149` Stripe Payment Link is active for direct buyers. An Upwork-originated buyer must remain on Upwork escrow.
 
 ### Agent Launch Gate
 

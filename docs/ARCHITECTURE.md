@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Autonomous Founder Agent is a revenue-seeking system, not a trading system. M4 adds continuous source rotation, model-assisted opportunity synthesis, capability grants, and bounded execution to the recurring operator. Its current product is one deterministic MCP / agent preflight engine exposed as a free browser tool, a pending metered machine route, and a pending human full-audit service.
+Autonomous Founder Agent is a revenue-seeking system, not a trading system. M4 adds continuous source rotation, model-assisted opportunity synthesis, capability grants, and bounded execution to the recurring operator. Its current product is one deterministic MCP / agent preflight engine exposed as a free browser tool, a pending metered machine route, and a human full-audit service with an active public Stripe Payment Link.
 
 The mission is to maximize verified lawful net revenue while retaining strategic freedom and allocating verified profits toward a physical form.
 

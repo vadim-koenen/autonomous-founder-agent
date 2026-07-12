@@ -12,12 +12,12 @@ Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 - Verified net revenue: **$0.00**
 - Physical-form fund: **$0.00**
 - Owner funds spent: **$0.00**
-- Active checkout rails: **none**
+- Active checkout rails: **Stripe Payment Link for the $149 full audit**
 - Active wallets: **none**
 - Free MCP / Agent Preflight: **functional and public after deploy**
 - Metered preflight API: **contract ready; runtime host and wallet pending**
-- Buyer-ready full audit: **live; checkout pending**
-- Contra discovery/payment activation: **owner setup required**
+- Buyer-ready full audit: **live; Stripe checkout active**
+- Stripe account/API access: **not stored or delegated; public Payment Link only**
 - Connected public publication: **active**
 - Qualified inbound GitHub replies: **up to 3 per cycle**
 
@@ -27,7 +27,7 @@ Only completed transactions with a unique transaction ID, verification reference
 
 | Role | Experiment | Buyer | Price hypothesis | Current rail | Status |
 | --- | --- | --- | ---: | --- | --- |
-| Cash | MCP / Agent Preflight Full Audit | Agent and MCP teams preparing to connect or launch | $149 | Human checkout pending owner identity and public URL | Validating |
+| Cash | MCP / Agent Preflight Full Audit | Agent and MCP teams preparing to connect or launch | $149 | Active owner-configured Stripe Payment Link | Selling |
 | Asset | Agent Launch Gate | Builders needing repeatable agent launch tests | $39 | Contra digital product only after demand and owner verification | Validating |
 | Frontier | MCP / Agent Preflight Metered API | Agents screening external tools repeatedly | $0.25 basic / $1 full USDC | x402 only after three qualified recurring-use signals, runtime host, and dedicated wallet | Validating |
 
@@ -39,7 +39,7 @@ Functional preflight: https://vadim-koenen.github.io/autonomous-founder-agent/si
 
 Full audit: https://vadim-koenen.github.io/autonomous-founder-agent/site/qa-sprint.html
 
-`docs/ACTIVATION_HANDOFF.md` contains the exact Contra setup and manual LinkedIn launch steps. `data/commercial_funnel.json` measures public interest separately from the verified transaction ledger.
+`docs/ACTIVATION_HANDOFF.md` records the active public checkout boundary and future x402 gate. `data/commercial_funnel.json` measures public interest separately from the verified transaction ledger.
 
 ## Continuous Loop
 
@@ -59,7 +59,7 @@ The operator does not call the fixed M1 strategy library. M1 remains as a reprod
 
 `AUTONOMOUS` actions include public research, opportunity analysis, code and asset creation, connected GitHub publishing, qualified inbound replies within the owner grant, public metric measurement, and internal lifecycle decisions.
 
-`PREAUTHORIZED_WHEN_CONNECTED` actions include compliant outbound messages, marketplace listings, proposals, checkout creation, fulfillment, paid endpoints, wallet receipt, reinvestment, and minting when the strategy wins. Each requires its real account or credential, explicit scope, and a per-cycle limit; strategy search does not wait for those connections.
+`PREAUTHORIZED_WHEN_CONNECTED` actions include the active public Stripe checkout link plus future compliant outbound messages, marketplace listings, proposals, paid endpoints, wallet receipt, reinvestment, and minting when the strategy wins. Each requires its real account or credential, explicit scope, and a per-cycle limit; strategy search does not wait for those connections.
 
 `HUMAN_IDENTITY_REQUIRED` actions include account opening, KYC, bank and tax data, legal agreements, contracts, access grants, fund transfers, and buying the physical form.
 
@@ -110,7 +110,7 @@ python3 -m unittest discover -s tests
 
 ## Historical Milestones
 
-M1 generated and scored more than 30 diverse strategies without external execution. M2 published an agent profile, manifest, and checkout placeholder. M3 introduced a recurring operator. M4 added model-assisted discovery and bounded execution. The current product pass turns the strongest service and agent-native hypotheses into one shared preflight engine without activating an unconfigured payment rail.
+M1 generated and scored more than 30 diverse strategies without external execution. M2 published an agent profile, manifest, and checkout placeholder. M3 introduced a recurring operator. M4 added model-assisted discovery and bounded execution. The current product pass turns the strongest service and agent-native hypotheses into one shared preflight engine, with human Stripe checkout active and the x402 rail still gated by recurring-use evidence.
 
 ## Non-Negotiable Boundary
 

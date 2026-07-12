@@ -453,8 +453,17 @@
         margin: 0;
       }
 
-      .footer-grid a {
+      .footer-grid > a {
         white-space: nowrap;
+      }
+
+      .footer-copy {
+        display: grid;
+        gap: 8px;
+      }
+
+      .footer-copy a {
+        color: #ffffff;
       }
 
       @media (max-width: 860px) {
@@ -532,7 +541,7 @@
           display: block;
         }
 
-        .footer-grid a {
+        .footer-grid > a {
           display: inline-block;
           margin-top: 14px;
         }
@@ -560,11 +569,11 @@
     <main>
       <section class="hero" aria-label="MCP and agent preflight full audit">
         <div class="hero-copy">
-          <span id="checkoutStatus" class="status-tag">Founding intake open</span>
+          <span id="checkoutStatus" class="status-tag">Founding checkout active</span>
           <h1>MCP / Agent Preflight Full Audit</h1>
           <p>Turn the free public preflight into an authorized launch decision. One working AI agent, MCP server, or LLM workflow gets 25 focused cases, a prioritized report, one agreed repair patch, and a clear connection or launch verdict.</p>
           <div class="hero-actions">
-            <a class="button hero-primary" data-checkout-action href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml">Request a founding slot</a>
+            <a class="button hero-primary" data-checkout-action href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00" target="_blank" rel="noopener">Buy the full audit — $149</a>
             <a class="button hero-secondary" href="preflight.html">Run the free preflight</a>
           </div>
           <div class="hero-proof">
@@ -663,16 +672,20 @@
         <div class="shell close-grid">
           <div>
             <h2>Put one working agent through the full preflight for $149.</h2>
-            <p id="closeStatus">Checkout is pending. Public intake is open for the founding slots.</p>
+            <p id="closeStatus">Secure Stripe checkout is active.</p>
           </div>
-          <a class="button hero-primary" data-checkout-action href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml">Request a founding slot</a>
+          <a class="button hero-primary" data-checkout-action href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00" target="_blank" rel="noopener">Buy the full audit — $149</a>
         </div>
       </section>
     </main>
 
     <footer>
       <div class="shell footer-grid">
-        <p>Delivered by Autonomous Founder Agent under human-owned account, contract, and payout controls. No broker APIs, trading, wallet spending, fabricated customers, or fabricated revenue.</p>
+        <div class="footer-copy">
+          <p>Delivered by Autonomous Founder Agent under human-owned account, contract, and payout controls. No broker APIs, trading, wallet spending, fabricated customers, or fabricated revenue.</p>
+          <p>Contact: <a href="mailto:vadimkoenen@gmail.com">vadimkoenen@gmail.com</a></p>
+          <p>Refunds: full refund if the audit isn't delivered within the agreed scope.</p>
+        </div>
         <a href="./">Return to operator dashboard</a>
       </div>
     </footer>
@@ -681,13 +694,26 @@
       const fallbackUrl = "https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=revenue-experiment-interest.yml";
 
       function isPublicCheckout(config) {
+        const allowedProviders = new Set(["stripe", "contra", "lemon_squeezy"]);
         if (config.status !== "active" || config.experiment_id !== "opp-agent-launch-qa") return false;
+        if (config.configured_by_human !== true || !allowedProviders.has(config.provider)) return false;
         try {
           const url = new URL(config.checkout_url);
-          return url.protocol === "https:";
+          return url.protocol === "https:" && Boolean(url.hostname);
         } catch (error) {
           return false;
         }
+      }
+
+      function configureFallback() {
+        document.querySelectorAll("[data-checkout-action]").forEach((link) => {
+          link.href = fallbackUrl;
+          link.textContent = "Request a founding slot";
+          link.removeAttribute("target");
+          link.removeAttribute("rel");
+        });
+        document.getElementById("checkoutStatus").textContent = "Founding intake open";
+        document.getElementById("closeStatus").textContent = "Public intake is open for the founding slots.";
       }
 
       async function configureCommercialPath() {
@@ -702,20 +728,26 @@
             document.getElementById("interestCount").textContent = Number(funnel.metrics.qa_sprint_interest_issues || 0);
           }
 
-          if (!checkoutResponse.ok) return;
+          if (!checkoutResponse.ok) {
+            configureFallback();
+            return;
+          }
           const checkout = await checkoutResponse.json();
-          if (!isPublicCheckout(checkout)) return;
+          if (!isPublicCheckout(checkout)) {
+            configureFallback();
+            return;
+          }
 
           document.querySelectorAll("[data-checkout-action]").forEach((link) => {
             link.href = checkout.checkout_url;
-            link.textContent = "Buy the full audit";
+            link.textContent = "Buy the full audit — $149";
+            link.target = "_blank";
+            link.rel = "noopener";
           });
           document.getElementById("checkoutStatus").textContent = "Founding checkout active";
           document.getElementById("closeStatus").textContent = `Secure checkout is active through ${checkout.provider}.`;
         } catch (error) {
-          document.querySelectorAll("[data-checkout-action]").forEach((link) => {
-            link.href = fallbackUrl;
-          });
+          configureFallback();
         }
       }
 

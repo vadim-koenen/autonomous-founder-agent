@@ -39,7 +39,7 @@ Before enabling a channel, confirm:
 ## Current Required Owner Actions
 
 - None for the functional free MCP / Agent Preflight or continuous discovery loop.
-- Before accepting a `$149` full audit, activate one human checkout and return only its public URL.
+- The `$149` full audit now uses the active owner-provided public Stripe Payment Link; keep all Stripe secrets and account controls outside the repository.
 - After three qualified recurring-use requests, approve a runtime host and dedicated x402 receiving wallet; provide no private key or recovery material.
 
 ## Hard Stops

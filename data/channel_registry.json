@@ -112,16 +112,16 @@
       "channel_id": "stripe_payment_links",
       "name": "Stripe Payment Links",
       "kinds": ["human_payment"],
-      "account_exists": false,
+      "account_exists": true,
       "human_verification_required": true,
-      "agent_has_access": false,
-      "authority_class": "human_identity_required",
-      "permitted_actions": ["prepare product configuration", "create payment link after approved integration"],
+      "agent_has_access": true,
+      "authority_class": "preauthorized_when_connected",
+      "permitted_actions": ["publish the exact owner-provided public Payment Link", "direct buyers to public checkout", "record only owner-verified completed payments"],
       "costs": "Provider transaction fees",
-      "platform_restrictions": ["owner KYC, banking, tax, and legal acceptance required", "public checkout URL only in repository"],
-      "current_status": "not_connected",
+      "platform_restrictions": ["public checkout URL only in repository", "no Stripe API or account-management access", "refunds and payout controls remain human-owned"],
+      "current_status": "connected_public_payment_link_only",
       "source_url": "https://stripe.com/payment-links",
-      "last_checked": "2026-07-09"
+      "last_checked": "2026-07-12"
     },
     {
       "channel_id": "lemon_squeezy",

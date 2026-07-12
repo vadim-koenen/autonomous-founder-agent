@@ -35,7 +35,7 @@ The ledger begins at $0. Public views, calls, replies, checkout starts, and mark
 - Buyer: agent and MCP teams preparing to connect or launch
 - Offer: public-metadata preflight, authorized live protocol checks, prioritized report, one repair patch, and rerun
 - Price hypothesis: $149 fixed
-- Status: functional free tool deployed with the site; no checkout active
+- Status: functional free tool deployed; owner-configured Stripe Payment Link active for the full audit
 
 ### Asset - Agent Launch Gate
 
@@ -57,7 +57,7 @@ These are current experiments, not permanent business identities.
 
 The operator may research public evidence, create code and assets, update this connected repository and site, prepare offers and listings, measure public metrics, stop internal experiments, and update a public ledger with verified records. It may execute through connected capabilities up to each cycle's recorded limit.
 
-Current grants allow one public commercial asset and up to three replies to qualified inbound project issues per six-hour cycle. Marketplace writes, compliant outbound messages, checkout actions, wallet actions, reinvestment, and collectible minting can be enabled when the exact account, credential, authority, budget, and platform rules are configured.
+Current grants allow one public commercial asset, up to three replies to qualified inbound project issues per six-hour cycle, and publication of the exact owner-provided Stripe Payment Link for the full audit. Marketplace writes, compliant outbound messages, Stripe account management, wallet actions, reinvestment, and collectible minting remain unavailable until their exact account, credential, authority, budget, and platform rules are configured.
 
 The owner is required only for identity, KYC, bank or tax details, legal acceptance, contracts, access grants, account ownership, transfers, and the eventual physical purchase. Connected-channel automation must still follow platform terms and its configured authority.
 

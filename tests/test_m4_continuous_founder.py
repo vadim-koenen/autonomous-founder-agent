@@ -24,7 +24,11 @@ from founder_agent.synthesis import (
     build_synthesis_prompt,
     synthesize_opportunities,
 )
-from scripts.run_continuous_founder import _select_model, _update_model_access_state
+from scripts.run_continuous_founder import (
+    _select_model,
+    _update_manifest,
+    _update_model_access_state,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -446,6 +450,68 @@ class M4ContinuousFounderTest(unittest.TestCase):
         )
         opportunity_from_dict(by_id["opp-agent-launch-qa"])
         opportunity_from_dict(by_id["opp-x402-opportunity-pulse"])
+
+    def test_manifest_refresh_preserves_active_human_checkout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "site").mkdir()
+            (root / "AGENT_MANIFEST.json").write_text(
+                json.dumps(
+                    {
+                        "schema_name": "autonomous_founder_agent_manifest",
+                        "revenue": {},
+                        "payment_policy": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "site" / "checkout-config.json").write_text(
+                json.dumps(
+                    {
+                        "status": "active",
+                        "experiment_id": "opp-agent-launch-qa",
+                        "provider": "stripe",
+                        "checkout_url": "https://buy.stripe.com/example",
+                        "configured_by_human": True,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            state = {
+                "as_of": "2026-07-12",
+                "ranked_opportunities": [
+                    {"opportunity_id": "opp-agent-launch-qa", "name": "Full Audit"}
+                ],
+                "current_portfolio": [
+                    {
+                        "role": "cash",
+                        "opportunity_id": "opp-agent-launch-qa",
+                        "current_status": "validating",
+                    }
+                ],
+                "revenue": {
+                    "verified_transactions": 0,
+                    "gross_revenue": 0,
+                    "net_revenue": 0,
+                    "physical_form_fund": 0,
+                },
+                "owner_funds_spent": 0,
+            }
+
+            _update_manifest(
+                root,
+                state,
+                {"run_id": "test-run"},
+                {"model": "test-model", "synthesis_mode": "test"},
+            )
+            manifest = json.loads((root / "AGENT_MANIFEST.json").read_text(encoding="utf-8"))
+
+            self.assertEqual(["stripe_payment_link"], manifest["payment_policy"]["active_rails"])
+            self.assertTrue(manifest["safety"]["human_checkout_connected"])
+            self.assertEqual(
+                "active_public_checkout",
+                manifest["current_portfolio"][0]["payment_status"],
+            )
 
     def test_workflow_runs_six_hour_model_cycle_and_direct_pages_deploy(self):
         workflow = (ROOT / ".github" / "workflows" / "revenue-operator.yml").read_text(encoding="utf-8")

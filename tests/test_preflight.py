@@ -119,7 +119,7 @@ class PreflightTest(unittest.TestCase):
             with self.assertRaises(PreflightInputError):
                 parse_github_repository_url(url)
 
-    def test_dual_rail_contract_is_truthful_while_payments_are_pending(self):
+    def test_dual_rail_contract_keeps_human_checkout_separate_from_pending_x402(self):
         product = json.loads(
             (ROOT / "products" / "mcp-agent-preflight" / "product.json").read_text(
                 encoding="utf-8"
@@ -133,6 +133,8 @@ class PreflightTest(unittest.TestCase):
 
         self.assertFalse(product["execution_claims"]["paid_endpoint_live"])
         self.assertFalse(product["execution_claims"]["wallet_connected"])
+        self.assertTrue(product["execution_claims"]["checkout_connected"])
+        self.assertTrue(product["distribution"]["human_checkout_url"].startswith("https://buy.stripe.com/"))
         self.assertIsNone(product["x402"]["pay_to"])
         self.assertEqual(
             "contract_only_runtime_host_and_wallet_pending",

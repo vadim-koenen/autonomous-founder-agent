@@ -35,7 +35,7 @@ The workflow uses the scoped GitHub Actions token for repository content, model 
 ## Not Connected
 
 - no marketplace seller account
-- no payment processor or checkout URL
+- no Stripe API, webhook secret, account-management access, or stored payment credential; one owner-provided public Stripe Payment Link is active
 - no dedicated wallet, receiving address, runtime host, or live paid x402 endpoint
 - no ad account
 - no email or direct-message sender
@@ -50,7 +50,7 @@ Publishing public-safe files through the connected repository is autonomous. Ide
 
 No provider should be connected merely to make the project look active. An account request is triggered only by the demand gate documented for the selected experiment.
 
-The free preflight needs no owner account and performs no payment action. The metered contract remains inactive until at least three qualified recurring-use requests identify a real machine workflow, after which wallet and runtime setup become explicit human approvals. The human full-audit checkout also remains pending until the owner chooses to activate that rail.
+The free preflight needs no owner account and performs no payment action. The human full-audit rail uses the active owner-provided public Stripe Payment Link. The metered contract remains inactive until at least three qualified recurring-use requests identify a real machine workflow, after which wallet and runtime setup become explicit human approvals.
 
 ## Historical Search Note
 

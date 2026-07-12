@@ -10,29 +10,24 @@ Current commercial product:
 
 ## Required Now
 
-Nothing is required from the owner to keep the free tool and continuous operator running. The free route does not use a wallet, checkout, private repository, or target credential.
+Nothing further is required from the owner to keep the free tool, active Stripe checkout, and continuous operator running. The free route does not use the checkout, wallet, private repository, or target credential.
 
 ## Human Full-Audit Checkout
 
-Activate only when the owner is ready to accept the `$149` service:
+The owner-provided `$149` Stripe Payment Link is active on `site/qa-sprint.html`. It preserves the published 48-hour audit, report, one-repair, and rerun scope.
 
-1. Select one human rail. Contra remains the current marketplace hypothesis; Stripe is acceptable for direct buyers but adds no discovery.
-2. Create or sign in using the owner's real identity.
-3. Review current terms and complete required identity, tax, bank, and payout setup directly with the provider.
-4. Publish the MCP / Agent Preflight Full Audit using the scope on `site/qa-sprint.html`.
-5. Create a fixed-price public checkout preserving the `$149`, 48-hour, one-repair scope.
-6. Return only the public service and checkout URLs to the repository.
+Stripe account access, identity, tax, bank, payout, refund, and dispute controls remain human-owned. The repository stores no Stripe API key or webhook secret.
 
 Never provide credentials, tokens, tax records, bank details, private keys, seed phrases, or recovery codes.
 
-After setup, update `site/checkout-config.json`:
+Active `site/checkout-config.json` contract:
 
 ```json
 {
   "status": "active",
   "experiment_id": "opp-agent-launch-qa",
-  "provider": "contra",
-  "checkout_url": "https://public-checkout.example",
+  "provider": "stripe",
+  "checkout_url": "https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00",
   "configured_by_human": true,
   "notes": "Public checkout URL only; no credentials."
 }
