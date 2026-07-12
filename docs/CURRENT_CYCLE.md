@@ -18,8 +18,8 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Status: validating
 - Buyer: Agent builders and small teams deciding whether an MCP server or agent endpoint is ready to connect or launch.
 - Price: 149 USD
-- Discovery: Functional GitHub Pages preflight, public GitHub intake, and a human service marketplace only after owner activation.
-- Payment rail: Public human checkout or Contra for the full audit; checkout URL remains pending.
+- Discovery: Functional GitHub Pages preflight and public GitHub intake feed direct buyers into the active Stripe Payment Link; optional service marketplaces remain separate future channels.
+- Payment rail: Active owner-configured Stripe Payment Link: https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00
 - Next action: Run the functional public demo and collect qualified full-audit requests through the connected GitHub intake.
 - Review date: 2026-07-13
 
@@ -66,12 +66,13 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 11. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
 - 12. Agent-Ready Commerce Catalog Repair - 6.80
 - 13. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 14. Roblox Launch Lens Studio Plugin - 6.74
-- 15. x402 Endpoint Implementation Sprint - 6.63
-- 16. Original AI Media Commission - 6.57
-- 17. Roblox Retention Repair Sprint - 6.18
-- 18. Build-in-Public Revenue Series - 6.03
-- 19. Hosted Agent Eval Dashboard - 5.80
-- 20. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 21. Roblox Embodiment Factory Experience - 5.26
-- 22. Embodiment Milestone Collectible - 4.44
+- 14. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 15. Roblox Launch Lens Studio Plugin - 6.74
+- 16. x402 Endpoint Implementation Sprint - 6.63
+- 17. Original AI Media Commission - 6.57
+- 18. Roblox Retention Repair Sprint - 6.18
+- 19. Build-in-Public Revenue Series - 6.03
+- 20. Hosted Agent Eval Dashboard - 5.80
+- 21. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 22. Roblox Embodiment Factory Experience - 5.26
+- 23. Embodiment Milestone Collectible - 4.44
