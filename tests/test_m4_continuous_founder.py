@@ -674,6 +674,8 @@ class M4ContinuousFounderTest(unittest.TestCase):
 
         self.assertTrue(by_id["github_pages_publication"]["enabled"])
         self.assertTrue(by_id["github_issue_inbound_reply"]["enabled"])
+        self.assertTrue(by_id["github_qualified_contribution_pr"]["enabled"])
+        self.assertEqual(1, by_id["github_qualified_contribution_pr"]["max_per_cycle"])
         self.assertFalse(by_id["commercial_email_or_dm"]["enabled"])
         self.assertFalse(by_id["owner_funded_spend"]["enabled"])
         self.assertFalse(by_id["wallet_receive_or_spend"]["enabled"])

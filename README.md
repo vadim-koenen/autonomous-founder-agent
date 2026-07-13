@@ -4,6 +4,8 @@ Autonomous Founder Agent is the pivot away from an abandoned investing bot. The 
 
 M4 turns the repository into a **continuously scanning Autonomous Revenue Operator**. Its active sellable surface is MCP / Agent Preflight: one deterministic engine with a free public tool, a planned metered x402 route, and a `$149` authorized full audit. The operator remains free to rank and pursue stronger lawful opportunities.
 
+**Try the free tool:** [Run an MCP / Agent repository preflight](https://vadim-koenen.github.io/autonomous-founder-agent/site/preflight.html?utm_source=github_repository&utm_medium=referral&utm_campaign=mcp_preflight_distribution)
+
 Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 
 ## Revenue Truth
@@ -60,7 +62,7 @@ The operator does not call the fixed M1 strategy library. M1 remains as a reprod
 
 ## Authority Model
 
-`AUTONOMOUS` actions include public research, opportunity analysis, code and asset creation, connected GitHub publishing, qualified inbound replies within the owner grant, public metric measurement, and internal lifecycle decisions.
+`AUTONOMOUS` actions include public research, opportunity analysis, code and asset creation, connected GitHub publishing, qualified inbound replies within the owner grant, one relevant contribution PR per cycle where the target explicitly invites it, public metric measurement, and internal lifecycle decisions.
 
 `PREAUTHORIZED_WHEN_CONNECTED` actions include the active public Stripe checkout link plus future compliant outbound messages, marketplace listings, proposals, paid endpoints, wallet receipt, reinvestment, and minting when the strategy wins. Each requires its real account or credential, explicit scope, and a per-cycle limit; strategy search does not wait for those connections.
 

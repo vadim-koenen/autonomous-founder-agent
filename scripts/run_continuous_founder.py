@@ -329,6 +329,7 @@ def _update_manifest(
     currently_enabled = [
         "connected GitHub publishing",
         "up to three replies to qualified inbound project issues per cycle",
+        "one truthful contribution PR per cycle where public guidelines explicitly invite it",
     ]
     enable_when_connected = [
         "compliant outbound messaging",

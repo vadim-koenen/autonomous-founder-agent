@@ -4,8 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MCP / Agent Preflight | Autonomous Founder Agent</title>
-    <meta name="description" content="Run a deterministic public-metadata preflight on an MCP server or agent repository.">
+    <meta name="description" content="Run a free, deterministic public-metadata readiness check on an MCP server or agent repository. No target code or credentials are used.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free MCP / Agent Repository Preflight">
+    <meta property="og:description" content="Check public setup, maintenance, licensing, security, and release signals before connecting to an MCP server or agent repository.">
+    <meta property="og:url" content="https://vadim-koenen.github.io/autonomous-founder-agent/site/preflight.html">
     <link rel="canonical" href="https://vadim-koenen.github.io/autonomous-founder-agent/site/preflight.html">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "MCP / Agent Preflight",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web",
+        "description": "A deterministic public-metadata readiness check for MCP server and agent repositories.",
+        "url": "https://vadim-koenen.github.io/autonomous-founder-agent/site/preflight.html",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
     <style>
       :root {
         color-scheme: light;
@@ -143,7 +160,8 @@
         .truth-item:nth-child(n + 3) { border-top: 1px solid #353535; }
         .report-head { grid-template-columns: 1fr; align-items: start; }
         .score-box { width: 132px; }
-        .report-actions, .report-actions .button { width: 100%; }
+        .report-actions { width: 100%; flex-direction: column; }
+        .report-actions .button { width: 100%; }
         .checks { grid-template-columns: 1fr; }
         .footer-inner { display: block; }
         .footer-links { margin-top: 16px; }
@@ -175,12 +193,12 @@
           <form id="preflightForm">
             <label for="repoUrl">
               GitHub repository URL
-              <input id="repoUrl" name="repoUrl" type="url" required autocomplete="url" spellcheck="false" value="https://github.com/github/github-mcp-server" pattern="https://(www\.)?github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?">
+              <input id="repoUrl" name="repoUrl" type="text" inputmode="url" required autocomplete="url" spellcheck="false" value="https://github.com/github/github-mcp-server" aria-describedby="repoHelp">
             </label>
             <button id="runButton" class="button" type="submit">Run preflight</button>
           </form>
           <div class="form-meta">
-            <span>Nothing is submitted to this project; your browser calls GitHub directly.</span>
+            <span id="repoHelp">Paste a GitHub URL or owner/repository. Your browser calls GitHub directly.</span>
             <button id="sampleButton" class="example-link" type="button">Open synthetic sample</button>
           </div>
         </div>
@@ -207,8 +225,9 @@
               <p id="target">The report will appear here without executing the target project.</p>
             </div>
             <div class="report-actions">
+              <button id="shareButton" class="button secondary" type="button" disabled>Copy report link</button>
               <button id="jsonButton" class="button secondary" type="button" disabled>View JSON</button>
-              <a class="button" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&title=MCP%20preflight%20full%20audit">Request full audit</a>
+              <a class="button" data-checkout-link href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00?utm_source=preflight_tool&amp;utm_medium=owned_web&amp;utm_campaign=mcp_audit_first_customer&amp;utm_content=report_cta" target="_blank" rel="noopener">Buy full audit - $149</a>
             </div>
           </div>
           <div id="statusMessage" class="status-message" role="status">Ready for a public repository URL.</div>
@@ -231,7 +250,8 @@
             </table>
             <div class="commercial-actions">
               <a class="button" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&amp;title=MCP%20preflight%20metered%20route">Request metered route</a>
-              <a class="button secondary" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&amp;title=MCP%20preflight%20full%20audit">Request full audit</a>
+              <a class="button" data-checkout-link href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00?utm_source=preflight_tool&amp;utm_medium=owned_web&amp;utm_campaign=mcp_audit_first_customer&amp;utm_content=offer_table_cta" target="_blank" rel="noopener">Buy full audit - $149</a>
+              <a class="button secondary" href="https://github.com/vadim-koenen/autonomous-founder-agent/issues/new?template=opportunity-interest.yml&amp;title=MCP%20preflight%20scope%20question">Ask a scope question</a>
             </div>
           </div>
           <aside class="boundary">
@@ -264,15 +284,44 @@
       const repoInput = document.getElementById("repoUrl");
       const runButton = document.getElementById("runButton");
       const sampleButton = document.getElementById("sampleButton");
+      const shareButton = document.getElementById("shareButton");
       const jsonButton = document.getElementById("jsonButton");
       const dialog = document.getElementById("jsonDialog");
       const statusMessage = document.getElementById("statusMessage");
       let currentReport = null;
 
       function parseRepository(value) {
-        const match = String(value).trim().match(/^https:\/\/(?:www\.)?github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?$/);
-        if (!match) throw new Error("Use an exact https://github.com/owner/repository URL.");
+        const input = String(value).trim();
+        const match = input.match(/^https:\/\/(?:www\.)?github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?$/)
+          || input.match(/^([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)$/);
+        if (!match) throw new Error("Use an exact GitHub URL or owner/repository.");
         return { owner: match[1], repo: match[2], url: `https://github.com/${match[1]}/${match[2]}` };
+      }
+
+      function setShareableTarget(target) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("repo", `${target.owner}/${target.repo}`);
+        window.history.replaceState({}, "", url);
+        shareButton.disabled = false;
+      }
+
+      function cleanAttribution(value, fallback) {
+        const cleaned = String(value || "").trim().slice(0, 80);
+        return /^[A-Za-z0-9_.-]+$/.test(cleaned) ? cleaned : fallback;
+      }
+
+      function applyCheckoutAttribution() {
+        const pageParams = new URL(window.location.href).searchParams;
+        const source = cleanAttribution(pageParams.get("utm_source"), "preflight_tool");
+        const medium = cleanAttribution(pageParams.get("utm_medium"), "owned_web");
+        const campaign = cleanAttribution(pageParams.get("utm_campaign"), "mcp_audit_first_customer");
+        document.querySelectorAll("[data-checkout-link]").forEach((link) => {
+          const checkout = new URL(link.href);
+          checkout.searchParams.set("utm_source", source);
+          checkout.searchParams.set("utm_medium", medium);
+          checkout.searchParams.set("utm_campaign", campaign);
+          link.href = checkout.toString();
+        });
       }
 
       function ageDays(timestamp) {
@@ -381,17 +430,19 @@
         }
         const [metadata, files] = await Promise.all([metadataResponse.json(), contentsResponse.json()]);
         if (!Array.isArray(files)) throw new Error("GitHub did not return repository root contents.");
-        return analyzeSnapshot(target, metadata, files, release);
+        return { report: analyzeSnapshot(target, metadata, files, release), target };
       }
 
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+      async function executePreflight(value) {
         runButton.disabled = true;
         runButton.textContent = "Running...";
+        shareButton.disabled = true;
         statusMessage.textContent = "Reading public GitHub metadata...";
         statusMessage.className = "status-message";
         try {
-          const report = await runPreflight(repoInput.value);
+          const { report, target } = await runPreflight(value);
+          repoInput.value = target.url;
+          setShareableTarget(target);
           render(report, "Live public metadata loaded from GitHub. No target code or credentials were used.", "success");
         } catch (error) {
           statusMessage.textContent = `${error.message} The synthetic sample remains available and is labeled as such.`;
@@ -400,6 +451,11 @@
           runButton.disabled = false;
           runButton.textContent = "Run preflight";
         }
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        await executePreflight(repoInput.value);
       });
 
       sampleButton.addEventListener("click", async () => {
@@ -407,6 +463,7 @@
           const response = await fetch("../products/mcp-agent-preflight/sample-response.json", { cache: "no-store" });
           if (!response.ok) throw new Error("Sample report unavailable.");
           const report = await response.json();
+          shareButton.disabled = true;
           render(report, "Synthetic fixture loaded. It demonstrates report shape and is not market evidence.", "");
         } catch (error) {
           statusMessage.textContent = error.message;
@@ -414,9 +471,33 @@
         }
       });
 
+      shareButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          statusMessage.textContent = "Shareable report link copied. Anyone opening it will rerun the same public-metadata check.";
+          statusMessage.className = "status-message success";
+        } catch {
+          statusMessage.textContent = `Copy this report link: ${window.location.href}`;
+          statusMessage.className = "status-message";
+        }
+      });
+
       jsonButton.addEventListener("click", () => dialog.showModal());
       document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
       dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+
+      applyCheckoutAttribution();
+      const requestedRepository = new URL(window.location.href).searchParams.get("repo");
+      if (requestedRepository) {
+        try {
+          const target = parseRepository(requestedRepository);
+          repoInput.value = target.url;
+          void executePreflight(target.url);
+        } catch (error) {
+          statusMessage.textContent = error.message;
+          statusMessage.className = "status-message error";
+        }
+      }
     </script>
   </body>
 </html>
