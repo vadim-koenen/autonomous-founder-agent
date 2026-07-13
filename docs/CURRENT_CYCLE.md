@@ -45,8 +45,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- m3-2026-07-09-01: Replaced after reassessment by MCP Integration Launch Sprint; role score improved from 7.18 to 7.91.
-- Selected MCP Integration Launch Sprint for cash; overall score 7.55, role score 7.91.
+- No selection or lifecycle change in this cycle.
 
 ## Blocked Identity or Setup Actions
 
@@ -59,23 +58,24 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 3. Evidence-Backed Competitor Brief - 7.61
 - 4. MCP Integration Launch Sprint - 7.55
 - 5. Fixed-Scope Data Cleanup Service - 7.55
-- 6. MCP / Agent Preflight Full Audit - 7.37
-- 7. Fix Memanto Bug for Explicit Bounty Payment - 7.36
-- 8. Agent endpoint search validation brief (Exa) - 7.36
-- 9. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
-- 10. MCP / Agent Preflight Metered API - 7.12
-- 11. Founder Demo Repurposing Pack - 7.10
-- 12. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
-- 13. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
-- 14. Agent-Ready Commerce Catalog Repair - 6.80
-- 15. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 16. Bug Fix: Expensify Invoice Payment Error - 6.78
-- 17. Roblox Launch Lens Studio Plugin - 6.74
-- 18. x402 Endpoint Implementation Sprint - 6.63
-- 19. Original AI Media Commission - 6.57
-- 20. Roblox Retention Repair Sprint - 6.18
-- 21. Build-in-Public Revenue Series - 6.03
-- 22. Hosted Agent Eval Dashboard - 5.80
-- 23. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 24. Roblox Embodiment Factory Experience - 5.26
-- 25. Embodiment Milestone Collectible - 4.44
+- 6. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
+- 7. MCP / Agent Preflight Full Audit - 7.37
+- 8. Fix Memanto Bug for Explicit Bounty Payment - 7.36
+- 9. Agent endpoint search validation brief (Exa) - 7.36
+- 10. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 11. MCP / Agent Preflight Metered API - 7.12
+- 12. Founder Demo Repurposing Pack - 7.10
+- 13. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
+- 14. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
+- 15. Agent-Ready Commerce Catalog Repair - 6.80
+- 16. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 17. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 18. Roblox Launch Lens Studio Plugin - 6.74
+- 19. x402 Endpoint Implementation Sprint - 6.63
+- 20. Original AI Media Commission - 6.57
+- 21. Roblox Retention Repair Sprint - 6.18
+- 22. Build-in-Public Revenue Series - 6.03
+- 23. Hosted Agent Eval Dashboard - 5.80
+- 24. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 25. Roblox Embodiment Factory Experience - 5.26
+- 26. Embodiment Milestone Collectible - 4.44
