@@ -28,9 +28,13 @@ The mission is to maximize verified lawful net revenue while retaining strategic
    - retain or replace up to one cash, asset, and frontier experiment
    - let any lawful category compete for each role
    - require a challenger to clear the configured replacement margin
+   - defer score-only replacement until the incumbent has 50 measured impressions, 25 qualified contacts, or seven validation days
 5. Execute
    - require the selected channel, authority class, explicit capability grant, and cycle budget to agree
+   - resolve executable opportunities from the full typed catalog, not only the model's newly synthesized list
+   - try the active human checkout and current cash, asset, and frontier experiments before ranked challenger fallbacks
    - publish at most one public-safe commercial asset and respond to at most three qualified inbound issues
+   - skip identical published assets without consuming the publication budget
    - represent unavailable channels as blocked, never as fabricated execution
 6. Measure
    - keep impressions, contacts, replies, checkout starts, and purchases separate
@@ -74,7 +78,7 @@ The mission is to maximize verified lawful net revenue while retaining strategic
 - Asset: strongest current fit for a scalable or repeatedly sellable output.
 - Frontier: strongest current fit for a newer channel, marketplace, technology, or agent-native mechanism.
 
-Roles do not map to fixed categories. An experiment can be replaced whenever lifecycle metrics or opportunity evidence justify it.
+Roles do not map to fixed categories. Explicit scale, kill, and pivot rules still act on recorded metrics immediately. A score-only challenger replacement waits for minimum exposure or the seven-day validation ceiling so zero traffic is not mistaken for a failed offer.
 
 ## Authority
 
@@ -115,6 +119,8 @@ M1 and `founder_agent/strategy_library.py` remain reproducible historical artifa
 - Unknown channels produce a blocked action.
 - Unconnected channels cannot report execution.
 - A missing capability grant blocks external action.
+- An ineligible model-selected action falls back to the highest-priority executable experiment instead of ending the cycle empty-handed.
+- A human-configured public checkout is eligible for distribution, but never grants payment-account, refund, transfer, or secret access.
 - Resource use beyond a cycle limit fails before execution.
 - Duplicate verified transaction IDs reject the ledger.
 - Unsupported currency conversion rejects the ledger.

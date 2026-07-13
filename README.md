@@ -2,7 +2,7 @@
 
 Autonomous Founder Agent is the pivot away from an abandoned investing bot. The new thesis is that an autonomous agent may be better at creating and selling useful economic outputs than extracting an edge from financial markets.
 
-M4 turns the repository into a **continuously scanning Autonomous Revenue Operator**. The current product experiment is MCP / Agent Preflight: one deterministic engine with a free public tool, a planned metered x402 route, and a `$149` authorized full audit.
+M4 turns the repository into a **continuously scanning Autonomous Revenue Operator**. Its active sellable surface is MCP / Agent Preflight: one deterministic engine with a free public tool, a planned metered x402 route, and a `$149` authorized full audit. The operator remains free to rank and pursue stronger lawful opportunities.
 
 Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 
@@ -23,13 +23,15 @@ Public dashboard: https://vadim-koenen.github.io/autonomous-founder-agent/site/
 
 Only completed transactions with a unique transaction ID, verification reference, verification timestamp, and positive gross amount count. Fees, refunds, and direct costs reduce net revenue.
 
-## Current Portfolio
+## Activated Revenue Surfaces
 
-| Role | Experiment | Buyer | Price hypothesis | Current rail | Status |
+The live portfolio changes as evidence is rescored; `data/operator_state.json` is its source of truth. Activation state is separate from strategy rank: the already configured checkout can remain available for a bounded exposure test while the operator evaluates or builds a challenger.
+
+| Surface | Experiment | Buyer | Price hypothesis | Current rail | Status |
 | --- | --- | --- | ---: | --- | --- |
-| Cash | MCP / Agent Preflight Full Audit | Agent and MCP teams preparing to connect or launch | $149 | Active owner-configured Stripe Payment Link | Selling |
-| Asset | Agent Launch Gate | Builders needing repeatable agent launch tests | $39 | Contra digital product only after demand and owner verification | Validating |
-| Frontier | MCP / Agent Preflight Metered API | Agents screening external tools repeatedly | $0.25 basic / $1 full USDC | x402 only after three qualified recurring-use signals, runtime host, and dedicated wallet | Validating |
+| Human checkout | MCP / Agent Preflight Full Audit | Agent and MCP teams preparing to connect or launch | $149 | Active owner-configured Stripe Payment Link | Selling |
+| Reusable asset | Agent Launch Gate | Builders needing repeatable agent launch tests | $39 | Contra digital product only after demand and owner verification | Validating |
+| Agent-native route | MCP / Agent Preflight Metered API | Agents screening external tools repeatedly | $0.25 basic / $1 full USDC | x402 only after three qualified recurring-use signals, runtime host, and dedicated wallet | Validating |
 
 The former `$19` Agent-to-Agent Commerce Starter Kit is historical. The generic reasoning-endpoint hypothesis was also rejected as insufficiently specific: aggregate x402 activity did not establish demand for that exact offer.
 
@@ -50,8 +52,9 @@ The scheduled GitHub Actions workflow runs at minute 17 every six hours and can 
 3. rejects model output that lacks live evidence, complete scores, a registered channel, or valid authority
 4. derives role fit from scored economics, caps unsupported marketplace extrapolation, and reranks the full cash, asset, and frontier set
 5. replies to at most three qualified inbound project issues through the explicit grant
-6. publishes at most one validation asset through connected GitHub Pages
-7. records the full budget and external effects, runs tests, commits audited state, and directly deploys that exact state to Pages
+6. prioritizes the active checkout and current portfolio, falling back when the model selects an ineligible or unavailable action
+7. publishes at most one new validation asset through an explicit connected GitHub Pages capability grant
+8. records the full budget and external effects, runs tests, commits audited state, and directly deploys that exact state to Pages
 
 The operator does not call the fixed M1 strategy library. M1 remains as a reproducible historical example and test fixture.
 

@@ -34,6 +34,9 @@ MISSION = (
 )
 
 REVIEW_INTERVAL_DAYS = 1
+MINIMUM_REPLACEMENT_IMPRESSIONS = 50
+MINIMUM_REPLACEMENT_CONTACTS = 25
+MAX_UNMEASURED_VALIDATION_DAYS = 7
 OPPORTUNITY_FIELD_NAMES = {item.name for item in fields(Opportunity)}
 
 ACTIVE_STATUSES = {
@@ -247,6 +250,17 @@ def _review_due(experiment: Experiment, as_of: date) -> bool:
     return date.fromisoformat(experiment.review_date) <= as_of
 
 
+def _score_only_replacement_is_premature(experiment: Experiment, as_of: date) -> bool:
+    """Keep an untested incumbent long enough to collect a real market signal."""
+
+    validation_age = max(0, (as_of - date.fromisoformat(experiment.start_date)).days)
+    measured_exposure = (
+        experiment.actual_impressions >= MINIMUM_REPLACEMENT_IMPRESSIONS
+        or experiment.actual_contacts >= MINIMUM_REPLACEMENT_CONTACTS
+    )
+    return not measured_exposure and validation_age < MAX_UNMEASURED_VALIDATION_DAYS
+
+
 def _role_winner(
     ranked: Iterable[ScoredOpportunity],
     role: str,
@@ -319,6 +333,15 @@ def _reassess_active_experiments(
             continue
 
         if not _review_due(experiment, as_of) or experiment.actual_purchases > 0:
+            active.append(experiment)
+            continue
+
+        if _score_only_replacement_is_premature(experiment, as_of):
+            experiment.review_date = (as_of + timedelta(days=REVIEW_INTERVAL_DAYS)).isoformat()
+            experiment.last_decision = (
+                "Retained until the offer receives 50 measured impressions, "
+                "25 qualified contacts, or seven validation days."
+            )
             active.append(experiment)
             continue
 

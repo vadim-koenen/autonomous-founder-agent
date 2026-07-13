@@ -25,6 +25,7 @@ from founder_agent.synthesis import (
     synthesize_opportunities,
 )
 from scripts.run_continuous_founder import (
+    _execution_opportunity_ids,
     _select_model,
     _update_manifest,
     _update_model_access_state,
@@ -347,6 +348,7 @@ class M4ContinuousFounderTest(unittest.TestCase):
 
     def test_publication_is_one_bounded_escaped_asset(self):
         synthesis, tracker = self.synthesize()
+        capabilities = load_json("config/capability_grants.json")
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             record = execute_bounded_action(
@@ -356,6 +358,7 @@ class M4ContinuousFounderTest(unittest.TestCase):
                 self.channels,
                 tracker,
                 eligible_opportunity_ids=["opp-discovered-specific-outcome"],
+                capability_config=capabilities,
                 observed_at=datetime(2026, 7, 11, 12, tzinfo=timezone.utc),
             )
             page = (root / "site" / "opportunities" / "latest.html").read_text(encoding="utf-8")
@@ -374,11 +377,105 @@ class M4ContinuousFounderTest(unittest.TestCase):
                 self.channels,
                 tracker,
                 eligible_opportunity_ids=["opp-discovered-specific-outcome"],
+                capability_config=capabilities,
                 previous_log=prior,
                 observed_at=datetime(2026, 7, 11, 18, tzinfo=timezone.utc),
             )
             self.assertEqual("skipped_duplicate", duplicate["status"])
             self.assertEqual(1, tracker.snapshot()["used"]["publications"])
+
+    def test_active_checkout_falls_back_to_static_portfolio_offer(self):
+        synthesis, tracker = self.synthesize()
+        products = load_json("data/product_opportunity_extensions.json")
+        checkout = {
+            "status": "active",
+            "experiment_id": "opp-agent-launch-qa",
+            "provider": "stripe",
+            "checkout_url": "https://buy.stripe.com/test-public-link",
+            "configured_by_human": True,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            record = execute_bounded_action(
+                root,
+                synthesis,
+                self.snapshot,
+                self.channels,
+                tracker,
+                eligible_opportunity_ids=[
+                    "opp-agent-launch-qa",
+                    "opp-discovered-specific-outcome",
+                ],
+                priority_opportunity_ids=["opp-agent-launch-qa"],
+                opportunity_catalog=products["opportunities"],
+                evidence_catalog=products["evidence"],
+                checkout_config=checkout,
+                capability_config=load_json("config/capability_grants.json"),
+                observed_at=datetime(2026, 7, 13, 12, tzinfo=timezone.utc),
+            )
+
+            page = (root / "site" / "opportunities" / "latest.html").read_text(
+                encoding="utf-8"
+            )
+            self.assertEqual("published", record["status"])
+            self.assertEqual("opp-agent-launch-qa", record["opportunity_id"])
+            self.assertEqual("priority_experiment", record["selection_mode"])
+            self.assertEqual(
+                "opp-discovered-specific-outcome",
+                record["requested_opportunity_id"],
+            )
+            self.assertIn("MCP / Agent Preflight Full Audit", page)
+            self.assertIn("https://buy.stripe.com/test-public-link", page)
+            self.assertIn("Buy the full audit - $149", page)
+            self.assertIn('target="_blank" rel="noopener"', page)
+            self.assertIn("Ask about scope", page)
+            self.assertEqual(1, tracker.snapshot()["used"]["publications"])
+
+    def test_publication_fails_closed_without_capability_grant(self):
+        synthesis, tracker = self.synthesize()
+        with tempfile.TemporaryDirectory() as directory:
+            record = execute_bounded_action(
+                Path(directory),
+                synthesis,
+                self.snapshot,
+                self.channels,
+                tracker,
+                eligible_opportunity_ids=["opp-discovered-specific-outcome"],
+                capability_config={"grants": []},
+                observed_at=datetime(2026, 7, 13, 12, tzinfo=timezone.utc),
+            )
+
+        self.assertEqual("blocked", record["status"])
+        self.assertIn("no explicit publication capability grant", record["reason"])
+        self.assertEqual(0, tracker.snapshot()["used"]["publications"])
+
+    def test_execution_order_prioritizes_active_checkout_then_cash(self):
+        state = {
+            "current_portfolio": [
+                {"role": "asset", "opportunity_id": "opp-asset"},
+                {"role": "frontier", "opportunity_id": "opp-frontier"},
+                {"role": "cash", "opportunity_id": "opp-cash"},
+            ],
+            "ranked_opportunities": [
+                {"opportunity_id": "opp-ranked"},
+                {"opportunity_id": "opp-cash"},
+            ],
+        }
+        checkout = {
+            "status": "active",
+            "experiment_id": "opp-checkout",
+            "provider": "stripe",
+            "checkout_url": "https://buy.stripe.com/public-link",
+            "configured_by_human": True,
+        }
+
+        priority, eligible = _execution_opportunity_ids(state, checkout)
+
+        self.assertEqual(
+            ["opp-checkout", "opp-cash", "opp-asset", "opp-frontier"],
+            priority,
+        )
+        self.assertEqual(priority + ["opp-ranked"], eligible)
 
     def test_inbound_replies_require_grant_token_and_stop_at_three(self):
         capabilities = load_json("config/capability_grants.json")

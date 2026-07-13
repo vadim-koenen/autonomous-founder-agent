@@ -94,6 +94,7 @@ class M3OperatorTest(unittest.TestCase):
         for item in previous["current_portfolio"]:
             item["current_status"] = "validating"
             item["review_date"] = "2026-07-10"
+            item["actual_impressions"] = 50
 
         rescanned = copy.deepcopy(self.scan)
         for opportunity in rescanned["opportunities"]:
@@ -121,6 +122,40 @@ class M3OperatorTest(unittest.TestCase):
             frontier.experiment_id,
             {item.experiment_id for item in second.killed_or_pivoted},
         )
+
+    def test_due_incumbent_is_not_replaced_before_market_exposure(self):
+        first = run_operating_cycle(
+            self.scan,
+            self.channels,
+            self.ledger,
+            previous_state=None,
+            as_of=date(2026, 7, 9),
+        )
+        previous = {"current_portfolio": [asdict(item) for item in first.selected_experiments]}
+        for item in previous["current_portfolio"]:
+            item["current_status"] = "validating"
+            item["review_date"] = "2026-07-10"
+
+        rescanned = copy.deepcopy(self.scan)
+        for opportunity in rescanned["opportunities"]:
+            if opportunity["opportunity_id"] == "opp-x402-opportunity-pulse":
+                opportunity["scores"] = {key: 1 for key in OPPORTUNITY_WEIGHTS}
+                opportunity["role_fit"]["frontier"] = 1
+            if opportunity["opportunity_id"] == "opp-x402-sprint":
+                opportunity["role_fit"]["frontier"] = 10
+
+        second = run_operating_cycle(
+            rescanned,
+            self.channels,
+            self.ledger,
+            previous_state=previous,
+            as_of=date(2026, 7, 13),
+        )
+
+        frontier = next(item for item in second.selected_experiments if item.role == "frontier")
+        self.assertEqual("opp-x402-opportunity-pulse", frontier.opportunity_id)
+        self.assertEqual([], second.killed_or_pivoted)
+        self.assertIn("50 measured impressions", frontier.last_decision)
 
     def test_decision_history_survives_a_no_change_cycle(self):
         first = run_operating_cycle(

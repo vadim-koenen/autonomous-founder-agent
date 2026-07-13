@@ -29,9 +29,10 @@ One cycle performs these steps:
 3. Supply sanitized observations, current opportunity IDs, and channel state to one bounded GitHub Models call.
 4. Reject proposals with invented evidence, incomplete scores, invalid channels, unsupported authority, negative economics, or prohibited conduct.
 5. Merge validated proposals into a rolling 40-opportunity memory.
-6. Rerank the typed opportunity set and reassess incumbents every day.
-7. Execute only through explicit capability grants and resource budgets.
-8. Test, commit, and directly deploy the exact operated state to GitHub Pages.
+6. Rerank the typed opportunity set and reassess incumbents every day, while deferring score-only replacement until 50 measured impressions, 25 qualified contacts, or seven validation days.
+7. Resolve execution against the full typed catalog and prioritize an active human checkout plus current portfolio before model-selected or top-ranked fallbacks.
+8. Execute only through explicit capability grants and resource budgets.
+9. Test, commit, and directly deploy the exact operated state to GitHub Pages.
 
 GitHub Models uses the workflow's ephemeral `GITHUB_TOKEN` with `models: read`. No model credential is stored. The requested `openai/gpt-5.5` remains the first preference, followed by `openai/gpt-5`; the repository token currently cannot invoke either preferred model, so the runtime uses GitHub's documented `openai/gpt-4.1` workflow fallback. Temporary access failures are remembered for seven days, then retried automatically. When inference is unavailable, discovery and deterministic scoring continue without fabricating new ideas.
 
@@ -63,6 +64,12 @@ The inbound grant is repository-specific and inbound-only. The runtime cannot op
 The public Stripe Payment Link for the full audit is connected. Capabilities still awaiting real configuration include compliant outbound messaging, marketplace writes, Stripe account management, agent-native payment receipt, verified-revenue reinvestment, and collectible minting. These are eligible future actions rather than permanent prohibitions.
 
 Identity, KYC, tax, bank, legal acceptance, contracts, account creation, and physical purchases remain owner actions because an agent cannot truthfully manufacture those facts or permissions.
+
+## Distribution Fallback
+
+The model may identify a strong opportunity that does not survive the current portfolio or top-three eligibility check. That no longer ends the cycle with a blocked record. The runtime first considers the human-configured active checkout, then current cash, asset, and frontier experiments, then an eligible model selection and remaining ranked fallbacks.
+
+Every candidate must still use a connected publishing channel, match the explicit GitHub Pages publication grant, fit the one-publication budget, and differ from an already published asset. The fallback publishes availability; it does not claim that traffic, checkout starts, or demand occurred.
 
 ## Current Dual-Rail Product
 

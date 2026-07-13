@@ -10,7 +10,7 @@ import sys
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Callable, Dict, Mapping, Optional
+from typing import Any, Callable, Dict, List, Mapping, Optional, Tuple
 from urllib.parse import urlparse
 
 
@@ -22,6 +22,7 @@ from founder_agent.discovery import JsonFetcher, scan_sources  # noqa: E402
 from founder_agent.execution import (  # noqa: E402
     IssueTransport,
     append_execution_log,
+    configured_checkout_opportunity_id,
     execute_bounded_action,
     respond_to_inbound_interest,
 )
@@ -52,6 +53,37 @@ def _latest_scan(root: Path) -> Path:
     if not scans:
         raise RuntimeError("No base opportunity scan exists in data/.")
     return scans[-1]
+
+
+def _execution_opportunity_ids(
+    state: Mapping[str, Any],
+    checkout_config: Mapping[str, Any],
+) -> Tuple[List[str], List[str]]:
+    """Order live experiments ahead of newly ranked execution fallbacks."""
+
+    role_order = {"cash": 0, "asset": 1, "frontier": 2}
+    portfolio = sorted(
+        (
+            item
+            for item in state.get("current_portfolio", [])
+            if isinstance(item, Mapping) and item.get("opportunity_id")
+        ),
+        key=lambda item: role_order.get(str(item.get("role")), 99),
+    )
+    priority = []
+    checkout_opportunity_id = configured_checkout_opportunity_id(checkout_config)
+    if checkout_opportunity_id:
+        priority.append(checkout_opportunity_id)
+    priority.extend(str(item["opportunity_id"]) for item in portfolio)
+    priority = list(dict.fromkeys(priority))
+
+    ranked = [
+        str(item["opportunity_id"])
+        for item in state.get("ranked_opportunities", [])[:3]
+        if isinstance(item, Mapping) and item.get("opportunity_id")
+    ]
+    eligible = list(dict.fromkeys(priority + ranked))
+    return priority, eligible
 
 
 def _model_is_temporarily_unavailable(
@@ -429,18 +461,20 @@ def run_continuous_cycle(
     if issue_transport is not None:
         reply_kwargs["transport"] = issue_transport
     inbound_record = respond_to_inbound_interest(capability_config, tracker, **reply_kwargs)
-    eligible_ids = {
-        item.get("opportunity_id") for item in state.get("current_portfolio", [])
-    } | {
-        item.get("opportunity_id") for item in state.get("ranked_opportunities", [])[:3]
-    }
+    checkout_config = _load_json(root / "site" / "checkout-config.json", {})
+    priority_ids, eligible_ids = _execution_opportunity_ids(state, checkout_config)
     publication_record = execute_bounded_action(
         root,
         synthesis,
         snapshot,
         channel_registry,
         tracker,
-        eligible_opportunity_ids=sorted(item for item in eligible_ids if item),
+        eligible_opportunity_ids=eligible_ids,
+        priority_opportunity_ids=priority_ids,
+        opportunity_catalog=merged_scan.get("opportunities", []),
+        evidence_catalog=merged_scan.get("evidence", []),
+        checkout_config=checkout_config,
+        capability_config=capability_config,
         previous_log=previous_log,
         observed_at=now,
     )
