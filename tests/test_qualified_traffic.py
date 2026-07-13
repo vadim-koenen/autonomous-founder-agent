@@ -38,6 +38,24 @@ class QualifiedTrafficTest(unittest.TestCase):
         self.assertIn("no unsolicited promotional issues or comments", restrictions)
         self.assertIn("no bulk or misleading submissions", restrictions)
 
+    def test_owner_authorization_is_separate_from_missing_channel_access(self):
+        grants = json.loads(
+            (ROOT / "config" / "capability_grants.json").read_text(encoding="utf-8")
+        )["grants"]
+        by_id = {item["capability_id"]: item for item in grants}
+
+        for capability_id in (
+            "owner_funded_spend",
+            "commercial_email_or_dm",
+            "marketplace_write",
+            "wallet_receive_or_spend",
+            "nft_mint",
+        ):
+            self.assertTrue(by_id[capability_id]["owner_authorized_when_connected"])
+            self.assertFalse(by_id[capability_id]["enabled"])
+        self.assertTrue(by_id["bulk_unsolicited_promotion"]["owner_authorized"])
+        self.assertFalse(by_id["bulk_unsolicited_promotion"]["enabled"])
+
     def test_funnel_uses_free_value_before_checkout_and_keeps_risky_actions_off(self):
         engine = json.loads(
             (ROOT / "data" / "qualified_traffic_engine.json").read_text(
@@ -51,6 +69,14 @@ class QualifiedTrafficTest(unittest.TestCase):
         self.assertEqual(
             "data/revenue_ledger.json",
             engine["measurement"]["revenue_source_of_truth"],
+        )
+        self.assertEqual(
+            "https://github.com/punkpeye/awesome-mcp-devtools/pull/234",
+            engine["first_distribution_target"]["contribution_pr_url"],
+        )
+        self.assertEqual(
+            0,
+            engine["measurement"]["pre_distribution_baseline"]["verified_revenue_usd"],
         )
         self.assertTrue(all(value is False for value in engine["safety"].values()))
 

@@ -1,6 +1,6 @@
 {
   "schema_name": "autonomous_founder_capability_grants",
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "owner_grant_recorded_at": "2026-07-13",
   "policy": "Connected capabilities may act autonomously within their per-cycle grants. Missing access is a capability gap, not a permanent strategy prohibition.",
   "grants": [
@@ -42,38 +42,56 @@
     {
       "capability_id": "owner_funded_spend",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle_usd": 0,
-      "scope": "Unavailable because no owner-funded budget or purchasing rail is configured."
+      "scope": "Owner authorizes paid distribution when a funded purchasing rail and explicit per-cycle dollar ceiling are connected; neither exists yet.",
+      "grant_basis": "Owner authorized spending as an available strategy class on 2026-07-13."
     },
     {
       "capability_id": "verified_revenue_reinvestment",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle_usd": 25,
       "scope": "May be enabled after positive verified net revenue and a separately scoped purchasing capability exist."
     },
     {
       "capability_id": "commercial_email_or_dm",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle": 0,
-      "scope": "No compliant sender account, recipient policy, or credential is connected."
+      "scope": "Targeted commercial outreach is owner-authorized, but no compliant sender identity, recipient policy, postal identity, or channel credential is connected.",
+      "grant_basis": "Owner authorized targeted outbound as an available strategy class on 2026-07-13."
     },
     {
       "capability_id": "marketplace_write",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle": 0,
-      "scope": "No verified seller account or marketplace write integration is connected."
+      "scope": "Marketplace publishing is owner-authorized after a selected offer has a verified seller account and write integration.",
+      "grant_basis": "Owner authorized marketplace execution as an available strategy class on 2026-07-13."
     },
     {
       "capability_id": "wallet_receive_or_spend",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle": 0,
-      "scope": "No dedicated project wallet or signing policy is configured."
+      "scope": "Wallet receipt and bounded strategy-driven transactions are owner-authorized after a dedicated project wallet, signing policy, network, and per-cycle limits are configured.",
+      "grant_basis": "Owner authorized wallet use as an available strategy class on 2026-07-13."
     },
     {
       "capability_id": "nft_mint",
       "enabled": false,
+      "owner_authorized_when_connected": true,
       "max_per_cycle": 0,
-      "scope": "No winning collectible experiment, wallet, rights review, or mint policy is configured."
+      "scope": "Minting is owner-authorized when a collectible experiment wins, original-asset rights are verified, and a wallet plus mint budget are configured.",
+      "grant_basis": "Owner authorized minting as an available strategy class on 2026-07-13."
+    },
+    {
+      "capability_id": "bulk_unsolicited_promotion",
+      "enabled": false,
+      "owner_authorized": true,
+      "max_per_cycle": 0,
+      "scope": "Not activated: indiscriminate promotion conflicts with qualified-traffic economics and commonly violates channel rules. Owner permission does not override third-party terms or make low-intent volume profitable."
     }
   ]
 }
