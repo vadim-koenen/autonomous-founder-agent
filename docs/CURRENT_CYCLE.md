@@ -62,20 +62,23 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 7. MCP / Agent Preflight Full Audit - 7.37
 - 8. Fix Memanto Bug for Explicit Bounty Payment - 7.36
 - 9. Agent endpoint search validation brief (Exa) - 7.36
-- 10. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
-- 11. MCP / Agent Preflight Metered API - 7.12
-- 12. Founder Demo Repurposing Pack - 7.10
-- 13. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
-- 14. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
-- 15. Agent-Ready Commerce Catalog Repair - 6.80
-- 16. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 17. Bug Fix: Expensify Invoice Payment Error - 6.78
-- 18. Roblox Launch Lens Studio Plugin - 6.74
-- 19. x402 Endpoint Implementation Sprint - 6.63
-- 20. Original AI Media Commission - 6.57
-- 21. Roblox Retention Repair Sprint - 6.18
-- 22. Build-in-Public Revenue Series - 6.03
-- 23. Hosted Agent Eval Dashboard - 5.80
-- 24. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 25. Roblox Embodiment Factory Experience - 5.26
-- 26. Embodiment Milestone Collectible - 4.44
+- 10. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
+- 11. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 12. MCP / Agent Preflight Metered API - 7.12
+- 13. Founder Demo Repurposing Pack - 7.10
+- 14. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
+- 15. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
+- 16. Agent-Ready Commerce Catalog Repair - 6.80
+- 17. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 18. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 19. Roblox Launch Lens Studio Plugin - 6.74
+- 20. Solve GitHub Open Bounty Issue with Agent Automation - 6.64
+- 21. x402 Endpoint Implementation Sprint - 6.63
+- 22. Original AI Media Commission - 6.57
+- 23. Publish Agent Model Selection Validation Brief - 6.19
+- 24. Roblox Retention Repair Sprint - 6.18
+- 25. Build-in-Public Revenue Series - 6.03
+- 26. Hosted Agent Eval Dashboard - 5.80
+- 27. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 28. Roblox Embodiment Factory Experience - 5.26
+- 29. Embodiment Milestone Collectible - 4.44
