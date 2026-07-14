@@ -41,6 +41,9 @@ class CommercialActivationTest(unittest.TestCase):
     def test_sales_page_uses_human_configured_public_checkout(self):
         checkout = json.loads((ROOT / "site" / "checkout-config.json").read_text(encoding="utf-8"))
         page = (ROOT / "site" / "qa-sprint.html").read_text(encoding="utf-8")
+        offer = (ROOT / "offers" / "agent-launch-qa-sprint" / "OFFER.md").read_text(
+            encoding="utf-8"
+        )
 
         self.assertEqual("active", checkout["status"])
         self.assertEqual("stripe", checkout["provider"])
@@ -55,9 +58,31 @@ class CommercialActivationTest(unittest.TestCase):
         self.assertIn("SAMPLE_REPORT.md", page)
         self.assertIn("vadimkoenen@gmail.com", page)
         self.assertIn("Refunds: full refund if the audit isn't delivered within the agreed scope.", page)
+        self.assertIn("Authorization first. Secrets stay private.", page)
+        self.assertIn("Payment is not authorization", page)
+        self.assertIn("written scope", page)
+        self.assertIn("least-privilege access", page)
+        self.assertIn("Do not email credentials or private repository URLs.", page)
         self.assertIn("checkout-config.json", page)
+        self.assertIn('data-utm-content="hero_cta"', page)
+        self.assertIn('data-utm-content="closing_cta"', page)
+        self.assertIn("attributedCheckoutUrl", page)
+        self.assertIn('searchParams.set("utm_source"', page)
+        self.assertIn('searchParams.set("utm_medium"', page)
+        self.assertIn('searchParams.set("utm_campaign"', page)
+        self.assertIn('searchParams.set("utm_content"', page)
+        self.assertNotIn("link.href = checkout.checkout_url", page)
         self.assertNotIn("sk_live_", page)
         self.assertNotIn("private_key", page.lower())
+        self.assertIn("MCP / Agent Preflight Full Audit", offer)
+        self.assertIn("public Stripe checkout", offer)
+        self.assertIn(checkout["checkout_url"], offer)
+        self.assertIn("Safe Authorization And Access", offer)
+        self.assertIn("least-privilege, time-limited access", offer)
+        self.assertIn("data/revenue_ledger.json", offer)
+        self.assertIn("Checkout opens and UTM activity never count as revenue.", offer)
+        self.assertNotIn("checkout remains pending", offer)
+        self.assertNotIn("selected rail is a Contra", offer)
 
     def test_funnel_output_contains_no_issue_body_or_buyer_identity(self):
         funnel = build_funnel(

@@ -573,7 +573,7 @@
           <h1>MCP / Agent Preflight Full Audit</h1>
           <p>Turn the free public preflight into an authorized launch decision. One working AI agent, MCP server, or LLM workflow gets 25 focused cases, a prioritized report, one agreed repair patch, and a clear connection or launch verdict.</p>
           <div class="hero-actions">
-            <a class="button hero-primary" data-checkout-action href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00" target="_blank" rel="noopener">Buy the full audit — $149</a>
+            <a class="button hero-primary" data-checkout-action data-utm-content="hero_cta" href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00?utm_source=full_audit_page&amp;utm_medium=owned_web&amp;utm_campaign=mcp_audit_first_customer&amp;utm_content=hero_cta" target="_blank" rel="noopener">Buy the full audit — $149</a>
             <a class="button hero-secondary" href="preflight.html">Run the free preflight</a>
           </div>
           <div class="hero-proof">
@@ -639,6 +639,28 @@
         </div>
       </section>
 
+      <section class="band white" aria-labelledby="safe-access-title">
+        <div class="shell split">
+          <div>
+            <div class="section-head">
+              <p class="eyebrow">Before live testing</p>
+              <h2 id="safe-access-title">Authorization first. Secrets stay private.</h2>
+            </div>
+            <ol class="checklist">
+              <li><strong>1. Identify the project</strong><span>After checkout, contact <a href="mailto:vadimkoenen@gmail.com">vadimkoenen@gmail.com</a> with a public-safe project name. Do not email credentials or private repository URLs.</span></li>
+              <li><strong>2. Confirm written scope</strong><span>The target, permitted test actions, stop conditions, deliverables, and repair boundary are agreed before any live protocol test begins.</span></li>
+              <li><strong>3. Arrange least-privilege access</strong><span>If access is required, the buyer chooses a private channel and a time-limited test or staging credential when available. Secrets never go in GitHub issues, repository files, public logs, or Pages content.</span></li>
+              <li><strong>4. Remove access</strong><span>Access is removed after handoff. Customer private data and credentials are never written to the public revenue ledger.</span></li>
+            </ol>
+          </div>
+          <aside class="decision-panel">
+            <h3>Payment is not authorization</h3>
+            <p>A completed checkout reserves the fixed-scope audit. It does not authorize destructive testing, production changes, or access outside the written scope.</p>
+            <p>Checkout activity is a funnel signal. Revenue is recorded only after the owner verifies a completed Stripe payment.</p>
+          </aside>
+        </div>
+      </section>
+
       <section class="band">
         <div class="shell">
           <div class="section-head">
@@ -674,7 +696,7 @@
             <h2>Put one working agent through the full preflight for $149.</h2>
             <p id="closeStatus">Secure Stripe checkout is active.</p>
           </div>
-          <a class="button hero-primary" data-checkout-action href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00" target="_blank" rel="noopener">Buy the full audit — $149</a>
+          <a class="button hero-primary" data-checkout-action data-utm-content="closing_cta" href="https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00?utm_source=full_audit_page&amp;utm_medium=owned_web&amp;utm_campaign=mcp_audit_first_customer&amp;utm_content=closing_cta" target="_blank" rel="noopener">Buy the full audit — $149</a>
         </div>
       </section>
     </main>
@@ -703,6 +725,21 @@
         } catch (error) {
           return false;
         }
+      }
+
+      function cleanAttribution(value, fallback) {
+        const cleaned = String(value || "").trim().slice(0, 80);
+        return /^[A-Za-z0-9_-]+$/.test(cleaned) ? cleaned : fallback;
+      }
+
+      function attributedCheckoutUrl(checkoutUrl, contentFallback) {
+        const pageParams = new URL(window.location.href).searchParams;
+        const checkout = new URL(checkoutUrl);
+        checkout.searchParams.set("utm_source", cleanAttribution(pageParams.get("utm_source"), "full_audit_page"));
+        checkout.searchParams.set("utm_medium", cleanAttribution(pageParams.get("utm_medium"), "owned_web"));
+        checkout.searchParams.set("utm_campaign", cleanAttribution(pageParams.get("utm_campaign"), "mcp_audit_first_customer"));
+        checkout.searchParams.set("utm_content", cleanAttribution(pageParams.get("utm_content"), contentFallback));
+        return checkout.toString();
       }
 
       function configureFallback() {
@@ -739,7 +776,7 @@
           }
 
           document.querySelectorAll("[data-checkout-action]").forEach((link) => {
-            link.href = checkout.checkout_url;
+            link.href = attributedCheckoutUrl(checkout.checkout_url, link.dataset.utmContent || "audit_cta");
             link.textContent = "Buy the full audit — $149";
             link.target = "_blank";
             link.rel = "noopener";
