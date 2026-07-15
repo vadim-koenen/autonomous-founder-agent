@@ -56,22 +56,22 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 1. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
 - 2. Agent Endpoint Validation Brief (x402 Bazaar) - 8.04
 - 3. Agent Endpoint Validation Brief for x402 Bazaar - 7.96
-- 4. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
-- 5. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 6. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 7. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
-- 8. Agent Launch Gate Founding License - 7.64
-- 9. Evidence-Backed Competitor Brief - 7.61
-- 10. MCP Integration Launch Sprint - 7.55
-- 11. Fixed-Scope Data Cleanup Service - 7.55
-- 12. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
-- 13. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
-- 14. MCP / Agent Preflight Full Audit - 7.37
-- 15. Fix Memanto Bug for Explicit Bounty Payment - 7.36
-- 16. Agent endpoint search validation brief (Exa) - 7.36
-- 17. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
-- 18. GitHub Public Bounty Fix for Agent Task - 7.31
-- 19. Agent Resource Validation Brief on x402 Bazaar - 7.22
+- 4. Agent Resource Validation Brief for x402 Bazaar - 7.80
+- 5. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
+- 6. Create and Validate New Agent Resource for x402 Bazaar - 7.75
+- 7. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 8. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 9. Agent Launch Gate Founding License - 7.64
+- 10. Evidence-Backed Competitor Brief - 7.61
+- 11. MCP Integration Launch Sprint - 7.55
+- 12. Fixed-Scope Data Cleanup Service - 7.55
+- 13. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 14. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
+- 15. MCP / Agent Preflight Full Audit - 7.37
+- 16. Fix Memanto Bug for Explicit Bounty Payment - 7.36
+- 17. Agent endpoint search validation brief (Exa) - 7.36
+- 18. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
+- 19. GitHub Public Bounty Fix for Agent Task - 7.31
 - 20. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
 - 21. Fulfill Explicit Bounty Issue for Agent Tasks in GitHub - 7.18
 - 22. MCP / Agent Preflight Metered API - 7.12
