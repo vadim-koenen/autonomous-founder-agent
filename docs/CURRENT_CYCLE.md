@@ -62,15 +62,15 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 7. Agent Resource Validation Brief for x402 Bazaar - 7.80
 - 8. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
 - 9. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 10. Agent resource validation demo pack - 7.72
-- 11. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 12. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
-- 13. Fulfillment of explicit bounty work from GitHub open issues - 7.66
-- 14. Agent Launch Gate Founding License - 7.64
-- 15. Evidence-Backed Competitor Brief - 7.61
-- 16. MCP Integration Launch Sprint - 7.55
-- 17. Fixed-Scope Data Cleanup Service - 7.55
-- 18. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 10. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 11. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 12. Fulfillment of explicit bounty work from GitHub open issues - 7.66
+- 13. Agent Launch Gate Founding License - 7.64
+- 14. Evidence-Backed Competitor Brief - 7.61
+- 15. MCP Integration Launch Sprint - 7.55
+- 16. Fixed-Scope Data Cleanup Service - 7.55
+- 17. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 18. Agent Resource Validation Demo for x402 Bazaar - 7.48
 - 19. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
 - 20. MCP / Agent Preflight Full Audit - 7.37
 - 21. Fix Memanto Bug for Explicit Bounty Payment - 7.36
