@@ -53,19 +53,19 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Ranked Opportunity Set
 
-- 1. Public GitHub Explicit Bounty Fulfillment - 8.43
-- 2. Agent Combo Pack Validation Brief (x402 Bazaar) - 8.19
-- 3. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
-- 4. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
-- 5. Agent Endpoint Validation Brief (x402 Bazaar) - 8.04
-- 6. Agent Endpoint Validation Brief for x402 Bazaar - 7.96
-- 7. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
-- 8. Agent Resource Validation Brief for x402 Bazaar - 7.80
-- 9. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
-- 10. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 11. Agent resource validation demo pack - 7.72
-- 12. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 13. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 1. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
+- 2. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
+- 3. Agent Endpoint Validation Brief (x402 Bazaar) - 8.04
+- 4. Agent Endpoint Validation Brief for x402 Bazaar - 7.96
+- 5. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
+- 6. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
+- 7. Agent Resource Validation Brief for x402 Bazaar - 7.80
+- 8. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
+- 9. Create and Validate New Agent Resource for x402 Bazaar - 7.75
+- 10. Agent resource validation demo pack - 7.72
+- 11. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 12. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 13. Fulfillment of explicit bounty work from GitHub open issues - 7.66
 - 14. Agent Launch Gate Founding License - 7.64
 - 15. Evidence-Backed Competitor Brief - 7.61
 - 16. MCP Integration Launch Sprint - 7.55
