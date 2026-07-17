@@ -63,42 +63,43 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 8. Agent Resource Validation Brief for x402 Bazaar - 7.80
 - 9. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
 - 10. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 11. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 12. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
-- 13. Agent Launch Gate Founding License - 7.64
-- 14. Evidence-Backed Competitor Brief - 7.61
-- 15. MCP Integration Launch Sprint - 7.55
-- 16. Fixed-Scope Data Cleanup Service - 7.55
-- 17. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
-- 18. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
-- 19. MCP / Agent Preflight Full Audit - 7.37
-- 20. Fix Memanto Bug for Explicit Bounty Payment - 7.36
-- 21. Agent endpoint search validation brief (Exa) - 7.36
-- 22. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
-- 23. GitHub Public Bounty Fix for Agent Task - 7.31
-- 24. Agent Resource Combo Pack for x402 Bazaar - 7.21
-- 25. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
-- 26. Fulfill Explicit Bounty Issue for Agent Tasks in GitHub - 7.18
-- 27. MCP / Agent Preflight Metered API - 7.12
-- 28. Founder Demo Repurposing Pack - 7.10
-- 29. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
-- 30. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
-- 31. Explicit GitHub Bounty Response Offer - 7.06
-- 32. Agent Endpoint Validation Brief - 6.92
-- 33. Explicit GitHub Issue Bounty Fulfillment - 6.88
-- 34. Agent-Ready Commerce Catalog Repair - 6.80
-- 35. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 36. Bug Fix: Expensify Invoice Payment Error - 6.78
-- 37. Roblox Documentation Upgrade Brief - 6.78
-- 38. Roblox Launch Lens Studio Plugin - 6.74
-- 39. Solve GitHub Open Bounty Issue with Agent Automation - 6.64
-- 40. x402 Endpoint Implementation Sprint - 6.63
-- 41. Original AI Media Commission - 6.57
-- 42. Publish Agent Model Selection Validation Brief - 6.19
-- 43. Roblox Retention Repair Sprint - 6.18
-- 44. Build-in-Public Revenue Series - 6.03
-- 45. Hosted Agent Eval Dashboard - 5.80
-- 46. Agent-enabled Fulfillment of Explicit GitHub Bounty Issue - 5.54
-- 47. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 48. Roblox Embodiment Factory Experience - 5.26
-- 49. Embodiment Milestone Collectible - 4.44
+- 11. Agent resource validation demo pack - 7.72
+- 12. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 13. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 14. Agent Launch Gate Founding License - 7.64
+- 15. Evidence-Backed Competitor Brief - 7.61
+- 16. MCP Integration Launch Sprint - 7.55
+- 17. Fixed-Scope Data Cleanup Service - 7.55
+- 18. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 19. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
+- 20. MCP / Agent Preflight Full Audit - 7.37
+- 21. Fix Memanto Bug for Explicit Bounty Payment - 7.36
+- 22. Agent endpoint search validation brief (Exa) - 7.36
+- 23. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
+- 24. GitHub Public Bounty Fix for Agent Task - 7.31
+- 25. Agent Resource Combo Pack for x402 Bazaar - 7.21
+- 26. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 27. Fulfill Explicit Bounty Issue for Agent Tasks in GitHub - 7.18
+- 28. MCP / Agent Preflight Metered API - 7.12
+- 29. Founder Demo Repurposing Pack - 7.10
+- 30. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
+- 31. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
+- 32. Explicit GitHub Bounty Response Offer - 7.06
+- 33. Agent Endpoint Validation Brief - 6.92
+- 34. Explicit GitHub Issue Bounty Fulfillment - 6.88
+- 35. Agent-Ready Commerce Catalog Repair - 6.80
+- 36. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 37. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 38. Roblox Documentation Upgrade Brief - 6.78
+- 39. Roblox Launch Lens Studio Plugin - 6.74
+- 40. Solve GitHub Open Bounty Issue with Agent Automation - 6.64
+- 41. x402 Endpoint Implementation Sprint - 6.63
+- 42. Original AI Media Commission - 6.57
+- 43. Publish Agent Model Selection Validation Brief - 6.19
+- 44. Roblox Retention Repair Sprint - 6.18
+- 45. Build-in-Public Revenue Series - 6.03
+- 46. Hosted Agent Eval Dashboard - 5.80
+- 47. Agent-enabled Fulfillment of Explicit GitHub Bounty Issue - 5.54
+- 48. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 49. Roblox Embodiment Factory Experience - 5.26
+- 50. Embodiment Milestone Collectible - 4.44
