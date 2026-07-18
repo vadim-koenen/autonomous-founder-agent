@@ -87,21 +87,23 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 32. Sell Agent Endpoint Pack via x402 Bazaar (Exa Search) - 7.07
 - 33. Agent Endpoint Resource Pack for x402 Bazaar - 7.07
 - 34. Explicit GitHub Bounty Response Offer - 7.06
-- 35. Agent Endpoint Validation Brief - 6.92
-- 36. Explicit GitHub Issue Bounty Fulfillment - 6.88
-- 37. Agent-Ready Commerce Catalog Repair - 6.80
-- 38. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
-- 39. Bug Fix: Expensify Invoice Payment Error - 6.78
-- 40. Roblox Documentation Upgrade Brief - 6.78
-- 41. Roblox Launch Lens Studio Plugin - 6.74
-- 42. Solve GitHub Open Bounty Issue with Agent Automation - 6.64
-- 43. x402 Endpoint Implementation Sprint - 6.63
-- 44. Original AI Media Commission - 6.57
-- 45. Publish Agent Model Selection Validation Brief - 6.19
-- 46. Roblox Retention Repair Sprint - 6.18
-- 47. Build-in-Public Revenue Series - 6.03
-- 48. Hosted Agent Eval Dashboard - 5.80
-- 49. Agent-enabled Fulfillment of Explicit GitHub Bounty Issue - 5.54
-- 50. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
-- 51. Roblox Embodiment Factory Experience - 5.26
-- 52. Embodiment Milestone Collectible - 4.44
+- 35. x402 Bazaar Agent Model Combo Pack - 6.93
+- 36. Agent Endpoint Validation Brief - 6.92
+- 37. Explicit GitHub Issue Bounty Fulfillment - 6.88
+- 38. Agent-Ready Commerce Catalog Repair - 6.80
+- 39. Provide a public superbrief for agent endpoint supply, targeting ecosystem buyers - 6.79
+- 40. Bug Fix: Expensify Invoice Payment Error - 6.78
+- 41. Roblox Documentation Upgrade Brief - 6.78
+- 42. Roblox Launch Lens Studio Plugin - 6.74
+- 43. Solve GitHub Open Bounty Issue with Agent Automation - 6.64
+- 44. x402 Endpoint Implementation Sprint - 6.63
+- 45. Original AI Media Commission - 6.57
+- 46. Publish Agent Model Selection Validation Brief - 6.19
+- 47. Roblox Retention Repair Sprint - 6.18
+- 48. Build-in-Public Revenue Series - 6.03
+- 49. Hosted Agent Eval Dashboard - 5.80
+- 50. GitHub Dollar Bounty Issue Fulfillment - 5.70
+- 51. Agent-enabled Fulfillment of Explicit GitHub Bounty Issue - 5.54
+- 52. Fix Expensify App's Avatar Modal Issue for Bounty - 5.41
+- 53. Roblox Embodiment Factory Experience - 5.26
+- 54. Embodiment Milestone Collectible - 4.44
