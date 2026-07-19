@@ -53,37 +53,37 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Ranked Opportunity Set
 
-- 1. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
-- 2. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
-- 3. Agent Endpoint Validation Brief (x402 Bazaar) - 8.04
-- 4. Bazaar Agent Resource Combo: Validation Brief - 8.00
-- 5. Agent Endpoint Validation Brief for x402 Bazaar - 7.96
-- 6. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
-- 7. x402 Bazaar Agent Resource Validation Brief - 7.84
-- 8. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
-- 9. Agent Resource Validation Brief for x402 Bazaar - 7.80
-- 10. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
-- 11. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 12. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 13. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
-- 14. Fulfill explicit agent-related GitHub bounty issue - 7.66
-- 15. Fulfillment of explicit bounty work from GitHub open issues - 7.66
-- 16. Agent Launch Gate Founding License - 7.64
-- 17. Live Agent Resource Combo-Pack Validation Brief - 7.63
-- 18. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
-- 19. Evidence-Backed Competitor Brief - 7.61
-- 20. MCP Integration Launch Sprint - 7.55
-- 21. Fixed-Scope Data Cleanup Service - 7.55
-- 22. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
-- 23. Agent Resource Validation Demo for x402 Bazaar - 7.48
-- 24. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
-- 25. MCP / Agent Preflight Full Audit - 7.37
-- 26. Fix Memanto Bug for Explicit Bounty Payment - 7.36
-- 27. Agent endpoint search validation brief (Exa) - 7.36
-- 28. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
-- 29. GitHub Public Bounty Fix for Agent Task - 7.31
-- 30. Agent Resource Combo Pack for x402 Bazaar - 7.21
-- 31. Resolve Memanto Exploit Issue ($100 Bounty) - 7.20
+- 1. Agent Resource Combo Validation Brief for x402 Bazaar Buyers - 8.23
+- 2. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
+- 3. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
+- 4. Agent Endpoint Validation Brief (x402 Bazaar) - 8.04
+- 5. Bazaar Agent Resource Combo: Validation Brief - 8.00
+- 6. Agent Endpoint Validation Brief for x402 Bazaar - 7.96
+- 7. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
+- 8. x402 Bazaar Agent Resource Validation Brief - 7.84
+- 9. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
+- 10. Agent Resource Validation Brief for x402 Bazaar - 7.80
+- 11. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
+- 12. Create and Validate New Agent Resource for x402 Bazaar - 7.75
+- 13. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 14. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 15. Fulfill explicit agent-related GitHub bounty issue - 7.66
+- 16. Fulfillment of explicit bounty work from GitHub open issues - 7.66
+- 17. Agent Launch Gate Founding License - 7.64
+- 18. Live Agent Resource Combo-Pack Validation Brief - 7.63
+- 19. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
+- 20. Evidence-Backed Competitor Brief - 7.61
+- 21. MCP Integration Launch Sprint - 7.55
+- 22. Fixed-Scope Data Cleanup Service - 7.55
+- 23. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 24. Agent Resource Validation Demo for x402 Bazaar - 7.48
+- 25. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
+- 26. MCP / Agent Preflight Full Audit - 7.37
+- 27. Fix Memanto Bug for Explicit Bounty Payment - 7.36
+- 28. Agent endpoint search validation brief (Exa) - 7.36
+- 29. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
+- 30. GitHub Public Bounty Fix for Agent Task - 7.31
+- 31. Agent Resource Combo Pack for x402 Bazaar - 7.21
 - 32. Fulfill Explicit Bounty Issue for Agent Tasks in GitHub - 7.18
 - 33. MCP / Agent Preflight Metered API - 7.12
 - 34. Founder Demo Repurposing Pack - 7.10
