@@ -65,22 +65,22 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 10. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
 - 11. Agent Resource Validation Brief for x402 Bazaar - 7.80
 - 12. Low-Friction Agent Endpoint Pack for x402 Bazaar - 7.79
-- 13. Create and Validate New Agent Resource for x402 Bazaar - 7.75
-- 14. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
-- 15. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
-- 16. Fulfill explicit agent-related GitHub bounty issue - 7.66
-- 17. Fulfillment of explicit bounty work from GitHub open issues - 7.66
-- 18. Agent Launch Gate Founding License - 7.64
-- 19. Live Agent Resource Combo-Pack Validation Brief - 7.63
-- 20. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
-- 21. Evidence-Backed Competitor Brief - 7.61
-- 22. MCP Integration Launch Sprint - 7.55
-- 23. Fixed-Scope Data Cleanup Service - 7.55
-- 24. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
-- 25. Agent Resource Validation Demo for x402 Bazaar - 7.48
-- 26. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
-- 27. MCP / Agent Preflight Full Audit - 7.37
-- 28. Fix Memanto Bug for Explicit Bounty Payment - 7.36
+- 13. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
+- 14. Create and Validate New Agent Resource for x402 Bazaar - 7.75
+- 15. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 16. Endpoint validation brief for Exa Search on x402 Bazaar - 7.66
+- 17. Fulfill explicit agent-related GitHub bounty issue - 7.66
+- 18. Fulfillment of explicit bounty work from GitHub open issues - 7.66
+- 19. Agent Launch Gate Founding License - 7.64
+- 20. Live Agent Resource Combo-Pack Validation Brief - 7.63
+- 21. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
+- 22. Evidence-Backed Competitor Brief - 7.61
+- 23. MCP Integration Launch Sprint - 7.55
+- 24. Fixed-Scope Data Cleanup Service - 7.55
+- 25. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
+- 26. Agent Resource Validation Demo for x402 Bazaar - 7.48
+- 27. Agent Endpoint Pack for Exa Search (Validation Brief) - 7.43
+- 28. MCP / Agent Preflight Full Audit - 7.37
 - 29. Agent endpoint search validation brief (Exa) - 7.36
 - 30. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
 - 31. GitHub Public Bounty Fix for Agent Task - 7.31
