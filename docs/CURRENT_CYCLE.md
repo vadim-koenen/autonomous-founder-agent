@@ -80,10 +80,10 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 25. Fixed-Scope Data Cleanup Service - 7.55
 - 26. Fulfill Explicit Dollar Bounties in GitHub Issues - 7.49
 - 27. Agent Resource Validation Demo for x402 Bazaar - 7.48
-- 28. Agent & Reasoning Model Combo Pack Listing - 7.45
-- 29. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
-- 30. MCP / Agent Preflight Full Audit - 7.37
-- 31. Sell Endpoint Combination Pack on x402 Bazaar - 7.34
+- 28. Agent resource: Roblox documentation change tracker demo brief - 7.48
+- 29. Agent & Reasoning Model Combo Pack Listing - 7.45
+- 30. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
+- 31. MCP / Agent Preflight Full Audit - 7.37
 - 32. GitHub Public Bounty Fix for Agent Task - 7.31
 - 33. Agent Resource Combo Pack for x402 Bazaar - 7.21
 - 34. Fulfill Explicit Bounty Issue for Agent Tasks in GitHub - 7.18
