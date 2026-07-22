@@ -70,7 +70,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 15. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
 - 16. Create and Validate New Agent Resource for x402 Bazaar - 7.75
 - 17. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
-- 18. Agent Endpoint Validation Brief for x402 Bazaar - 7.68
+- 18. Agent Combo Pack Listing for x402 Bazaar - 7.70
 - 19. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
 - 20. Fulfill explicit agent-related GitHub bounty issue - 7.66
 - 21. Fulfillment of explicit bounty work from GitHub open issues - 7.66
