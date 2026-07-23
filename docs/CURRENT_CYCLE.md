@@ -56,17 +56,17 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 1. Agent Resource Combo Validation Brief for x402 Bazaar Buyers - 8.23
 - 2. Agent Resource Combo Pack for x402 Bazaar - 8.14
 - 3. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
-- 4. Public Validation Brief for High-Demand Agent Endpoint on x402 Bazaar - 8.09
-- 5. Bazaar Agent Resource Combo Demo Pack - 8.01
-- 6. Bazaar Agent Resource Combo: Validation Brief - 8.00
-- 7. Agent-Model Combo Demo Pack (July 21) - 7.97
-- 8. Agent Model Reasoning Combo Pack on x402 Bazaar - 7.94
-- 9. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
-- 10. x402 Bazaar Agent Resource Validation Brief - 7.84
-- 11. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
-- 12. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
-- 13. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
-- 14. Agent Resource Validation Brief for x402 Bazaar - 7.80
+- 4. Bazaar Agent Resource Combo Demo Pack - 8.01
+- 5. Bazaar Agent Resource Combo: Validation Brief - 8.00
+- 6. Agent-Model Combo Demo Pack (July 21) - 7.97
+- 7. Agent Model Reasoning Combo Pack on x402 Bazaar - 7.94
+- 8. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
+- 9. x402 Bazaar Agent Resource Validation Brief - 7.84
+- 10. Agent Model Combination Demo Brief for x402 Bazaar - 7.82
+- 11. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
+- 12. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
+- 13. Agent Resource Validation Brief for x402 Bazaar - 7.80
+- 14. Agent Model Reasoning Combo Pack - 7.80
 - 15. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
 - 16. Create and Validate New Agent Resource for x402 Bazaar - 7.75
 - 17. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
