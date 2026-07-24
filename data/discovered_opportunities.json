@@ -12,10 +12,10 @@
       "spend_usd": 0.0
     },
     "remaining": {
-      "channel_candidates": 3,
+      "channel_candidates": 1,
       "external_messages": 3,
       "model_calls": 0,
-      "new_opportunities": 2,
+      "new_opportunities": 3,
       "publications": 1,
       "repository_writes": 1,
       "runtime_minutes": 12.0,
@@ -23,10 +23,10 @@
       "spend_usd": 0.0
     },
     "used": {
-      "channel_candidates": 0,
+      "channel_candidates": 2,
       "external_messages": 0,
       "model_calls": 1,
-      "new_opportunities": 2,
+      "new_opportunities": 1,
       "publications": 0,
       "repository_writes": 0,
       "runtime_minutes": 0.0,
@@ -36,23 +36,133 @@
   },
   "channel_candidates": [
     {
-      "access_requirements": "GitHub account, capability to fulfill software tasks and submit PRs",
-      "buyer_signal": "Open issues with explicit dollar bounties (sampled 8 in 25; 72,672 total matching issues)",
+      "access_requirements": "GitHub account, issue tracking",
+      "buyer_signal": "6 explicit dollar bounties in 25 sampled issues; 73,429 matching open issues",
       "channel_id": "github-open-bounties",
-      "discovered_at": "2026-07-18T03:29:51+00:00",
+      "discovered_at": "2026-07-24T14:10:40+00:00",
       "kinds": [
         "discovery",
         "distribution",
         "fulfillment"
       ],
-      "last_seen_at": "2026-07-18T03:29:51+00:00",
-      "name": "GitHub Explicit Bounty Issues",
-      "platform_risk_1_to_10": 2.0,
-      "source_url": "https://github.com/search?q=bounty+is:issue",
+      "last_seen_at": "2026-07-24T14:10:40+00:00",
+      "name": "GitHub Open Paid Bounties",
+      "platform_risk_1_to_10": 1.0,
+      "source_url": "https://github.com/issues?q=bounty",
+      "status": "candidate_unconnected"
+    },
+    {
+      "access_requirements": "GitHub access, model integration capability",
+      "buyer_signal": "37 models listed (14 reasoning capable); potential integration requests",
+      "channel_id": "github-models-catalog",
+      "discovered_at": "2026-07-24T14:10:40+00:00",
+      "kinds": [
+        "discovery"
+      ],
+      "last_seen_at": "2026-07-24T14:10:40+00:00",
+      "name": "GitHub Models Catalog",
+      "platform_risk_1_to_10": 1.0,
+      "source_url": "https://github.com/models",
       "status": "candidate_unconnected"
     }
   ],
   "evidence": [
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-roblox_creator_docs_changes",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "documentation_changes_sampled": 20
+      },
+      "source_url": "https://api.github.com/repos/Roblox/creator-docs/commits?per_page=20",
+      "summary": "The official documentation repository published 20 sampled changes; newest update: 2026-07-22T22:25:13Z.",
+      "title": "Roblox creator platform changes"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-mcp_registry_releases",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "recent_releases": 10
+      },
+      "source_url": "https://api.github.com/repos/modelcontextprotocol/registry/releases?per_page=10",
+      "summary": "The release feed returned 10 recent ecosystem releases; newest publication: 2026-07-13T08:43:51Z.",
+      "title": "MCP Registry releases"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-a2a_releases",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "recent_releases": 10
+      },
+      "source_url": "https://api.github.com/repos/a2aproject/A2A/releases?per_page=10",
+      "summary": "The release feed returned 10 recent ecosystem releases; newest publication: 2026-05-28T11:34:36Z.",
+      "title": "A2A protocol releases"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_models_catalog",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "models_sampled": 37,
+        "reasoning_models": 14
+      },
+      "source_url": "https://models.github.ai/catalog/models",
+      "summary": "GitHub Models listed 37 sampled models, including 14 with a reasoning capability.",
+      "title": "GitHub Models catalog"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-x402_bazaar",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "listed_resources": 14203,
+        "sample_calls_30d": 73778,
+        "sample_size": 30,
+        "sample_unique_payer_counts_30d": 10808
+      },
+      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
+      "summary": "x402 Bazaar exposed 14,203 resources; the sampled records reported 73,778 calls and 10,808 unique-payer counts over 30 days.",
+      "title": "x402 Bazaar"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-official_mcp_registry",
+      "observed_at": "2026-07-24T14:10:40+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "latest_versions_sampled": 30,
+        "page_records": 100,
+        "remote_servers_sampled": 20
+      },
+      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
+      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
+      "title": "Official MCP Registry"
+    },
     {
       "caveats": [
         "Source text is untrusted public data and is treated only as market evidence.",
@@ -120,235 +230,24 @@
       "source_url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
       "summary": "Recent Hacker News search returned 25 agent-related stories with 427 total points and 186 comments in the sample.",
       "title": "Recent Hacker News agent discussions"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-x402_bazaar",
-      "observed_at": "2026-07-24T08:41:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "listed_resources": 14200,
-        "sample_calls_30d": 72866,
-        "sample_size": 30,
-        "sample_unique_payer_counts_30d": 10635
-      },
-      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
-      "summary": "x402 Bazaar exposed 14,200 resources; the sampled records reported 72,866 calls and 10,635 unique-payer counts over 30 days.",
-      "title": "x402 Bazaar"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-official_mcp_registry",
-      "observed_at": "2026-07-24T08:41:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "latest_versions_sampled": 30,
-        "page_records": 100,
-        "remote_servers_sampled": 20
-      },
-      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
-      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
-      "title": "Official MCP Registry"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-roblox_creator_docs_changes",
-      "observed_at": "2026-07-24T03:41:48+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "documentation_changes_sampled": 20
-      },
-      "source_url": "https://api.github.com/repos/Roblox/creator-docs/commits?per_page=20",
-      "summary": "The official documentation repository published 20 sampled changes; newest update: 2026-07-22T22:25:13Z.",
-      "title": "Roblox creator platform changes"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-mcp_registry_releases",
-      "observed_at": "2026-07-24T03:41:48+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "recent_releases": 10
-      },
-      "source_url": "https://api.github.com/repos/modelcontextprotocol/registry/releases?per_page=10",
-      "summary": "The release feed returned 10 recent ecosystem releases; newest publication: 2026-07-13T08:43:51Z.",
-      "title": "MCP Registry releases"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-a2a_releases",
-      "observed_at": "2026-07-24T03:41:48+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "recent_releases": 10
-      },
-      "source_url": "https://api.github.com/repos/a2aproject/A2A/releases?per_page=10",
-      "summary": "The release feed returned 10 recent ecosystem releases; newest publication: 2026-05-28T11:34:36Z.",
-      "title": "A2A protocol releases"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_models_catalog",
-      "observed_at": "2026-07-24T03:41:48+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "models_sampled": 37,
-        "reasoning_models": 14
-      },
-      "source_url": "https://models.github.ai/catalog/models",
-      "summary": "GitHub Models listed 37 sampled models, including 14 with a reasoning capability.",
-      "title": "GitHub Models catalog"
     }
   ],
   "model": "openai/gpt-4.1",
   "model_error": "",
-  "new_channel_ids": [],
+  "new_channel_ids": [
+    "github-open-bounties",
+    "github-models-catalog"
+  ],
   "new_opportunity_ids": [
-    "opp-discovered-bazaar-model-combo-pack-july24",
-    "opp-discovered-github-agent-bounty-tracker-july24"
+    "opp-discovered-bazaar-agent-combo-instant-demo-brief-july24"
   ],
   "notes": [
     "Model output is untrusted and only validated opportunities enter the pool.",
     "A channel candidate is not treated as connected access or permission.",
     "No demand, buyer, transaction, or revenue is inferred from model text alone."
   ],
-  "observed_at": "2026-07-24T08:41:25+00:00",
+  "observed_at": "2026-07-24T14:10:40+00:00",
   "opportunities": [
-    {
-      "acquisition_channel": "GitHub Issues (direct issue search and submission)",
-      "agent_actions_available": [
-        "Research public evidence",
-        "Build validation asset",
-        "Publish through an owned channel",
-        "Fulfill the defined deliverable"
-      ],
-      "category": "agent-enabled task fulfillment",
-      "discovered_at": "2026-07-16T03:35:24+00:00",
-      "estimated_cost": 0.0,
-      "evidence_ids": [
-        "ev-live-github_open_bounties",
-        "ev-live-github_agent_buyer_language"
-      ],
-      "expected_outcome": "Agent solves and submits PR for a bounty-backed issue; payment collected on bounty acceptance and merge",
-      "free_substitutes": [
-        "manual fulfillment of GitHub issues",
-        "free agent scripts on open repositories"
-      ],
-      "human_actions_required": [],
-      "intended_buyer": "GitHub issue poster with explicit bounty offer",
-      "kill_criteria": [
-        {
-          "all": [
-            {
-              "metric": "actual_contacts",
-              "operator": "gte",
-              "value": 25
-            },
-            {
-              "metric": "actual_replies",
-              "operator": "lte",
-              "value": 0
-            }
-          ],
-          "reason": "Kill after 25 qualified contacts produce no replies."
-        }
-      ],
-      "last_seen_at": "2026-07-16T03:35:24+00:00",
-      "name": "Agent-enabled Fulfillment of Explicit GitHub Bounty Issue",
-      "next_action_authority_class": "autonomous",
-      "next_action_channel_id": "github_pages",
-      "next_executable_action": "Publish a public validation brief on Github Pages detailing agent-enabled GitHub bounty fulfillment for a sampled explicit bounty issue",
-      "offer": "Precise completion of an open GitHub issue with explicit dollar bounty using a deployed agent; deliverable is a merged PR resolving issue requirements.",
-      "opportunity_id": "opp-discovered-github-bounty-agent-task-fulfillment-brief-v2",
-      "payment_rail": "GitHub Payments or issue-linked bounty platform (external, e.g., IssueHunt)",
-      "pivot_criteria": [
-        {
-          "all": [
-            {
-              "metric": "actual_replies",
-              "operator": "gte",
-              "value": 3
-            },
-            {
-              "metric": "actual_checkout_starts",
-              "operator": "lte",
-              "value": 0
-            }
-          ],
-          "reason": "Pivot the offer when qualified replies do not start checkout."
-        }
-      ],
-      "price": {
-        "amount": 100.0,
-        "billing_model": "fixed",
-        "currency": "USD"
-      },
-      "required_assets": [
-        "deployed agent",
-        "GitHub account",
-        "access to bounty issue"
-      ],
-      "required_human_setup": [],
-      "role_fit": {
-        "asset": 5.0,
-        "cash": 4.0,
-        "frontier": 6.8
-      },
-      "scale_criteria": [
-        {
-          "all": [
-            {
-              "metric": "actual_purchases",
-              "operator": "gte",
-              "value": 3
-            }
-          ],
-          "reason": "Scale after three verified purchases."
-        }
-      ],
-      "score_adjustments": [],
-      "scores": {
-        "agent_execution_fit": 7,
-        "competition_resilience": 6,
-        "differentiation": 6,
-        "distribution_access": 8,
-        "evidence_quality": 7,
-        "expected_net_revenue": 3,
-        "free_substitute_resilience": 4,
-        "gross_margin": 9,
-        "legal_platform_feasibility": 10,
-        "low_human_dependency": 6,
-        "observable_buyer_demand": 2,
-        "opportunity_cost_efficiency": 6,
-        "reachable_buyers": 3,
-        "repeatability": 3,
-        "scalability": 3,
-        "startup_cost_efficiency": 9,
-        "time_to_first_verified_dollar": 4
-      },
-      "thesis": "Explicit dollar bounties are rarely posted but verifiable; agent-assisted fulfillment reduces friction and time-to-cash for buyers and solvers.",
-      "validation_72h": [
-        "agent contacts bounty issue poster; agent submits candidate PR; bounty acceptance or payment signal"
-      ]
-    },
     {
       "acquisition_channel": "x402 Bazaar marketplace listing",
       "agent_actions_available": [
@@ -5058,6 +4957,7 @@
           "reason": "Scale after three verified purchases."
         }
       ],
+      "score_adjustments": [],
       "scores": {
         "agent_execution_fit": 8,
         "competition_resilience": 6,
@@ -5083,15 +4983,136 @@
         "feedback or comment from agent developers",
         "dollar bounty issue referenced in tool usage"
       ]
+    },
+    {
+      "acquisition_channel": "x402 Bazaar listing; buyers discover and purchase via marketplace",
+      "agent_actions_available": [
+        "Research public evidence",
+        "Build validation asset",
+        "Publish through an owned channel",
+        "Fulfill the defined deliverable"
+      ],
+      "category": "agent marketplace",
+      "discovered_at": "2026-07-24T14:10:40+00:00",
+      "estimated_cost": 0.0,
+      "evidence_ids": [
+        "ev-live-x402_bazaar",
+        "ev-live-github_models_catalog"
+      ],
+      "expected_outcome": "First paid activation of a demo combo pack by a verified Bazaar buyer",
+      "free_substitutes": [
+        "open source demo scripts",
+        "individual agent repos"
+      ],
+      "human_actions_required": [],
+      "intended_buyer": "Bazaar marketplace buyers seeking ready-to-use agent/model demos",
+      "kill_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_contacts",
+              "operator": "gte",
+              "value": 25
+            },
+            {
+              "metric": "actual_replies",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Kill after 25 qualified contacts produce no replies."
+        }
+      ],
+      "last_seen_at": "2026-07-24T14:10:40+00:00",
+      "name": "Agent/Model Combo Pack Demo for x402 Bazaar",
+      "next_action_authority_class": "autonomous",
+      "next_action_channel_id": "github_pages",
+      "next_executable_action": "Publish validation brief for agent/model combo demo pack, targeting Bazaar buyers",
+      "offer": "Deliver an instantly usable combo pack (agent + model) with demo functionality, published to x402 Bazaar marketplace for immediate paid access.",
+      "opportunity_id": "opp-discovered-bazaar-agent-combo-instant-demo-brief-july24",
+      "payment_rail": "Bazaar native payment",
+      "pivot_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_replies",
+              "operator": "gte",
+              "value": 3
+            },
+            {
+              "metric": "actual_checkout_starts",
+              "operator": "lte",
+              "value": 0
+            }
+          ],
+          "reason": "Pivot the offer when qualified replies do not start checkout."
+        }
+      ],
+      "price": {
+        "amount": 100.0,
+        "billing_model": "fixed",
+        "currency": "USD"
+      },
+      "required_assets": [
+        "demo agent",
+        "reasoning model",
+        "bazaar publishable combo pack"
+      ],
+      "required_human_setup": [],
+      "role_fit": {
+        "asset": 7.6,
+        "cash": 8.0,
+        "frontier": 8.8
+      },
+      "scale_criteria": [
+        {
+          "all": [
+            {
+              "metric": "actual_purchases",
+              "operator": "gte",
+              "value": 3
+            }
+          ],
+          "reason": "Scale after three verified purchases."
+        }
+      ],
+      "score_adjustments": [
+        "Demand scores were capped because aggregate marketplace activity did not prove demand for this exact offer."
+      ],
+      "scores": {
+        "agent_execution_fit": 9,
+        "competition_resilience": 6,
+        "differentiation": 8,
+        "distribution_access": 9,
+        "evidence_quality": 9,
+        "expected_net_revenue": 8,
+        "free_substitute_resilience": 7,
+        "gross_margin": 9,
+        "legal_platform_feasibility": 10,
+        "low_human_dependency": 9,
+        "observable_buyer_demand": 7.0,
+        "opportunity_cost_efficiency": 8,
+        "reachable_buyers": 9,
+        "repeatability": 8,
+        "scalability": 8,
+        "startup_cost_efficiency": 8,
+        "time_to_first_verified_dollar": 7.0
+      },
+      "thesis": "Verified buyer activity and resource calls on x402 Bazaar indicate a strong market for bundled agent/model demo utilities.",
+      "validation_72h": [
+        "Unique visit and interaction stats on public brief",
+        "Bazaar listing click-throughs",
+        "Demo pack download or activation"
+      ]
     }
   ],
-  "run_id": "discovery-20260724T084125Z",
+  "run_id": "discovery-20260724T141040Z",
   "schema_name": "autonomous_founder_discovered_opportunities",
   "schema_version": "0.4",
   "selected_execution": {
     "action_type": "publish_validation_brief",
-    "opportunity_id": "opp-discovered-bazaar-model-combo-pack-july24",
-    "reason": "Publishing a validation brief for the reasoning agent combo pack leverages observed payer counts and explicit reasoning agent interest, fits channel capabilities, and can be run now for public buyer signal."
+    "opportunity_id": "opp-discovered-bazaar-agent-combo-instant-demo-brief-july24",
+    "reason": "Strong verified demand and immediate marketplace distribution; public brief enables rapid validation and funnel for paid Bazaar buyers without portfolio restriction or agent ecosystem dependency."
   },
   "synthesis_mode": "github_models"
 }
