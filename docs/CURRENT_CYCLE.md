@@ -87,8 +87,8 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 32. Agent & Reasoning Model Combo Pack Listing - 7.45
 - 33. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
 - 34. MCP / Agent Preflight Full Audit - 7.37
-- 35. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
-- 36. Agent Resource Combo Pack for x402 Bazaar - 7.21
+- 35. Actionable Agent-Driven Docs Change Alerts - 7.27
+- 36. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
 - 37. Agent Model Reasoning Demo for Paid GitHub Bounty - 7.12
 - 38. MCP / Agent Preflight Metered API - 7.12
 - 39. Founder Demo Repurposing Pack - 7.10
