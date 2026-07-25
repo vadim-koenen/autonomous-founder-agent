@@ -64,23 +64,23 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 9. Curated Agent Reasoning Model Combo Pack - 7.99
 - 10. Agent-Model Combo Demo Pack (July 21) - 7.97
 - 11. Agent Model Reasoning Combo Pack on x402 Bazaar - 7.94
-- 12. Agent combo validation demo brief for buyers on x402 Bazaar - 7.87
-- 13. x402 Bazaar Agent Resource Validation Brief - 7.84
-- 14. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
-- 15. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
-- 16. Agent Model Reasoning Combo Pack - 7.80
-- 17. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
-- 18. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
-- 19. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
-- 20. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
-- 21. Fulfill explicit agent-related GitHub bounty issue - 7.66
-- 22. Fulfillment of explicit bounty work from GitHub open issues - 7.66
-- 23. Agent Launch Gate Founding License - 7.64
-- 24. Live Agent Resource Combo-Pack Validation Brief - 7.63
-- 25. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
-- 26. Evidence-Backed Competitor Brief - 7.61
-- 27. MCP Integration Launch Sprint - 7.55
-- 28. Fixed-Scope Data Cleanup Service - 7.55
+- 12. x402 Bazaar Agent Resource Validation Brief - 7.84
+- 13. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
+- 14. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
+- 15. Agent Model Reasoning Combo Pack - 7.80
+- 16. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
+- 17. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
+- 18. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
+- 19. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
+- 20. Fulfill explicit agent-related GitHub bounty issue - 7.66
+- 21. Fulfillment of explicit bounty work from GitHub open issues - 7.66
+- 22. Agent Launch Gate Founding License - 7.64
+- 23. Live Agent Resource Combo-Pack Validation Brief - 7.63
+- 24. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
+- 25. Evidence-Backed Competitor Brief - 7.61
+- 26. MCP Integration Launch Sprint - 7.55
+- 27. Fixed-Scope Data Cleanup Service - 7.55
+- 28. Bazaar deployable MCP Registry agent/model pack - 7.48
 - 29. Agent Resource Validation Demo for x402 Bazaar - 7.48
 - 30. Agent resource: Roblox documentation change tracker demo brief - 7.48
 - 31. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
