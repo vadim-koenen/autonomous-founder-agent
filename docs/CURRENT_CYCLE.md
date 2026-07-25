@@ -54,10 +54,10 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 ## Ranked Opportunity Set
 
 - 1. Agent/Model Combo Pack for x402 Bazaar - 8.58
-- 2. Agent Resource Combo Validation Brief for x402 Bazaar Buyers - 8.23
-- 3. Agent/Model Combo Pack Demo for x402 Bazaar - 8.18
-- 4. Agent Resource Combo Pack for x402 Bazaar - 8.14
-- 5. Agent & Reasoning Model Demo Pack Validation Brief for Bazaar - 8.13
+- 2. Bazaar Agent Combo Pack Instant Validation Brief - 8.37
+- 3. Agent Resource Combo Validation Brief for x402 Bazaar Buyers - 8.23
+- 4. Agent/Model Combo Pack Demo for x402 Bazaar - 8.18
+- 5. Agent Resource Combo Pack for x402 Bazaar - 8.14
 - 6. MCP Registry Insights Pack for Marketplace Buyers - 8.05
 - 7. Bazaar Agent Resource Combo Demo Pack - 8.01
 - 8. Bazaar Agent Resource Combo: Validation Brief - 8.00
