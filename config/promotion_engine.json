@@ -5,6 +5,7 @@
     "campaign_id": "krs_visibility_2026_q3",
     "name": "Revenue Systems Diagnostic Visibility",
     "site_url": "https://vadimkoenen.com",
+    "active_segment_ids": ["marketo_repair"],
     "score_threshold": 55,
     "duration_days": 30,
     "budget_usd": 0,
@@ -22,8 +23,20 @@
     "require_verified_work_email": true,
     "require_source_url": true,
     "require_evidence_note": true,
+    "require_segment_title_match": true,
+    "require_segment_seniority_match": true,
+    "require_segment_technology_match": true,
+    "require_segment_company_size_match": true,
+    "require_segment_industry_match": true,
     "min_evidence_length": 20,
     "max_prospects_per_company": 1,
+    "allowed_approvers": ["Vadim Koenen"],
+    "suppression_snapshot_max_age_hours": 24,
+    "required_suppression_snapshot_scopes": [
+      "crm_contacts",
+      "crm_commercial_relationships",
+      "apollo_delivery_suppressions"
+    ],
     "blocked_email_domains": [
       "aol.com",
       "gmail.com",
@@ -39,7 +52,8 @@
       "bounced",
       "do_not_contact",
       "customer",
-      "active_opportunity"
+      "active_opportunity",
+      "existing_crm_contact"
     ]
   },
   "channels": {
@@ -47,7 +61,14 @@
       "mode": "draft_review_export_only",
       "send_enabled": false,
       "sequence_activation_implemented": false,
-      "default_daily_send_limit_after_activation": 25,
+      "default_daily_send_limit_after_activation": 5,
+      "activation_gates": {
+        "sender_mailbox_verified": false,
+        "message_authentication_verified": false,
+        "postal_identity_configured": false,
+        "unsubscribe_verified": false,
+        "reply_bounce_stop_rules_verified": false
+      },
       "required_controls": [
         "verified sender domain and mailbox",
         "physical postal address",
@@ -95,8 +116,9 @@
       ],
       "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
       "technology_keywords": ["marketo", "salesforce"],
+      "required_technology_groups": [["marketo"], ["salesforce"]],
       "industry_keywords": ["software", "saas", "technology", "telecommunications", "b2b"],
-      "company_size": [50, 5000],
+      "company_size": [200, 5000],
       "landing_path": "/marketo-consultant/",
       "proof_path": "/case-studies/6sense-marketo-mitel/",
       "value_asset_path": "/revenue-systems-trust-score/",
@@ -116,6 +138,10 @@
       ],
       "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
       "technology_keywords": ["6sense", "demandbase", "marketo", "salesforce"],
+      "required_technology_groups": [
+        ["6sense", "demandbase"],
+        ["marketo", "salesforce"]
+      ],
       "industry_keywords": ["software", "saas", "technology", "telecommunications", "b2b"],
       "company_size": [100, 5000],
       "landing_path": "/6sense-marketo-integration/",
@@ -137,6 +163,7 @@
       ],
       "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
       "technology_keywords": ["hubspot", "salesforce", "marketo"],
+      "required_technology_groups": [["hubspot", "salesforce", "marketo"]],
       "industry_keywords": ["software", "saas", "technology", "services", "b2b"],
       "company_size": [50, 5000],
       "landing_path": "/first-party-data-model-revops/",

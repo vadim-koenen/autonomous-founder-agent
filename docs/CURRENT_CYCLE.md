@@ -61,16 +61,31 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Current state: local import, scoring, suppression, private review queue,
   approval, Apollo worksheet export, UTM creation, and outcome evidence import
   are implemented and tested.
-- External state: no Apollo credential used, no prospect imported, no sequence
-  created or activated, no message sent, no LinkedIn action performed, and no
-  spend incurred.
-- Next action: connect a scoped Apollo API key or place an owner-exported CSV in
-  `.promotion-private/`, then review the first 12 U.S. business prospects before
-  any activation decision.
+- Active lane: Marketo and Salesforce repair only. Five existing HubSpot
+  contacts are stored as hashed local suppressions from a current private CRM
+  contact snapshot. The current CRM commercial-relationship snapshot contains
+  zero records. The Apollo delivery-suppression scope still requires an
+  authoritative snapshot before preflight can clear.
+- External state: Apollo Free is available through its UI with 95 credits
+  remaining, but no domain is linked and an unrelated Gmail mailbox is only
+  partially configured. A strict five-person public-research cohort across
+  Socure, Sanity, DroneDeploy, Boulevard, and Podium was revealed, automatically
+  saved by Apollo, imported privately, and qualified. The engine produced 15
+  email drafts and five manual LinkedIn research tasks. No list or sequence was
+  created, no draft was approved, no contact was enrolled, no message was sent,
+  no LinkedIn action occurred, and no spend was incurred.
+- Owned-site attribution now preserves the five allowlisted campaign UTMs
+  through `/contact/` and Calendly; PR #27 is merged and the production asset is
+  verified.
+- Next action: verify the exact outbound mailbox at message level, import the
+  current Apollo delivery-suppression scope, and complete individual human
+  review before any approval, export, enrollment, or activation decision.
 
 ## Blocked Identity or Setup Actions
 
-- None block the next autonomous build actions.
+- Sending is blocked until the outbound mailbox, aligned SPF/DKIM/DMARC,
+  physical postal identity, unsubscribe behavior, reply/bounce stop rules, and
+  an inactive sequence are verified.
 
 ## Ranked Opportunity Set
 

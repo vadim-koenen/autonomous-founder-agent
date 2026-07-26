@@ -83,13 +83,13 @@ def email_sequence(
             "subject": "Close the loop?",
             "body": (
                 "Hi {first},\n\n"
-                "I will close the loop after this. If {pain_lower} becomes a priority, "
+                "I will close the loop after this. If diagnosing this handoff becomes "
+                "a priority, "
                 "the diagnostic scope is here: {url}\n\n"
                 "No need to reply if it is not relevant. You can also use the unsubscribe "
                 "link below to opt out.\n\nVadim"
             ).format(
                 first=first_name,
-                pain_lower=str(segment["pain"]).strip().rstrip(".").lower(),
                 url=landing_3,
             ),
             "attributed_url": landing_3,

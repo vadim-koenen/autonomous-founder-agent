@@ -7,6 +7,9 @@ records. Every contact needs a verified work email, U.S. jurisdiction, public
 source URL, and a concrete evidence note. Draft, review, and export; sending
 remains a separate activation decision.
 
+The current Free-plan search and its manual Marketo/Salesforce evidence gate are
+specified in `APOLLO_SEARCH.md`.
+
 ## LinkedIn
 
 Publish or adapt one useful diagnostic insight at a time. For named prospects,
