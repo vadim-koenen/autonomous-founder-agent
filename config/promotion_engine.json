@@ -1,0 +1,149 @@
+{
+  "schema_name": "vadimkoenen_multichannel_promotion_engine",
+  "schema_version": "1.0",
+  "campaign": {
+    "campaign_id": "krs_visibility_2026_q3",
+    "name": "Revenue Systems Diagnostic Visibility",
+    "site_url": "https://vadimkoenen.com",
+    "score_threshold": 55,
+    "duration_days": 30,
+    "budget_usd": 0,
+    "objective": {
+      "qualified_prospects": 12,
+      "systems_review_requests": 3,
+      "verified_customers": 1,
+      "verified_revenue_usd": 100
+    },
+    "primary_cta": "Book a systems review",
+    "revenue_source_of_truth": "data/revenue_ledger.json"
+  },
+  "policy": {
+    "allowed_countries": ["United States"],
+    "require_verified_work_email": true,
+    "require_source_url": true,
+    "require_evidence_note": true,
+    "min_evidence_length": 20,
+    "max_prospects_per_company": 1,
+    "blocked_email_domains": [
+      "aol.com",
+      "gmail.com",
+      "hotmail.com",
+      "icloud.com",
+      "outlook.com",
+      "proton.me",
+      "protonmail.com",
+      "yahoo.com"
+    ],
+    "suppression_reasons": [
+      "unsubscribed",
+      "bounced",
+      "do_not_contact",
+      "customer",
+      "active_opportunity"
+    ]
+  },
+  "channels": {
+    "apollo_email": {
+      "mode": "draft_review_export_only",
+      "send_enabled": false,
+      "sequence_activation_implemented": false,
+      "default_daily_send_limit_after_activation": 25,
+      "required_controls": [
+        "verified sender domain and mailbox",
+        "physical postal address",
+        "unsubscribe link",
+        "reply unsubscribe handling",
+        "bounce and do-not-contact suppression",
+        "inactive sequence review",
+        "one-person-per-company campaign cap"
+      ]
+    },
+    "linkedin_manual_task": {
+      "mode": "owner_reviewed_manual_only",
+      "automated_posts": false,
+      "automated_comments": false,
+      "automated_messages": false
+    },
+    "owned_site": {
+      "mode": "utm_attributed",
+      "intake_endpoint": "/.netlify/functions/hubspot-intake",
+      "structured_attribution_fields": [
+        "source",
+        "source_form",
+        "source_page",
+        "source_path",
+        "referrer",
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term"
+      ]
+    }
+  },
+  "segments": [
+    {
+      "segment_id": "marketo_repair",
+      "label": "Marketo and Salesforce repair",
+      "title_keywords": [
+        "marketing operations",
+        "marketing ops",
+        "revenue operations",
+        "revops",
+        "demand generation",
+        "marketing automation"
+      ],
+      "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
+      "technology_keywords": ["marketo", "salesforce"],
+      "industry_keywords": ["software", "saas", "technology", "telecommunications", "b2b"],
+      "company_size": [50, 5000],
+      "landing_path": "/marketo-consultant/",
+      "proof_path": "/case-studies/6sense-marketo-mitel/",
+      "value_asset_path": "/revenue-systems-trust-score/",
+      "pain": "Lifecycle, routing, and attribution gaps often hide inside the Marketo-to-Salesforce handoff.",
+      "offer": "A bounded Marketo and Salesforce systems review"
+    },
+    {
+      "segment_id": "abm_activation",
+      "label": "ABM and intent activation",
+      "title_keywords": [
+        "account based marketing",
+        "abm",
+        "demand generation",
+        "marketing operations",
+        "revenue operations",
+        "growth"
+      ],
+      "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
+      "technology_keywords": ["6sense", "demandbase", "marketo", "salesforce"],
+      "industry_keywords": ["software", "saas", "technology", "telecommunications", "b2b"],
+      "company_size": [100, 5000],
+      "landing_path": "/6sense-marketo-integration/",
+      "proof_path": "/case-studies/6sense-marketo-mitel/",
+      "value_asset_path": "/lab/signal-playground/",
+      "pain": "Intent signals create little value when account ownership, suppression, and MAP-to-CRM routing are not explicit.",
+      "offer": "A bounded ABM signal-to-action diagnostic"
+    },
+    {
+      "segment_id": "revops_lifecycle",
+      "label": "Revenue data and lifecycle governance",
+      "title_keywords": [
+        "revenue operations",
+        "revops",
+        "sales operations",
+        "marketing operations",
+        "gtm operations",
+        "crm"
+      ],
+      "seniority_keywords": ["director", "head", "vp", "vice president", "chief"],
+      "technology_keywords": ["hubspot", "salesforce", "marketo"],
+      "industry_keywords": ["software", "saas", "technology", "services", "b2b"],
+      "company_size": [50, 5000],
+      "landing_path": "/first-party-data-model-revops/",
+      "proof_path": "/case-studies/",
+      "value_asset_path": "/martech-stack-roi-calculator/",
+      "pain": "Unowned lifecycle definitions and conflicting system fields make pipeline reporting fragile.",
+      "offer": "A bounded lifecycle and first-party data review"
+    }
+  ]
+}
