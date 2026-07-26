@@ -11,6 +11,35 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 
+SUPPRESSION_REASONS = (
+    "unsubscribed",
+    "bounced",
+    "do_not_contact",
+    "customer",
+    "active_opportunity",
+    "existing_crm_contact",
+)
+
+SUPPRESSION_PRECEDENCE = {
+    "existing_crm_contact": 10,
+    "active_opportunity": 20,
+    "customer": 30,
+    "bounced": 40,
+    "unsubscribed": 50,
+    "do_not_contact": 60,
+}
+
+SUPPRESSION_SCOPE_REASONS = {
+    "crm_contacts": {"existing_crm_contact"},
+    "crm_commercial_relationships": {"customer", "active_opportunity"},
+    "apollo_delivery_suppressions": {
+        "unsubscribed",
+        "bounced",
+        "do_not_contact",
+    },
+}
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -63,6 +92,14 @@ class PromotionStore:
                 evidence_reference TEXT NOT NULL DEFAULT '',
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS suppression_history (
+                observation_id TEXT PRIMARY KEY,
+                email_hash TEXT NOT NULL,
+                reason TEXT NOT NULL,
+                evidence_reference TEXT NOT NULL,
+                source_scope TEXT NOT NULL,
+                observed_at TEXT NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS scores (
                 prospect_id TEXT NOT NULL,
                 campaign_id TEXT NOT NULL,
@@ -114,6 +151,11 @@ class PromotionStore:
                 record_count INTEGER NOT NULL,
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS metadata (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
             """
         )
         self.connection.commit()
@@ -123,6 +165,9 @@ class PromotionStore:
         if not email:
             raise ValueError("email is required")
         prospect_id = hashlib.sha256(email.encode("utf-8")).hexdigest()[:24]
+        existing = self.connection.execute(
+            "SELECT prospect_id FROM prospects WHERE email = ?", (email,)
+        ).fetchone()
         now = utc_now()
         technologies = record.get("technologies", [])
         if isinstance(technologies, str):
@@ -182,10 +227,20 @@ class PromotionStore:
                 evidence_note=excluded.evidence_note,
                 apollo_person_id=excluded.apollo_person_id,
                 apollo_contact_id=excluded.apollo_contact_id,
+                lifecycle_status='imported',
                 updated_at=excluded.updated_at
             """,
             values,
         )
+        if existing:
+            # Any changed source evidence invalidates derived decisions. Events and
+            # export receipts remain as history, but scores and drafts must be rebuilt.
+            self.connection.execute(
+                "DELETE FROM scores WHERE prospect_id = ?", (prospect_id,)
+            )
+            self.connection.execute(
+                "DELETE FROM drafts WHERE prospect_id = ?", (prospect_id,)
+            )
         self.connection.commit()
         return prospect_id
 
@@ -214,24 +269,87 @@ class PromotionStore:
         ).fetchone()
         return str(row["reason"]) if row else None
 
-    def suppress(self, email: str, reason: str, evidence_reference: str) -> None:
-        allowed = {"unsubscribed", "bounced", "do_not_contact", "customer", "active_opportunity"}
-        if reason not in allowed:
+    def suppress(
+        self,
+        email: str,
+        reason: str,
+        evidence_reference: str,
+        source_scope: str = "manual",
+    ) -> None:
+        email = email.strip().lower()
+        if not email or "@" not in email:
+            raise ValueError("valid suppression email is required")
+        if reason not in SUPPRESSION_REASONS:
             raise ValueError("unsupported suppression reason")
+        if not evidence_reference.strip():
+            raise ValueError("suppression evidence_reference is required")
+        if not source_scope.strip():
+            raise ValueError("suppression source_scope is required")
+        now = utc_now()
+        with self.connection:
+            self._apply_suppression(
+                email,
+                reason,
+                evidence_reference.strip(),
+                now,
+                source_scope=source_scope.strip(),
+            )
+
+    def _apply_suppression(
+        self,
+        email: str,
+        reason: str,
+        evidence_reference: str,
+        created_at: str,
+        source_scope: str,
+    ) -> str:
+        hashed_email = email_hash(email)
         self.connection.execute(
             """
-            INSERT INTO suppressions (email_hash, reason, evidence_reference, created_at)
-            VALUES (?, ?, ?, ?)
-            ON CONFLICT(email_hash) DO UPDATE SET
-                reason=excluded.reason,
-                evidence_reference=excluded.evidence_reference,
-                created_at=excluded.created_at
+            INSERT INTO suppression_history (
+                observation_id, email_hash, reason, evidence_reference,
+                source_scope, observed_at
+            ) VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (email_hash(email), reason, evidence_reference, utc_now()),
+            (
+                uuid.uuid4().hex,
+                hashed_email,
+                reason,
+                evidence_reference,
+                source_scope,
+                created_at,
+            ),
         )
+        existing = self.connection.execute(
+            "SELECT reason FROM suppressions WHERE email_hash = ?",
+            (hashed_email,),
+        ).fetchone()
+        effective_reason = reason
+        if existing is None:
+            self.connection.execute(
+                """
+                INSERT INTO suppressions (
+                    email_hash, reason, evidence_reference, created_at
+                ) VALUES (?, ?, ?, ?)
+                """,
+                (hashed_email, reason, evidence_reference, created_at),
+            )
+        else:
+            existing_reason = str(existing["reason"])
+            if SUPPRESSION_PRECEDENCE[reason] > SUPPRESSION_PRECEDENCE[existing_reason]:
+                self.connection.execute(
+                    """
+                    UPDATE suppressions
+                    SET reason = ?, evidence_reference = ?, created_at = ?
+                    WHERE email_hash = ?
+                    """,
+                    (reason, evidence_reference, created_at, hashed_email),
+                )
+            else:
+                effective_reason = existing_reason
         self.connection.execute(
             "UPDATE prospects SET lifecycle_status = 'suppressed', updated_at = ? WHERE email = ?",
-            (utc_now(), email.strip().lower()),
+            (created_at, email),
         )
         self.connection.execute(
             """
@@ -240,12 +358,94 @@ class PromotionStore:
             WHERE prospect_id = (SELECT prospect_id FROM prospects WHERE email = ?)
             """,
             (
-                json.dumps(["suppressed:{0}".format(reason)]),
-                utc_now(),
-                email.strip().lower(),
+                json.dumps(["suppressed:{0}".format(effective_reason)]),
+                created_at,
+                email,
             ),
         )
-        self.connection.commit()
+        return effective_reason
+
+    def import_suppressions(
+        self,
+        records: Iterable[Mapping[str, str]],
+        snapshot_source: str,
+        snapshot_scope: str,
+    ) -> int:
+        if snapshot_scope not in SUPPRESSION_SCOPE_REASONS:
+            raise ValueError("unsupported suppression snapshot scope")
+        prepared = []
+        for record in records:
+            email = str(record.get("email") or "").strip().lower()
+            reason = str(record.get("reason") or "").strip()
+            evidence = str(record.get("evidence_reference") or "").strip()
+            if not email or "@" not in email:
+                raise ValueError("valid suppression email is required")
+            if reason not in SUPPRESSION_REASONS:
+                raise ValueError("unsupported suppression reason")
+            if reason not in SUPPRESSION_SCOPE_REASONS[snapshot_scope]:
+                raise ValueError(
+                    "suppression reason is not valid for snapshot scope"
+                )
+            if not evidence:
+                raise ValueError("suppression evidence_reference is required")
+            prepared.append((email, reason, evidence))
+        if not snapshot_source.strip():
+            raise ValueError("suppression snapshot source is required")
+
+        now = utc_now()
+        with self.connection:
+            for email, reason, evidence in prepared:
+                self._apply_suppression(
+                    email,
+                    reason,
+                    evidence,
+                    now,
+                    source_scope=snapshot_scope,
+                )
+            self.connection.execute(
+                """
+                INSERT INTO metadata (key, value, updated_at) VALUES (?, ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    value=excluded.value,
+                    updated_at=excluded.updated_at
+                """,
+                (
+                    "suppression_snapshot:{0}".format(snapshot_scope),
+                    json.dumps(
+                        {
+                            "source": snapshot_source.strip(),
+                            "scope": snapshot_scope,
+                            "record_count": len(prepared),
+                        },
+                        sort_keys=True,
+                    ),
+                    now,
+                ),
+            )
+        return len(prepared)
+
+    def suppression_history(self, email: str) -> List[Dict[str, Any]]:
+        rows = self.connection.execute(
+            """
+            SELECT reason, evidence_reference, source_scope, observed_at
+            FROM suppression_history
+            WHERE email_hash = ?
+            ORDER BY rowid
+            """,
+            (email_hash(email),),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+    def get_metadata(self, key: str) -> Optional[Dict[str, Any]]:
+        row = self.connection.execute(
+            "SELECT value, updated_at FROM metadata WHERE key = ?", (key,)
+        ).fetchone()
+        if row is None:
+            return None
+        return {
+            "value": json.loads(str(row["value"])),
+            "updated_at": str(row["updated_at"]),
+        }
 
     def save_score(
         self,
@@ -320,12 +520,39 @@ class PromotionStore:
     ) -> str:
         existing = self.connection.execute(
             """
-            SELECT draft_id FROM drafts
+            SELECT draft_id, wait_business_days, subject, body, attributed_url
+            FROM drafts
             WHERE prospect_id = ? AND campaign_id = ? AND channel = ? AND step_index = ?
             """,
             (prospect_id, campaign_id, channel, int(draft["step_index"])),
         ).fetchone()
         if existing:
+            refreshed = (
+                int(existing["wait_business_days"]) != int(draft.get("wait_business_days", 0))
+                or str(existing["subject"]) != str(draft["subject"])
+                or str(existing["body"]) != str(draft["body"])
+                or str(existing["attributed_url"]) != str(draft["attributed_url"])
+            )
+            if refreshed:
+                self.connection.execute(
+                    """
+                    UPDATE drafts SET
+                        segment_id=?, wait_business_days=?, subject=?, body=?,
+                        attributed_url=?, status='draft', approved_by='',
+                        approved_at='', exported_at='', created_at=?
+                    WHERE draft_id=?
+                    """,
+                    (
+                        segment_id,
+                        int(draft.get("wait_business_days", 0)),
+                        str(draft["subject"]),
+                        str(draft["body"]),
+                        str(draft["attributed_url"]),
+                        utc_now(),
+                        str(existing["draft_id"]),
+                    ),
+                )
+                self.connection.commit()
             return str(existing["draft_id"])
         draft_id = uuid.uuid4().hex
         self.connection.execute(
@@ -353,7 +580,12 @@ class PromotionStore:
         return draft_id
 
     def approve_drafts(
-        self, reviewer: str, draft_id: Optional[str] = None, campaign_id: Optional[str] = None
+        self,
+        reviewer: str,
+        draft_id: Optional[str] = None,
+        prospect_id: Optional[str] = None,
+        campaign_id: Optional[str] = None,
+        channel: Optional[str] = None,
     ) -> int:
         if not reviewer.strip():
             raise ValueError("reviewer is required")
@@ -365,16 +597,70 @@ class PromotionStore:
                 """,
                 (reviewer.strip(), utc_now(), draft_id),
             )
-        elif campaign_id:
+        elif campaign_id and prospect_id and channel:
             cursor = self.connection.execute(
                 """
                 UPDATE drafts SET status='approved', approved_by=?, approved_at=?
-                WHERE campaign_id=? AND status='draft'
+                WHERE campaign_id=? AND prospect_id=? AND channel=? AND status='draft'
                 """,
-                (reviewer.strip(), utc_now(), campaign_id),
+                (
+                    reviewer.strip(),
+                    utc_now(),
+                    campaign_id,
+                    prospect_id,
+                    channel,
+                ),
+            )
+        elif campaign_id and channel:
+            cursor = self.connection.execute(
+                """
+                UPDATE drafts SET status='approved', approved_by=?, approved_at=?
+                WHERE campaign_id=? AND channel=? AND status='draft'
+                """,
+                (reviewer.strip(), utc_now(), campaign_id, channel),
             )
         else:
-            raise ValueError("draft_id or campaign_id is required")
+            raise ValueError(
+                "draft_id, or campaign_id plus prospect/channel, is required"
+            )
+        self.connection.commit()
+        return int(cursor.rowcount)
+
+    def invalidate_disallowed_approvals(
+        self,
+        campaign_id: str,
+        channel: str,
+        allowed_reviewers: Iterable[str],
+    ) -> int:
+        allowed = {
+            str(reviewer).strip().casefold()
+            for reviewer in allowed_reviewers
+            if str(reviewer).strip()
+        }
+        rows = self.connection.execute(
+            """
+            SELECT draft_id, approved_by
+            FROM drafts
+            WHERE campaign_id = ? AND channel = ? AND status = 'approved'
+            """,
+            (campaign_id, channel),
+        ).fetchall()
+        invalid_ids = [
+            str(row["draft_id"])
+            for row in rows
+            if str(row["approved_by"]).strip().casefold() not in allowed
+        ]
+        if not invalid_ids:
+            return 0
+        placeholders = ",".join("?" for _ in invalid_ids)
+        cursor = self.connection.execute(
+            """
+            UPDATE drafts
+            SET status = 'draft', approved_by = '', approved_at = ''
+            WHERE draft_id IN ({0})
+            """.format(placeholders),
+            invalid_ids,
+        )
         self.connection.commit()
         return int(cursor.rowcount)
 

@@ -4,14 +4,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from .apollo import ApolloClient
+from .apollo import ApolloAccessError, ApolloClient
 from .config import load_config
 from .engine import PromotionEngine
-from .store import PromotionStore
+from .store import (
+    SUPPRESSION_REASONS,
+    SUPPRESSION_SCOPE_REASONS,
+    PromotionStore,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +29,13 @@ def _private_output(path: Path) -> Path:
     private = PRIVATE_ROOT.resolve()
     if private != resolved and private not in resolved.parents:
         raise ValueError("PII-bearing outputs must remain under {0}".format(PRIVATE_ROOT))
+    return resolved
+
+
+def _private_input(path: Path) -> Path:
+    resolved = _private_output(path)
+    if not resolved.is_file():
+        raise ValueError("private input file does not exist")
     return resolved
 
 
@@ -42,6 +54,7 @@ def _engine(db_path: Path, config_path: Path) -> PromotionEngine:
         load_config(config_path),
         store,
         ledger_path=PROJECT_ROOT / "data/revenue_ledger.json",
+        grants_path=PROJECT_ROOT / "config/capability_grants.json",
     )
 
 
@@ -58,6 +71,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     import_cmd = commands.add_parser("import-apollo")
     import_cmd.add_argument("--csv", type=Path, required=True)
+    suppression_import_cmd = commands.add_parser("import-suppressions")
+    suppression_import_cmd.add_argument("--csv", type=Path, required=True)
+    suppression_import_cmd.add_argument("--source", required=True)
+    suppression_import_cmd.add_argument(
+        "--scope",
+        choices=tuple(SUPPRESSION_SCOPE_REASONS),
+        required=True,
+    )
     commands.add_parser("qualify")
 
     draft_cmd = commands.add_parser("draft")
@@ -68,8 +89,12 @@ def build_parser() -> argparse.ArgumentParser:
     approve_cmd = commands.add_parser("approve")
     approve_group = approve_cmd.add_mutually_exclusive_group(required=True)
     approve_group.add_argument("--draft-id")
+    approve_group.add_argument("--prospect-id")
     approve_group.add_argument("--all", action="store_true")
     approve_cmd.add_argument("--reviewer", required=True)
+    approve_cmd.add_argument(
+        "--channel", choices=("apollo_email", "linkedin_manual_task")
+    )
 
     review_cmd = commands.add_parser("review-queue")
     review_cmd.add_argument("--out", type=Path)
@@ -81,7 +106,7 @@ def build_parser() -> argparse.ArgumentParser:
     suppress_cmd.add_argument("--email", required=True)
     suppress_cmd.add_argument(
         "--reason",
-        choices=("unsubscribed", "bounced", "do_not_contact", "customer", "active_opportunity"),
+        choices=SUPPRESSION_REASONS,
         required=True,
     )
     suppress_cmd.add_argument("--evidence", required=True)
@@ -108,6 +133,7 @@ def build_parser() -> argparse.ArgumentParser:
     event_cmd.add_argument("--occurred-at", required=True)
 
     commands.add_parser("report")
+    commands.add_parser("activation-preflight")
     commands.add_parser("apollo-health")
     search_cmd = commands.add_parser("apollo-search")
     search_cmd.add_argument("--filters-json", type=Path, required=True)
@@ -121,23 +147,52 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Optional[list] = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command in {"apollo-health", "apollo-search", "apollo-enrich"}:
-        client = ApolloClient(grants_path=PROJECT_ROOT / "config/capability_grants.json")
-        if args.command == "apollo-health":
-            result = client.health()
-            print(json.dumps({"ok": bool(result), "credential_present": True}, indent=2))
+        credential_present = bool(os.environ.get("APOLLO_API_KEY", "").strip())
+        try:
+            filters = None
+            output = None
+            if args.command in {"apollo-search", "apollo-enrich"}:
+                filters_path = _private_input(args.filters_json)
+                output = _private_output(args.out)
+                output.parent.mkdir(parents=True, exist_ok=True)
+                if output.exists() and not output.is_file():
+                    raise ValueError("Apollo output path must be a regular file")
+                filters = json.loads(filters_path.read_text(encoding="utf-8"))
+                if not isinstance(filters, dict):
+                    raise ValueError("Apollo filters JSON must be an object")
+            client = ApolloClient(
+                grants_path=PROJECT_ROOT / "config/capability_grants.json"
+            )
+            if args.command == "apollo-health":
+                result = client.health()
+                print(
+                    json.dumps(
+                        {"ok": bool(result), "credential_present": credential_present},
+                        indent=2,
+                    )
+                )
+                return 0
+            result = (
+                client.search_people(filters)
+                if args.command == "apollo-search"
+                else client.enrich_person(filters)
+            )
+            output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+            count = len(result.get("people", result.get("contacts", [])))
+            print(json.dumps({"records": count, "private_output": output.name}, indent=2))
             return 0
-        filters = json.loads(args.filters_json.read_text(encoding="utf-8"))
-        result = (
-            client.search_people(filters)
-            if args.command == "apollo-search"
-            else client.enrich_person(filters)
-        )
-        output = _private_output(args.out)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-        count = len(result.get("people", result.get("contacts", [])))
-        print(json.dumps({"records": count, "private_output": output.name}, indent=2))
-        return 0
+        except ApolloAccessError as error:
+            print(
+                json.dumps(
+                    {
+                        "ok": False,
+                        "credential_present": credential_present,
+                        "error": str(error),
+                    },
+                    indent=2,
+                )
+            )
+            return 2
 
     engine = _engine(args.db, args.config)
     try:
@@ -145,7 +200,13 @@ def main(argv: Optional[list] = None) -> int:
         if args.command == "init":
             result = {"initialized": True, "database": Path(args.db).name}
         elif args.command == "import-apollo":
-            result = engine.import_apollo_csv(args.csv)
+            result = engine.import_apollo_csv(_private_input(args.csv))
+        elif args.command == "import-suppressions":
+            result = engine.import_suppressions_csv(
+                _private_input(args.csv),
+                args.source,
+                args.scope,
+            )
         elif args.command == "qualify":
             result = engine.qualify()
         elif args.command == "draft":
@@ -153,7 +214,11 @@ def main(argv: Optional[list] = None) -> int:
         elif args.command == "approve":
             result = {
                 "approved": engine.approve(
-                    args.reviewer, draft_id=args.draft_id, approve_all=args.all
+                    args.reviewer,
+                    draft_id=args.draft_id,
+                    prospect_id=args.prospect_id,
+                    approve_all=args.all,
+                    channel=args.channel,
                 )
             }
         elif args.command == "review-queue":
@@ -184,6 +249,8 @@ def main(argv: Optional[list] = None) -> int:
             }
         elif args.command == "report":
             result = engine.report()
+        elif args.command == "activation-preflight":
+            result = engine.activation_preflight()
         else:
             raise ValueError("unsupported command")
         print(json.dumps(result, indent=2, sort_keys=True))

@@ -28,8 +28,10 @@ checklist in `docs/PROMOTION_ENGINE.md` is complete.
 ## Required Rules
 
 - Stop on reply, unsubscribe, or bounce.
-- Exclude DNC, current customers, active opportunities, and suppression matches.
-- Keep the initial cap at one person per company and 25 messages per day until
-  real deliverability is reviewed.
+- Exclude existing CRM contacts, DNC records, current customers, active
+  opportunities, and suppression matches.
+- Keep the initial cap at one person per company and five reviewed messages per
+  day. Increase only after five healthy business days, with verified
+  message-level authentication and no compliance issue.
 - Do not use open tracking as a success metric. Prioritize replies,
   systems-review requests, and ledger-verified customers.
