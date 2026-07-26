@@ -45,47 +45,11 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- Added a fail-closed multichannel promotion operator for `vadimkoenen.com`.
-  Apollo can supply or receive reviewed prospect records, but search,
-  enrichment, contact mutation, sequence enrollment, activation, and sending
-  remain disabled until their separate access and policy gates are verified.
-- No active portfolio offer was replaced and no external promotion occurred.
-- Verified revenue remains $0.00.
-
-## Promotion Infrastructure
-
-- Campaign: Revenue Systems Diagnostic Visibility (`krs_visibility_2026_q3`)
-- Site: `https://vadimkoenen.com`
-- Target: 12 qualified prospects, three systems-review requests, one
-  ledger-verified customer, and $100 verified revenue over 30 days.
-- Current state: local import, scoring, suppression, private review queue,
-  approval, Apollo worksheet export, UTM creation, and outcome evidence import
-  are implemented and tested.
-- Active lane: Marketo and Salesforce repair only. Five existing HubSpot
-  contacts are stored as hashed local suppressions from a current private CRM
-  contact snapshot. The current CRM commercial-relationship snapshot contains
-  zero records. The Apollo delivery-suppression scope still requires an
-  authoritative snapshot before preflight can clear.
-- External state: Apollo Free is available through its UI with 95 credits
-  remaining, but no domain is linked and an unrelated Gmail mailbox is only
-  partially configured. A strict five-person public-research cohort across
-  Socure, Sanity, DroneDeploy, Boulevard, and Podium was revealed, automatically
-  saved by Apollo, imported privately, and qualified. The engine produced 15
-  email drafts and five manual LinkedIn research tasks. No list or sequence was
-  created, no draft was approved, no contact was enrolled, no message was sent,
-  no LinkedIn action occurred, and no spend was incurred.
-- Owned-site attribution now preserves the five allowlisted campaign UTMs
-  through `/contact/` and Calendly; PR #27 is merged and the production asset is
-  verified.
-- Next action: verify the exact outbound mailbox at message level, import the
-  current Apollo delivery-suppression scope, and complete individual human
-  review before any approval, export, enrollment, or activation decision.
+- No selection or lifecycle change in this cycle.
 
 ## Blocked Identity or Setup Actions
 
-- Sending is blocked until the outbound mailbox, aligned SPF/DKIM/DMARC,
-  physical postal identity, unsubscribe behavior, reply/bounce stop rules, and
-  an inactive sequence are verified.
+- None block the next autonomous build actions.
 
 ## Ranked Opportunity Set
 
@@ -106,26 +70,26 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 15. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
 - 16. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
 - 17. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
-- 18. Bazaar Model & Docs Delta Alert Combo Demo - 7.73
-- 19. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
-- 20. Fulfill explicit agent-related GitHub bounty issue - 7.66
-- 21. Agent Launch Gate Founding License - 7.64
-- 22. Live Agent Resource Combo-Pack Validation Brief - 7.63
-- 23. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
-- 24. Evidence-Backed Competitor Brief - 7.61
-- 25. MCP Integration Launch Sprint - 7.55
-- 26. Fixed-Scope Data Cleanup Service - 7.55
-- 27. Bazaar deployable MCP Registry agent/model pack - 7.48
-- 28. Agent resource: Roblox documentation change tracker demo brief - 7.48
-- 29. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
-- 30. Agent & Reasoning Model Combo Pack Listing - 7.45
-- 31. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
-- 32. MCP / Agent Preflight Full Audit - 7.37
-- 33. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
-- 34. Actionable Agent-Driven Docs Change Alerts - 7.27
-- 35. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
-- 36. Agent Model Reasoning Demo for Paid GitHub Bounty - 7.12
-- 37. MCP / Agent Preflight Metered API - 7.12
+- 18. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
+- 19. Fulfill explicit agent-related GitHub bounty issue - 7.66
+- 20. Agent Launch Gate Founding License - 7.64
+- 21. Live Agent Resource Combo-Pack Validation Brief - 7.63
+- 22. Bazaar Agent-Model Combo Demo Validation Brief - 7.61
+- 23. Evidence-Backed Competitor Brief - 7.61
+- 24. MCP Integration Launch Sprint - 7.55
+- 25. Fixed-Scope Data Cleanup Service - 7.55
+- 26. Bazaar deployable MCP Registry agent/model pack - 7.48
+- 27. Agent resource: Roblox documentation change tracker demo brief - 7.48
+- 28. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
+- 29. Agent & Reasoning Model Combo Pack Listing - 7.45
+- 30. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
+- 31. MCP / Agent Preflight Full Audit - 7.37
+- 32. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
+- 33. Actionable Agent-Driven Docs Change Alerts - 7.27
+- 34. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
+- 35. Agent Model Reasoning Demo for Paid GitHub Bounty - 7.12
+- 36. MCP / Agent Preflight Metered API - 7.12
+- 37. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
 - 38. Founder Demo Repurposing Pack - 7.10
 - 39. Validation brief for agent model combos from GitHub Models catalog - 7.02
 - 40. Publish Validation Brief for Paid GitHub Bounty Fulfillment - 7.00
