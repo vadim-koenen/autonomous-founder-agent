@@ -45,7 +45,28 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- No selection or lifecycle change in this cycle.
+- Added a fail-closed multichannel promotion operator for `vadimkoenen.com`.
+  Apollo can supply or receive reviewed prospect records, but search,
+  enrichment, contact mutation, sequence enrollment, activation, and sending
+  remain disabled until their separate access and policy gates are verified.
+- No active portfolio offer was replaced and no external promotion occurred.
+- Verified revenue remains $0.00.
+
+## Promotion Infrastructure
+
+- Campaign: Revenue Systems Diagnostic Visibility (`krs_visibility_2026_q3`)
+- Site: `https://vadimkoenen.com`
+- Target: 12 qualified prospects, three systems-review requests, one
+  ledger-verified customer, and $100 verified revenue over 30 days.
+- Current state: local import, scoring, suppression, private review queue,
+  approval, Apollo worksheet export, UTM creation, and outcome evidence import
+  are implemented and tested.
+- External state: no Apollo credential used, no prospect imported, no sequence
+  created or activated, no message sent, no LinkedIn action performed, and no
+  spend incurred.
+- Next action: connect a scoped Apollo API key or place an owner-exported CSV in
+  `.promotion-private/`, then review the first 12 U.S. business prospects before
+  any activation decision.
 
 ## Blocked Identity or Setup Actions
 
