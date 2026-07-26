@@ -60,17 +60,17 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 5. Agent Resource Combo Pack for x402 Bazaar - 8.14
 - 6. MCP Registry Insights Pack for Marketplace Buyers - 8.05
 - 7. Bazaar Agent Resource Combo Demo Pack - 8.01
-- 8. Bazaar Agent Resource Combo: Validation Brief - 8.00
-- 9. Curated Agent Reasoning Model Combo Pack - 7.99
-- 10. Agent-Model Combo Demo Pack (July 21) - 7.97
-- 11. Agent Model Reasoning Combo Pack on x402 Bazaar - 7.94
-- 12. Bazaar MCP Registry + Reasoning Model Combo Demo Brief - 7.88
-- 13. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
-- 14. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
-- 15. Agent Model Reasoning Combo Pack - 7.80
-- 16. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
-- 17. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
-- 18. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
+- 8. Curated Agent Reasoning Model Combo Pack - 7.99
+- 9. Agent-Model Combo Demo Pack (July 21) - 7.97
+- 10. Agent Model Reasoning Combo Pack on x402 Bazaar - 7.94
+- 11. Bazaar MCP Registry + Reasoning Model Combo Demo Brief - 7.88
+- 12. x402 Bazaar Agent/Model Combo Pack Validation Brief - 7.82
+- 13. Combo pack demo brief for top-called agent resources on x402 Bazaar - 7.82
+- 14. Agent Model Reasoning Combo Pack - 7.80
+- 15. Agent-Model Combo Demo Brief on x402 Bazaar - 7.76
+- 16. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
+- 17. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
+- 18. Bazaar Model & Docs Delta Alert Combo Demo - 7.73
 - 19. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
 - 20. Fulfill explicit agent-related GitHub bounty issue - 7.66
 - 21. Agent Launch Gate Founding License - 7.64
