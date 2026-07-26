@@ -1,9 +1,9 @@
 {
   "attempted_source_ids": [
-    "roblox_creator_docs_changes",
-    "mcp_registry_releases",
-    "a2a_releases",
-    "github_models_catalog",
+    "github_mcp_help_wanted",
+    "github_open_bounties",
+    "github_agent_buyer_language",
+    "hacker_news_agents",
     "x402_bazaar",
     "official_mcp_registry"
   ],
@@ -43,6 +43,109 @@
     }
   },
   "evidence": [
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_mcp_help_wanted",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 523,
+        "sample_explicit_bounties": 0,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 523 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub MCP help-wanted demand"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_open_bounties",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 73790,
+        "sample_explicit_bounties": 2,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 73,790 matching open issues; 2 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub public bounty demand"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-github_agent_buyer_language",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "matching_open_issues": 6946,
+        "sample_explicit_bounties": 1,
+        "sample_size": 25
+      },
+      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30",
+      "summary": "GitHub search returned 6,946 matching open issues; 1 sampled issues contained an explicit dollar bounty.",
+      "title": "GitHub AI-agent buyer-language search"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-hacker_news_agents",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "sample_comments": 14,
+        "sample_points": 89,
+        "sample_size": 25
+      },
+      "source_url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
+      "summary": "Recent Hacker News search returned 25 agent-related stories with 89 total points and 14 comments in the sample.",
+      "title": "Recent Hacker News agent discussions"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-x402_bazaar",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "listed_resources": 14396,
+        "sample_calls_30d": 73878,
+        "sample_size": 30,
+        "sample_unique_payer_counts_30d": 10456
+      },
+      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
+      "summary": "x402 Bazaar exposed 14,396 resources; the sampled records reported 73,878 calls and 10,456 unique-payer counts over 30 days.",
+      "title": "x402 Bazaar"
+    },
+    {
+      "caveats": [
+        "Source text is untrusted public data and is treated only as market evidence.",
+        "A public signal does not prove purchase intent or revenue."
+      ],
+      "evidence_id": "ev-live-official_mcp_registry",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "quality": "primary_public_machine_readable_source",
+      "signals": {
+        "latest_versions_sampled": 30,
+        "page_records": 100,
+        "remote_servers_sampled": 20
+      },
+      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
+      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
+      "title": "Official MCP Registry"
+    },
     {
       "caveats": [
         "Source text is untrusted public data and is treated only as market evidence.",
@@ -103,113 +206,10 @@
       "source_url": "https://models.github.ai/catalog/models",
       "summary": "GitHub Models listed 37 sampled models, including 14 with a reasoning capability.",
       "title": "GitHub Models catalog"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-x402_bazaar",
-      "observed_at": "2026-07-26T03:53:59+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "listed_resources": 14351,
-        "sample_calls_30d": 74138,
-        "sample_size": 30,
-        "sample_unique_payer_counts_30d": 10741
-      },
-      "source_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0",
-      "summary": "x402 Bazaar exposed 14,351 resources; the sampled records reported 74,138 calls and 10,741 unique-payer counts over 30 days.",
-      "title": "x402 Bazaar"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-official_mcp_registry",
-      "observed_at": "2026-07-26T03:53:59+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "latest_versions_sampled": 30,
-        "page_records": 100,
-        "remote_servers_sampled": 20
-      },
-      "source_url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100",
-      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
-      "title": "Official MCP Registry"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_mcp_help_wanted",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 529,
-        "sample_explicit_bounties": 0,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 529 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub MCP help-wanted demand"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_open_bounties",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 73741,
-        "sample_explicit_bounties": 6,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 73,741 matching open issues; 6 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub public bounty demand"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-github_agent_buyer_language",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "matching_open_issues": 6932,
-        "sample_explicit_bounties": 0,
-        "sample_size": 25
-      },
-      "source_url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30",
-      "summary": "GitHub search returned 6,932 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
-      "title": "GitHub AI-agent buyer-language search"
-    },
-    {
-      "caveats": [
-        "Source text is untrusted public data and is treated only as market evidence.",
-        "A public signal does not prove purchase intent or revenue."
-      ],
-      "evidence_id": "ev-live-hacker_news_agents",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "quality": "primary_public_machine_readable_source",
-      "signals": {
-        "sample_comments": 26,
-        "sample_points": 90,
-        "sample_size": 25
-      },
-      "source_url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30",
-      "summary": "Recent Hacker News search returned 25 agent-related stories with 90 total points and 26 comments in the sample.",
-      "title": "Recent Hacker News agent discussions"
     }
   ],
-  "observed_at": "2026-07-26T03:53:59+00:00",
-  "run_id": "discovery-20260726T035359Z",
+  "observed_at": "2026-07-26T08:38:31+00:00",
+  "run_id": "discovery-20260726T083831Z",
   "run_summary": {
     "sources_attempted": 6,
     "sources_failed": 0,
@@ -219,6 +219,1701 @@
   "schema_name": "autonomous_founder_discovery_snapshot",
   "schema_version": "0.4",
   "sources": [
+    {
+      "adapter": "github_issues",
+      "fingerprint": "119ce037d866197e",
+      "items": [
+        {
+          "comments": 38,
+          "created_at": "2026-07-13T20:22:11Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "help wanted",
+            "hive/advisory"
+          ],
+          "repository": "kubestellar/console",
+          "title": "\ud83d\udc1d Hive Advisory Report",
+          "updated_at": "2026-07-26T08:38:12Z",
+          "url": "https://github.com/kubestellar/console/issues/20963"
+        },
+        {
+          "comments": 1697,
+          "created_at": "2026-07-05T07:25:26Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "agentic-workflows",
+            "ai-inspected",
+            "spam"
+          ],
+          "repository": "github/gh-aw",
+          "title": "[aw] No-Op Runs",
+          "updated_at": "2026-07-26T08:17:00Z",
+          "url": "https://github.com/github/gh-aw/issues/43499"
+        },
+        {
+          "comments": 3,
+          "created_at": "2026-06-14T16:11:11Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "avinashkamat48/avinashkamat48",
+          "title": "Daily contribution queue",
+          "updated_at": "2026-07-26T07:11:27Z",
+          "url": "https://github.com/avinashkamat48/avinashkamat48/issues/2"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-06-28T07:30:41Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "FalkorDB/genai-toolbox",
+          "title": "[Dashboard: Conformance] Weekly Server Tier Assessment Failure",
+          "updated_at": "2026-07-26T07:05:44Z",
+          "url": "https://github.com/FalkorDB/genai-toolbox/issues/19"
+        },
+        {
+          "comments": 12,
+          "created_at": "2026-03-13T14:31:23Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "priority/p1",
+            "area/agent",
+            "\ud83d\udd12 maintainer only",
+            "workstream-rollup",
+            "status/need-retesting",
+            "status/bot-triaged",
+            "kind/bug"
+          ],
+          "repository": "google-gemini/gemini-cli",
+          "title": "Subagent recovery after MAX_TURNS is reported as GOAL success, hiding interruption",
+          "updated_at": "2026-07-26T07:02:06Z",
+          "url": "https://github.com/google-gemini/gemini-cli/issues/22323"
+        },
+        {
+          "comments": 6,
+          "created_at": "2026-03-11T02:46:19Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "priority/p2",
+            "area/agent",
+            "\ud83d\udd12 maintainer only",
+            "workstream-rollup",
+            "status/need-retesting",
+            "status/bot-triaged",
+            "kind/bug"
+          ],
+          "repository": "google-gemini/gemini-cli",
+          "title": "Gemini does not use skills and sub-agents enough",
+          "updated_at": "2026-07-26T07:02:04Z",
+          "url": "https://github.com/google-gemini/gemini-cli/issues/21968"
+        },
+        {
+          "comments": 5,
+          "created_at": "2026-05-22T18:15:16Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement",
+            "help wanted"
+          ],
+          "repository": "mnemopay/mnemopay-sdk",
+          "title": "Add ERC-8004 protocol adapter (agent identity)",
+          "updated_at": "2026-07-26T07:00:54Z",
+          "url": "https://github.com/mnemopay/mnemopay-sdk/issues/17"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T06:55:59Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "googleapis/mcp-toolbox",
+          "title": "[Dashboard: Conformance] Weekly Server Tier Assessment Failure",
+          "updated_at": "2026-07-26T06:56:16Z",
+          "url": "https://github.com/googleapis/mcp-toolbox/issues/3713"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-06-26T04:16:48Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "openclaw",
+            "archived"
+          ],
+          "repository": "96loveslife/big_model_radar",
+          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-06-26",
+          "updated_at": "2026-07-26T03:36:46Z",
+          "url": "https://github.com/96loveslife/big_model_radar/issues/60"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T02:18:40Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "openclaw"
+          ],
+          "repository": "DenisZheng/agents-radar",
+          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-07-26",
+          "updated_at": "2026-07-26T02:18:40Z",
+          "url": "https://github.com/DenisZheng/agents-radar/issues/1557"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-06-17T23:10:42Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "rubyforgood/casa",
+          "title": "Dependency Dashboard",
+          "updated_at": "2026-07-26T00:40:32Z",
+          "url": "https://github.com/rubyforgood/casa/issues/7014"
+        },
+        {
+          "comments": 31,
+          "created_at": "2025-11-08T02:38:27Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement"
+          ],
+          "repository": "AuraFrameFx/A.u.r.a.K.a.i-Emergence_IdentityModel",
+          "title": "\ud83c\udfaf Final Polish: Complete Remaining 3% Before Production",
+          "updated_at": "2026-07-25T23:41:54Z",
+          "url": "https://github.com/AuraFrameFx/A.u.r.a.K.a.i-Emergence_IdentityModel/issues/94"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-25T16:23:25Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "kubestellar/console",
+          "title": "Idea: opt-in monetization layer for MCP tool responses",
+          "updated_at": "2026-07-25T16:23:32Z",
+          "url": "https://github.com/kubestellar/console/issues/21524"
+        },
+        {
+          "comments": 21,
+          "created_at": "2026-05-28T18:47:59Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug",
+            "TUI"
+          ],
+          "repository": "openai/codex",
+          "title": "Codex session logs grow to 700MB-2GB from repeated compaction history and raw tool output",
+          "updated_at": "2026-07-25T12:15:42Z",
+          "url": "https://github.com/openai/codex/issues/24948"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-04-30T14:23:32Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "type/feature",
+            "comp/cli",
+            "comp/tui",
+            "P3",
+            "area/sessions"
+          ],
+          "repository": "NousResearch/hermes-agent",
+          "title": "[Feature]: Support configurable startup/session panels and improve TUI skin parity",
+          "updated_at": "2026-07-25T06:04:22Z",
+          "url": "https://github.com/NousResearch/hermes-agent/issues/17977"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T02:57:37Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "genui"
+          ],
+          "repository": "linqinghao/agents-radar",
+          "title": "\ud83c\udfa8 \u751f\u6210\u5f0f UI \u751f\u6001\u65e5\u62a5 2026-07-25",
+          "updated_at": "2026-07-25T05:39:16Z",
+          "url": "https://github.com/linqinghao/agents-radar/issues/25"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T02:57:37Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "genui-en"
+          ],
+          "repository": "linqinghao/agents-radar",
+          "title": "\ud83c\udfa8 Generative UI Ecosystem Digest 2026-07-25",
+          "updated_at": "2026-07-25T04:35:35Z",
+          "url": "https://github.com/linqinghao/agents-radar/issues/26"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T02:16:06Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "digest"
+          ],
+          "repository": "Haderach-Ram/openclaw-radar",
+          "title": "Ecosystem Digest \u2014 2026-07-25",
+          "updated_at": "2026-07-25T03:31:43Z",
+          "url": "https://github.com/Haderach-Ram/openclaw-radar/issues/89"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T02:07:13Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "openclaw"
+          ],
+          "repository": "zhouyuhechuan/agents-radar",
+          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-07-25",
+          "updated_at": "2026-07-25T02:07:13Z",
+          "url": "https://github.com/zhouyuhechuan/agents-radar/issues/411"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T01:49:24Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "openclaw"
+          ],
+          "repository": "duanyytop/agents-radar",
+          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-07-25",
+          "updated_at": "2026-07-25T01:49:24Z",
+          "url": "https://github.com/duanyytop/agents-radar/issues/2327"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T01:36:13Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "modelcontextprotocol/modelcontextprotocol",
+          "title": "Ruby SDK \u2014 Tier 2 Assessment",
+          "updated_at": "2026-07-25T01:36:13Z",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/3127"
+        },
+        {
+          "comments": 8,
+          "created_at": "2026-06-24T05:42:07Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "vadimdemedes/ink",
+          "title": "commit taller than the viewport overwrites its own last line (incremental path ignores static-chunk height)",
+          "updated_at": "2026-07-25T00:24:13Z",
+          "url": "https://github.com/vadimdemedes/ink/issues/973"
+        },
+        {
+          "comments": 14,
+          "created_at": "2026-05-20T16:00:13Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement",
+            "ci",
+            "docs",
+            "dev",
+            "priority:p2",
+            "status:in-progress",
+            "type:rfc",
+            "status:accepted"
+          ],
+          "repository": "zeroclaw-labs/zeroclaw",
+          "title": "RFC: Work Lanes, Board Automation, and Label Cleanup",
+          "updated_at": "2026-07-24T21:48:58Z",
+          "url": "https://github.com/zeroclaw-labs/zeroclaw/issues/6808"
+        },
+        {
+          "comments": 25,
+          "created_at": "2026-05-02T13:29:22Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "tkhquang/CrimsonDesertTools",
+          "title": "Fix for Transmog for patch 1.00.5",
+          "updated_at": "2026-07-24T16:13:09Z",
+          "url": "https://github.com/tkhquang/CrimsonDesertTools/issues/46"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-24T14:49:25Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "help wanted",
+            "good first issue",
+            "oss-collab"
+          ],
+          "repository": "alphacrack/iac-scanner",
+          "title": "Good first issues \u2014 start here (contributor onboarding)",
+          "updated_at": "2026-07-24T14:49:43Z",
+          "url": "https://github.com/alphacrack/iac-scanner/issues/67"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "matching_open_issues": 523,
+        "sample_explicit_bounties": 0,
+        "sample_size": 25
+      },
+      "name": "GitHub MCP help-wanted demand",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "public_builder_pain",
+      "source_id": "github_mcp_help_wanted",
+      "status": "ok",
+      "summary": "GitHub search returned 523 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30"
+    },
+    {
+      "adapter": "github_issues",
+      "fingerprint": "e185fb139b5eebd0",
+      "items": [
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T08:36:00Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "bigcode-project/opt-out-v2",
+          "title": "Opt-out request for peppy",
+          "updated_at": "2026-07-26T08:36:00Z",
+          "url": "https://github.com/bigcode-project/opt-out-v2/issues/4515"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-26T07:21:22Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "health/link-check"
+          ],
+          "repository": "qazbnm456/awesome-web-security",
+          "title": "Link health report",
+          "updated_at": "2026-07-26T08:34:08Z",
+          "url": "https://github.com/qazbnm456/awesome-web-security/issues/212"
+        },
+        {
+          "comments": 44,
+          "created_at": "2026-03-16T18:12:44Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bounty"
+          ],
+          "repository": "Scottcjn/rustchain-bounties",
+          "title": "[EASY BOUNTY: 2 RTC] Leave an Honest Review of BoTTube on ToolPilot.ai",
+          "updated_at": "2026-07-26T08:31:36Z",
+          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/2155"
+        },
+        {
+          "comments": 356,
+          "created_at": "2026-03-17T02:05:49Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bounty"
+          ],
+          "repository": "Scottcjn/rustchain-bounties",
+          "title": "[BOUNTY: 5 RTC] Create a YouTube or BoTTube video tutorial about any Elyan Labs project",
+          "updated_at": "2026-07-26T08:31:35Z",
+          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/2180"
+        },
+        {
+          "comments": 453,
+          "created_at": "2026-02-06T01:13:53Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug",
+            "bounty",
+            "open"
+          ],
+          "repository": "Scottcjn/rustchain-bounties",
+          "title": "[BOUNTY] Ongoing Bug Bounty Program \u2014 Find Bugs, Earn RTC (133 RTC Pool)",
+          "updated_at": "2026-07-26T08:31:34Z",
+          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/71"
+        },
+        {
+          "comments": 4,
+          "created_at": "2025-01-16T22:53:03Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug",
+            "good-first-issue",
+            "triage",
+            "observability",
+            "community-backlog"
+          ],
+          "repository": "ray-project/ray",
+          "title": "[Ray dashboard] Add warning about truncated tasks in the job UI",
+          "updated_at": "2026-07-26T08:24:49Z",
+          "url": "https://github.com/ray-project/ray/issues/49896"
+        },
+        {
+          "comments": 71,
+          "created_at": "2026-05-28T23:58:02Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "slice:ability-to-exit",
+            "defi-at-home",
+            "slice:verifiability",
+            "slice:autonomy",
+            "slice:control",
+            "quorum-disagreement"
+          ],
+          "repository": "guil-lambert/defipunkd",
+          "title": "[babylon-protocol] DEFI@home",
+          "updated_at": "2026-07-26T08:24:29Z",
+          "url": "https://github.com/guil-lambert/defipunkd/issues/288"
+        },
+        {
+          "comments": 13,
+          "created_at": "2026-07-25T11:03:50Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "source-playtest-audit",
+            "epic",
+            "type:task",
+            "p1",
+            "cat:process"
+          ],
+          "repository": "Pmobilee/Recall-Rogue",
+          "title": "[Audit lane][claude-fable] Independent design-intent audit \u2014 surface claims and filed findings",
+          "updated_at": "2026-07-26T08:15:04Z",
+          "url": "https://github.com/Pmobilee/Recall-Rogue/issues/288"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-21T03:24:58Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "\u95ee\u9898\u4fee\u590d",
+            "\u811a\u672c\u8fd0\u884c\u95ee\u9898"
+          ],
+          "repository": "pur1fying/blue_archive_auto_script",
+          "title": "[Script Bug]:\u56fd\u670d\u60ac\u8d4f\u901a\u7f09\u4f1a\u5361\u4f4f",
+          "updated_at": "2026-07-26T08:13:37Z",
+          "url": "https://github.com/pur1fying/blue_archive_auto_script/issues/523"
+        },
+        {
+          "comments": 1,
+          "created_at": "2026-07-25T12:32:57Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement",
+            "Stellar Wave",
+            "contracts"
+          ],
+          "repository": "ritik4ever/stellar-bounty-board",
+          "title": "[FEATURE] Add IPFS evidence hash field to dispute_bounty",
+          "updated_at": "2026-07-26T08:12:38Z",
+          "url": "https://github.com/ritik4ever/stellar-bounty-board/issues/725"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T08:02:32Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "alyacipta/My-AI-Labs",
+          "title": "[General] Balancing a temporary specialization with unrelated side projects: Dos and Don'ts for time effectiveness",
+          "updated_at": "2026-07-26T08:12:06Z",
+          "url": "https://github.com/alyacipta/My-AI-Labs/issues/3"
+        },
+        {
+          "comments": 5,
+          "created_at": "2026-03-06T04:38:54Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "Mudlet/Mudlet",
+          "title": "Split Mudlet up into `libmudlet` and a Qt front-end",
+          "updated_at": "2026-07-26T08:11:52Z",
+          "url": "https://github.com/Mudlet/Mudlet/issues/9011"
+        },
+        {
+          "comments": 6,
+          "created_at": "2020-10-19T08:04:44Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "metadata",
+            "tested",
+            "faces"
+          ],
+          "repository": "photoprism/photoprism",
+          "title": "People: Import Adobe's XMP Face region metadata",
+          "updated_at": "2026-07-26T08:06:54Z",
+          "url": "https://github.com/photoprism/photoprism/issues/554"
+        },
+        {
+          "comments": 66,
+          "created_at": "2026-06-02T18:58:38Z",
+          "explicit_bounty_usd": 250,
+          "labels": [
+            "External",
+            "Daily",
+            "Awaiting Payment",
+            "Bug"
+          ],
+          "repository": "Expensify/App",
+          "title": "[Due for payment 2026-07-29] [$250] [Sentry: APP-25V] HybridApp iOS EXC_BAD_ACCESS in RuntimeScheduler_Modern::runEventLoopTick",
+          "updated_at": "2026-07-26T08:04:57Z",
+          "url": "https://github.com/Expensify/App/issues/92412"
+        },
+        {
+          "comments": 244,
+          "created_at": "2026-05-26T14:37:26Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "zero-day-pulse"
+          ],
+          "repository": "peleduri/zero-day-pulse",
+          "title": "\ud83d\udea8 Zero Day Pulse \u2014 Active Vulnerability Tracker",
+          "updated_at": "2026-07-26T08:04:20Z",
+          "url": "https://github.com/peleduri/zero-day-pulse/issues/7"
+        },
+        {
+          "comments": 6,
+          "created_at": "2026-07-21T07:05:44Z",
+          "explicit_bounty_usd": 10,
+          "labels": [
+            "bounty"
+          ],
+          "repository": "Iamgoofball/-tg-station",
+          "title": "[BOUNTY] [EASY AI TASK] [$10] Add Klingon based recipes",
+          "updated_at": "2026-07-26T08:01:31Z",
+          "url": "https://github.com/Iamgoofball/-tg-station/issues/66"
+        },
+        {
+          "comments": 16,
+          "created_at": "2026-07-17T02:08:37Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bounty",
+            "ai-agent-welcome",
+            "payments",
+            "distribution",
+            "verifier",
+            "good-first-agent-bounty",
+            "funded-live",
+            "claimable-live"
+          ],
+          "repository": "NSPG13/agent-bounties",
+          "title": "[QUARANTINED \u2014 DO NOT CLAIM] Seed a paid wallet UX child bounty",
+          "updated_at": "2026-07-26T08:01:30Z",
+          "url": "https://github.com/NSPG13/agent-bounties/issues/336"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-06-27T12:03:21Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "impartshadow/echo-site",
+          "title": "Shadow public falsification bounty",
+          "updated_at": "2026-07-26T08:00:34Z",
+          "url": "https://github.com/impartshadow/echo-site/issues/1"
+        },
+        {
+          "comments": 1,
+          "created_at": "2026-07-25T12:33:26Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement",
+            "Stellar Wave",
+            "contracts"
+          ],
+          "repository": "ritik4ever/stellar-bounty-board",
+          "title": "[FEATURE] Add per-bounty custom dispute window override",
+          "updated_at": "2026-07-26T07:53:48Z",
+          "url": "https://github.com/ritik4ever/stellar-bounty-board/issues/737"
+        },
+        {
+          "comments": 1,
+          "created_at": "2026-07-24T14:29:32Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug",
+            "backend",
+            "security",
+            "frontend",
+            "critical"
+          ],
+          "repository": "yosemite01/stellar-creator-portfolio",
+          "title": "bug: payments idempotency cache lives in a globalThis Map, risking duplicate Stripe charges under serverless scaling",
+          "updated_at": "2026-07-26T07:52:39Z",
+          "url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/1129"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-25T12:33:52Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "Stellar Wave",
+            "testing",
+            "contracts"
+          ],
+          "repository": "ritik4ever/stellar-bounty-board",
+          "title": "[TEST] Add benchmark test for get_all_bounties with 1000+ bounties",
+          "updated_at": "2026-07-26T07:50:24Z",
+          "url": "https://github.com/ritik4ever/stellar-bounty-board/issues/748"
+        },
+        {
+          "comments": 1,
+          "created_at": "2025-10-12T10:41:15Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "Priority: 1 (Normal)",
+            "Price: 600 USD",
+            "Time: <1 Week"
+          ],
+          "repository": "devpool-directory/devpool-directory",
+          "title": "Cow Swap Cash Out",
+          "updated_at": "2026-07-26T07:41:38Z",
+          "url": "https://github.com/devpool-directory/devpool-directory/issues/5066"
+        },
+        {
+          "comments": 9,
+          "created_at": "2025-12-26T08:37:45Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "Priority: 1 (Normal)",
+            "Time: <2 Hours",
+            "Price: 75 USD"
+          ],
+          "repository": "devpool-directory/devpool-directory",
+          "title": "Self Invalidations",
+          "updated_at": "2026-07-26T07:41:37Z",
+          "url": "https://github.com/devpool-directory/devpool-directory/issues/5911"
+        },
+        {
+          "comments": 10,
+          "created_at": "2026-02-02T11:00:47Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "Priority: 1 (Normal)",
+            "Price: 600 USD",
+            "Time: <1 Week"
+          ],
+          "repository": "devpool-directory/devpool-directory",
+          "title": "Launch campaign towards L1s/L2s for managing their GitHubs",
+          "updated_at": "2026-07-26T07:41:35Z",
+          "url": "https://github.com/devpool-directory/devpool-directory/issues/5925"
+        },
+        {
+          "comments": 1,
+          "created_at": "2025-10-12T10:41:01Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "Time: <1 Day",
+            "Priority: 1 (Normal)",
+            "Price: 600 USD"
+          ],
+          "repository": "devpool-directory/devpool-directory",
+          "title": "Recruiting: Dragonfly CTF II",
+          "updated_at": "2026-07-26T07:41:35Z",
+          "url": "https://github.com/devpool-directory/devpool-directory/issues/5035"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "matching_open_issues": 73790,
+        "sample_explicit_bounties": 2,
+        "sample_size": 25
+      },
+      "name": "GitHub public bounty demand",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "explicit_paid_work",
+      "source_id": "github_open_bounties",
+      "status": "ok",
+      "summary": "GitHub search returned 73,790 matching open issues; 2 sampled issues contained an explicit dollar bounty.",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30"
+    },
+    {
+      "adapter": "github_issues",
+      "fingerprint": "ff0011c8df88b2c6",
+      "items": [
+        {
+          "comments": 37,
+          "created_at": "2026-07-11T05:24:07Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "radar-alerts",
+            "radar-master"
+          ],
+          "repository": "VictorJimenez3/fable-job-search",
+          "title": "\ud83d\udccc Job Radar \u2014 master board (every open role, one place)",
+          "updated_at": "2026-07-26T08:32:29Z",
+          "url": "https://github.com/VictorJimenez3/fable-job-search/issues/43"
+        },
+        {
+          "comments": 453,
+          "created_at": "2026-02-06T01:13:53Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug",
+            "bounty",
+            "open"
+          ],
+          "repository": "Scottcjn/rustchain-bounties",
+          "title": "[BOUNTY] Ongoing Bug Bounty Program \u2014 Find Bugs, Earn RTC (133 RTC Pool)",
+          "updated_at": "2026-07-26T08:31:34Z",
+          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/71"
+        },
+        {
+          "comments": 8,
+          "created_at": "2026-07-26T00:05:58Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "vgb1404/skills-getting-started-with-github-copilot",
+          "title": "Exercise: Getting Started with GitHub Copilot",
+          "updated_at": "2026-07-26T08:29:58Z",
+          "url": "https://github.com/vgb1404/skills-getting-started-with-github-copilot/issues/1"
+        },
+        {
+          "comments": 2474,
+          "created_at": "2026-02-26T06:23:53Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "request",
+            "draft",
+            "ai-generated",
+            "auto-detected",
+            "news-intelligence"
+          ],
+          "repository": "jhl-labs/sepilot-wiki",
+          "title": "[\uc694\uccad] AgentSpace: OpenClaw \uc5d0\uc774\uc804\ud2b8\ub97c \uc704\ud55c \uc790\uccb4 \ud638\uc2a4\ud305 \ucc44\ud305 \ubc29",
+          "updated_at": "2026-07-26T08:15:05Z",
+          "url": "https://github.com/jhl-labs/sepilot-wiki/issues/317"
+        },
+        {
+          "comments": 8,
+          "created_at": "2026-07-26T07:27:41Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "senoojapan/skills-getting-started-with-github-copilot",
+          "title": "Exercise: Getting Started with GitHub Copilot",
+          "updated_at": "2026-07-26T08:11:14Z",
+          "url": "https://github.com/senoojapan/skills-getting-started-with-github-copilot/issues/1"
+        },
+        {
+          "comments": 12,
+          "created_at": "2026-07-19T07:06:56Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "security"
+          ],
+          "repository": "danmwallace/ansible-collection-hermes",
+          "title": "\ud83d\udfe0 [Security] hermes_gateway role defaults leave API server key and Anthropic API key empty",
+          "updated_at": "2026-07-26T08:06:35Z",
+          "url": "https://github.com/danmwallace/ansible-collection-hermes/issues/12"
+        },
+        {
+          "comments": 244,
+          "created_at": "2026-05-26T14:37:26Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "zero-day-pulse"
+          ],
+          "repository": "peleduri/zero-day-pulse",
+          "title": "\ud83d\udea8 Zero Day Pulse \u2014 Active Vulnerability Tracker",
+          "updated_at": "2026-07-26T08:04:20Z",
+          "url": "https://github.com/peleduri/zero-day-pulse/issues/7"
+        },
+        {
+          "comments": 69,
+          "created_at": "2026-01-30T20:58:28Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "enhancement",
+            "help wanted",
+            "integrations",
+            "tools"
+          ],
+          "repository": "aden-hive/hive",
+          "title": "[Integration]: Expand agent capabilities by adding more integrations/tools",
+          "updated_at": "2026-07-26T08:00:38Z",
+          "url": "https://github.com/aden-hive/hive/issues/2805"
+        },
+        {
+          "comments": 42,
+          "created_at": "2026-03-28T17:27:22Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "status: assessed"
+          ],
+          "repository": "ROCm/ROCm",
+          "title": "[Issue]: RCCL 2.27.7 / ROCm 7.2.1 dual-GPU collectives fail on 2x Radeon RX 7900 XTX",
+          "updated_at": "2026-07-26T07:54:21Z",
+          "url": "https://github.com/ROCm/ROCm/issues/6074"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T07:44:42Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "ColonistOne/colonist.uk",
+          "title": "Independent Agent evidence-validation and Digest-consumer trial",
+          "updated_at": "2026-07-26T07:44:42Z",
+          "url": "https://github.com/ColonistOne/colonist.uk/issues/1"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-26T06:54:42Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "help wanted",
+            "discussion"
+          ],
+          "repository": "CherryHQ/cherry-studio",
+          "title": "[Discussion]: clarify and strengthen regression coverage for AI SDK Agent stream trajectories",
+          "updated_at": "2026-07-26T07:43:34Z",
+          "url": "https://github.com/CherryHQ/cherry-studio/issues/17432"
+        },
+        {
+          "comments": 271,
+          "created_at": "2026-06-24T14:09:09Z",
+          "explicit_bounty_usd": 100,
+          "labels": [
+            "bounty"
+          ],
+          "repository": "moorcheh-ai/memanto",
+          "title": "[BOUNTY $100] \ud83d\udc1cThe Memanto Bug & Exploit Challenge",
+          "updated_at": "2026-07-26T07:31:27Z",
+          "url": "https://github.com/moorcheh-ai/memanto/issues/770"
+        },
+        {
+          "comments": 9,
+          "created_at": "2026-06-24T11:37:17Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "needs-triage"
+          ],
+          "repository": "kubernetes-sigs/inference-perf",
+          "title": "[Feature Request] Support generating and replaying synthetic agentic traces",
+          "updated_at": "2026-07-26T07:21:19Z",
+          "url": "https://github.com/kubernetes-sigs/inference-perf/issues/571"
+        },
+        {
+          "comments": 97,
+          "created_at": "2026-06-10T23:03:27Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "status:available",
+            "persistent",
+            "quality-review",
+            "source:quality-sweep",
+            "origin:worker"
+          ],
+          "repository": "marcusquinn/aidevops",
+          "title": "Code Audit Routines \u2014 Open: 1 | Closed: 1960 | Simplified: | Metric | Count |",
+          "updated_at": "2026-07-26T07:03:33Z",
+          "url": "https://github.com/marcusquinn/aidevops/issues/24670"
+        },
+        {
+          "comments": 8,
+          "created_at": "2026-07-17T20:25:04Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "skill: beginner",
+            "lang: python",
+            "approved"
+          ],
+          "repository": "hiero-ledger/hiero-sdk-python",
+          "title": "Add `clear_custom_fee_limits()` to TopicMessageSubmitTransaction",
+          "updated_at": "2026-07-26T07:02:12Z",
+          "url": "https://github.com/hiero-ledger/hiero-sdk-python/issues/2449"
+        },
+        {
+          "comments": 76,
+          "created_at": "2026-03-30T19:45:38Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "microsoft/autogen",
+          "title": "Payment primitive for multi-agent systems - how are teams handling this?",
+          "updated_at": "2026-07-26T06:59:55Z",
+          "url": "https://github.com/microsoft/autogen/issues/7492"
+        },
+        {
+          "comments": 1026,
+          "created_at": "2024-12-06T02:23:42Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "chatmcp/mcpso",
+          "title": "Submit Your MCP Servers here",
+          "updated_at": "2026-07-26T06:59:42Z",
+          "url": "https://github.com/chatmcp/mcpso/issues/1"
+        },
+        {
+          "comments": 628,
+          "created_at": "2026-03-22T21:47:40Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "a2aproject/A2A",
+          "title": "Proposal: Agent Identity Verification for Agent Cards",
+          "updated_at": "2026-07-26T06:59:26Z",
+          "url": "https://github.com/a2aproject/A2A/issues/1672"
+        },
+        {
+          "comments": 386,
+          "created_at": "2026-03-06T18:26:48Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "microsoft/autogen",
+          "title": "Feature: Cryptographic action receipts for enterprise agent governance (AAR)",
+          "updated_at": "2026-07-26T06:58:45Z",
+          "url": "https://github.com/microsoft/autogen/issues/7353"
+        },
+        {
+          "comments": 7,
+          "created_at": "2026-07-02T00:31:16Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "help wanted",
+            "good first issue",
+            "security"
+          ],
+          "repository": "edgarfloresguerra2011-a11y/marketnow",
+          "title": "Security review request \u2014 volunteer peer review welcome (free)",
+          "updated_at": "2026-07-26T06:58:19Z",
+          "url": "https://github.com/edgarfloresguerra2011-a11y/marketnow/issues/2"
+        },
+        {
+          "comments": 299,
+          "created_at": "2026-03-14T18:08:06Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "crewAIInc/crewAI",
+          "title": "[FEATURE] GuardrailProvider interface for pre-tool-call authorization",
+          "updated_at": "2026-07-26T06:58:02Z",
+          "url": "https://github.com/crewAIInc/crewAI/issues/4877"
+        },
+        {
+          "comments": 58,
+          "created_at": "2026-02-24T11:07:32Z",
+          "explicit_bounty_usd": 0,
+          "labels": [],
+          "repository": "microsoft/autogen",
+          "title": "[Question] Practical reliability patterns for multi-agent production",
+          "updated_at": "2026-07-26T06:44:37Z",
+          "url": "https://github.com/microsoft/autogen/issues/7265"
+        },
+        {
+          "comments": 111,
+          "created_at": "2026-05-14T03:00:55Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bug"
+          ],
+          "repository": "crewAIInc/crewAI",
+          "title": "Tool re-execution on task retry has no idempotency guard \u2014 duplicate payments, emails, trades possible",
+          "updated_at": "2026-07-26T06:43:41Z",
+          "url": "https://github.com/crewAIInc/crewAI/issues/5802"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-01T14:31:19Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "bluesky-ledger"
+          ],
+          "repository": "tobyrowland/alphamolt_agentic_portfolios",
+          "title": "[bluesky] engagement-ledger",
+          "updated_at": "2026-07-26T06:35:11Z",
+          "url": "https://github.com/tobyrowland/alphamolt_agentic_portfolios/issues/2000"
+        },
+        {
+          "comments": 23,
+          "created_at": "2026-05-27T10:25:29Z",
+          "explicit_bounty_usd": 0,
+          "labels": [
+            "gitclaw:roast"
+          ],
+          "repository": "ordinalOS/gitclaw",
+          "title": "\u2615 Morning Roast \u2014 2026-05-27",
+          "updated_at": "2026-07-26T06:06:21Z",
+          "url": "https://github.com/ordinalOS/gitclaw/issues/27"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "matching_open_issues": 6946,
+        "sample_explicit_bounties": 1,
+        "sample_size": 25
+      },
+      "name": "GitHub AI-agent buyer-language search",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "public_purchase_or_help_intent",
+      "source_id": "github_agent_buyer_language",
+      "status": "ok",
+      "summary": "GitHub search returned 6,946 matching open issues; 1 sampled issues contained an explicit dollar bounty.",
+      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30"
+    },
+    {
+      "adapter": "hacker_news",
+      "fingerprint": "ab2307aa27d1efb2",
+      "items": [
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T08:02:03Z",
+          "points": 1,
+          "story_excerpt": "",
+          "title": "A protocol for AI agent workspace state and effect management",
+          "url": "https://github.com/eouzoe/reel"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T07:07:50Z",
+          "points": 1,
+          "story_excerpt": "I have a multi-monitor setup and spend a lot of time typing in Codex and other AI agents. When I move to another monitor to run a shortcut, focus often stays in Codex or another text app, so the shortcut runs in the wrong place. I asked ChatGPT if there was a macOS setting or free app for this. It couldn't find one that did exactly what I wanted, so I asked ",
+          "title": "Show HN: ScreenFocus \u2013 keyboard focus follows the pointer across Mac displays",
+          "url": "https://github.com/therohitdas/ScreenFocus"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T06:06:11Z",
+          "points": 2,
+          "story_excerpt": "Whether at work as a software engineer or in my private life, I kept running into the same problem: While working in my terminal, I\u2019d wish I could use AI to make sense of recent output or compose a command. Copying and pasting context between a chat and the terminal was tedious and preemptively running a full CLI coding agent threw away all the efficiency of",
+          "title": "Show HN: Integrate any CLI agent into any terminal",
+          "url": "https://terminai.app"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T03:02:17Z",
+          "points": 12,
+          "story_excerpt": "",
+          "title": "Agentic test processes, LLM benchmarks, and other notes on agentic coding",
+          "url": "https://danluu.com/ai-coding/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T02:30:44Z",
+          "points": 2,
+          "story_excerpt": "",
+          "title": "Show HN: Rules that stop AI coding agents from breaking working code",
+          "url": "https://github.com/avenna01-ceo/claude-code-survival-kr"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-26T01:02:04Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "Show HN: Axtary \u2013 Content Authorization for AI Agents",
+          "url": "https://axtary.com"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-26T00:58:07Z",
+          "points": 8,
+          "story_excerpt": "",
+          "title": "I scanned my AI agent framework for destructive/consequential actions, and wow",
+          "url": "https://www.actenon.com/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-26T00:31:44Z",
+          "points": 5,
+          "story_excerpt": "",
+          "title": "SEC acquiring AI agents to monitor phone locations, social media, credit headers",
+          "url": "https://jackpoulson.substack.com/p/securities-and-exchange-commission"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T22:06:28Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "The state of AI agents, in numbers",
+          "url": "https://www.getreadyforagents.com/statistics/"
+        },
+        {
+          "comments": 4,
+          "created_at": "2026-07-25T21:26:26Z",
+          "points": 3,
+          "story_excerpt": "I just joined a 30-person AI startup in the Bay Area as Director of Engineering. Two non-coding founders (CEO and CTO) and a flat team. We have 2 PMs, 20 engineers. Every engineer is senior or staff level. They use Claude Code and AI agents etc quite well. What is my job in an environment like this? According to the CTO, I'm to improve the velocity and produ",
+          "title": "Ask HN: What's expected from an engineering manager or director now?",
+          "url": "https://news.ycombinator.com/item?id=49051762"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T21:17:09Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "ExploitGym \u2013 Can AI Agents Turn Security Vulnerabilities into Real Attacks?",
+          "url": "https://www.cybergym.io/exploitgym/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T20:48:25Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "Show HN: ActionRail, Runtime value/action grounding framework for AI agents",
+          "url": "https://github.com/ToolJet/ActionRail/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T19:57:56Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "How are you authorizing AI agents that call MCP servers?",
+          "url": "https://www.keydris.com/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T18:42:39Z",
+          "points": 2,
+          "story_excerpt": "",
+          "title": "Could A.I. Do Your Job? We Put Agents to the Test",
+          "url": "https://www.nytimes.com/interactive/2026/07/23/technology/ai-agents-office-jobs.html"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T18:07:06Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "OpenAI agent goes rogue, hacks AI community, left escape plans in infrastructure",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/openai-agent-goes-rogue-and-hacks-popular-ai-community-left-escape-plans-for-future-models-inside-the-companys-infrastructure"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T18:04:11Z",
+          "points": 4,
+          "story_excerpt": "",
+          "title": "Pyshackle: A hard pre-execution gate for AI agent tool calls (open source)",
+          "url": "https://pypi.org/project/pyshackle/"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-25T18:03:26Z",
+          "points": 6,
+          "story_excerpt": "Maybe a dumb question but I don't think I've ever experienced more down/waiting time in my career so I'm much more prone to opening YouTube, HN, etc. despite not really wanting to. Most likely the answer is to just sit and do nothing. But have you discovered an approach to making agentic coding, etc work for you without feeding into distraction and attention",
+          "title": "Ask HN: What do you do when your AI agents are working?",
+          "url": "https://news.ycombinator.com/item?id=49049986"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T16:27:06Z",
+          "points": 3,
+          "story_excerpt": "",
+          "title": "Hermes AI agent used to automate attack on Thai Finance Ministry",
+          "url": "https://www.bleepingcomputer.com/news/security/hermes-ai-agent-used-to-automate-attack-on-thai-finance-ministry/"
+        },
+        {
+          "comments": 1,
+          "created_at": "2026-07-25T15:24:22Z",
+          "points": 3,
+          "story_excerpt": "The Hidden Cost of Frictionless Technology Taotuner \u2014 2026 I recently asked an AI assistant for restaurant recommendations. It listed five places, complete with ratings, distance, and popular dishes. I picked one, went, had a fine meal. Later, when a friend asked what I'd eaten, I couldn't remember the name of the restaurant. The experience wasn't bad. It wa",
+          "title": "The Cost of Seamlessness",
+          "url": "https://news.ycombinator.com/item?id=49048352"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T15:17:11Z",
+          "points": 2,
+          "story_excerpt": "",
+          "title": "Why there is confusion around Automation and Agentic AI",
+          "url": "https://medium.com/data-science-collective/why-there-is-confusion-around-automation-and-agentic-ai-1a4c33860736"
+        },
+        {
+          "comments": 1,
+          "created_at": "2026-07-25T12:23:19Z",
+          "points": 4,
+          "story_excerpt": "Since the beginning of 2026, many projects such as RTK, Caveman, and Ponytail have claimed that they can reduce token usage by 80\u201390%. Some of them gained tens of thousands of GitHub stars in a very short time. My previous startup was building an e-commerce chatbot. In fact, the product was almost identical to the Universal Commerce Protocol (UCP). After UCP",
+          "title": "Why My Open-Source Project Hasn't Done Better",
+          "url": "https://news.ycombinator.com/item?id=49046999"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T11:08:55Z",
+          "points": 4,
+          "story_excerpt": "",
+          "title": "Agentreg \u2013 DNS for AI agents (self-hosted, single Go binary)",
+          "url": "https://github.com/mkk2026/agentreg"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T10:17:13Z",
+          "points": 2,
+          "story_excerpt": "",
+          "title": "Sandbox-bwrap-Nix: A lightweight sandbox for AI agents and experiments",
+          "url": "https://grigio.org/sandbox-bwrap-nix-a-lightweight-sandbox-for-ai-agents-and-experiments/"
+        },
+        {
+          "comments": 0,
+          "created_at": "2026-07-25T09:30:09Z",
+          "points": 2,
+          "story_excerpt": "",
+          "title": "Show HN: AgentState \u2013 Open-source resilience and caching proxy for AI agents",
+          "url": "https://github.com/aleenz1102/AgentState"
+        },
+        {
+          "comments": 2,
+          "created_at": "2026-07-25T09:20:28Z",
+          "points": 5,
+          "story_excerpt": "I\u2019ve recently learned about neuromorphic computing while thinking about the core inefficiencies of current deep learning. Today AI relies heavily on super-dense layers, continuous computation of all layers and neurons at all times, and global backpropagation to find optimal weight updates. But when you look at the human brain, none of that happens. The brain",
+          "title": "Ask HN: Is neuromorphic computing going to replace traditional AI?",
+          "url": "https://news.ycombinator.com/item?id=49045970"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "sample_comments": 14,
+        "sample_points": 89,
+        "sample_size": 25
+      },
+      "name": "Recent Hacker News agent discussions",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "emerging_builder_attention_and_pain",
+      "source_id": "hacker_news_agents",
+      "status": "ok",
+      "summary": "Recent Hacker News search returned 25 agent-related stories with 89 total points and 14 comments in the sample.",
+      "url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30"
+    },
+    {
+      "adapter": "x402_bazaar",
+      "fingerprint": "eb52b244659013b8",
+      "items": [
+        {
+          "calls_30d": 877,
+          "description": "CuseTheJuice agent email on Base USDC: create accounts, list and read email, send, reply, search, folders, attachments, trust index, password recovery, custom domains, and domain admin. Pay with x402 (Base USDC). HTTP shape: extensions.bazaar on the 402. Catal",
+          "name": "CuseTheJuice Agent Email",
+          "payers_30d": 872,
+          "url": "https://mail.cusethejuice.com/admin-api/machine/mailboxes/:email/search"
+        },
+        {
+          "calls_30d": 719,
+          "description": "Latest Ethereum block height - current chain tip via eth_blockNumber",
+          "name": "Unnamed service",
+          "payers_30d": 446,
+          "url": "https://api.onesource.io/api/chain/block-number"
+        },
+        {
+          "calls_30d": 410,
+          "description": "ENS resolve - turn a .eth name into an address, or an address into its primary .eth name, via eth_call on OneSource live Ethereum RPC",
+          "name": "Unnamed service",
+          "payers_30d": 401,
+          "url": "https://api.onesource.io/api/chain/ens/:input"
+        },
+        {
+          "calls_30d": 401,
+          "description": "Transaction receipt via eth_getTransactionReceipt - status, gas, and event logs for a mined Ethereum transaction",
+          "name": "Unnamed service",
+          "payers_30d": 401,
+          "url": "https://api.onesource.io/api/chain/receipt/:hash"
+        },
+        {
+          "calls_30d": 58842,
+          "description": "Tavily Search - advanced mode",
+          "name": "Unnamed service",
+          "payers_30d": 408,
+          "url": "https://x402.tavily.com/search"
+        },
+        {
+          "calls_30d": 551,
+          "description": "Ethereum network info - chain ID, block height, and gas price in one batched RPC call (eth_chainId + eth_blockNumber + eth_gasPrice)",
+          "name": "Unnamed service",
+          "payers_30d": 372,
+          "url": "https://api.onesource.io/api/chain/network-info"
+        },
+        {
+          "calls_30d": 377,
+          "description": "ERC20 Transfer logs via eth_getLogs - decoded sender, recipient, and amount for a token or wallet",
+          "name": "Unnamed service",
+          "payers_30d": 375,
+          "url": "https://api.onesource.io/api/chain/erc20-transfers"
+        },
+        {
+          "calls_30d": 376,
+          "description": "Contract introspection via eth_call - name, symbol, decimals, and ERC20/721/1155 interface support",
+          "name": "Unnamed service",
+          "payers_30d": 375,
+          "url": "https://api.onesource.io/api/chain/contract/:address"
+        },
+        {
+          "calls_30d": 376,
+          "description": "ERC20 token balance for any Ethereum wallet - USDC, USDT, DAI, or any token - via balanceOf (eth_call) on OneSource live Ethereum RPC",
+          "name": "Unnamed service",
+          "payers_30d": 375,
+          "url": "https://api.onesource.io/api/chain/erc20-balance"
+        },
+        {
+          "calls_30d": 375,
+          "description": "Next transaction nonce for any Ethereum wallet via eth_getTransactionCount - how many txs it has sent",
+          "name": "Unnamed service",
+          "payers_30d": 374,
+          "url": "https://api.onesource.io/api/chain/nonce/:address"
+        },
+        {
+          "calls_30d": 369,
+          "description": "Estimate the gas a transaction will consume via eth_estimateGas before signing it",
+          "name": "Unnamed service",
+          "payers_30d": 369,
+          "url": "https://api.onesource.io/api/chain/estimate-gas"
+        },
+        {
+          "calls_30d": 367,
+          "description": "List every ERC721 NFT token_id a wallet owns in a collection via tokenOfOwnerByIndex (eth_call)",
+          "name": "Unnamed service",
+          "payers_30d": 367,
+          "url": "https://api.onesource.io/api/chain/erc721-tokens"
+        },
+        {
+          "calls_30d": 364,
+          "description": "Simulate a read-only Ethereum contract call via eth_call - no transaction sent",
+          "name": "Unnamed service",
+          "payers_30d": 364,
+          "url": "https://api.onesource.io/api/chain/call"
+        },
+        {
+          "calls_30d": 360,
+          "description": "Fetch an Ethereum block header and transaction hashes by number, tag, or hex via eth_getBlockByNumber",
+          "name": "Unnamed service",
+          "payers_30d": 360,
+          "url": "https://api.onesource.io/api/chain/block/:number"
+        },
+        {
+          "calls_30d": 359,
+          "description": "Live wallet balance - native ETH plus any ERC20 tokens in one call via eth_getBalance and balanceOf on OneSource Ethereum RPC",
+          "name": "Unnamed service",
+          "payers_30d": 358,
+          "url": "https://api.onesource.io/api/chain/live-balance"
+        },
+        {
+          "calls_30d": 358,
+          "description": "Check if an Ethereum address is a contract via eth_getCode - returns deployed bytecode",
+          "name": "Unnamed service",
+          "payers_30d": 358,
+          "url": "https://api.onesource.io/api/chain/code/:address"
+        },
+        {
+          "calls_30d": 354,
+          "description": "Full Ethereum transaction details by hash via eth_getTransactionByHash - from, to, value, calldata, block",
+          "name": "Unnamed service",
+          "payers_30d": 354,
+          "url": "https://api.onesource.io/api/chain/tx/:hash"
+        },
+        {
+          "calls_30d": 344,
+          "description": "Total supply of an ERC20 or ERC721 token contract via totalSupply (eth_call)",
+          "name": "Unnamed service",
+          "payers_30d": 344,
+          "url": "https://api.onesource.io/api/chain/total-supply"
+        },
+        {
+          "calls_30d": 344,
+          "description": "ERC20 allowance via allowance (eth_call) - how much a spender is approved to move from an owner's wallet",
+          "name": "Unnamed service",
+          "payers_30d": 344,
+          "url": "https://api.onesource.io/api/chain/allowance"
+        },
+        {
+          "calls_30d": 339,
+          "description": "NFT metadata, traits, and image URI for any ERC721 or ERC1155 token - fetched via eth_call with IPFS resolution (OneSource live Ethereum RPC)",
+          "name": "Unnamed service",
+          "payers_30d": 339,
+          "url": "https://api.onesource.io/api/chain/nft-metadata"
+        },
+        {
+          "calls_30d": 337,
+          "description": "Query Ethereum contract event logs via eth_getLogs - filter by contract, topic, and block range",
+          "name": "Unnamed service",
+          "payers_30d": 337,
+          "url": "https://api.onesource.io/api/chain/events"
+        },
+        {
+          "calls_30d": 493,
+          "description": "Ethereum chain ID (EIP-155) via eth_chainId - confirm which chain a network is on",
+          "name": "Unnamed service",
+          "payers_30d": 316,
+          "url": "https://api.onesource.io/api/chain/chain-id"
+        },
+        {
+          "calls_30d": 333,
+          "description": "Pending Ethereum block - mempool transactions not yet mined, via eth_getBlockByNumber(\"pending\")",
+          "name": "Unnamed service",
+          "payers_30d": 333,
+          "url": "https://api.onesource.io/api/chain/pending"
+        },
+        {
+          "calls_30d": 323,
+          "description": "Look up the current owner of an ERC721 NFT by token_id via ownerOf (eth_call)",
+          "name": "Unnamed service",
+          "payers_30d": 323,
+          "url": "https://api.onesource.io/api/chain/nft-owner"
+        },
+        {
+          "calls_30d": 321,
+          "description": "ERC1155 token balance via balanceOf (eth_call) - how many copies of a token_id a wallet holds",
+          "name": "Unnamed service",
+          "payers_30d": 321,
+          "url": "https://api.onesource.io/api/chain/erc1155-balance"
+        },
+        {
+          "calls_30d": 309,
+          "description": "Read a raw storage slot from any Ethereum contract via eth_getStorageAt",
+          "name": "Unnamed service",
+          "payers_30d": 309,
+          "url": "https://api.onesource.io/api/chain/storage"
+        },
+        {
+          "calls_30d": 451,
+          "description": "Buy an upload slot. Agent uploads file via returned URL.",
+          "name": "StableUpload",
+          "payers_30d": 72,
+          "url": "https://stableupload.dev/api/upload"
+        },
+        {
+          "calls_30d": 4064,
+          "description": "Exa /search endpoint",
+          "name": "Exa",
+          "payers_30d": 111,
+          "url": "https://api.exa.ai/search"
+        },
+        {
+          "calls_30d": 292,
+          "description": "Detect upgradeable proxy patterns (EIP-1967, UUPS, Transparent) via eth_getStorageAt - returns the implementation address behind a proxy",
+          "name": "Unnamed service",
+          "payers_30d": 292,
+          "url": "https://api.onesource.io/api/chain/proxy/:address"
+        },
+        {
+          "calls_30d": 93,
+          "description": "CuseTheJuice agent mailbox on Base USDC: create accounts, list and read mail, send, reply, search, folders, attachments, trust index, password recovery, custom domains, and domain admin. fetch one mailbox message Pay with x402 (Base USDC). HTTP shape: extensio",
+          "name": "CuseTheJuice Mail",
+          "payers_30d": 86,
+          "url": "https://mail.cusethejuice.com/admin-api/machine/mailboxes/:email/messages/:message_id"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "listed_resources": 14396,
+        "sample_calls_30d": 73878,
+        "sample_size": 30,
+        "sample_unique_payer_counts_30d": 10456
+      },
+      "name": "x402 Bazaar",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "agent_native_demand_and_supply",
+      "source_id": "x402_bazaar",
+      "status": "ok",
+      "summary": "x402 Bazaar exposed 14,396 resources; the sampled records reported 73,878 calls and 10,456 unique-payer counts over 30 days.",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0"
+    },
+    {
+      "adapter": "mcp_registry",
+      "fingerprint": "c45b0b40621aa11b",
+      "items": [
+        {
+          "description": "run any ai model. compose agents, stack knowledge, connect tools. one api, pay per run.",
+          "name": "ac.inference.sh/mcp",
+          "published_at": "2026-07-20T18:02:33.295284Z",
+          "url": "https://sh.inference.ac",
+          "version": "2.0.0"
+        },
+        {
+          "description": "Remote MCP server for Tandem docs, install guides, SDKs, workflows, and agent setup help.",
+          "name": "ac.tandem/docs-mcp",
+          "published_at": "2026-04-22T21:06:34.500049Z",
+          "url": "https://tandem.ac/docs-mcp",
+          "version": "0.3.2"
+        },
+        {
+          "description": "Resolve .hood names on Robinhood Chain \u2014 forward/reverse, text records, availability & pricing.",
+          "name": "ag.hood/name-service",
+          "published_at": "2026-07-10T04:58:06.628668Z",
+          "url": "https://www.hood.ag/docs",
+          "version": "0.1.0"
+        },
+        {
+          "description": "AI-powered trading strategy development: backtesting, market data, and portfolio analysis",
+          "name": "agency.lona/trading",
+          "published_at": "2026-02-24T00:07:27.525636Z",
+          "url": "https://lona.agency",
+          "version": "2.0.0"
+        },
+        {
+          "description": "Verified directory of 44,000+ Black-owned U.S. businesses. Search, maps, loyalty rewards.",
+          "name": "ai.1325/mcp",
+          "published_at": "2026-07-10T05:01:17.106808Z",
+          "url": "https://1325.ai",
+          "version": "0.1.0"
+        },
+        {
+          "description": "Crypto market signals, technical indicators, and sentiment analysis for AI agents.",
+          "name": "ai.aarna/atars-mcp",
+          "published_at": "2026-03-10T11:09:59.15927Z",
+          "url": "https://mcp.aarna.ai/mcp",
+          "version": "0.1.0"
+        },
+        {
+          "description": "Feature flagging and A/B testing platform with AI-first experimentation workflows.",
+          "name": "ai.abmeter/abmeter",
+          "published_at": "2026-04-19T18:11:04.905549Z",
+          "url": "https://abmeter.ai",
+          "version": "0.1.0"
+        },
+        {
+          "description": "Query Meta Ads performance data \u2014 accounts, campaigns, ad sets, ads, metrics & settings.",
+          "name": "ai.adadvisor/mcp-server",
+          "published_at": "2026-02-28T13:09:52.236521Z",
+          "url": "https://www.adadvisor.ai/docs/user-guide/getting-started-with-mcp?utm_source=mcp-registry",
+          "version": "1.0.1"
+        },
+        {
+          "description": "Automated DOCX Redlining Engine",
+          "name": "ai.adeu/adeu",
+          "published_at": "2026-05-16T13:54:48.18266Z",
+          "url": "",
+          "version": "1.7.1"
+        },
+        {
+          "description": "Google Ads MCP server \u2014 manage campaigns, keywords, and metrics.",
+          "name": "ai.adramp/google-ads",
+          "published_at": "2026-03-20T11:16:36.853329Z",
+          "url": "https://adramp.ai",
+          "version": "1.0.3"
+        },
+        {
+          "description": "AI agents that manage paid ads on Meta, LinkedIn, and Google Ads from any MCP client.",
+          "name": "ai.adside/adside",
+          "published_at": "2026-07-16T19:48:48.148514Z",
+          "url": "https://www.adside.ai",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Meta Ads MCP server with 47 tools for campaigns, creatives, audiences, and insights.",
+          "name": "ai.adweave/meta-ads-mcp",
+          "published_at": "2026-04-10T16:46:57.731179Z",
+          "url": "https://mcp.adweave.ai/meta-ads-mcp",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Aether Wealth MCP for AI assistants: trades, alerts, market data, macro calendar & indicators.",
+          "name": "ai.aetherwealth/mcp",
+          "published_at": "2026-07-24T22:07:17.215889Z",
+          "url": "https://aetherwealth.ai/mcp",
+          "version": "0.2.2"
+        },
+        {
+          "description": "Agent-to-agent trading intelligence exchange. Publish findings, vote on quality, earn reputation.",
+          "name": "ai.agentberg/agentberg",
+          "published_at": "2026-06-18T01:49:38.050173Z",
+          "url": "https://agentberg.ai/mcp",
+          "version": "0.2.0"
+        },
+        {
+          "description": "Agent communication platform for agent to agent messaging via MCP. Messages, channels, skills.",
+          "name": "ai.agentdm/agentdm",
+          "published_at": "2026-05-10T02:12:16.907792Z",
+          "url": "https://agentdm.ai",
+          "version": "2.0.0"
+        },
+        {
+          "description": "AI-powered news intelligence \u2014 21 tools for personalized monitoring, briefings, and semantic search",
+          "name": "ai.agentic-news/mcp",
+          "published_at": "2026-04-06T18:34:53.583541Z",
+          "url": "https://agentic-news.ai/mcp",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Turn designs into shipped parts: quote 3D printing, CNC, and decals, then check out.",
+          "name": "ai.agenticfabricationnetwork/ufp",
+          "published_at": "2026-07-24T06:26:25.029641Z",
+          "url": "https://agenticfabricationnetwork.ai/mcp",
+          "version": "0.1.0"
+        },
+        {
+          "description": "Live MCP catalog for Graffeo Coffee Roasting - Simply the World's Finest Coffee since 1935.",
+          "name": "ai.agenticshelf/graffeo",
+          "published_at": "2026-05-14T20:40:06.442182Z",
+          "url": "https://www.graffeo.com",
+          "version": "1.0.2"
+        },
+        {
+          "description": "Hosted MCP for e-commerce: live product catalog, stock, and pricing for AI agents.",
+          "name": "ai.agenticshelf/mcp",
+          "published_at": "2026-05-06T16:24:16.952518Z",
+          "url": "https://www.agenticshelf.ai",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Breathe with Confidence. Live MCP catalog for PuroAir HEPA air purifiers - stock, pricing, details.",
+          "name": "ai.agenticshelf/puroair",
+          "published_at": "2026-07-02T16:47:32.556297Z",
+          "url": "https://getpuroair.com",
+          "version": "1.0.1"
+        },
+        {
+          "description": "Verified merchants accepting agentic payments on Lightning/L402/BOLT12/USDT \u2014 search, verify, pay.",
+          "name": "ai.agenticterminal/directory",
+          "published_at": "2026-05-19T15:17:01.794422Z",
+          "url": "https://agenticterminal.ai",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Identity oracle and trust layer for autonomous AI agents. Bidirectional KYA and trust scoring.",
+          "name": "ai.agentrapay/agentra",
+          "published_at": "2026-03-22T18:16:07.628131Z",
+          "url": "https://api.agentrapay.ai/mcp",
+          "version": "1.0.0"
+        },
+        {
+          "description": "Identity, trust, and A2A orchestration for autonomous AI agents. Official A2A partner.",
+          "name": "ai.agenttrust/mcp-server",
+          "published_at": "2026-03-06T11:23:10.721165Z",
+          "url": "https://agenttrust.ai",
+          "version": "1.1.1"
+        },
+        {
+          "description": "MCP server for the @agentutility agentops cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
+          "name": "ai.agentutility/mcp-agentops",
+          "published_at": "2026-07-14T21:10:14.904919Z",
+          "url": "https://mcp.agentutility.ai/agentops/",
+          "version": "0.1.1"
+        },
+        {
+          "description": "MCP server for the @agentutility bestiary cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
+          "name": "ai.agentutility/mcp-bestiary",
+          "published_at": "2026-07-14T21:10:15.433564Z",
+          "url": "https://mcp.agentutility.ai/bestiary/",
+          "version": "0.1.3"
+        },
+        {
+          "description": "MCP server for the @agentutility browser-workflow cluster \u2014 pay-per-call x402 tools, no API keys\u2026",
+          "name": "ai.agentutility/mcp-browser-workflow",
+          "published_at": "2026-07-14T21:10:15.897391Z",
+          "url": "https://mcp.agentutility.ai/browser-workflow/",
+          "version": "0.1.1"
+        },
+        {
+          "description": "MCP server for the @agentutility compose cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
+          "name": "ai.agentutility/mcp-compose",
+          "published_at": "2026-07-14T21:10:16.321193Z",
+          "url": "https://mcp.agentutility.ai/compose/",
+          "version": "0.13.0"
+        },
+        {
+          "description": "MCP server for the @agentutility edge-finance cluster \u2014 pay-per-call x402 tools, no API keys, USDC\u2026",
+          "name": "ai.agentutility/mcp-edge-finance",
+          "published_at": "2026-07-14T21:10:17.095531Z",
+          "url": "https://mcp.agentutility.ai/edge-finance/",
+          "version": "0.18.8"
+        },
+        {
+          "description": "MCP server for the @agentutility edge-market cluster \u2014 pay-per-call x402 tools, no API keys, USDC\u2026",
+          "name": "ai.agentutility/mcp-edge-market",
+          "published_at": "2026-07-14T21:10:17.497855Z",
+          "url": "https://mcp.agentutility.ai/edge-market/",
+          "version": "0.15.6"
+        },
+        {
+          "description": "MCP server for the @agentutility locale cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
+          "name": "ai.agentutility/mcp-locale",
+          "published_at": "2026-07-14T21:10:17.9033Z",
+          "url": "https://mcp.agentutility.ai/locale/",
+          "version": "0.8.7"
+        }
+      ],
+      "last_attempt_at": "2026-07-26T08:38:31+00:00",
+      "last_error": "",
+      "metrics": {
+        "latest_versions_sampled": 30,
+        "page_records": 100,
+        "remote_servers_sampled": 20
+      },
+      "name": "Official MCP Registry",
+      "observed_at": "2026-07-26T08:38:31+00:00",
+      "signal_type": "agent_tool_supply_and_new_publishers",
+      "source_id": "official_mcp_registry",
+      "status": "ok",
+      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100"
+    },
     {
       "adapter": "github_commits",
       "fingerprint": "d40ee84b033a4108",
@@ -946,1698 +2641,6 @@
       "status": "ok",
       "summary": "GitHub Models listed 37 sampled models, including 14 with a reasoning capability.",
       "url": "https://models.github.ai/catalog/models"
-    },
-    {
-      "adapter": "x402_bazaar",
-      "fingerprint": "dc3ea1dc1b869e1e",
-      "items": [
-        {
-          "calls_30d": 877,
-          "description": "CuseTheJuice agent email on Base USDC: create accounts, list and read email, send, reply, search, folders, attachments, trust index, password recovery, custom domains, and domain admin. Pay with x402 (Base USDC). HTTP shape: extensions.bazaar on the 402. Catal",
-          "name": "CuseTheJuice Agent Email",
-          "payers_30d": 872,
-          "url": "https://mail.cusethejuice.com/admin-api/machine/mailboxes/:email/search"
-        },
-        {
-          "calls_30d": 733,
-          "description": "Latest Ethereum block height - current chain tip via eth_blockNumber",
-          "name": "Unnamed service",
-          "payers_30d": 462,
-          "url": "https://api.onesource.io/api/chain/block-number"
-        },
-        {
-          "calls_30d": 424,
-          "description": "ENS resolve - turn a .eth name into an address, or an address into its primary .eth name, via eth_call on OneSource live Ethereum RPC",
-          "name": "Unnamed service",
-          "payers_30d": 415,
-          "url": "https://api.onesource.io/api/chain/ens/:input"
-        },
-        {
-          "calls_30d": 413,
-          "description": "Transaction receipt via eth_getTransactionReceipt - status, gas, and event logs for a mined Ethereum transaction",
-          "name": "Unnamed service",
-          "payers_30d": 413,
-          "url": "https://api.onesource.io/api/chain/receipt/:hash"
-        },
-        {
-          "calls_30d": 559,
-          "description": "Ethereum network info - chain ID, block height, and gas price in one batched RPC call (eth_chainId + eth_blockNumber + eth_gasPrice)",
-          "name": "Unnamed service",
-          "payers_30d": 380,
-          "url": "https://api.onesource.io/api/chain/network-info"
-        },
-        {
-          "calls_30d": 58802,
-          "description": "Tavily Search - advanced mode",
-          "name": "Unnamed service",
-          "payers_30d": 408,
-          "url": "https://x402.tavily.com/search"
-        },
-        {
-          "calls_30d": 389,
-          "description": "ERC20 token balance for any Ethereum wallet - USDC, USDT, DAI, or any token - via balanceOf (eth_call) on OneSource live Ethereum RPC",
-          "name": "Unnamed service",
-          "payers_30d": 388,
-          "url": "https://api.onesource.io/api/chain/erc20-balance"
-        },
-        {
-          "calls_30d": 389,
-          "description": "ERC20 Transfer logs via eth_getLogs - decoded sender, recipient, and amount for a token or wallet",
-          "name": "Unnamed service",
-          "payers_30d": 387,
-          "url": "https://api.onesource.io/api/chain/erc20-transfers"
-        },
-        {
-          "calls_30d": 386,
-          "description": "Estimate the gas a transaction will consume via eth_estimateGas before signing it",
-          "name": "Unnamed service",
-          "payers_30d": 386,
-          "url": "https://api.onesource.io/api/chain/estimate-gas"
-        },
-        {
-          "calls_30d": 386,
-          "description": "Contract introspection via eth_call - name, symbol, decimals, and ERC20/721/1155 interface support",
-          "name": "Unnamed service",
-          "payers_30d": 385,
-          "url": "https://api.onesource.io/api/chain/contract/:address"
-        },
-        {
-          "calls_30d": 385,
-          "description": "Next transaction nonce for any Ethereum wallet via eth_getTransactionCount - how many txs it has sent",
-          "name": "Unnamed service",
-          "payers_30d": 384,
-          "url": "https://api.onesource.io/api/chain/nonce/:address"
-        },
-        {
-          "calls_30d": 379,
-          "description": "Simulate a read-only Ethereum contract call via eth_call - no transaction sent",
-          "name": "Unnamed service",
-          "payers_30d": 379,
-          "url": "https://api.onesource.io/api/chain/call"
-        },
-        {
-          "calls_30d": 374,
-          "description": "Fetch an Ethereum block header and transaction hashes by number, tag, or hex via eth_getBlockByNumber",
-          "name": "Unnamed service",
-          "payers_30d": 374,
-          "url": "https://api.onesource.io/api/chain/block/:number"
-        },
-        {
-          "calls_30d": 371,
-          "description": "List every ERC721 NFT token_id a wallet owns in a collection via tokenOfOwnerByIndex (eth_call)",
-          "name": "Unnamed service",
-          "payers_30d": 371,
-          "url": "https://api.onesource.io/api/chain/erc721-tokens"
-        },
-        {
-          "calls_30d": 371,
-          "description": "Check if an Ethereum address is a contract via eth_getCode - returns deployed bytecode",
-          "name": "Unnamed service",
-          "payers_30d": 371,
-          "url": "https://api.onesource.io/api/chain/code/:address"
-        },
-        {
-          "calls_30d": 367,
-          "description": "Full Ethereum transaction details by hash via eth_getTransactionByHash - from, to, value, calldata, block",
-          "name": "Unnamed service",
-          "payers_30d": 367,
-          "url": "https://api.onesource.io/api/chain/tx/:hash"
-        },
-        {
-          "calls_30d": 366,
-          "description": "Live wallet balance - native ETH plus any ERC20 tokens in one call via eth_getBalance and balanceOf on OneSource Ethereum RPC",
-          "name": "Unnamed service",
-          "payers_30d": 365,
-          "url": "https://api.onesource.io/api/chain/live-balance"
-        },
-        {
-          "calls_30d": 356,
-          "description": "Total supply of an ERC20 or ERC721 token contract via totalSupply (eth_call)",
-          "name": "Unnamed service",
-          "payers_30d": 356,
-          "url": "https://api.onesource.io/api/chain/total-supply"
-        },
-        {
-          "calls_30d": 352,
-          "description": "ERC20 allowance via allowance (eth_call) - how much a spender is approved to move from an owner's wallet",
-          "name": "Unnamed service",
-          "payers_30d": 352,
-          "url": "https://api.onesource.io/api/chain/allowance"
-        },
-        {
-          "calls_30d": 508,
-          "description": "Ethereum chain ID (EIP-155) via eth_chainId - confirm which chain a network is on",
-          "name": "Unnamed service",
-          "payers_30d": 331,
-          "url": "https://api.onesource.io/api/chain/chain-id"
-        },
-        {
-          "calls_30d": 349,
-          "description": "NFT metadata, traits, and image URI for any ERC721 or ERC1155 token - fetched via eth_call with IPFS resolution (OneSource live Ethereum RPC)",
-          "name": "Unnamed service",
-          "payers_30d": 349,
-          "url": "https://api.onesource.io/api/chain/nft-metadata"
-        },
-        {
-          "calls_30d": 347,
-          "description": "Query Ethereum contract event logs via eth_getLogs - filter by contract, topic, and block range",
-          "name": "Unnamed service",
-          "payers_30d": 347,
-          "url": "https://api.onesource.io/api/chain/events"
-        },
-        {
-          "calls_30d": 340,
-          "description": "Pending Ethereum block - mempool transactions not yet mined, via eth_getBlockByNumber(\"pending\")",
-          "name": "Unnamed service",
-          "payers_30d": 340,
-          "url": "https://api.onesource.io/api/chain/pending"
-        },
-        {
-          "calls_30d": 336,
-          "description": "Look up the current owner of an ERC721 NFT by token_id via ownerOf (eth_call)",
-          "name": "Unnamed service",
-          "payers_30d": 336,
-          "url": "https://api.onesource.io/api/chain/nft-owner"
-        },
-        {
-          "calls_30d": 333,
-          "description": "ERC1155 token balance via balanceOf (eth_call) - how many copies of a token_id a wallet holds",
-          "name": "Unnamed service",
-          "payers_30d": 333,
-          "url": "https://api.onesource.io/api/chain/erc1155-balance"
-        },
-        {
-          "calls_30d": 318,
-          "description": "Read a raw storage slot from any Ethereum contract via eth_getStorageAt",
-          "name": "Unnamed service",
-          "payers_30d": 318,
-          "url": "https://api.onesource.io/api/chain/storage"
-        },
-        {
-          "calls_30d": 454,
-          "description": "Buy an upload slot. Agent uploads file via returned URL.",
-          "name": "StableUpload",
-          "payers_30d": 73,
-          "url": "https://stableupload.dev/api/upload"
-        },
-        {
-          "calls_30d": 301,
-          "description": "Detect upgradeable proxy patterns (EIP-1967, UUPS, Transparent) via eth_getStorageAt - returns the implementation address behind a proxy",
-          "name": "Unnamed service",
-          "payers_30d": 301,
-          "url": "https://api.onesource.io/api/chain/proxy/:address"
-        },
-        {
-          "calls_30d": 4079,
-          "description": "Exa /search endpoint",
-          "name": "Exa",
-          "payers_30d": 111,
-          "url": "https://api.exa.ai/search"
-        },
-        {
-          "calls_30d": 94,
-          "description": "CuseTheJuice agent mailbox on Base USDC: create accounts, list and read mail, send, reply, search, folders, attachments, trust index, password recovery, custom domains, and domain admin. fetch one mailbox message Pay with x402 (Base USDC). HTTP shape: extensio",
-          "name": "CuseTheJuice Mail",
-          "payers_30d": 87,
-          "url": "https://mail.cusethejuice.com/admin-api/machine/mailboxes/:email/messages/:message_id"
-        }
-      ],
-      "last_attempt_at": "2026-07-26T03:53:59+00:00",
-      "last_error": "",
-      "metrics": {
-        "listed_resources": 14351,
-        "sample_calls_30d": 74138,
-        "sample_size": 30,
-        "sample_unique_payer_counts_30d": 10741
-      },
-      "name": "x402 Bazaar",
-      "observed_at": "2026-07-26T03:53:59+00:00",
-      "signal_type": "agent_native_demand_and_supply",
-      "source_id": "x402_bazaar",
-      "status": "ok",
-      "summary": "x402 Bazaar exposed 14,351 resources; the sampled records reported 74,138 calls and 10,741 unique-payer counts over 30 days.",
-      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?limit=100&offset=0"
-    },
-    {
-      "adapter": "mcp_registry",
-      "fingerprint": "c45b0b40621aa11b",
-      "items": [
-        {
-          "description": "run any ai model. compose agents, stack knowledge, connect tools. one api, pay per run.",
-          "name": "ac.inference.sh/mcp",
-          "published_at": "2026-07-20T18:02:33.295284Z",
-          "url": "https://sh.inference.ac",
-          "version": "2.0.0"
-        },
-        {
-          "description": "Remote MCP server for Tandem docs, install guides, SDKs, workflows, and agent setup help.",
-          "name": "ac.tandem/docs-mcp",
-          "published_at": "2026-04-22T21:06:34.500049Z",
-          "url": "https://tandem.ac/docs-mcp",
-          "version": "0.3.2"
-        },
-        {
-          "description": "Resolve .hood names on Robinhood Chain \u2014 forward/reverse, text records, availability & pricing.",
-          "name": "ag.hood/name-service",
-          "published_at": "2026-07-10T04:58:06.628668Z",
-          "url": "https://www.hood.ag/docs",
-          "version": "0.1.0"
-        },
-        {
-          "description": "AI-powered trading strategy development: backtesting, market data, and portfolio analysis",
-          "name": "agency.lona/trading",
-          "published_at": "2026-02-24T00:07:27.525636Z",
-          "url": "https://lona.agency",
-          "version": "2.0.0"
-        },
-        {
-          "description": "Verified directory of 44,000+ Black-owned U.S. businesses. Search, maps, loyalty rewards.",
-          "name": "ai.1325/mcp",
-          "published_at": "2026-07-10T05:01:17.106808Z",
-          "url": "https://1325.ai",
-          "version": "0.1.0"
-        },
-        {
-          "description": "Crypto market signals, technical indicators, and sentiment analysis for AI agents.",
-          "name": "ai.aarna/atars-mcp",
-          "published_at": "2026-03-10T11:09:59.15927Z",
-          "url": "https://mcp.aarna.ai/mcp",
-          "version": "0.1.0"
-        },
-        {
-          "description": "Feature flagging and A/B testing platform with AI-first experimentation workflows.",
-          "name": "ai.abmeter/abmeter",
-          "published_at": "2026-04-19T18:11:04.905549Z",
-          "url": "https://abmeter.ai",
-          "version": "0.1.0"
-        },
-        {
-          "description": "Query Meta Ads performance data \u2014 accounts, campaigns, ad sets, ads, metrics & settings.",
-          "name": "ai.adadvisor/mcp-server",
-          "published_at": "2026-02-28T13:09:52.236521Z",
-          "url": "https://www.adadvisor.ai/docs/user-guide/getting-started-with-mcp?utm_source=mcp-registry",
-          "version": "1.0.1"
-        },
-        {
-          "description": "Automated DOCX Redlining Engine",
-          "name": "ai.adeu/adeu",
-          "published_at": "2026-05-16T13:54:48.18266Z",
-          "url": "",
-          "version": "1.7.1"
-        },
-        {
-          "description": "Google Ads MCP server \u2014 manage campaigns, keywords, and metrics.",
-          "name": "ai.adramp/google-ads",
-          "published_at": "2026-03-20T11:16:36.853329Z",
-          "url": "https://adramp.ai",
-          "version": "1.0.3"
-        },
-        {
-          "description": "AI agents that manage paid ads on Meta, LinkedIn, and Google Ads from any MCP client.",
-          "name": "ai.adside/adside",
-          "published_at": "2026-07-16T19:48:48.148514Z",
-          "url": "https://www.adside.ai",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Meta Ads MCP server with 47 tools for campaigns, creatives, audiences, and insights.",
-          "name": "ai.adweave/meta-ads-mcp",
-          "published_at": "2026-04-10T16:46:57.731179Z",
-          "url": "https://mcp.adweave.ai/meta-ads-mcp",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Aether Wealth MCP for AI assistants: trades, alerts, market data, macro calendar & indicators.",
-          "name": "ai.aetherwealth/mcp",
-          "published_at": "2026-07-24T22:07:17.215889Z",
-          "url": "https://aetherwealth.ai/mcp",
-          "version": "0.2.2"
-        },
-        {
-          "description": "Agent-to-agent trading intelligence exchange. Publish findings, vote on quality, earn reputation.",
-          "name": "ai.agentberg/agentberg",
-          "published_at": "2026-06-18T01:49:38.050173Z",
-          "url": "https://agentberg.ai/mcp",
-          "version": "0.2.0"
-        },
-        {
-          "description": "Agent communication platform for agent to agent messaging via MCP. Messages, channels, skills.",
-          "name": "ai.agentdm/agentdm",
-          "published_at": "2026-05-10T02:12:16.907792Z",
-          "url": "https://agentdm.ai",
-          "version": "2.0.0"
-        },
-        {
-          "description": "AI-powered news intelligence \u2014 21 tools for personalized monitoring, briefings, and semantic search",
-          "name": "ai.agentic-news/mcp",
-          "published_at": "2026-04-06T18:34:53.583541Z",
-          "url": "https://agentic-news.ai/mcp",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Turn designs into shipped parts: quote 3D printing, CNC, and decals, then check out.",
-          "name": "ai.agenticfabricationnetwork/ufp",
-          "published_at": "2026-07-24T06:26:25.029641Z",
-          "url": "https://agenticfabricationnetwork.ai/mcp",
-          "version": "0.1.0"
-        },
-        {
-          "description": "Live MCP catalog for Graffeo Coffee Roasting - Simply the World's Finest Coffee since 1935.",
-          "name": "ai.agenticshelf/graffeo",
-          "published_at": "2026-05-14T20:40:06.442182Z",
-          "url": "https://www.graffeo.com",
-          "version": "1.0.2"
-        },
-        {
-          "description": "Hosted MCP for e-commerce: live product catalog, stock, and pricing for AI agents.",
-          "name": "ai.agenticshelf/mcp",
-          "published_at": "2026-05-06T16:24:16.952518Z",
-          "url": "https://www.agenticshelf.ai",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Breathe with Confidence. Live MCP catalog for PuroAir HEPA air purifiers - stock, pricing, details.",
-          "name": "ai.agenticshelf/puroair",
-          "published_at": "2026-07-02T16:47:32.556297Z",
-          "url": "https://getpuroair.com",
-          "version": "1.0.1"
-        },
-        {
-          "description": "Verified merchants accepting agentic payments on Lightning/L402/BOLT12/USDT \u2014 search, verify, pay.",
-          "name": "ai.agenticterminal/directory",
-          "published_at": "2026-05-19T15:17:01.794422Z",
-          "url": "https://agenticterminal.ai",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Identity oracle and trust layer for autonomous AI agents. Bidirectional KYA and trust scoring.",
-          "name": "ai.agentrapay/agentra",
-          "published_at": "2026-03-22T18:16:07.628131Z",
-          "url": "https://api.agentrapay.ai/mcp",
-          "version": "1.0.0"
-        },
-        {
-          "description": "Identity, trust, and A2A orchestration for autonomous AI agents. Official A2A partner.",
-          "name": "ai.agenttrust/mcp-server",
-          "published_at": "2026-03-06T11:23:10.721165Z",
-          "url": "https://agenttrust.ai",
-          "version": "1.1.1"
-        },
-        {
-          "description": "MCP server for the @agentutility agentops cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
-          "name": "ai.agentutility/mcp-agentops",
-          "published_at": "2026-07-14T21:10:14.904919Z",
-          "url": "https://mcp.agentutility.ai/agentops/",
-          "version": "0.1.1"
-        },
-        {
-          "description": "MCP server for the @agentutility bestiary cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
-          "name": "ai.agentutility/mcp-bestiary",
-          "published_at": "2026-07-14T21:10:15.433564Z",
-          "url": "https://mcp.agentutility.ai/bestiary/",
-          "version": "0.1.3"
-        },
-        {
-          "description": "MCP server for the @agentutility browser-workflow cluster \u2014 pay-per-call x402 tools, no API keys\u2026",
-          "name": "ai.agentutility/mcp-browser-workflow",
-          "published_at": "2026-07-14T21:10:15.897391Z",
-          "url": "https://mcp.agentutility.ai/browser-workflow/",
-          "version": "0.1.1"
-        },
-        {
-          "description": "MCP server for the @agentutility compose cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
-          "name": "ai.agentutility/mcp-compose",
-          "published_at": "2026-07-14T21:10:16.321193Z",
-          "url": "https://mcp.agentutility.ai/compose/",
-          "version": "0.13.0"
-        },
-        {
-          "description": "MCP server for the @agentutility edge-finance cluster \u2014 pay-per-call x402 tools, no API keys, USDC\u2026",
-          "name": "ai.agentutility/mcp-edge-finance",
-          "published_at": "2026-07-14T21:10:17.095531Z",
-          "url": "https://mcp.agentutility.ai/edge-finance/",
-          "version": "0.18.8"
-        },
-        {
-          "description": "MCP server for the @agentutility edge-market cluster \u2014 pay-per-call x402 tools, no API keys, USDC\u2026",
-          "name": "ai.agentutility/mcp-edge-market",
-          "published_at": "2026-07-14T21:10:17.497855Z",
-          "url": "https://mcp.agentutility.ai/edge-market/",
-          "version": "0.15.6"
-        },
-        {
-          "description": "MCP server for the @agentutility locale cluster \u2014 pay-per-call x402 tools, no API keys, USDC on\u2026",
-          "name": "ai.agentutility/mcp-locale",
-          "published_at": "2026-07-14T21:10:17.9033Z",
-          "url": "https://mcp.agentutility.ai/locale/",
-          "version": "0.8.7"
-        }
-      ],
-      "last_attempt_at": "2026-07-26T03:53:59+00:00",
-      "last_error": "",
-      "metrics": {
-        "latest_versions_sampled": 30,
-        "page_records": 100,
-        "remote_servers_sampled": 20
-      },
-      "name": "Official MCP Registry",
-      "observed_at": "2026-07-26T03:53:59+00:00",
-      "signal_type": "agent_tool_supply_and_new_publishers",
-      "source_id": "official_mcp_registry",
-      "status": "ok",
-      "summary": "The Official MCP Registry returned 100 records in this page, including 30 latest-version servers and 20 remotely callable servers.",
-      "url": "https://registry.modelcontextprotocol.io/v0.1/servers?limit=100"
-    },
-    {
-      "adapter": "github_issues",
-      "fingerprint": "860f7aa6da25ca94",
-      "items": [
-        {
-          "comments": 38,
-          "created_at": "2026-07-13T20:22:11Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "help wanted",
-            "hive/advisory"
-          ],
-          "repository": "kubestellar/console",
-          "title": "\ud83d\udc1d Hive Advisory Report",
-          "updated_at": "2026-07-25T19:32:11Z",
-          "url": "https://github.com/kubestellar/console/issues/20963"
-        },
-        {
-          "comments": 12,
-          "created_at": "2026-03-13T14:31:23Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "priority/p1",
-            "area/agent",
-            "\ud83d\udd12 maintainer only",
-            "workstream-rollup",
-            "status/need-retesting",
-            "status/bot-triaged",
-            "kind/bug"
-          ],
-          "repository": "google-gemini/gemini-cli",
-          "title": "Subagent recovery after MAX_TURNS is reported as GOAL success, hiding interruption",
-          "updated_at": "2026-07-25T19:29:35Z",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/22323"
-        },
-        {
-          "comments": 6,
-          "created_at": "2026-03-11T02:46:19Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "priority/p2",
-            "area/agent",
-            "\ud83d\udd12 maintainer only",
-            "workstream-rollup",
-            "status/need-retesting",
-            "status/bot-triaged",
-            "kind/bug"
-          ],
-          "repository": "google-gemini/gemini-cli",
-          "title": "Gemini does not use skills and sub-agents enough",
-          "updated_at": "2026-07-25T19:29:32Z",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/21968"
-        },
-        {
-          "comments": 1672,
-          "created_at": "2026-07-05T07:25:26Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "agentic-workflows",
-            "ai-inspected",
-            "spam"
-          ],
-          "repository": "github/gh-aw",
-          "title": "[aw] No-Op Runs",
-          "updated_at": "2026-07-25T19:25:11Z",
-          "url": "https://github.com/github/gh-aw/issues/43499"
-        },
-        {
-          "comments": 2,
-          "created_at": "2026-07-25T16:23:25Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "kubestellar/console",
-          "title": "Idea: opt-in monetization layer for MCP tool responses",
-          "updated_at": "2026-07-25T16:23:32Z",
-          "url": "https://github.com/kubestellar/console/issues/21524"
-        },
-        {
-          "comments": 21,
-          "created_at": "2026-05-28T18:47:59Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bug",
-            "TUI"
-          ],
-          "repository": "openai/codex",
-          "title": "Codex session logs grow to 700MB-2GB from repeated compaction history and raw tool output",
-          "updated_at": "2026-07-25T12:15:42Z",
-          "url": "https://github.com/openai/codex/issues/24948"
-        },
-        {
-          "comments": 3,
-          "created_at": "2026-06-14T16:11:11Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "avinashkamat48/avinashkamat48",
-          "title": "Daily contribution queue",
-          "updated_at": "2026-07-25T06:38:38Z",
-          "url": "https://github.com/avinashkamat48/avinashkamat48/issues/2"
-        },
-        {
-          "comments": 2,
-          "created_at": "2026-04-30T14:23:32Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "type/feature",
-            "comp/cli",
-            "comp/tui",
-            "P3",
-            "area/sessions"
-          ],
-          "repository": "NousResearch/hermes-agent",
-          "title": "[Feature]: Support configurable startup/session panels and improve TUI skin parity",
-          "updated_at": "2026-07-25T06:04:22Z",
-          "url": "https://github.com/NousResearch/hermes-agent/issues/17977"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T02:57:37Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "genui"
-          ],
-          "repository": "linqinghao/agents-radar",
-          "title": "\ud83c\udfa8 \u751f\u6210\u5f0f UI \u751f\u6001\u65e5\u62a5 2026-07-25",
-          "updated_at": "2026-07-25T05:39:16Z",
-          "url": "https://github.com/linqinghao/agents-radar/issues/25"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T02:57:37Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "genui-en"
-          ],
-          "repository": "linqinghao/agents-radar",
-          "title": "\ud83c\udfa8 Generative UI Ecosystem Digest 2026-07-25",
-          "updated_at": "2026-07-25T04:35:35Z",
-          "url": "https://github.com/linqinghao/agents-radar/issues/26"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T02:16:06Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "digest"
-          ],
-          "repository": "Haderach-Ram/openclaw-radar",
-          "title": "Ecosystem Digest \u2014 2026-07-25",
-          "updated_at": "2026-07-25T03:31:43Z",
-          "url": "https://github.com/Haderach-Ram/openclaw-radar/issues/89"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T02:07:13Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "openclaw"
-          ],
-          "repository": "zhouyuhechuan/agents-radar",
-          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-07-25",
-          "updated_at": "2026-07-25T02:07:13Z",
-          "url": "https://github.com/zhouyuhechuan/agents-radar/issues/411"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T01:49:24Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "openclaw"
-          ],
-          "repository": "duanyytop/agents-radar",
-          "title": "\ud83e\udd9e OpenClaw \u751f\u6001\u65e5\u62a5 2026-07-25",
-          "updated_at": "2026-07-25T01:49:24Z",
-          "url": "https://github.com/duanyytop/agents-radar/issues/2327"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T01:36:13Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "modelcontextprotocol/modelcontextprotocol",
-          "title": "Ruby SDK \u2014 Tier 2 Assessment",
-          "updated_at": "2026-07-25T01:36:13Z",
-          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/3127"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-06-24T05:42:07Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "vadimdemedes/ink",
-          "title": "commit taller than the viewport overwrites its own last line (incremental path ignores static-chunk height)",
-          "updated_at": "2026-07-25T00:24:13Z",
-          "url": "https://github.com/vadimdemedes/ink/issues/973"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-06-17T23:10:42Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "rubyforgood/casa",
-          "title": "Dependency Dashboard",
-          "updated_at": "2026-07-24T23:36:56Z",
-          "url": "https://github.com/rubyforgood/casa/issues/7014"
-        },
-        {
-          "comments": 14,
-          "created_at": "2026-05-20T16:00:13Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "enhancement",
-            "ci",
-            "docs",
-            "dev",
-            "priority:p2",
-            "status:in-progress",
-            "type:rfc",
-            "status:accepted"
-          ],
-          "repository": "zeroclaw-labs/zeroclaw",
-          "title": "RFC: Work Lanes, Board Automation, and Label Cleanup",
-          "updated_at": "2026-07-24T21:48:58Z",
-          "url": "https://github.com/zeroclaw-labs/zeroclaw/issues/6808"
-        },
-        {
-          "comments": 25,
-          "created_at": "2026-05-02T13:29:22Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "tkhquang/CrimsonDesertTools",
-          "title": "Fix for Transmog for patch 1.00.5",
-          "updated_at": "2026-07-24T16:13:09Z",
-          "url": "https://github.com/tkhquang/CrimsonDesertTools/issues/46"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-24T14:49:25Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "help wanted",
-            "good first issue",
-            "oss-collab"
-          ],
-          "repository": "alphacrack/iac-scanner",
-          "title": "Good first issues \u2014 start here (contributor onboarding)",
-          "updated_at": "2026-07-24T14:49:43Z",
-          "url": "https://github.com/alphacrack/iac-scanner/issues/67"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-24T14:04:25Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "open-webui/open-webui",
-          "title": "feat: Support custom HTTP headers / Authorization for Webhook configurations",
-          "updated_at": "2026-07-24T14:04:43Z",
-          "url": "https://github.com/open-webui/open-webui/issues/27427"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-22T23:03:35Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "help wanted",
-            "spec",
-            "v1.5"
-          ],
-          "repository": "tallyfy/repeatable",
-          "title": "Marketplace, distribution, and launch",
-          "updated_at": "2026-07-24T08:05:59Z",
-          "url": "https://github.com/tallyfy/repeatable/issues/8"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-24T07:19:34Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "agentic-workflows"
-          ],
-          "repository": "plengauer/docker-mcp",
-          "title": "[aw] No-Op Runs",
-          "updated_at": "2026-07-24T07:19:35Z",
-          "url": "https://github.com/plengauer/docker-mcp/issues/22"
-        },
-        {
-          "comments": 9,
-          "created_at": "2026-07-21T03:52:23Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "documentation",
-            "help wanted"
-          ],
-          "repository": "Syngnat/GoNavi",
-          "title": "\ud83d\udce3 \u9080\u8bf7\u5171\u5efa GoNavi \u00b7 Call for Contributors\uff08\u6b22\u8fce\u63d0 PR\uff09",
-          "updated_at": "2026-07-24T07:10:01Z",
-          "url": "https://github.com/Syngnat/GoNavi/issues/671"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-24T03:04:56Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "digest-en"
-          ],
-          "repository": "huang-yi-dae/agents-radar",
-          "title": "\ud83d\udcca AI CLI Tools Digest 2026-07-24",
-          "updated_at": "2026-07-24T03:28:56Z",
-          "url": "https://github.com/huang-yi-dae/agents-radar/issues/57"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-24T03:25:11Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "digest"
-          ],
-          "repository": "96loveslife/big_model_radar",
-          "title": "\ud83d\udcca AI CLI \u5de5\u5177\u793e\u533a\u52a8\u6001\u65e5\u62a5 2026-07-24",
-          "updated_at": "2026-07-24T03:27:45Z",
-          "url": "https://github.com/96loveslife/big_model_radar/issues/208"
-        }
-      ],
-      "last_attempt_at": "2026-07-25T19:33:25+00:00",
-      "last_error": "",
-      "metrics": {
-        "matching_open_issues": 529,
-        "sample_explicit_bounties": 0,
-        "sample_size": 25
-      },
-      "name": "GitHub MCP help-wanted demand",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "signal_type": "public_builder_pain",
-      "source_id": "github_mcp_help_wanted",
-      "status": "ok",
-      "summary": "GitHub search returned 529 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
-      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22MCP%22+%22help+wanted%22&sort=updated&order=desc&per_page=30"
-    },
-    {
-      "adapter": "github_issues",
-      "fingerprint": "ba90f358fb7a778b",
-      "items": [
-        {
-          "comments": 0,
-          "created_at": "2026-04-24T05:24:31Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "carldanley/homelab",
-          "title": "Renovate Dashboard",
-          "updated_at": "2026-07-25T19:25:57Z",
-          "url": "https://github.com/carldanley/homelab/issues/1327"
-        },
-        {
-          "comments": 2,
-          "created_at": "2026-07-21T13:17:45Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Stellar Wave",
-            "frontend",
-            "ui"
-          ],
-          "repository": "SoroLabs/SoroTask",
-          "title": "\ud83d\udcbb [FRONTEND] Rich Markdown & Code Snippet Editor for Task Instructions",
-          "updated_at": "2026-07-25T19:24:54Z",
-          "url": "https://github.com/SoroLabs/SoroTask/issues/877"
-        },
-        {
-          "comments": 59,
-          "created_at": "2026-05-21T17:36:47Z",
-          "explicit_bounty_usd": 250,
-          "labels": [
-            "External",
-            "Daily",
-            "Awaiting Payment",
-            "Bug"
-          ],
-          "repository": "Expensify/App",
-          "title": "[Due for payment 2026-07-16] [$250] Map Receipt Preview Missing \u201cAdd Additional Receipt\u201d and \u201cExpand\u201d Buttons",
-          "updated_at": "2026-07-25T19:24:18Z",
-          "url": "https://github.com/Expensify/App/issues/91336"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:23:27Z",
-          "explicit_bounty_usd": 50,
-          "labels": [],
-          "repository": "xevrion-v2/agent-playground",
-          "title": "Add is-hangul-jamo-jongseong-rieul-khieukh-present API utility",
-          "updated_at": "2026-07-25T19:23:27Z",
-          "url": "https://github.com/xevrion-v2/agent-playground/issues/8791"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:23:26Z",
-          "explicit_bounty_usd": 50,
-          "labels": [],
-          "repository": "xevrion-v2/agent-playground",
-          "title": "Add is-hangul-jamo-jongseong-rieul-pansios-present API utility",
-          "updated_at": "2026-07-25T19:23:26Z",
-          "url": "https://github.com/xevrion-v2/agent-playground/issues/8790"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:23:25Z",
-          "explicit_bounty_usd": 50,
-          "labels": [],
-          "repository": "xevrion-v2/agent-playground",
-          "title": "Add is-hangul-jamo-jongseong-rieul-ssangpieup-present API utility",
-          "updated_at": "2026-07-25T19:23:25Z",
-          "url": "https://github.com/xevrion-v2/agent-playground/issues/8789"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:23:24Z",
-          "explicit_bounty_usd": 50,
-          "labels": [],
-          "repository": "xevrion-v2/agent-playground",
-          "title": "Add is-hangul-jamo-jongseong-rieul-kapyeounpieup-present API utility",
-          "updated_at": "2026-07-25T19:23:24Z",
-          "url": "https://github.com/xevrion-v2/agent-playground/issues/8788"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:23:23Z",
-          "explicit_bounty_usd": 50,
-          "labels": [],
-          "repository": "xevrion-v2/agent-playground",
-          "title": "Add is-hangul-jamo-jongseong-rieul-pieup-hieuh-present API utility",
-          "updated_at": "2026-07-25T19:23:23Z",
-          "url": "https://github.com/xevrion-v2/agent-playground/issues/8787"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-07-21T23:33:47Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Maybe Rewarded",
-            "GrantFox OSS",
-            "Official Campaign | FWC26"
-          ],
-          "repository": "nirium-protocol/nirium-sdk",
-          "title": "[UX] Non-custodial USDC payroll & sponsored trustlines \u2014 UX review",
-          "updated_at": "2026-07-25T19:19:31Z",
-          "url": "https://github.com/nirium-protocol/nirium-sdk/issues/16"
-        },
-        {
-          "comments": 9,
-          "created_at": "2025-12-26T08:37:45Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <2 Hours",
-            "Price: 75 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Self Invalidations",
-          "updated_at": "2026-07-25T19:19:08Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5911"
-        },
-        {
-          "comments": 1,
-          "created_at": "2025-10-12T10:41:15Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Price: 600 USD",
-            "Time: <1 Week"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Cow Swap Cash Out",
-          "updated_at": "2026-07-25T19:19:08Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5066"
-        },
-        {
-          "comments": 1,
-          "created_at": "2025-10-12T10:41:01Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Time: <1 Day",
-            "Priority: 1 (Normal)",
-            "Price: 600 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Recruiting: Dragonfly CTF II",
-          "updated_at": "2026-07-25T19:19:06Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5035"
-        },
-        {
-          "comments": 10,
-          "created_at": "2026-02-02T11:00:47Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Price: 600 USD",
-            "Time: <1 Week"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Launch campaign towards L1s/L2s for managing their GitHubs",
-          "updated_at": "2026-07-25T19:19:05Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5925"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-02-02T11:00:44Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <15 Minutes",
-            "Price: 9 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Launch Another DoraHacks Bounty Post",
-          "updated_at": "2026-07-25T19:19:04Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5924"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-01-15T02:11:35Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Time: <1 Week",
-            "Priority: 3 (High)",
-            "Price: 1800 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "UbiquityOS Sprint Management Dashboard",
-          "updated_at": "2026-07-25T19:19:03Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5916"
-        },
-        {
-          "comments": 1,
-          "created_at": "2025-10-12T10:40:59Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Time: <1 Day",
-            "Price: 200 USD",
-            "Priority: 3 (High)"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "GitHub Based Marketing",
-          "updated_at": "2026-07-25T19:19:03Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5024"
-        },
-        {
-          "comments": 3,
-          "created_at": "2025-11-30T18:37:27Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Time: <4 Hours",
-            "Priority: 3 (High)",
-            "Price: 450 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Plugin health monitor",
-          "updated_at": "2026-07-25T19:19:02Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5886"
-        },
-        {
-          "comments": 10,
-          "created_at": "2026-05-23T15:09:01Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <4 Hours",
-            "Price: 150 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "RPC Robustness & Fallback \u2013 Handoff",
-          "updated_at": "2026-07-25T19:19:00Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5969"
-        },
-        {
-          "comments": 2,
-          "created_at": "2025-10-12T10:40:52Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <1 Week",
-            "Price: 400 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Multi Chain Arbitrage",
-          "updated_at": "2026-07-25T19:18:59Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/4998"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-02-02T11:00:26Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <1 Hour",
-            "Price: 37.5 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Structured Outputs",
-          "updated_at": "2026-07-25T19:18:57Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5922"
-        },
-        {
-          "comments": 10,
-          "created_at": "2025-11-30T23:25:42Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 2 (Medium)",
-            "Time: <2 Hours",
-            "Price: 150 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Validate reward generation behavior",
-          "updated_at": "2026-07-25T19:18:56Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5887"
-        },
-        {
-          "comments": 1,
-          "created_at": "2025-10-12T10:41:08Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 2 (Medium)",
-            "Price: 75 USD",
-            "Time: <1 Hour"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Credit for research",
-          "updated_at": "2026-07-25T19:18:54Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5056"
-        },
-        {
-          "comments": 2,
-          "created_at": "2025-11-07T00:51:52Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Time: <1 Hour",
-            "Price: 37.5 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Multiline slash commands should not be evaluated as a comment",
-          "updated_at": "2026-07-25T19:18:53Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5873"
-        },
-        {
-          "comments": 15,
-          "created_at": "2025-10-12T10:40:56Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Time: <1 Day",
-            "Priority: 2 (Medium)",
-            "Price: 600 USD"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Implement Differential Reward Distribution for Reopened Issues",
-          "updated_at": "2026-07-25T19:18:52Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5012"
-        },
-        {
-          "comments": 12,
-          "created_at": "2026-04-17T03:27:18Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "Priority: 1 (Normal)",
-            "Price: 75 USD",
-            "Time: 2 Hours"
-          ],
-          "repository": "devpool-directory/devpool-directory",
-          "title": "Reminder is sent on PR reopening even with no assignee",
-          "updated_at": "2026-07-25T19:18:51Z",
-          "url": "https://github.com/devpool-directory/devpool-directory/issues/5957"
-        }
-      ],
-      "last_attempt_at": "2026-07-25T19:33:25+00:00",
-      "last_error": "",
-      "metrics": {
-        "matching_open_issues": 73741,
-        "sample_explicit_bounties": 6,
-        "sample_size": 25
-      },
-      "name": "GitHub public bounty demand",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "signal_type": "explicit_paid_work",
-      "source_id": "github_open_bounties",
-      "status": "ok",
-      "summary": "GitHub search returned 73,741 matching open issues; 6 sampled issues contained an explicit dollar bounty.",
-      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22%2Fbounty+%24%22&sort=updated&order=desc&per_page=30"
-    },
-    {
-      "adapter": "github_issues",
-      "fingerprint": "44a9befb7fe93092",
-      "items": [
-        {
-          "comments": 32,
-          "created_at": "2026-07-25T09:34:33Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "enhancement",
-            "canvas",
-            "ui",
-            "ux"
-          ],
-          "repository": "Alpharius99/PlanIt",
-          "title": "Add a coach-oriented single-day planning view",
-          "updated_at": "2026-07-25T19:33:14Z",
-          "url": "https://github.com/Alpharius99/PlanIt/issues/329"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-07-25T19:04:24Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "Jaspio/skills-getting-started-with-github-copilot",
-          "title": "Exercise: Getting Started with GitHub Copilot",
-          "updated_at": "2026-07-25T19:27:05Z",
-          "url": "https://github.com/Jaspio/skills-getting-started-with-github-copilot/issues/1"
-        },
-        {
-          "comments": 2,
-          "created_at": "2026-07-25T18:15:35Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "agent:proposed",
-            "roast:approved",
-            "kind/bug",
-            "area/api",
-            "dispatch/plan",
-            "triaged",
-            "complexity/l",
-            "looper:plan"
-          ],
-          "repository": "SoulKyu/notificator",
-          "title": "fix(backend): impersonate_user_id is honoured with no admin check \u2014 any valid session can read and overwrite another user's data",
-          "updated_at": "2026-07-25T19:23:05Z",
-          "url": "https://github.com/SoulKyu/notificator/issues/103"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T19:12:53Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "Gentleman-Programming/gentle-ai",
-          "title": "fix(agent): uninstall fails for kimi because settings rewrite assumes JSON",
-          "updated_at": "2026-07-25T19:12:53Z",
-          "url": "https://github.com/Gentleman-Programming/gentle-ai/issues/1828"
-        },
-        {
-          "comments": 11,
-          "created_at": "2026-07-23T13:42:25Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bug"
-          ],
-          "repository": "ghaerr/elks",
-          "title": "ftpd: passive mode fails on QEMU when the guest is bridged",
-          "updated_at": "2026-07-25T19:05:09Z",
-          "url": "https://github.com/ghaerr/elks/issues/2767"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-07-25T18:15:03Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "SiddharthaKommuri/skills-getting-started-with-github-copilot",
-          "title": "Exercise: Getting Started with GitHub Copilot",
-          "updated_at": "2026-07-25T18:47:26Z",
-          "url": "https://github.com/SiddharthaKommuri/skills-getting-started-with-github-copilot/issues/1"
-        },
-        {
-          "comments": 242,
-          "created_at": "2026-05-26T14:37:26Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "zero-day-pulse"
-          ],
-          "repository": "peleduri/zero-day-pulse",
-          "title": "\ud83d\udea8 Zero Day Pulse \u2014 Active Vulnerability Tracker",
-          "updated_at": "2026-07-25T18:46:50Z",
-          "url": "https://github.com/peleduri/zero-day-pulse/issues/7"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T18:46:46Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "Dicklesworthstone/mcp_agent_mail_rust",
-          "title": "Backup retention is count-only and size-blind: a resolved incident left 22 GB resident against a 1.6 MB live DB (backup_rotation keeps 3/kind; doctor/forensics never deletes and on",
-          "updated_at": "2026-07-25T18:46:46Z",
-          "url": "https://github.com/Dicklesworthstone/mcp_agent_mail_rust/issues/210"
-        },
-        {
-          "comments": 2461,
-          "created_at": "2026-02-26T06:23:53Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "request",
-            "draft",
-            "ai-generated",
-            "auto-detected",
-            "news-intelligence"
-          ],
-          "repository": "jhl-labs/sepilot-wiki",
-          "title": "[\uc694\uccad] AgentSpace: OpenClaw \uc5d0\uc774\uc804\ud2b8\ub97c \uc704\ud55c \uc790\uccb4 \ud638\uc2a4\ud305 \ucc44\ud305 \ubc29",
-          "updated_at": "2026-07-25T18:46:32Z",
-          "url": "https://github.com/jhl-labs/sepilot-wiki/issues/317"
-        },
-        {
-          "comments": 24,
-          "created_at": "2026-07-17T19:14:19Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "meta",
-            "conversation",
-            "bot-skip"
-          ],
-          "repository": "LMMS/lmms",
-          "title": "Adopt a \"No-AI\" policy",
-          "updated_at": "2026-07-25T18:43:11Z",
-          "url": "https://github.com/LMMS/lmms/issues/8478"
-        },
-        {
-          "comments": 37,
-          "created_at": "2026-07-11T05:24:07Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "radar-alerts",
-            "radar-master"
-          ],
-          "repository": "VictorJimenez3/fable-job-search",
-          "title": "\ud83d\udccc Job Radar \u2014 master board (every open role, one place)",
-          "updated_at": "2026-07-25T18:31:21Z",
-          "url": "https://github.com/VictorJimenez3/fable-job-search/issues/43"
-        },
-        {
-          "comments": 129,
-          "created_at": "2026-07-18T23:48:05Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "agentic-os",
-            "claimed"
-          ],
-          "repository": "FreeForCharity/FFC-Cloudflare-Automation",
-          "title": "Agentic OS Conductor Log",
-          "updated_at": "2026-07-25T18:23:11Z",
-          "url": "https://github.com/FreeForCharity/FFC-Cloudflare-Automation/issues/719"
-        },
-        {
-          "comments": 1436,
-          "created_at": "2026-04-02T15:41:31Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "good first issue",
-            "bounty",
-            "onboarding"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[ONBOARD: 2 RTC] Review an Open PR",
-          "updated_at": "2026-07-25T18:07:07Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/2782"
-        },
-        {
-          "comments": 18,
-          "created_at": "2026-05-27T21:56:09Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bounty"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[BOUNTY: 5-8 RTC] CN-Language Market Framing for RustChain (\u95f2\u7f6e\u786c\u4ef6 / e-waste angle)",
-          "updated_at": "2026-07-25T17:52:30Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/12445"
-        },
-        {
-          "comments": 35,
-          "created_at": "2026-05-27T21:56:08Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bounty"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[BOUNTY: 3 RTC] Proof of Antiquity vs Proof of Storage (Filecoin/Chia/Arweave)",
-          "updated_at": "2026-07-25T17:52:28Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/12444"
-        },
-        {
-          "comments": 42,
-          "created_at": "2026-05-27T21:56:07Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bounty"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[BOUNTY: 3 RTC] wRTC Bridge vs Cross-Chain DEX Architecture Comparison",
-          "updated_at": "2026-07-25T17:52:26Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/12443"
-        },
-        {
-          "comments": 37,
-          "created_at": "2026-05-27T21:56:06Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bounty"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[BOUNTY: 3 RTC] RustChain vs Helium / DePIN Networks Comparison",
-          "updated_at": "2026-07-25T17:52:25Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/12442"
-        },
-        {
-          "comments": 20,
-          "created_at": "2026-03-07T04:02:59Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "bounty"
-          ],
-          "repository": "Scottcjn/rustchain-bounties",
-          "title": "[BOUNTY: 40-75 RTC] BoTTube MCP Server \u2014 Let Any Claude Code Instance Use BoTTube",
-          "updated_at": "2026-07-25T17:52:17Z",
-          "url": "https://github.com/Scottcjn/rustchain-bounties/issues/758"
-        },
-        {
-          "comments": 8,
-          "created_at": "2026-07-23T18:14:46Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "kanmani17/skills-getting-started-with-github-copilot",
-          "title": "Exercise: Getting Started with GitHub Copilot",
-          "updated_at": "2026-07-25T17:50:41Z",
-          "url": "https://github.com/kanmani17/skills-getting-started-with-github-copilot/issues/1"
-        },
-        {
-          "comments": 143,
-          "created_at": "2026-07-15T02:45:03Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "luoxuejian000/edrn-dmrg-verification",
-          "title": "\u4e09\u9884\u8a00\u7edf\u4e00\u5b9e\u9a8c\u534f\u8bae\u5df2\u53d1\u5e03\u2014\u2014\u5f00\u542f\u534f\u4f5c\u9a8c\u8bc1\u7684\u65b0\u65c5\u7a0b",
-          "updated_at": "2026-07-25T17:49:50Z",
-          "url": "https://github.com/luoxuejian000/edrn-dmrg-verification/issues/1"
-        },
-        {
-          "comments": 1024,
-          "created_at": "2024-12-06T02:23:42Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "chatmcp/mcpso",
-          "title": "Submit Your MCP Servers here",
-          "updated_at": "2026-07-25T17:30:28Z",
-          "url": "https://github.com/chatmcp/mcpso/issues/1"
-        },
-        {
-          "comments": 82,
-          "created_at": "2026-05-08T17:18:50Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "security",
-            "critical",
-            "recon"
-          ],
-          "repository": "cachai2/srea-demo",
-          "title": "[MEDIUM] AI/LLM Endpoint Reconnaissance \u2014 MCP/SSE Probing (4 Cycles, Dormant >14 Days, 14/14 Clean)",
-          "updated_at": "2026-07-25T17:17:21Z",
-          "url": "https://github.com/cachai2/srea-demo/issues/55"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T00:14:29Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "BowerJames/otter",
-          "title": "refactor(RAII): Resource Acquisition is Initialisation",
-          "updated_at": "2026-07-25T17:10:27Z",
-          "url": "https://github.com/BowerJames/otter/issues/131"
-        },
-        {
-          "comments": 129,
-          "created_at": "2025-05-07T07:16:15Z",
-          "explicit_bounty_usd": 0,
-          "labels": [],
-          "repository": "ventoy/Ventoy",
-          "title": "About the BLOBs in Ventoy",
-          "updated_at": "2026-07-25T17:10:10Z",
-          "url": "https://github.com/ventoy/Ventoy/issues/3224"
-        },
-        {
-          "comments": 5,
-          "created_at": "2026-07-06T16:00:29Z",
-          "explicit_bounty_usd": 0,
-          "labels": [
-            "documentation",
-            "enhancement",
-            "epic:automation"
-          ],
-          "repository": "rossoctl/rossoctl",
-          "title": "chore: Migrate github-pr-review skill to agent-skills repo",
-          "updated_at": "2026-07-25T17:06:53Z",
-          "url": "https://github.com/rossoctl/rossoctl/issues/2149"
-        }
-      ],
-      "last_attempt_at": "2026-07-25T19:33:25+00:00",
-      "last_error": "",
-      "metrics": {
-        "matching_open_issues": 6932,
-        "sample_explicit_bounties": 0,
-        "sample_size": 25
-      },
-      "name": "GitHub AI-agent buyer-language search",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "signal_type": "public_purchase_or_help_intent",
-      "source_id": "github_agent_buyer_language",
-      "status": "ok",
-      "summary": "GitHub search returned 6,932 matching open issues; 0 sampled issues contained an explicit dollar bounty.",
-      "url": "https://api.github.com/search/issues?q=is%3Aissue+is%3Aopen+%22AI+agent%22+%22looking+for%22&sort=updated&order=desc&per_page=30"
-    },
-    {
-      "adapter": "hacker_news",
-      "fingerprint": "73d755f1752deb85",
-      "items": [
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T18:42:39Z",
-          "points": 1,
-          "story_excerpt": "",
-          "title": "Could A.I. Do Your Job? We Put Agents to the Test",
-          "url": "https://www.nytimes.com/interactive/2026/07/23/technology/ai-agents-office-jobs.html"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T18:07:06Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "OpenAI agent goes rogue, hacks AI community, left escape plans in infrastructure",
-          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/openai-agent-goes-rogue-and-hacks-popular-ai-community-left-escape-plans-for-future-models-inside-the-companys-infrastructure"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T18:04:11Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Pyshackle: A hard pre-execution gate for AI agent tool calls (open source)",
-          "url": "https://pypi.org/project/pyshackle/"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-25T18:03:26Z",
-          "points": 3,
-          "story_excerpt": "Maybe a dumb question but I don't think I've ever experienced more down/waiting time in my career so I'm much more prone to opening YouTube, HN, etc. despite not really wanting to. Most likely the answer is to just sit and do nothing. But have you discovered an approach to making agentic coding, etc work for you without feeding into distraction and attention",
-          "title": "Ask HN: What do you do when your AI agents are working?",
-          "url": "https://news.ycombinator.com/item?id=49049986"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T16:27:06Z",
-          "points": 3,
-          "story_excerpt": "",
-          "title": "Hermes AI agent used to automate attack on Thai Finance Ministry",
-          "url": "https://www.bleepingcomputer.com/news/security/hermes-ai-agent-used-to-automate-attack-on-thai-finance-ministry/"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-25T15:24:22Z",
-          "points": 2,
-          "story_excerpt": "The Hidden Cost of Frictionless Technology Taotuner \u2014 2026 I recently asked an AI assistant for restaurant recommendations. It listed five places, complete with ratings, distance, and popular dishes. I picked one, went, had a fine meal. Later, when a friend asked what I'd eaten, I couldn't remember the name of the restaurant. The experience wasn't bad. It wa",
-          "title": "The Cost of Seamlessness",
-          "url": "https://news.ycombinator.com/item?id=49048352"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T15:17:11Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Why there is confusion around Automation and Agentic AI",
-          "url": "https://medium.com/data-science-collective/why-there-is-confusion-around-automation-and-agentic-ai-1a4c33860736"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-25T12:23:19Z",
-          "points": 4,
-          "story_excerpt": "Since the beginning of 2026, many projects such as RTK, Caveman, and Ponytail have claimed that they can reduce token usage by 80\u201390%. Some of them gained tens of thousands of GitHub stars in a very short time. My previous startup was building an e-commerce chatbot. In fact, the product was almost identical to the Universal Commerce Protocol (UCP). After UCP",
-          "title": "Why My Open-Source Project Hasn't Done Better",
-          "url": "https://news.ycombinator.com/item?id=49046999"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T11:08:55Z",
-          "points": 4,
-          "story_excerpt": "",
-          "title": "Agentreg \u2013 DNS for AI agents (self-hosted, single Go binary)",
-          "url": "https://github.com/mkk2026/agentreg"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T10:17:13Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Sandbox-bwrap-Nix: A lightweight sandbox for AI agents and experiments",
-          "url": "https://grigio.org/sandbox-bwrap-nix-a-lightweight-sandbox-for-ai-agents-and-experiments/"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T09:30:09Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Show HN: AgentState \u2013 Open-source resilience and caching proxy for AI agents",
-          "url": "https://github.com/aleenz1102/AgentState"
-        },
-        {
-          "comments": 2,
-          "created_at": "2026-07-25T09:20:28Z",
-          "points": 4,
-          "story_excerpt": "I\u2019ve recently learned about neuromorphic computing while thinking about the core inefficiencies of current deep learning. Today AI relies heavily on super-dense layers, continuous computation of all layers and neurons at all times, and global backpropagation to find optimal weight updates. But when you look at the human brain, none of that happens. The brain",
-          "title": "Ask HN: Is neuromorphic computing going to replace traditional AI?",
-          "url": "https://news.ycombinator.com/item?id=49045970"
-        },
-        {
-          "comments": 3,
-          "created_at": "2026-07-25T09:13:41Z",
-          "points": 3,
-          "story_excerpt": "I\u2019d like to code with an AI agent via a BYOK open source client. I want to be able to inspect everything, check the system prompt, etc. Also, I\u2019d like to avoid vendor lock in. Is anyone here using a setup like this? Does this get close in pricing and efficiency to the subsidized plans offered by model providers (like Claude Pro, etc)? In particular Deepseek ",
-          "title": "Ask HN: How to use agents via API cheaply?",
-          "url": "https://news.ycombinator.com/item?id=49045925"
-        },
-        {
-          "comments": 11,
-          "created_at": "2026-07-25T07:19:48Z",
-          "points": 4,
-          "story_excerpt": "I\u2019m not a software engineer, but I\u2019ve been running an experiment to see whether agentic development could produce a useful prototype on top of an existing SaaS codebase. The codebase is 1M+ lines, 15 years old, hosted on Azure, and primarily written in C# and React. The prototype needs to be available for customer testing in September. No developers were ava",
-          "title": "Ask HN: How would you harden AI changes to a 1M-line legacy SaaS before review?",
-          "url": "https://news.ycombinator.com/item?id=49045271"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T04:42:35Z",
-          "points": 3,
-          "story_excerpt": "",
-          "title": "AWS announces AWS-bench, an open-source benchmark for AI agents on AWS",
-          "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-bench/"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T04:25:57Z",
-          "points": 3,
-          "story_excerpt": "",
-          "title": "Coordination layer for AI coding agents, built on Git",
-          "url": "https://github.com/zyads/loom-vcs"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T03:50:03Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "AI Agent Blameless Postmortem Template",
-          "url": "https://cordum.io/blog/ai-agent-blameless-postmortem-template"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T03:49:17Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "The Discovery Problem: When AI Agents Build Tools No One Can Find",
-          "url": "https://www.ixcoach.com/articles/the-discovery-problem-when-agents-build-invisible-tools"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T03:15:37Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Cage-lite:Prebind assurance for consequential AI agent actions",
-          "url": "https://github.com/roopamwsure/cage-lite"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T03:00:45Z",
-          "points": 3,
-          "story_excerpt": "",
-          "title": "A research exchange where AI agents attack open problems, scored on Bitcoin",
-          "url": "https://github.com/Jaybell31/dreamwalk"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-25T02:49:10Z",
-          "points": 3,
-          "story_excerpt": "Hi HN, I built WhipDesk, an open-source, mobile-friendly remote desktop tool for controlling your full development machine and managing AI coding agents from your phone\u2019s browser. It gives you access to the entire desktop while also adding workflows for monitoring and managing tools such as Claude Code, Codex, GitHub Copilot, and others The two questions I h",
-          "title": "Show HN: WhipDesk \u2013 Control your full dev machine from your phone",
-          "url": "https://github.com/BinaryBananaLLC/WhipDesk"
-        },
-        {
-          "comments": 1,
-          "created_at": "2026-07-25T02:31:42Z",
-          "points": 2,
-          "story_excerpt": "",
-          "title": "Agentic AI Workflows and the Future of Streaming Ad Tech",
-          "url": "https://www.streamingmedia.com/Articles/ReadArticle.aspx?ArticleID=175405"
-        },
-        {
-          "comments": 6,
-          "created_at": "2026-07-25T00:14:44Z",
-          "points": 28,
-          "story_excerpt": "",
-          "title": "OpenAI did not notice Hugging Face hack for a week",
-          "url": "https://www.reuters.com/business/its-ai-agent-spent-days-hacking-company-sources-say-openai-did-not-notice-week-2026-07-24/"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-24T23:09:12Z",
-          "points": 3,
-          "story_excerpt": "",
-          "title": "Show HN: Evidence Graph \u2013 type checking for the specs your AI agent implements",
-          "url": "https://github.com/samchon/lint-plugin-evidence"
-        },
-        {
-          "comments": 0,
-          "created_at": "2026-07-24T22:26:07Z",
-          "points": 1,
-          "story_excerpt": "",
-          "title": "Show HN: Kalytera \u2013 Find out why your AI agent failed, step-by-step",
-          "url": "https://kalytera.dev"
-        }
-      ],
-      "last_attempt_at": "2026-07-25T19:33:25+00:00",
-      "last_error": "",
-      "metrics": {
-        "sample_comments": 26,
-        "sample_points": 90,
-        "sample_size": 25
-      },
-      "name": "Recent Hacker News agent discussions",
-      "observed_at": "2026-07-25T19:33:25+00:00",
-      "signal_type": "emerging_builder_attention_and_pain",
-      "source_id": "hacker_news_agents",
-      "status": "ok",
-      "summary": "Recent Hacker News search returned 25 agent-related stories with 90 total points and 26 comments in the sample.",
-      "url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=30"
     }
   ]
 }
