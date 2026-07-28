@@ -70,20 +70,20 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 15. Bazaar Agent Resource Combo Pack – Immediate Validation Brief - 7.75
 - 16. Bazaar agent + reasoning model combo validation brief (July 23) - 7.73
 - 17. Paid Demo Model-Delta Agent Combo - 7.71
-- 18. Agent-Model Resource Combo Validation Brief for x402 Bazaar - 7.68
-- 19. Agent Launch Gate Founding License - 7.64
-- 20. Paid Demo Activation via x402 Bazaar - 7.62
-- 21. Evidence-Backed Competitor Brief - 7.61
-- 22. Agent-powered Instant Demo: Documentation Delta Alert - 7.58
-- 23. MCP Integration Launch Sprint - 7.55
-- 24. Fixed-Scope Data Cleanup Service - 7.55
-- 25. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
-- 26. Bazaar deployable MCP Registry agent/model pack - 7.48
-- 27. Agent resource: Roblox documentation change tracker demo brief - 7.48
-- 28. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
-- 29. Agent & Reasoning Model Combo Pack Listing - 7.45
-- 30. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
-- 31. MCP / Agent Preflight Full Audit - 7.37
+- 18. Agent Launch Gate Founding License - 7.64
+- 19. Paid Demo Activation via x402 Bazaar - 7.62
+- 20. Evidence-Backed Competitor Brief - 7.61
+- 21. Agent-powered Instant Demo: Documentation Delta Alert - 7.58
+- 22. MCP Integration Launch Sprint - 7.55
+- 23. Fixed-Scope Data Cleanup Service - 7.55
+- 24. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
+- 25. Bazaar deployable MCP Registry agent/model pack - 7.48
+- 26. Agent resource: Roblox documentation change tracker demo brief - 7.48
+- 27. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
+- 28. Agent & Reasoning Model Combo Pack Listing - 7.45
+- 29. Agent Resource Combo Pack Listing on x402 Bazaar - 7.40
+- 30. MCP / Agent Preflight Full Audit - 7.37
+- 31. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
 - 32. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
 - 33. Actionable Agent-Driven Docs Change Alerts - 7.27
 - 34. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
