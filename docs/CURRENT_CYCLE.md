@@ -78,14 +78,14 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 23. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
 - 24. Bazaar deployable MCP Registry agent/model pack - 7.48
 - 25. Fulfillment of explicit paid agent task from GitHub Issues - 7.47
-- 26. MCP / Agent Preflight Full Audit - 7.37
-- 27. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
-- 28. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
-- 29. Actionable Agent-Driven Docs Change Alerts - 7.27
-- 30. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
-- 31. Paid Agent Demo for Live Documentation Deltas - 7.25
-- 32. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
-- 33. Agent Model Reasoning Demo for Paid GitHub Bounty - 7.12
+- 26. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
+- 27. MCP / Agent Preflight Full Audit - 7.37
+- 28. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
+- 29. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
+- 30. Actionable Agent-Driven Docs Change Alerts - 7.27
+- 31. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
+- 32. Paid Agent Demo for Live Documentation Deltas - 7.25
+- 33. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
 - 34. MCP / Agent Preflight Metered API - 7.12
 - 35. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
 - 36. Founder Demo Repurposing Pack - 7.10
