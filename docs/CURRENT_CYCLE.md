@@ -77,21 +77,21 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 22. Fixed-Scope Data Cleanup Service - 7.55
 - 23. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
 - 24. Bazaar deployable MCP Registry agent/model pack - 7.48
-- 25. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
-- 26. MCP / Agent Preflight Full Audit - 7.37
-- 27. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
-- 28. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
-- 29. Actionable Agent-Driven Docs Change Alerts - 7.27
-- 30. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
-- 31. Paid Agent Demo for Live Documentation Deltas - 7.25
-- 32. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
-- 33. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
-- 34. MCP / Agent Preflight Metered API - 7.12
-- 35. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
-- 36. Founder Demo Repurposing Pack - 7.10
-- 37. Instant Agent Demo for Recent Documentation Changes - 7.09
-- 38. GitHub bounty fulfillment for MCP server issue fix - 7.03
-- 39. Validation brief for agent model combos from GitHub Models catalog - 7.02
+- 25. Agent for summarizing new model catalog entries (with reasoning filter) via x402 Bazaar - 7.46
+- 26. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
+- 27. MCP / Agent Preflight Full Audit - 7.37
+- 28. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
+- 29. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
+- 30. Actionable Agent-Driven Docs Change Alerts - 7.27
+- 31. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
+- 32. Paid Agent Demo for Live Documentation Deltas - 7.25
+- 33. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
+- 34. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
+- 35. MCP / Agent Preflight Metered API - 7.12
+- 36. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
+- 37. Founder Demo Repurposing Pack - 7.10
+- 38. Instant Agent Demo for Recent Documentation Changes - 7.09
+- 39. GitHub bounty fulfillment for MCP server issue fix - 7.03
 - 40. Agent-Powered Model Catalog Demo Service - 7.01
 - 41. Agent Demo for Explicit GitHub Bounty Issues - 6.98
 - 42. Roblox Creator Docs Change Alert Demo - 6.92
