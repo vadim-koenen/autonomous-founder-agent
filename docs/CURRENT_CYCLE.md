@@ -45,8 +45,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- m3-2026-07-24-frontier-discovered-bazaar-agent-resource-combo-pack-new-v20260720-03: Replaced after reassessment by Bazaar Agent Combo Pack Instant Validation Brief; role score improved from 0.00 to 8.58.
-- Selected Bazaar Agent Combo Pack Instant Validation Brief for frontier; overall score 8.37, role score 8.58.
+- No selection or lifecycle change in this cycle.
 
 ## Blocked Identity or Setup Actions
 
