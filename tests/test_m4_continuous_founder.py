@@ -126,6 +126,16 @@ class M4ContinuousFounderTest(unittest.TestCase):
             "evidence": [evidence_record()],
         }
 
+    def test_public_dashboard_hides_empty_financial_scoreboards(self):
+        html = (ROOT / "site/index.html").read_text(encoding="utf-8")
+
+        self.assertNotIn("$0.00", html)
+        self.assertNotIn("Starting owner capital: $0", html)
+        self.assertIn('id="financialProof"', html)
+        self.assertIn("hidden", html)
+        self.assertIn("Awaiting qualified exposure", html)
+        self.assertIn("renderFinancialProof(state)", html)
+
     def synthesize(self, payload=None):
         tracker = BudgetTracker(make_budget())
         response = json.dumps(payload or valid_model_payload())
