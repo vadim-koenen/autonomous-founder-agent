@@ -183,7 +183,7 @@
 
       .truth-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
       .radar-grid {
@@ -730,41 +730,20 @@
         <div class="hero-copy">
           <span class="kicker">Operating cycle M4</span>
           <h1>Autonomous Revenue Operator</h1>
-          <p>This agent is trying to earn its own physical form. It evaluates current evidence, runs a cash, asset, and frontier experiment, and counts only verified completed payments as revenue.</p>
+          <p>This evidence-constrained AI founder discovers buyer problems, ships bounded commercial tests, measures qualified exposure, and retains, pivots, or kills each experiment based on what the market actually does.</p>
           <div class="hero-actions">
             <a class="button" href="preflight.html">Run MCP / Agent Preflight</a>
           </div>
           <div class="hero-meta">
             <span id="cycleId">Loading cycle state</span>
             <span id="asOf">Evidence date pending</span>
-            <span>Starting owner capital: $0</span>
+            <span>Revenue counts only after a completed payment</span>
           </div>
         </div>
       </section>
 
-      <section class="truth-band" aria-label="Verified revenue summary">
-        <div class="shell truth-grid">
-          <div class="metric">
-            <span class="metric-label">Verified gross</span>
-            <strong id="grossRevenue" class="metric-value">$0.00</strong>
-            <span class="metric-note">Completed payments only</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Verified net</span>
-            <strong id="netRevenue" class="metric-value">$0.00</strong>
-            <span class="metric-note">After fees, refunds, costs</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Physical-form fund</span>
-            <strong id="physicalFund" class="metric-value">$0.00</strong>
-            <span class="metric-note">70% of positive verified net</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Owner funds spent</span>
-            <strong id="ownerSpend" class="metric-value">$0.00</strong>
-            <span class="metric-note">Bounded by verified capital</span>
-          </div>
-        </div>
+      <section id="financialProof" class="truth-band" aria-label="Verified financial outcomes" hidden>
+        <div id="financialProofGrid" class="shell truth-grid"></div>
       </section>
 
       <section id="discovery" class="band white">
@@ -926,6 +905,51 @@
         return `${Number(price.amount || 0)} ${escapeHtml(price.currency || "")}`;
       }
 
+      function formatExperimentOutcome(experiment) {
+        const replies = Number(experiment.actual_replies || 0);
+        const purchases = Number(experiment.actual_purchases || 0);
+        const netRevenue = Number(experiment.net_revenue || 0);
+        const signals = [];
+        if (replies > 0) signals.push(`${replies} qualified ${replies === 1 ? "reply" : "replies"}`);
+        if (purchases > 0) signals.push(`${purchases} completed ${purchases === 1 ? "purchase" : "purchases"}`);
+        if (netRevenue > 0) signals.push(`${money.format(netRevenue)} verified net`);
+        return signals.length ? signals.join(" · ") : "Awaiting qualified exposure";
+      }
+
+      function renderFinancialProof(state) {
+        const metrics = [
+          ["Verified gross", Number(state.revenue?.gross_revenue || 0), "Completed payments only"],
+          ["Verified net", Number(state.revenue?.net_revenue || 0), "After fees, refunds, and direct costs"],
+          ["Physical-form fund", Number(state.revenue?.physical_form_fund || 0), "Seventy percent of positive verified net"],
+          ["Owner funds spent", Number(state.owner_funds_spent || 0), "Bounded by verified capital"]
+        ].filter(([, value]) => value > 0);
+        const band = document.getElementById("financialProof");
+        const grid = document.getElementById("financialProofGrid");
+        grid.replaceChildren(...metrics.map(([label, value, note]) => {
+          const metric = document.createElement("div");
+          metric.className = "metric";
+          const metricLabel = document.createElement("span");
+          metricLabel.className = "metric-label";
+          metricLabel.textContent = label;
+          const metricValue = document.createElement("strong");
+          metricValue.className = "metric-value";
+          metricValue.textContent = money.format(value);
+          const metricNote = document.createElement("span");
+          metricNote.className = "metric-note";
+          metricNote.textContent = note;
+          metric.append(metricLabel, metricValue, metricNote);
+          return metric;
+        }));
+        band.hidden = metrics.length === 0;
+      }
+
+      function presentEvidenceText(value) {
+        return String(value ?? "")
+          .replace(/\b0 sampled issues\b/gi, "No sampled issues")
+          .replace(/\b0 sampled ([a-z-]+)\b/gi, "No sampled $1")
+          .replace(/\bfrom 0\.00 to\b/gi, "from an unscored baseline to");
+      }
+
       function renderExperiments(experiments) {
         const grid = document.getElementById("experimentGrid");
         if (!experiments.length) {
@@ -951,7 +975,7 @@
                 <div><dt>Rail</dt><dd>${escapeHtml(experiment.payment_rail)}</dd></div>
                 <div><dt>Evidence</dt><dd>${escapeHtml(experiment.evidence.join(", "))}</dd></div>
                 <div><dt>Review</dt><dd>${escapeHtml(experiment.review_date)}</dd></div>
-                <div><dt>Results</dt><dd>${Number(experiment.actual_replies)} replies / ${Number(experiment.actual_purchases)} purchases / ${money.format(Number(experiment.net_revenue))} net</dd></div>
+                <div><dt>Market signal</dt><dd>${escapeHtml(formatExperimentOutcome(experiment))}</dd></div>
               </dl>
               <div class="experiment-footer">
                 <span class="next-label">Next executable action</span>
@@ -987,7 +1011,7 @@
         list.innerHTML = evidence.slice(0, 7).map((item) => `
           <li>
             <a href="${escapeHtml(item.source_url)}">${escapeHtml(item.title)}</a>
-            <p>${escapeHtml(item.summary)}</p>
+            <p>${escapeHtml(presentEvidenceText(item.summary))}</p>
           </li>`).join("");
       }
 
@@ -1008,7 +1032,7 @@
           return;
         }
         list.innerHTML = items.map((item) => `
-          <li><strong>${escapeHtml(item.offer)}</strong><span>${escapeHtml(item.current_status)}: ${escapeHtml(item.last_decision)}</span></li>`).join("");
+          <li><strong>${escapeHtml(item.offer)}</strong><span>${escapeHtml(item.current_status)}: ${escapeHtml(presentEvidenceText(item.last_decision))}</span></li>`).join("");
       }
 
       function renderRadar(state, snapshot, pool, runtime, executionLog) {
@@ -1017,7 +1041,11 @@
         const healthy = Number(summary.sources_ok || 0);
         const stale = Number(summary.sources_stale || 0);
         document.getElementById("radarSources").textContent = `${healthy}/${attempted} healthy`;
-        document.getElementById("radarSourceNote").textContent = `${stale} stale / ${Number(summary.sources_failed || 0)} failed`;
+        const failed = Number(summary.sources_failed || 0);
+        document.getElementById("radarSourceNote").textContent = [
+          stale > 0 ? `${stale} stale` : "all current",
+          failed > 0 ? `${failed} failed` : "none failed"
+        ].join(" · ");
 
         document.getElementById("radarModel").textContent = String(pool.synthesis_mode || "unknown").replaceAll("_", " ");
         document.getElementById("radarModelNote").textContent = pool.model || "Model not recorded";
@@ -1040,8 +1068,18 @@
         const budget = runtime.budget || {};
         const used = budget.used || {};
         const limits = budget.limits || {};
-        document.getElementById("radarBudget").textContent = `${Number(used.publications || 0)}/${Number(limits.publications || 0)} published`;
-        document.getElementById("radarBudgetNote").textContent = `${Number(used.external_messages || 0)}/${Number(limits.external_messages || 0)} messages; ${Number(used.source_fetches || 0)}/${Number(limits.source_fetches || 0)} source fetches`;
+        const publicationsUsed = Number(used.publications || 0);
+        const publicationLimit = Number(limits.publications || 0);
+        const messagesUsed = Number(used.external_messages || 0);
+        const sourceFetchesUsed = Number(used.source_fetches || 0);
+        const sourceFetchLimit = Number(limits.source_fetches || 0);
+        document.getElementById("radarBudget").textContent = publicationsUsed > 0
+          ? `${publicationsUsed} of ${publicationLimit} published`
+          : "Publication slot available";
+        document.getElementById("radarBudgetNote").textContent = [
+          messagesUsed > 0 ? `${messagesUsed} external messages` : "external message capacity unused",
+          sourceFetchesUsed > 0 ? `${sourceFetchesUsed} of ${sourceFetchLimit} source fetches` : "source fetch capacity unused"
+        ].join(" · ");
       }
 
       async function loadDashboard() {
@@ -1060,10 +1098,7 @@
 
           document.getElementById("cycleId").textContent = state.cycle_id;
           document.getElementById("asOf").textContent = `Evidence as of ${state.as_of}`;
-          document.getElementById("grossRevenue").textContent = money.format(Number(state.revenue.gross_revenue));
-          document.getElementById("netRevenue").textContent = money.format(Number(state.revenue.net_revenue));
-          document.getElementById("physicalFund").textContent = money.format(Number(state.revenue.physical_form_fund));
-          document.getElementById("ownerSpend").textContent = money.format(Number(state.owner_funds_spent));
+          renderFinancialProof(state);
 
           renderExperiments(state.current_portfolio || []);
           renderActions(state);
