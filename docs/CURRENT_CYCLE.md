@@ -59,49 +59,47 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 4. Paid Agent/Model Demo Combo for Unique Buyer Validation - 8.17
 - 5. Paid Demo: Bazaar Agent-Model Combo for Native Buyers - 8.06
 - 6. MCP Registry Insights Pack for Marketplace Buyers - 8.05
-- 7. Curated Agent Reasoning Model Combo Pack - 7.99
-- 8. Bazaar MCP Registry + Reasoning Model Combo Demo Brief - 7.88
-- 9. Paid Demo Agent+Model Resource Combo - 7.82
-- 10. Paid Demo Model-Delta Agent Combo - 7.71
-- 11. Paid Docs Delta Summarizer and Demo on x402 Bazaar - 7.70
-- 12. Agent Launch Gate Founding License - 7.64
-- 13. Paid Demo Activation via x402 Bazaar - 7.62
-- 14. Evidence-Backed Competitor Brief - 7.61
-- 15. Paid agent delivering Roblox documentation change summaries - 7.60
-- 16. Agent-powered Instant Demo: Documentation Delta Alert - 7.58
-- 17. Paid delivery of model catalog summaries in x402 Bazaar - 7.56
-- 18. MCP Integration Launch Sprint - 7.55
-- 19. Fixed-Scope Data Cleanup Service - 7.55
-- 20. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
-- 21. Bazaar deployable MCP Registry agent/model pack - 7.48
-- 22. Agent for summarizing new model catalog entries (with reasoning filter) via x402 Bazaar - 7.46
-- 23. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
-- 24. MCP / Agent Preflight Full Audit - 7.37
-- 25. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
-- 26. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
-- 27. Actionable Agent-Driven Docs Change Alerts - 7.27
-- 28. Live GitHub Agent Bounty Tracker & Notification Demo - 7.27
-- 29. Paid Agent Demo for Live Documentation Deltas - 7.25
-- 30. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
-- 31. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
-- 32. MCP / Agent Preflight Metered API - 7.12
-- 33. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
-- 34. Founder Demo Repurposing Pack - 7.10
-- 35. Instant Agent Demo for Recent Documentation Changes - 7.09
-- 36. GitHub bounty fulfillment for MCP server issue fix - 7.03
-- 37. Agent-Powered Model Catalog Demo Service - 7.01
-- 38. Agent Demo for Explicit GitHub Bounty Issues - 6.98
-- 39. Agent-Ready Commerce Catalog Repair - 6.80
-- 40. Roblox Launch Lens Studio Plugin - 6.74
-- 41. GitHub Issue Demo Submission for Explicit Dollar Bounty - 6.74
-- 42. Agent-Powered Issue Update Summaries for GitHub Bounty Issues - 6.74
-- 43. Agent Issue Demo Targeting GitHub Dollar Bounties - 6.67
-- 44. x402 Endpoint Implementation Sprint - 6.63
-- 45. Original AI Media Commission - 6.57
-- 46. Roblox Retention Repair Sprint - 6.18
-- 47. Build-in-Public Revenue Series - 6.03
-- 48. GitHub Paid Agent Bounty Tracker Brief - 5.82
-- 49. Hosted Agent Eval Dashboard - 5.80
-- 50. Roblox Embodiment Factory Experience - 5.26
-- 51. Direct Fulfillment of Explicit GitHub Dollar Bounties - 5.15
-- 52. Embodiment Milestone Collectible - 4.44
+- 7. Bazaar MCP Registry + Reasoning Model Combo Demo Brief - 7.88
+- 8. Paid Demo Agent+Model Resource Combo - 7.82
+- 9. Paid Demo Model-Delta Agent Combo - 7.71
+- 10. Paid Docs Delta Summarizer and Demo on x402 Bazaar - 7.70
+- 11. Agent Launch Gate Founding License - 7.64
+- 12. Paid Demo Activation via x402 Bazaar - 7.62
+- 13. Evidence-Backed Competitor Brief - 7.61
+- 14. Paid agent delivering Roblox documentation change summaries - 7.60
+- 15. Agent-powered Instant Demo: Documentation Delta Alert - 7.58
+- 16. Paid delivery of model catalog summaries in x402 Bazaar - 7.56
+- 17. MCP Integration Launch Sprint - 7.55
+- 18. Fixed-Scope Data Cleanup Service - 7.55
+- 19. Instant Demo Agent: Docs Change Alert via x402 Bazaar - 7.53
+- 20. Bazaar deployable MCP Registry agent/model pack - 7.48
+- 21. Agent for summarizing new model catalog entries (with reasoning filter) via x402 Bazaar - 7.46
+- 22. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
+- 23. MCP / Agent Preflight Full Audit - 7.37
+- 24. Paid Demo Resource: MCP Registry + Agent Model Combo - 7.34
+- 25. Agent-Driven Roblox Documentation Change Alerts (Updated July 26) - 7.34
+- 26. Actionable Agent-Driven Docs Change Alerts - 7.27
+- 27. Paid Agent Demo for Live Documentation Deltas - 7.25
+- 28. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
+- 29. Agent-Delivered Documentation Change Alerts via Bazaar - 7.14
+- 30. MCP / Agent Preflight Metered API - 7.12
+- 31. Bazaar Model + Docs Delta Alert Demo Pack - 7.11
+- 32. Founder Demo Repurposing Pack - 7.10
+- 33. Instant Agent Demo for Recent Documentation Changes - 7.09
+- 34. GitHub bounty fulfillment for MCP server issue fix - 7.03
+- 35. Agent-Powered Model Catalog Demo Service - 7.01
+- 36. Agent Demo for Explicit GitHub Bounty Issues - 6.98
+- 37. Agent-Ready Commerce Catalog Repair - 6.80
+- 38. Roblox Launch Lens Studio Plugin - 6.74
+- 39. GitHub Issue Demo Submission for Explicit Dollar Bounty - 6.74
+- 40. Agent-Powered Issue Update Summaries for GitHub Bounty Issues - 6.74
+- 41. Agent Issue Demo Targeting GitHub Dollar Bounties - 6.67
+- 42. x402 Endpoint Implementation Sprint - 6.63
+- 43. Original AI Media Commission - 6.57
+- 44. Roblox Retention Repair Sprint - 6.18
+- 45. Build-in-Public Revenue Series - 6.03
+- 46. GitHub Paid Agent Bounty Tracker Brief - 5.82
+- 47. Hosted Agent Eval Dashboard - 5.80
+- 48. Roblox Embodiment Factory Experience - 5.26
+- 49. Direct Fulfillment of Explicit GitHub Dollar Bounties - 5.15
+- 50. Embodiment Milestone Collectible - 4.44
