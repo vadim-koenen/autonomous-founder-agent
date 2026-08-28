@@ -61,21 +61,17 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 6. MCP Integration Launch Sprint - 7.55
 - 7. Fixed-Scope Data Cleanup Service - 7.55
 - 8. Agent for summarizing new model catalog entries (with reasoning filter) via x402 Bazaar - 7.46
-- 9. Docs Update Agent Demo with Paid Access on Bazaar - 7.40
-- 10. MCP / Agent Preflight Full Audit - 7.37
-- 11. Paid Agent Demo for Live Documentation Deltas - 7.25
-- 12. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
-- 13. MCP / Agent Preflight Metered API - 7.12
-- 14. Founder Demo Repurposing Pack - 7.10
-- 15. GitHub bounty fulfillment for MCP server issue fix - 7.03
-- 16. Agent-Powered Model Catalog Demo Service - 7.01
-- 17. Agent-Ready Commerce Catalog Repair - 6.80
-- 18. Roblox Launch Lens Studio Plugin - 6.74
-- 19. Agent-Powered Issue Update Summaries for GitHub Bounty Issues - 6.74
-- 20. x402 Endpoint Implementation Sprint - 6.63
-- 21. Original AI Media Commission - 6.57
-- 22. Roblox Retention Repair Sprint - 6.18
-- 23. Build-in-Public Revenue Series - 6.03
-- 24. Hosted Agent Eval Dashboard - 5.80
-- 25. Roblox Embodiment Factory Experience - 5.26
-- 26. Embodiment Milestone Collectible - 4.44
+- 9. MCP / Agent Preflight Full Audit - 7.37
+- 10. Paid Docs Delta Agent Demo for New Roblox Creator Docs Changes - 7.25
+- 11. MCP / Agent Preflight Metered API - 7.12
+- 12. Founder Demo Repurposing Pack - 7.10
+- 13. GitHub bounty fulfillment for MCP server issue fix - 7.03
+- 14. Agent-Ready Commerce Catalog Repair - 6.80
+- 15. Roblox Launch Lens Studio Plugin - 6.74
+- 16. x402 Endpoint Implementation Sprint - 6.63
+- 17. Original AI Media Commission - 6.57
+- 18. Roblox Retention Repair Sprint - 6.18
+- 19. Build-in-Public Revenue Series - 6.03
+- 20. Hosted Agent Eval Dashboard - 5.80
+- 21. Roblox Embodiment Factory Experience - 5.26
+- 22. Embodiment Milestone Collectible - 4.44
