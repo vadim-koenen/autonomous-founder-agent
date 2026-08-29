@@ -57,16 +57,15 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - 2. Evidence-Backed Competitor Brief - 7.61
 - 3. MCP Integration Launch Sprint - 7.55
 - 4. Fixed-Scope Data Cleanup Service - 7.55
-- 5. Agent for summarizing new model catalog entries (with reasoning filter) via x402 Bazaar - 7.46
-- 6. MCP / Agent Preflight Full Audit - 7.37
-- 7. MCP / Agent Preflight Metered API - 7.12
-- 8. Founder Demo Repurposing Pack - 7.10
-- 9. Agent-Ready Commerce Catalog Repair - 6.80
-- 10. Roblox Launch Lens Studio Plugin - 6.74
-- 11. x402 Endpoint Implementation Sprint - 6.63
-- 12. Original AI Media Commission - 6.57
-- 13. Roblox Retention Repair Sprint - 6.18
-- 14. Build-in-Public Revenue Series - 6.03
-- 15. Hosted Agent Eval Dashboard - 5.80
-- 16. Roblox Embodiment Factory Experience - 5.26
-- 17. Embodiment Milestone Collectible - 4.44
+- 5. MCP / Agent Preflight Full Audit - 7.37
+- 6. MCP / Agent Preflight Metered API - 7.12
+- 7. Founder Demo Repurposing Pack - 7.10
+- 8. Agent-Ready Commerce Catalog Repair - 6.80
+- 9. Roblox Launch Lens Studio Plugin - 6.74
+- 10. x402 Endpoint Implementation Sprint - 6.63
+- 11. Original AI Media Commission - 6.57
+- 12. Roblox Retention Repair Sprint - 6.18
+- 13. Build-in-Public Revenue Series - 6.03
+- 14. Hosted Agent Eval Dashboard - 5.80
+- 15. Roblox Embodiment Factory Experience - 5.26
+- 16. Embodiment Milestone Collectible - 4.44
