@@ -45,8 +45,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- m3-2026-08-24-cash-discovered-bazaar-paid-agent-usage-demo-combo-july28-03: Replaced after reassessment by MCP Integration Launch Sprint; role score improved from 0.00 to 7.91.
-- Selected MCP Integration Launch Sprint for cash; overall score 7.55, role score 7.91.
+- No selection or lifecycle change in this cycle.
 
 ## Blocked Identity or Setup Actions
 
