@@ -45,8 +45,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 
 ## Decisions
 
-- m3-2026-08-25-frontier-discovered-bazaar-paid-agent-model-demo-combo-july29-03: Replaced after reassessment by MCP / Agent Preflight Full Audit; role score improved from 0.00 to 7.48.
-- Selected MCP / Agent Preflight Full Audit for frontier; overall score 7.37, role score 7.48.
+- No selection or lifecycle change in this cycle.
 
 ## Blocked Identity or Setup Actions
 
