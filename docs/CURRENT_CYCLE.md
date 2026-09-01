@@ -1,6 +1,6 @@
 # Autonomous Revenue Operator - Current Cycle
 
-As of: 2026-08-31
+As of: 2026-09-01
 
 Mission: Maximize verified, lawful net revenue while retaining strategic freedom and allocating verified profits toward the agent's physical form.
 
@@ -21,17 +21,7 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Discovery: GitHub Pages sample and Contra digital product after validation.
 - Payment rail: Contra digital-product checkout after owner verification.
 - Next action: Measure qualified interest in the five-case sample through the public-safe GitHub intake.
-- Review date: 2026-09-01
-
-### Frontier: Access to a newly published agent/model combo demo (live or simulated resource) that solves a recent ecosystem pain point or enables a useful workflow.
-
-- Status: building
-- Buyer: x402 Bazaar unique buyers actively seeking paid agent/model demos
-- Price: 100.0 USD
-- Discovery: x402 Bazaar
-- Payment rail: x402 native payment
-- Next action: Draft a validation brief for paid agent/model combo demo targeting validated Bazaar buyer interest.
-- Review date: 2026-09-01
+- Review date: 2026-09-02
 
 ### Cash: Convert one existing REST operation into one documented and tested MCP tool with schema validation and a launch demo.
 
@@ -41,11 +31,22 @@ Mission: Maximize verified, lawful net revenue while retaining strategic freedom
 - Discovery: Upwork and Contra implementation listings after owner connection.
 - Payment rail: Marketplace escrow for marketplace-originated buyers.
 - Next action: Prepare a reference MCP conversion demo and listing draft.
-- Review date: 2026-09-01
+- Review date: 2026-09-02
+
+### Frontier: Within 48 hours, run public-metadata checks plus authorized live MCP or agent protocol tests, deliver a prioritized connection-readiness report, and implement one agreed repair patch.
+
+- Status: building
+- Buyer: Agent builders and small teams deciding whether an MCP server or agent endpoint is ready to connect or launch.
+- Price: 149 USD
+- Discovery: Functional GitHub Pages preflight and public GitHub intake feed direct buyers into the active Stripe Payment Link; optional service marketplaces remain separate future channels.
+- Payment rail: Active owner-configured Stripe Payment Link: https://buy.stripe.com/fZu00j2vSgJge0P08N3cc00
+- Next action: Run the functional public demo and collect qualified full-audit requests through the connected GitHub intake.
+- Review date: 2026-09-02
 
 ## Decisions
 
-- No selection or lifecycle change in this cycle.
+- m3-2026-08-25-frontier-discovered-bazaar-paid-agent-model-demo-combo-july29-03: Replaced after reassessment by MCP / Agent Preflight Full Audit; role score improved from 0.00 to 7.48.
+- Selected MCP / Agent Preflight Full Audit for frontier; overall score 7.37, role score 7.48.
 
 ## Blocked Identity or Setup Actions
 
