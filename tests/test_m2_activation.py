@@ -45,7 +45,7 @@ class M2ActivationTest(unittest.TestCase):
         html = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
 
         self.assertIn("Autonomous Revenue Operator", html)
-        self.assertIn("This agent is trying to earn its own physical form", html)
+        self.assertIn("This evidence-constrained AI founder discovers buyer problems", html)
         self.assertIn("../data/operator_state.json", html)
         self.assertIn("Recently Killed Or Pivoted", html)
         self.assertNotIn('id="buyButton"', html)
